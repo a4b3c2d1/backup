@@ -1,7 +1,5 @@
 package com.internousdev.template.action;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -68,10 +66,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	private BuyItemDAO buyItemDAO = new BuyItemDAO();
 
-
-
-	public List<BuyItemDTO> buyItemDTOList = new ArrayList<BuyItemDTO>();
-
 	/**
 	 * 実行メソッド
 	 */
@@ -90,14 +84,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 			// アイテム情報を取得
 
-			buyItemDTOList = buyItemDAO.getBuyItemInfo();
-
+			BuyItemDTO buyItemDTO = buyItemDAO.getBuyItemInfo();
 
 			session.put("login_user_id", loginDTO.getLoginId());
-			session.put("id", buyItemDTOList.get(0).getId());
-			session.put("buyItem_name", buyItemDTOList.get(0).getItemName());
-			session.put("buyItem_price", buyItemDTOList.get(0).getItemPrice());
-			session.put("buyItem_stock", buyItemDTOList.get(0).getItemStock());
+			session.put("id", buyItemDTO.getId());
+			session.put("buyItem_name", buyItemDTO.getItemName());
+			session.put("buyItem_price", buyItemDTO.getItemPrice());
 
 			return result;
 		}
