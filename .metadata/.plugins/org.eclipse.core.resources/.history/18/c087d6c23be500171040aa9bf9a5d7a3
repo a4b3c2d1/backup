@@ -1,0 +1,18 @@
+package com.internousdev.library.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.internousdev.library.dto.LoginDTO;
+import com.internousdev.library.util.DBConnector;
+
+public class LoginDAO {
+
+	private DBConnector db = new DBConnector();
+	private Connection con = db.getConnection();
+	private LoginDTO loginDTO =new LoginDTO()
+
+
+
+}

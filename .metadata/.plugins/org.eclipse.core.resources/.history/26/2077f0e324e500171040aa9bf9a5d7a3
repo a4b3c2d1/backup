@@ -1,0 +1,6 @@
+set name utf-8;
+set foreign_key_checks=0
+drop databases if exists librarydb;
+
+create database if not exists librarydb;
+

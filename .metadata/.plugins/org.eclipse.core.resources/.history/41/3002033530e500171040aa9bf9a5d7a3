@@ -1,0 +1,10 @@
+package com.internousdev.library.dto;
+
+public class MainpageDTO {
+
+	public String Login_id;
+	public String Login_password;
+	public String Username;
+	public boolean LoginFlg = false;
+
+}

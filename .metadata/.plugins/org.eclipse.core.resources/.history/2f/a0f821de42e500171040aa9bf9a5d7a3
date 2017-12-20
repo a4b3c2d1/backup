@@ -1,0 +1,53 @@
+package com.internousdev.library.action;
+
+import java.util.Map;
+
+import com.internousdev.library.dao.LoginDAO;
+import com.internousdev.library.dto.LoginDTO;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class LoginAction extends ActionSupport{
+
+	/**
+	 * ログインid
+	 */
+	private String LoginUserId;
+
+	/**
+	 * ログインpassword
+	 */
+	private String LoginPassword;
+
+	/**
+	 * ログイン情報を格納
+	 */
+	private Map<String ,Object> session;
+
+	/**
+	 * ログイン情報DAO
+	 */
+	private LoginDAO loginDAO=new LoginDAO();
+
+	/**
+	 * ログイン情報格納DTO
+	 */
+	private LoginDTO loginDTO=new LoginDTO();
+
+	/**
+	 * 実行結果
+	 */
+	private String result;
+
+
+
+	/**
+	 * 実行メソッド
+	 */
+
+	public String execute(){
+		 result=ERROR;
+
+		return result;
+	}
+
+}
