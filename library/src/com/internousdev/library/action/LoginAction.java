@@ -1,5 +1,6 @@
 package com.internousdev.library.action;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	 * 実行メソッド
 	 */
 
+	@SuppressWarnings("unchecked")
 	public String execute() {
 		result = ERROR;
 
@@ -54,10 +56,16 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		session.put("loginuser", loginDTOList);
 
-	if (((LoginDTO) session.get("loginuser")).getLoginFlg()) {
+	if (((List<LoginDTO>) session.get("loginuser")).get(0).getLoginFlg()) {
 
+
+
+			try {
+				loginDAO.updatetime(LoginUserId);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			result = SUCCESS;
-
 		}
 		return result;
 	}

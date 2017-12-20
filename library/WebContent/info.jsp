@@ -8,8 +8,25 @@
 <title>userinfo</title>
 </head>
 <body>
-
-
-
+<s:iterator value="#session.loginuser">
+<tr>
+<td><s:property value="Id"></s:property>
+</td>
+<td><s:property value="Login_id"></s:property>
+</td>
+<td><s:property value="Login_password"></s:property>
+</td>
+<td><s:property value="Username"></s:property>
+</td>
+<td><s:property value="lastlogin_time"></s:property>
+</td>
+<td><s:property value="updated_time"></s:property>
+</td>
+</tr></s:iterator>
+変更したい場合
+<s:form action InfochangeAction>
+<s:submit value="変更">
+</s:submit>
+</s:form>
 </body>
 </html>

@@ -2,9 +2,38 @@ package com.internousdev.library.dto;
 
 public class LoginDTO {
 
+
+	public int Id;
 	public String Login_id;
 	public String Login_password;
 	public String Username;
+	public String Lastlogin_time;
+	public String Updated_time;
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public String getLastlogin_time() {
+		return Lastlogin_time;
+	}
+
+	public void setLastlogin_time(String lastlogin_time) {
+		this.Lastlogin_time = lastlogin_time;
+	}
+
+	public String getUpdated_time() {
+		return Updated_time;
+	}
+
+	public void setUpdated_time(String updated_time) {
+		this.Updated_time = updated_time;
+	}
+
 	public boolean LoginFlg = false;
 
 	public String getLogin_id() {

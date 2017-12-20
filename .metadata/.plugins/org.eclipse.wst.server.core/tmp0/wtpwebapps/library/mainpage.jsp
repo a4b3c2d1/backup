@@ -10,7 +10,9 @@
 <body>
 
 	ログイン中
-	<s:property value="" />
+	<s:iterator value="#session.loginuser">
+		<s:property value="Username" />さん
+	</s:iterator>
 
 	<s:form action="">
 		<s:submit value="目録管理">

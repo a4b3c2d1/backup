@@ -9,12 +9,14 @@ import java.util.List;
 
 import com.internousdev.library.dto.LoginDTO;
 import com.internousdev.library.util.DBConnector;
+import com.internousdev.library.util.DateUtil;
 
 public class LoginDAO {
 
 	private DBConnector db = new DBConnector();
 	private Connection con = db.getConnection();
 	public List<LoginDTO> loginDTOList = new ArrayList<LoginDTO>();
+	private DateUtil dateUtil = new DateUtil();
 
 	/**
 	 * ログインユーザ情報取得
@@ -32,9 +34,12 @@ public class LoginDAO {
 
 			if (rs.next()) {
 				LoginDTO loginDTO = new LoginDTO();
+				loginDTO.setId(rs.getInt("id"));
 				loginDTO.setLogin_id(rs.getString("login_id"));
 				loginDTO.setLogin_password(rs.getString("login_pass"));
 				loginDTO.setUsername(rs.getString("user_name"));
+				loginDTO.setLastlogin_time(rs.getString("lastlogin_time"));
+				loginDTO.setUpdated_time(rs.getString("updated_time"));
 
 				if (!(rs.getString("login_id").equals(null))) {
 					loginDTO.setLoginFlg(true);
@@ -48,4 +53,16 @@ public class LoginDAO {
 		return loginDTOList;
 	}
 
+	public void updatetime(String LoginUserId) throws SQLException {
+		String sql = "update library.manager_login set lastlogin_time =? where login_id=?";
+		try {
+
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, dateUtil.getDate());
+			ps.setString(2, LoginUserId);
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
