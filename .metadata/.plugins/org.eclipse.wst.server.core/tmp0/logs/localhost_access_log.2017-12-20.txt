@@ -296,3 +296,8 @@
 0:0:0:0:0:0:0:1 - - [20/Dec/2017:17:54:26 +0900] "POST /library/HomeAction.action HTTP/1.1" 200 737
 0:0:0:0:0:0:0:1 - - [20/Dec/2017:17:54:32 +0900] "POST /library/LoginAction.action HTTP/1.1" 200 964
 0:0:0:0:0:0:0:1 - - [20/Dec/2017:17:54:33 +0900] "POST /library/UserinfoAction.action HTTP/1.1" 200 10578
+127.0.0.1 - - [20/Dec/2017:17:59:38 +0900] "GET / HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [20/Dec/2017:17:59:40 +0900] "GET /library/ HTTP/1.1" 200 578
+0:0:0:0:0:0:0:1 - - [20/Dec/2017:17:59:46 +0900] "POST /library/HomeAction.action;jsessionid=CD6297373CC4641FF1D04F51BDDEAEB2 HTTP/1.1" 200 737
+0:0:0:0:0:0:0:1 - - [20/Dec/2017:17:59:53 +0900] "POST /library/LoginAction.action HTTP/1.1" 200 964
+0:0:0:0:0:0:0:1 - - [20/Dec/2017:17:59:54 +0900] "POST /library/UserinfoAction.action HTTP/1.1" 200 10578

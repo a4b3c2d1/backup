@@ -54,7 +54,7 @@ public class LoginDAO {
 	}
 
 	public void updatetime(String LoginUserId) throws SQLException {
-		String sql = "update library.manager_login set lastlogin_time =? where login_id=?";
+		String sql = "update librarydb.manager_login set lastlogin_time =? where login_id=?";
 		try {
 
 			PreparedStatement ps = con.prepareStatement(sql);

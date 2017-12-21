@@ -1,0 +1,37 @@
+package com.internousdev.library.action;
+
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.internousdev.library.dao.InfochangeConpleteDAO;
+import com.opensymphony.xwork2.ActionSupport;
+
+
+public class InfochangeConpleteAction extends ActionSupport implements SessionAware {
+
+	public Map<String, Object> session;
+
+	InfochangeConpleteDAO infochangeConpleteDAO = new InfochangeConpleteDAO();
+
+	public String execute() {
+
+		String result;
+System.out.println(session.get("newloginuserid").toString());
+System.out.println(session.get("id").toString());
+
+		infochangeConpleteDAO.getloginuserinfo(session.get("loginid").toString(),
+				session.get("newloginuserid").toString(), session.get("newloginpassword").toString(),
+				session.get("newusername").toString());
+
+		result = SUCCESS;
+		return result;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+}

@@ -1,0 +1,25 @@
+package com.internousdev.library.action;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.internousdev.library.dao.LoginDAO;
+import com.internousdev.library.dto.LoginDTO;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class MainpagebackAction extends ActionSupport implements SessionAware {
+	public Map<String, Object> session;
+
+	public String execute() {
+
+		return SUCCESS;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+}

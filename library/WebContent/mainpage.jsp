@@ -24,7 +24,11 @@
 		</s:submit>
 	</s:form>
 	<s:form action="UserinfoAction">
-		<s:submit value="管理者設定">
+		<s:submit value="管理者情報">
+		</s:submit>
+		</s:form>
+	<s:form action="">
+		<s:submit value="新規管理者登録">
 		</s:submit>
 	</s:form>
 </body>
