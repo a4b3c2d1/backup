@@ -1,0 +1,46 @@
+package com.internousdev.library.action;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class InfochangeAction extends ActionSupport implements SessionAware {
+
+	public Map<String, Object> session;
+	public String hoge1;
+	public String hoge2;
+	public String hoge3;
+
+	public String selectmessage;
+
+	public String execute() {
+
+		if (hoge1 == "変更") {
+			selectmessage = "a";
+		}
+		if (hoge2 == "変更") {
+			selectmessage = "b";
+		}
+		if (hoge3 == "変更") {
+			selectmessage = "c";
+		}
+		System.out.println(selectmessage);
+		return SUCCESS;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	public String getHoge() {
+		return hoge;
+	}
+
+	public void setHoge(String hoge) {
+		this.hoge = hoge;
+	}
+
+}

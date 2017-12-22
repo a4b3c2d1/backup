@@ -9,27 +9,47 @@
 </head>
 <body>
 	管理者情報変更
-<br><br>
+	<br>
+	<br>
 	<s:if test="errorMessage !=''">
 		<s:property value="errorMessage" escape="false" />
 
 	</s:if>
-	<s:form action="InfochangeConfirmAction">
-		<tr>
-			<td><span>USERID</span></td>
-			<s:textfield name="NewLoginUserId" />
-		</tr>
-		<tr>
-			<td><span>PASSWORD</span></td>
-			<s:password name="NewLoginPassword" />
-		</tr>
-		<tr>
-			<td><span>USERNAME</span></td>
-			<s:textfield name="NewUserName" />
-		</tr>
-		<s:submit value="変更">
-		</s:submit>
-	</s:form>
 
+	<s:if test='%{#session.selectmessage=="a"}'>
+		<s:form action="InfochangeConfirmAction">
+			<tr>
+				<td><span>USERID</span></td>
+				<s:textfield name="NewLoginUserId" />
+			</tr>
+			<s:submit value="変更">
+			</s:submit>
+		</s:form>
+
+
+	</s:if>
+	<s:elseif test='%{#session.selectmessage=="b"}'>
+		<s:form action="InfochangeConfirmAction">
+
+			<tr>
+				<td><span>PASSWORD</span></td>
+				<s:password name="NewLoginPassword" />
+			</tr>
+			<s:submit value="変更">
+			</s:submit>
+		</s:form>
+	</s:elseif>
+	<s:elseif test='{#session.selectmessage =="c"}'>
+		<s:form action="InfochangeConfirmAction">
+
+			<tr>
+				<td><span>USERNAME</span></td>
+				<s:textfield name="NewUserName" />
+			</tr>
+
+			<s:submit value="変更">
+			</s:submit>
+		</s:form>
+	</s:elseif>
 </body>
 </html>

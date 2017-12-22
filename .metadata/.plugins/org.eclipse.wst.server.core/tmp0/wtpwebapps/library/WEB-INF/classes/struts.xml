@@ -6,6 +6,7 @@
 <!-- Strutsの詳細設定 -->
 <struts>
 	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
 	<!-- 対象のpackageを設定 -->
 	<package name="com.internousdev.library.action" extends="struts-default">
 
@@ -29,11 +30,28 @@
 			<result name="success">info.jsp</result>
 		</action>
 
+
+
 		<!-- InfochangeAction -->
 		<action name="InfochangeAction" class="com.internousdev.library.action.InfochangeAction"
-			method="execute">
+			method="aaa">
 			<result name="success">infochange.jsp</result>
 		</action>
+
+			<!-- InfochangeAction -->
+		<action name="InfochangeAction" class="com.internousdev.library.action.InfochangeAction"
+			method="bbb">
+			<result name="success">infochange.jsp</result>
+		</action>
+
+
+			<!-- InfochangeAction -->
+		<action name="InfochangeAction" class="com.internousdev.library.action.InfochangeAction"
+			method="ccc">
+			<result name="success">infochange.jsp</result>
+		</action>
+
+
 
 		<!-- InfochangeConfirmAction -->
 		<action name="InfochangeConfirmAction"

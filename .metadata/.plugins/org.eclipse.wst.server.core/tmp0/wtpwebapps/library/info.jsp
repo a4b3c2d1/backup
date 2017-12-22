@@ -5,40 +5,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>userinfo</title>
 </head>
 <body>
 	<table>
+		<s:form action="InfochangeAction">
+			<s:iterator value="#session.loginuser">
+				<tr>
+					<td><span>USERID</span></td>
+					<td><s:property value="Login_id"></s:property></td>
+					<s:submit value="変更" method="aaa">
+					</s:submit>
+				</tr>
 
-		<s:iterator value="#session.loginuser">
-			<tr>
-				<td><span>USERID</span></td>
-				<td><s:property value="Login_id"></s:property></td>
-			</tr>
-			<tr>
-				<td><span>PASSWORD</span></td>
-				<td><s:property value="Login_password"></s:property></td>
-			</tr>
-			<tr>
-				<td><span>USERNAME</span></td>
-				<td><s:property value="Username"></s:property></td>
-			</tr>
-			<tr>
-				<td><span>最終ログイン時間</span></td>
-				<td><s:property value="lastlogin_time"></s:property></td>
-			</tr>
-			<tr>
-				<td><span>変更時間</span></td>
-				<td><s:property value="updated_time"></s:property></td>
-			</tr>
-		</s:iterator>
+				<tr>
+					<td><span>PASSWORD</span></td>
+					<td><s:property value="Login_password"></s:property></td>
+					<s:submit value="変更" method="bbb">
+					</s:submit>
 
+				</tr>
+
+				<tr>
+					<td><span>USERNAME</span></td>
+					<td><s:property value="Username"></s:property></td>
+					<s:submit value="変更" method="ccc">
+					</s:submit>
+				</tr>
+
+				<tr>
+					<td><span>最終ログイン時間</span></td>
+					<td><s:property value="lastlogin_time"></s:property></td>
+				</tr>
+				<tr>
+					<td><span>変更時間</span></td>
+					<td><s:property value="updated_time"></s:property></td>
+				</tr>
+			</s:iterator>
+		</s:form>
 	</table>
-	<br>
-	ユーザー情報を変更したい場合
-	<s:form action="InfochangeAction">
-		<s:submit value="変更">
-		</s:submit>
-	</s:form>
+
 </body>
 </html>

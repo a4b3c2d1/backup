@@ -14,17 +14,18 @@ public class InfochangeDAO {
 	private Connection con = db.getConnection();
 	LoginDTO loginDTO = new LoginDTO();
 
-	public LoginDTO getuserinfo(String NewLoginUserId,String NewLoginPassword) {
-		String sql = "select * from manager_login where login_id=? and login_pass=?";
+	public LoginDTO getuserinfo(String NewLoginUserId) {
+		String sql = "select * from manager_login where login_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, NewLoginUserId);
-			ps.setString(2,NewLoginPassword );
+
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 
 				loginDTO.setLogin_id(rs.getString("login_id"));
 				loginDTO.setLogin_password(rs.getString("login_pass"));
+				loginDTO.setUsername(rs.getString("user_name"));
 			}
 
 		} catch (
