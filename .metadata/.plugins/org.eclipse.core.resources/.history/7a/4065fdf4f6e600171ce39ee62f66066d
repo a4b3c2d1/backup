@@ -14,7 +14,7 @@ public class InfochangeDAO {
 	private Connection con = db.getConnection();
 	LoginDTO loginDTO = new LoginDTO();
 
-	public LoginDTO getuserinfo1(String NewLoginUserId) {
+	public LoginDTO getuserinfo(String NewLoginUserId) {
 		String sql = "select * from manager_login where login_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -36,7 +36,7 @@ public class InfochangeDAO {
 		return loginDTO;
 	}
 
-	public LoginDTO getuserinfo2(String NewLoginPassword) {
+	public LoginDTO getuserinfo(String NewLoginPassword) {
 		String sql = "select * from manager_login where login_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -58,11 +58,11 @@ public class InfochangeDAO {
 		return loginDTO;
 	}
 
-	public LoginDTO getuserinfo3(String NewUserName) {
+	public LoginDTO getuserinfo(String NewUserName) {
 		String sql = "select * from manager_login where login_id=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, NewUserName);
+			ps.setString(1, UserName);
 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {

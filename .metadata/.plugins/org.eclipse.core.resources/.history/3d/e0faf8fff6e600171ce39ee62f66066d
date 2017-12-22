@@ -26,7 +26,7 @@ public class InfochangeConfirmAction extends ActionSupport implements SessionAwa
 		LoginDTO loginDTO = new LoginDTO();
 
 		if (!(NewLoginUserId.equals(""))) {
-			loginDTO = infochangeDAO.getuserinfo1(NewLoginUserId);
+			loginDTO = infochangeDAO.getuserinfo(NewLoginUserId);
 			System.out.println(loginDTO.getLogin_id());
 			if ((NewLoginUserId.equals(loginDTO.getLogin_id()))) {
 				setErrorMessage("**すでに使われているIDです**");
@@ -42,7 +42,7 @@ public class InfochangeConfirmAction extends ActionSupport implements SessionAwa
 		}
 
 		if (!(NewLoginPassword.equals(""))) {
-			loginDTO = infochangeDAO.getuserinfo2(NewLoginPassword);
+			loginDTO = infochangeDAO.getuserinfo(NewLoginPassword);
 			System.out.println(loginDTO.getLogin_id());
 			if ((NewLoginPassword.equals(loginDTO.getLogin_id()))) {
 				setErrorMessage("**すでに使われているIDです**");
@@ -58,7 +58,7 @@ public class InfochangeConfirmAction extends ActionSupport implements SessionAwa
 		}
 
 		if (!(NewLoginUserId.equals(""))) {
-			loginDTO = infochangeDAO.getuserinfo3(NewUserName);
+			loginDTO = infochangeDAO.getuserinfo(NewUserName);
 			System.out.println(loginDTO.getLogin_id());
 			if ((NewUserName.equals(loginDTO.getLogin_id()))) {
 				setErrorMessage("**すでに使われているIDです**");
