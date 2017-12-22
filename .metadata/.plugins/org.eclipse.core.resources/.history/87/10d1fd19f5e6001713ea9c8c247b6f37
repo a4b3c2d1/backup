@@ -20,28 +20,22 @@ public class InfochangeConfirmAction extends ActionSupport implements SessionAwa
 	public List<LoginDTO> loginDTOList = new ArrayList<LoginDTO>();
 	private String errorMessage;
 	InfochangeDAO infochangeDAO = new InfochangeDAO();
-	LoginDTO loginDTO = new LoginDTO();
 
 	public String execute() {
-		String result;
-
+		String result = null;
+		LoginDTO loginDTO = new LoginDTO();
 		loginDTO = infochangeDAO.getuserinfo(NewLoginUserId);
-
 
 		if (!(NewLoginUserId.equals("") || NewLoginPassword.equals("") || NewUserName.equals(""))) {
 
-			if (!(loginDTO.getLogin_id().equals(NewLoginUserId))) {
-
-				result = SUCCESS;
-
-				session.put("newloginid", NewLoginUserId);
-				session.put("newloginpassword", NewLoginUserId);
-				session.put("newusername", NewLoginUserId);
+			if ((NewLoginUserId.equals(loginDTO.getLogin_id()))) {
+				setErrorMessage("**すでに使われているIDです**");
+				result = ERROR;
 
 			} else {
-				setErrorMessage("**すでに使われているID名です.**");
-				result = ERROR;
+				result = SUCCESS;
 			}
+
 		} else {
 			setErrorMessage("**未入力の項目があります。**");
 			result = ERROR;

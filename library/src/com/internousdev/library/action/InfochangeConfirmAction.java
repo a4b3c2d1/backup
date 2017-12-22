@@ -24,10 +24,10 @@ public class InfochangeConfirmAction extends ActionSupport implements SessionAwa
 	public String execute() {
 		String result = null;
 		LoginDTO loginDTO = new LoginDTO();
-		loginDTO = infochangeDAO.getuserinfo(NewLoginUserId);
 
-		if (!(NewLoginUserId.equals("") || NewLoginPassword.equals("") || NewUserName.equals(""))) {
-
+		if (!(NewLoginUserId.equals(""))) {
+			loginDTO = infochangeDAO.getuserinfo(NewLoginUserId);
+			System.out.println(loginDTO.getLogin_id());
 			if ((NewLoginUserId.equals(loginDTO.getLogin_id()))) {
 				setErrorMessage("**すでに使われているIDです**");
 				result = ERROR;
@@ -35,10 +35,10 @@ public class InfochangeConfirmAction extends ActionSupport implements SessionAwa
 			} else {
 				result = SUCCESS;
 			}
-
 		} else {
 			setErrorMessage("**未入力の項目があります。**");
 			result = ERROR;
+
 		}
 		return result;
 
