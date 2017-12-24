@@ -56,7 +56,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		session.put("loginuser", loginDTOList);
 		session.put("loginid",LoginUserId);
-
+		session.put("loginpassword",LoginPassword);
 	if (((List<LoginDTO>) session.get("loginuser")).get(0).getLoginFlg()) {
 
 			try {

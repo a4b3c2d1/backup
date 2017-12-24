@@ -22,7 +22,7 @@
 				<td><span>USERID</span></td>
 				<s:textfield name="NewLoginUserId" />
 			</tr>
-			<s:submit value="変更">
+			<s:submit value="変更" method="aaa">
 			</s:submit>
 		</s:form>
 
@@ -35,7 +35,7 @@
 				<td><span>PASSWORD</span></td>
 				<s:password name="NewLoginPassword" />
 			</tr>
-			<s:submit value="変更">
+			<s:submit value="変更" method="bbb">
 			</s:submit>
 		</s:form>
 	</s:elseif>
@@ -47,7 +47,7 @@
 				<s:textfield name="NewUserName" />
 			</tr>
 
-			<s:submit value="変更">
+			<s:submit value="変更" method="ccc">
 			</s:submit>
 		</s:form>
 	</s:elseif>

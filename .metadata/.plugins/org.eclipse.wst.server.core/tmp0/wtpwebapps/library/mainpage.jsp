@@ -14,22 +14,26 @@
 		<s:property value="Username" />さん
 	</s:iterator>
 
-	<s:form action="">
+	<s:form action="BookpageAction">
 		<s:submit value="目録管理">
 		</s:submit>
 	</s:form>
 
-	<s:form action="">
+	<s:form action="UserAction">
 		<s:submit value="閲覧管理">
 		</s:submit>
 	</s:form>
 	<s:form action="UserinfoAction">
 		<s:submit value="管理者情報">
 		</s:submit>
-		</s:form>
-	<s:form action="">
+	</s:form>
+	<s:form action="CreatemanagerAction">
 		<s:submit value="新規管理者登録">
 		</s:submit>
 	</s:form>
+
+
+	ログアウトする場合は
+	<a href='<s:url action="LogoutAction"/>'>こちら</a>
 </body>
 </html>

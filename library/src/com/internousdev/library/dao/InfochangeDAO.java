@@ -36,47 +36,5 @@ public class InfochangeDAO {
 		return loginDTO;
 	}
 
-	public LoginDTO getuserinfo2(String NewLoginPassword) {
-		String sql = "select * from manager_login where login_id=?";
-		try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, NewLoginPassword);
 
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-
-				loginDTO.setLogin_id(rs.getString("login_id"));
-				loginDTO.setLogin_password(rs.getString("login_pass"));
-				loginDTO.setUsername(rs.getString("user_name"));
-			}
-
-		} catch (
-
-		SQLException e) {
-			e.printStackTrace();
-		}
-		return loginDTO;
-	}
-
-	public LoginDTO getuserinfo3(String NewUserName) {
-		String sql = "select * from manager_login where login_id=?";
-		try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, NewUserName);
-
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-
-				loginDTO.setLogin_id(rs.getString("login_id"));
-				loginDTO.setLogin_password(rs.getString("login_pass"));
-				loginDTO.setUsername(rs.getString("user_name"));
-			}
-
-		} catch (
-
-		SQLException e) {
-			e.printStackTrace();
-		}
-		return loginDTO;
-	}
 }

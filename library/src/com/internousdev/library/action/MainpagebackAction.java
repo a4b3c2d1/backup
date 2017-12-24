@@ -12,6 +12,7 @@ public class MainpagebackAction extends ActionSupport implements SessionAware {
 	public String execute() {
 
 		return SUCCESS;
+
 	}
 
 	@Override

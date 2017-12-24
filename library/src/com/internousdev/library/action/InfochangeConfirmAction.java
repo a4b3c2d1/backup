@@ -20,74 +20,52 @@ public class InfochangeConfirmAction extends ActionSupport implements SessionAwa
 	public List<LoginDTO> loginDTOList = new ArrayList<LoginDTO>();
 	private String errorMessage;
 	InfochangeDAO infochangeDAO = new InfochangeDAO();
+	public String result = null;
 
-	public String execute() {
-		String result = null;
+	public String aaa() {
+
 		LoginDTO loginDTO = new LoginDTO();
 
-		if (!(NewLoginUserId.equals(""))) {
-			loginDTO = infochangeDAO.getuserinfo1(NewLoginUserId);
-			System.out.println(loginDTO.getLogin_id());
-			if ((NewLoginUserId.equals(loginDTO.getLogin_id()))) {
-				setErrorMessage("**すでに使われているIDです**");
-				result = ERROR;
+		loginDTO = infochangeDAO.getuserinfo1(NewLoginUserId);
+		if ((NewLoginUserId.equals(loginDTO.getLogin_id()))) {
+			setErrorMessage("**すでに使われているIDです**");
+			result = ERROR;
 
-			} else {
-				result = SUCCESS;
-			}
-		} else {
+		} else if ((NewLoginUserId.equals(""))) {
 			setErrorMessage("**未入力の項目があります。**");
 			result = ERROR;
 
-		}
+		} else if (!(NewLoginUserId.equals(""))) {
+			session.put("NewLoginUserId", NewLoginUserId);
+			result = SUCCESS;
 
+		}
+		return result;
+	}
+
+	public String bbb() {
 		if (!(NewLoginPassword.equals(""))) {
-			loginDTO = infochangeDAO.getuserinfo2(NewLoginPassword);
-			System.out.println(loginDTO.getLogin_id());
-			if ((NewLoginPassword.equals(loginDTO.getLogin_id()))) {
-				setErrorMessage("**すでに使われているIDです**");
-				result = ERROR;
+			session.put("NewLoginPassword", NewLoginPassword);
+			result = SUCCESS;
 
-			} else {
-				result = SUCCESS;
-			}
-		} else {
+		} else if ((NewLoginPassword.equals(""))) {
+			setErrorMessage("**未入力の項目があります。**");
+			result = ERROR;
+		}
+		return result;
+
+	}
+
+	public String ccc() {
+		if (!(NewUserName.equals(""))) {
+			session.put("NewUserName", NewUserName);
+			result = SUCCESS;
+
+		} else if ((NewUserName.equals(""))) {
 			setErrorMessage("**未入力の項目があります。**");
 			result = ERROR;
 
 		}
-
-		if (!(NewLoginUserId.equals(""))) {
-			loginDTO = infochangeDAO.getuserinfo3(NewUserName);
-			System.out.println(loginDTO.getLogin_id());
-			if ((NewUserName.equals(loginDTO.getLogin_id()))) {
-				setErrorMessage("**すでに使われているIDです**");
-				result = ERROR;
-
-			} else {
-				result = SUCCESS;
-			}
-		} else {
-			setErrorMessage("**未入力の項目があります。**");
-			result = ERROR;
-
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		return result;
 
 	}

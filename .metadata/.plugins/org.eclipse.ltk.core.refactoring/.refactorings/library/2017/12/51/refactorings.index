@@ -1,16 +1,11 @@
-1513673686562	パッケージ名 'com.internousdev.bookstore' を変更します
-1513732983602	リソース 'create_db.sql' の名前変更
-1513732991319	リソース 'manager_login.sql' の名前変更
-1513733989400	リソース 'add manager.sql' の名前変更
-1513735642298	パッケージ名 'com.internousdev.bookstore.util' を変更します
-1513735659892	パッケージ名 'com.internousdev.bookstore' を変更します
-1513735675011	パッケージ名 'com.internousdev.bookstore.action' を変更します
-1513735689293	パッケージ名 'com.internousdev.bookstore.dto' を変更します
-1513735704430	パッケージ名 'com.internousdev.bookstore.dao' を変更します
-1513736993650	ファイルを移動する
-1513738392123	型名 'MainpageAction' を変更します
-1513738398610	型名 'MainpageDAO' を変更します
-1513738408274	型名 'MainpageDTO' を変更します
-1513738415972	型名 'LoginpageDAO' を変更します
-1513746878563	リソース 'Mainpage.jsp' の名前変更
-1513824677741	フィールド 'errorMesage' をカプセル化します
+1513951838069	型名 'CreatemanagaerAction' を変更します
+1513994758932	要素を削除
+1513997182462	リソース 'infochangeConplete.jsp' の名前変更
+1513997209012	リソース 'infochangeconplete.jsp' の名前変更
+1513997240379	リソース 'createmanagerconfirm.jsp' の名前変更
+1513997374760	リソース 'CreatemanagerConplete.jsp' の名前変更
+1513998733269	リソース 'createmanagerConfirm.jsp' の名前変更
+1513998859064	リソース 'createmanagerconfirm.jsp' の名前変更
+1513998936423	要素を削除
+1513999045981	リソース 'createmanagerConplete.jsp' の名前変更
+1513999058432	リソース 'createmanagerConplet.jsp' の名前変更

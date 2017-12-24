@@ -1,0 +1,3 @@
+use librarydb;
+
+insert into rental_info(renatal_id,user_id,book_id,rental_day,return_day) values(1,1,1,12/23,12/23);

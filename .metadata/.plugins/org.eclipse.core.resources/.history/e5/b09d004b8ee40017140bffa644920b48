@@ -1,5 +1,0 @@
-package com.internousdev.bookstore.util;
-
-public class DBConnector {
-
-}

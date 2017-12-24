@@ -21,20 +21,53 @@ public class InfochangeConpleteAction extends ActionSupport implements SessionAw
 
 	private LoginDAO loginDAO = new LoginDAO();
 
-	public String execute() {
+	public String result;
 
-		String result;
+	public String aaa() {
 
-		infochangeConpleteDAO.getloginuserinfo(session.get("loginid").toString(),
-				session.get("newloginuserid").toString(), session.get("newloginpassword").toString(),
-				session.get("newusername").toString());
+		if (!((session.get("NewLoginUserId").toString()) == null)) {
+			infochangeConpleteDAO.getloginuserinfo1(session.get("loginid").toString(),
+					session.get("NewLoginUserId").toString());
 
-		loginDTOList = loginDAO.getloginuserinfo(session.get("newloginuserid").toString(),
-				session.get("newloginpassword").toString());
+			loginDTOList = loginDAO.getloginuserinfo(session.get("NewLoginUserId").toString(),
+					session.get("loginpassword").toString());
 
-		session.put("loginuser", loginDTOList);
+			session.put("loginuser", loginDTOList);
+			session.put("NewLoginUserId", null);
+			result = SUCCESS;
 
-		result = SUCCESS;
+		}
+		return result;
+	}
+
+	public String bbb() {
+		if (!((session.get("NewLoginPassword").toString()) == null)) {
+			infochangeConpleteDAO.getloginuserinfo2(session.get("loginid").toString(),
+					session.get("NewLoginPassword").toString());
+
+			loginDTOList = loginDAO.getloginuserinfo(session.get("loginid").toString(),
+					session.get("NewLoginPassword").toString());
+
+			session.put("loginuser", loginDTOList);
+			session.put("NewLoginPassword", null);
+			result = SUCCESS;
+		}
+		return result;
+	}
+
+	public String ccc() {
+		if (!((session.get("NewUserName").toString()) == null)) {
+			infochangeConpleteDAO.getloginuserinfo3(session.get("loginid").toString(),
+					session.get("NewUserName").toString());
+
+			loginDTOList = loginDAO.getloginuserinfo(session.get("loginid").toString(),
+					session.get("loginpassword").toString());
+
+			session.put("loginuser", loginDTOList);
+			session.put("NewUserName", null);
+			result = SUCCESS;
+		}
+
 		return result;
 	}
 

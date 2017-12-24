@@ -1,0 +1,8 @@
+use librarydb
+
+drop table if exists place_info;
+
+create table place_info(
+placeid int(11) primary key auto_increment,
+placename varchar(16)
+)

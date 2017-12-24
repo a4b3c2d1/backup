@@ -1,0 +1,25 @@
+package com.internousdev.library.action;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class CreatemanagerConpleteAction extends ActionSupport implements SessionAware{
+
+
+	private String lNewUserId;
+
+	private String NewPassword;
+
+	private String NewUsername;
+
+	public Map<String, Object> session;
+
+	private String result;
+	public String execute(){
+
+	}
+
+}

@@ -1,0 +1,10 @@
+use librarydb;
+
+drop table if exists rental_info;
+
+create table rental_info(
+renatal_id int(11) primary key auto_increment,
+
+
+
+)
