@@ -1,7 +1,0 @@
-package com.internousdev.library.action;
-
-public class LogoutAction {
-	public String execute() {
-		return success;
-	}
-}

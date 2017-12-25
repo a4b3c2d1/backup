@@ -8,11 +8,19 @@
 <title>user登録</title>
 </head>
 <body>
+	<s:if test="errormessage !=''">
+		<s:property value="errormessage" escape="false" />
+	</s:if>
+
 	<s:form action="UsercreateConfirmAction">
 		<span>USERNAME</span>
 		<s:textfield name="Username" />
 
 		<s:submit value="確認">
+		</s:submit>
+	</s:form>
+	<s:form action="UserAction">
+		<s:submit value="戻る">
 		</s:submit>
 	</s:form>
 </body>

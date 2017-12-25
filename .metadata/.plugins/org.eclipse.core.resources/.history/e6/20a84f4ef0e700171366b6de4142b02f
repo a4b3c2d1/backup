@@ -1,3 +1,0 @@
-use librarydb;
-
-insert into book_info(book_id,isbn,place_id) values(1,9784800276544,1);

@@ -51,5 +51,10 @@
 			</s:submit>
 		</s:form>
 	</s:elseif>
+	<s:form action="UserinfoAction">
+		<s:submit value="戻る">
+		</s:submit>
+	</s:form>
+
 </body>
 </html>

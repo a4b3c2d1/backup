@@ -155,7 +155,72 @@
 		<action name="UsercreateConfirmAction"
 			class="com.internousdev.library.action.UsercreateConfirmAction"
 			method="execute">
-			<result name="success">usercreateconfirm.jsp</result>
+			<result name="success">usercreateConfirm.jsp</result>
+			<result name="error">usercreate.jsp</result>
+		</action>
+
+		<!--UsercreateConpleteAction -->
+		<action name="UsercreateConpleteAction"
+			class="com.internousdev.library.action.UsercreateConpleteAction"
+			method="execute">
+			<result name="success">usercreateConplete.jsp</result>
+		</action>
+
+
+		<!--BooksearchAction -->
+		<action name="BooksearchAction" class="com.internousdev.library.action.BooksearchAction"
+			method="execute">
+			<result name="success">booksearch.jsp</result>
+		</action>
+
+		<!-- BookaddplaceAction -->
+		<action name="BookaddplaceAction"
+			class="com.internousdev.library.action.BookaddplaceAction" method="execute">
+			<result name="success">bookaddplace.jsp</result>
+		</action>
+
+		<!--Bookadd1Action -->
+		<action name="Bookadd1Action" class="com.internousdev.library.action.Bookadd1Action"
+			method="execute">
+			<result name="success">bookadd1.jsp</result>
+		</action>
+
+		<!--BookaddAction -->
+		<action name="Bookadd2Action" class="com.internousdev.library.action.Bookadd2Action"
+			method="execute">
+			<result name="success">bookadd2.jsp</result>
+		</action>
+
+		<!--Bookadd3Action -->
+		<action name="Bookadd3Action" class="com.internousdev.library.action.Bookadd3Action"
+			method="execute">
+			<result name="success">bookadd3.jsp</result>
+		</action>
+
+		<!--Bookadd4Action -->
+		<action name="Bookadd4Action" class="com.internousdev.library.action.Bookadd4Action"
+			method="execute">
+			<result name="success">bookadd4.jsp</result>
+		</action>
+
+		<!--Bookadd5Action -->
+		<action name="Bookadd5Action" class="com.internousdev.library.action.Bookadd5Action"
+			method="execute">
+			<result name="success">bookadd5.jsp</result>
+		</action>
+
+		<!--Bookadd6Action -->
+		<action name="Bookadd6Action" class="com.internousdev.library.action.Bookadd6Action"
+			method="execute">
+			<result name="success">bookadd6.jsp</result>
+		</action>
+
+
+
+		<!--BookdeleteAction -->
+		<action name="BookdeleteAction" class="com.internousdev.library.action.BookdeleteAction"
+			method="execute">
+			<result name="success">bookdelete.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -15,5 +15,10 @@
 		<s:submit value="登録">
 		</s:submit>
 	</s:form>
+
+	<s:form action="UsercreateAction">
+		<s:submit value="戻る">
+		</s:submit>
+	</s:form>
 </body>
 </html>

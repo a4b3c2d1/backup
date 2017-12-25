@@ -5,19 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>メニュー</title>
 </head>
 <body>
-	<s:form action="">
+	<s:form action="BooksearchAction">
 		<s:submit value="書物検索">
 		</s:submit>
 	</s:form>
 
-	<s:form action="">
+	<s:form action="BookaddplaceAction">
 		<s:submit value="書物登録">
 		</s:submit>
 	</s:form>
-	<s:form action="">
+	<s:form action="BookdeleteAction">
 		<s:submit value="書物削除">
 		</s:submit>
 	</s:form>

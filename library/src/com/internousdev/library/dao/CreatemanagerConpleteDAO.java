@@ -10,7 +10,7 @@ import com.internousdev.library.util.DateUtil;
 public class CreatemanagerConpleteDAO {
 	private DBConnector dbConnector = new DBConnector();
 
-	private Connection connection = dbConnector.getConnection();
+	private Connection con = dbConnector.getConnection();
 
 	private DateUtil dateUtil = new DateUtil();
 
@@ -19,18 +19,18 @@ public class CreatemanagerConpleteDAO {
 	public void createmanager(String NewUserId, String NewPassword, String NewUsername) throws SQLException {
 
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
 
-			preparedStatement.setString(1, NewUserId);
-			preparedStatement.setString(2, NewPassword);
-			preparedStatement.setString(3, NewUsername);
-			preparedStatement.setString(4, dateUtil.getDate());
+			ps.setString(1, NewUserId);
+			ps.setString(2, NewPassword);
+			ps.setString(3, NewUsername);
+			ps.setString(4, dateUtil.getDate());
 
-			preparedStatement.execute();
+			ps.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			connection.close();
+			con.close();
 		}
 	}
 }

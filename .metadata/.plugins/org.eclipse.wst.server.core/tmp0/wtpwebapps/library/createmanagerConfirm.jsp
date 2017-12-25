@@ -29,5 +29,10 @@
 			</tr>
 		</s:form>
 	</table>
+	<s:form action="CreatemanagerAction">
+		<s:submit value="戻る">
+		</s:submit>
+	</s:form>
+
 </body>
 </html>

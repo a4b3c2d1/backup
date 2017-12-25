@@ -1,3 +1,0 @@
-use librarydb;
-
-insert into place_info(user_id,name,create_day) values(1,'taro',null);

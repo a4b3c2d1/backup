@@ -1,8 +1,0 @@
-use librarydb;
-
-insert into place_info(lplace_id,place_name) values(1,'1階1フロア');
-insert into place_info(lplace_id,place_name) values(2,'1階2フロア');
-insert into place_info(lplace_id,place_name) values(3,'1階3フロア');
-insert into place_info(lplace_id,place_name) values(4,'1階4フロア');
-insert into place_info(lplace_id,place_name) values(5,'1階5フロア');
-insert into place_info(lplace_id,place_name) values(6,'1階6フロア');
