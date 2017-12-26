@@ -8,8 +8,8 @@
 <title>書物検索</title>
 </head>
 <body>
-	<s:form action="">
-		<s:textfield name="searchname" />
+	<s:form action="BooksearchresultAction">
+
 		<s:submit value="検索">
 		</s:submit>
 	</s:form>

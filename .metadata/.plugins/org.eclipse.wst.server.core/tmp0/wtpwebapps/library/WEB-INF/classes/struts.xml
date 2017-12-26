@@ -222,5 +222,14 @@
 			method="execute">
 			<result name="success">bookdelete.jsp</result>
 		</action>
+
+		<!--BooksearchresultAction -->
+		<action name="BooksearchresultAction"
+			class="com.internousdev.library.action.BooksearchresultAction"
+			method="execute">
+			<result name="success">booksearchresult.jsp</result>
+		</action>
+
+
 	</package>
 </struts>
