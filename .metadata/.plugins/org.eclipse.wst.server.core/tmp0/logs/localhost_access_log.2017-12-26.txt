@@ -102,3 +102,12 @@
 0:0:0:0:0:0:0:1 - - [26/Dec/2017:17:20:22 +0900] "POST /library/BooksearchresultAction.action HTTP/1.1" 200 -
 0:0:0:0:0:0:0:1 - - [26/Dec/2017:17:20:22 +0900] "POST /library/BooksearchresultAction.action HTTP/1.1" 200 9375
 0:0:0:0:0:0:0:1 - - [26/Dec/2017:17:21:28 +0900] "POST /library/BooksearchresultAction.action HTTP/1.1" 200 9375
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:17:53:29 +0900] "POST /library/BooksearchresultAction.action HTTP/1.1" 200 9375
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:17:56:35 +0900] "POST /library/BooksearchresultAction.action HTTP/1.1" 200 258
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:17:57:13 +0900] "POST /library/BooksearchAction.action HTTP/1.1" 200 853
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:17:57:24 +0900] "POST /library/BooksearchresultAction.action HTTP/1.1" 500 2230
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:18:00:00 +0900] "POST /library/BookpageAction.action HTTP/1.1" 500 3026
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:18:00:04 +0900] "POST /library/BookpageAction.action HTTP/1.1" 200 1449
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:18:00:06 +0900] "POST /library/BookaddplaceAction.action HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:18:00:06 +0900] "POST /library/BooksearchAction.action HTTP/1.1" 200 853
+0:0:0:0:0:0:0:1 - - [26/Dec/2017:18:00:10 +0900] "POST /library/BooksearchresultAction.action HTTP/1.1" 200 358

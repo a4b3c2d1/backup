@@ -24,7 +24,7 @@ public class BooksearchresultAction extends ActionSupport implements SessionAwar
 	public String execute() {
 
 		try {
-			URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=ISBN=夏目漱石");
+			URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=こころ");
 
 			StringBuilder builder = new StringBuilder();
 			HttpURLConnection connection = null;
@@ -42,7 +42,7 @@ public class BooksearchresultAction extends ActionSupport implements SessionAwar
 			JsonNode root = mapper.readTree(builder.toString());
 
 
-			title = root.get("items").get(0).get("volumeInfo").get("author").asText();
+			title = root.get("items").get(0).get("volumeInfo").get("title").asText();
 
 			session.put("title", title);
 
