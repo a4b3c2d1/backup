@@ -16,7 +16,7 @@
 				<th>PASSWORD</th>
 				<th>RESULT</th>
 			</tr>
-			<s:iterator status="st" value="#session.helloStrutsDTOList">
+			<s:iterator value="#session.helloStrutsDTOList[index]">
 				<tr>
 					<td><s:property value="userId" /></td>
 					<td><s:property value="userName" /></td>

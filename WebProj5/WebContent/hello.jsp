@@ -19,18 +19,17 @@
 				<th>PASSWORD</th>
 				<th>RESULT</th>
 			</tr>
-			<s:form action ="itemAction">
 			<s:iterator status="st" value="#session.helloStrutsDTOList">
 				<tr>
 					<td><s:property value="userId" /></td>
 					<td><s:property value="userName" /></td>
 					<td><s:property value="password" /></td>
 					<td><s:property value="result" /></td>
-					<td><input type="button" value="詳細" name="btnitem"
-						onclick="itemtag('<s:property value="#st.index"/>')" /></td>
+					<td><s:a href="ItemAction?index=%{#st.index}">詳細</s:a></td>
+
 				</tr>
 			</s:iterator>
-			</s:form>
+
 		</tbody>
 	</table>
 
