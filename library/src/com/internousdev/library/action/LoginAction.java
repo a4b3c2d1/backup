@@ -61,6 +61,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 			try {
 				loginDAO.updatetime(LoginUserId);
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

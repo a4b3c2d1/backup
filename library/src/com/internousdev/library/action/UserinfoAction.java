@@ -14,6 +14,7 @@ public class UserinfoAction extends ActionSupport implements SessionAware {
 	public Map<String, Object> session;
 
 	public String execute() {
+
 		return SUCCESS;
 	}
 
