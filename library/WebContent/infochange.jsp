@@ -19,7 +19,7 @@
 	<s:if test='%{#session.selectmessage=="a"}'>
 		<s:form action="InfochangeConfirmAction">
 			<tr>
-				<td><span>USERID</span></td>
+				<td><span>ログインID</span></td>
 				<s:textfield name="NewLoginUserId" />
 			</tr>
 			<s:submit value="変更" method="aaa">
@@ -32,7 +32,7 @@
 		<s:form action="InfochangeConfirmAction">
 
 			<tr>
-				<td><span>PASSWORD</span></td>
+				<td><span>ログインPASS</span></td>
 				<s:password name="NewLoginPassword" />
 			</tr>
 			<s:submit value="変更" method="bbb">
@@ -43,7 +43,7 @@
 		<s:form action="InfochangeConfirmAction">
 
 			<tr>
-				<td><span>USERNAME</span></td>
+				<td><span>ユーザー名</span></td>
 				<s:textfield name="NewUserName" />
 			</tr>
 

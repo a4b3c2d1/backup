@@ -10,6 +10,8 @@
 <body>
 	<s:form action="BooksearchresultAction">
 
+
+		<s:textfield name="searchname" />
 		<s:submit value="検索">
 		</s:submit>
 	</s:form>

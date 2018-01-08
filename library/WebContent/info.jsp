@@ -13,14 +13,14 @@
 		<s:form action="InfochangeAction">
 			<s:iterator value="#session.loginuser">
 				<tr>
-					<td><span>USERID</span></td>
+					<td><span>ログインID</span></td>
 					<td><s:property value="Login_id"></s:property></td>
 					<s:submit value="変更" method="aaa">
 					</s:submit>
 				</tr>
 
 				<tr>
-					<td><span>PASSWORD</span></td>
+					<td><span>ログインPASS</span></td>
 					<td><s:property value="Login_password"></s:property></td>
 					<s:submit value="変更" method="bbb">
 					</s:submit>
@@ -28,7 +28,7 @@
 				</tr>
 
 				<tr>
-					<td><span>USERNAME</span></td>
+					<td><span>ユーザー名</span></td>
 					<td><s:property value="Username"></s:property></td>
 					<s:submit value="変更" method="ccc">
 					</s:submit>

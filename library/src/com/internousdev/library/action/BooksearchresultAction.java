@@ -21,10 +21,14 @@ public class BooksearchresultAction extends ActionSupport implements SessionAwar
 
 	public String title;
 
+	public String isbn;
+
+	public String imageLink;
+
 	public String execute() {
 
 		try {
-			URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=こころ");
+			URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=" + searchname);
 
 			StringBuilder builder = new StringBuilder();
 			HttpURLConnection connection = null;
@@ -41,11 +45,16 @@ public class BooksearchresultAction extends ActionSupport implements SessionAwar
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode root = mapper.readTree(builder.toString());
 
-
+			isbn = root.get("items").get(0).get("volumeInfo").get("industryIdentifiers").get(1).get("identifier")
+					.asText();
 			title = root.get("items").get(0).get("volumeInfo").get("title").asText();
 
-			session.put("title", title);
+			imageLink = root.get("items").get(0).get("volumeInfo").get("imageLinks").get("thumbnail").asText();
 
+			session.put("title", title);
+			session.put("isbn", isbn);
+			session.put("imageLink", imageLink);
+			System.out.println(isbn);
 		} catch (ClientAbortException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -53,6 +62,14 @@ public class BooksearchresultAction extends ActionSupport implements SessionAwar
 		}
 		return SUCCESS;
 
+	}
+
+	public String getSearchname() {
+		return searchname;
+	}
+
+	public void setSearchname(String searchname) {
+		this.searchname = searchname;
 	}
 
 	@Override

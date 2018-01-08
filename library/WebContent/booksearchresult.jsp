@@ -8,6 +8,8 @@
 <title>検索結果</title>
 </head>
 <body>
+	<img src=<s:property value="imageLink"/>>
 	<s:property value="title"></s:property>
+	<s:property value="isbn"></s:property>
 </body>
 </html>
