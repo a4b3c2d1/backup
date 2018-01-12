@@ -16,17 +16,17 @@
 	<table>
 		<s:form action="CreatemanagerConfirmAction">
 			<tr>
-				<td><span>LoginId</span>
+				<td><span>ログインID</span>
 				<td><s:textfield name="NewUserId" /></td>
 			</tr>
 
 			<tr>
-				<td><span>LoginPassword</span>
+				<td><span>ログインPASS</span>
 				<td><s:password name="NewPassword" /></td>
 			</tr>
 
 			<tr>
-				<td><span>Username</span></td>
+				<td><span>ユーザー名</span></td>
 				<td><s:textfield name="NewUsername" /></td>
 			</tr>
 			<s:submit value="作成">
