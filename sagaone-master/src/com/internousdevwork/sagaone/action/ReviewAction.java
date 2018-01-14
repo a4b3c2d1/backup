@@ -30,6 +30,8 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 	// 戻り値変数
 	public String ret;
 
+	private String loginpage;
+
 	public String execute() {
 
 		// セッション名("loginUser")の存在確認
@@ -61,6 +63,8 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 				}
 			}
 		} else {
+
+
 			ret = ERROR;
 
 		}
@@ -93,6 +97,14 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 
 	public void setCategory_id(String category_id) {
 		this.category_id = category_id;
+	}
+
+	public String getLoginpage() {
+		return loginpage;
+	}
+
+	public void setLoginpage(String loginpage) {
+		this.loginpage = loginpage;
 	}
 
 }

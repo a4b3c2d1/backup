@@ -5,7 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
 <title>レビュー表示</title>
+<script type="text/javascript">
+	function showConfirm() {
+
+		if (window.confirm('削除してもよろしいですか？')) {
+			window.alert("削除されました")
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<s:iterator value="#session.reviewDTOList">
@@ -19,9 +31,15 @@
 
 	</s:iterator>
 
+	<s:form action="ReviewEditAction">
+		<td><input type="hidden" name="changeflg" value="1"></input></td>
+		<s:submit value="新しく書き直す"></s:submit>
 
-	<s:form action="ReviewChangeAction">
-		<s:submit value="新しく書き換える"></s:submit>
+	</s:form>
+
+	<s:form action="ReviewEditAction" onSubmit="return showConfirm()">
+		<td><input type="hidden" name="deleteflg" value="1"></input></td>
+		<s:submit value="削除"></s:submit>
 	</s:form>
 
 

@@ -31,9 +31,9 @@
 		<s:form action="ReviewAction">
 			<tr>
 				<td><input type="hidden" name="product_id"
-					value="<s:property value='product_id' />"></input></td>
+					value="<s:property value='session.review_product_id' />"></input></td>
 				<td><input type="hidden" name="category_id"
-					value="<s:property value='category_id' />"></input></td>
+					value="<s:property value='session.review_category_id' />"></input></td>
 				<s:submit value="戻る"></s:submit>
 			</tr>
 		</s:form>
