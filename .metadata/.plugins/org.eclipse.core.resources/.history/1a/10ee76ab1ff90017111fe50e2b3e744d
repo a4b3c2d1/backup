@@ -1,0 +1,5 @@
+package com.internousdevwork.sagaone.dao;
+
+public interface ReviewDeleteDAO {
+
+}

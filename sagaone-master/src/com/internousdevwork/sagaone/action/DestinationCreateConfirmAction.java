@@ -38,9 +38,10 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	private String errorUserAddress;
 	private String errorTelNumber;
 	private String errorEmail;
+	private String blank = "・未入力です。";
+	private String duplicate = "・登録済みです。";
 
 	//エラーメッセージ表示用List
-	private List<String> errorMessageList = new ArrayList<>();
 	private List<String> errorFamilyNameList = new ArrayList<>();
 	private List<String> errorFirstNameList = new ArrayList<>();
 	private List<String> errorFamilyNameKanaList = new ArrayList<>();
@@ -48,9 +49,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	private List<String> errorUserAddressList = new ArrayList<>();
 	private List<String> errorTelNumberList = new ArrayList<>();
 	private List<String> errorEmailList = new ArrayList<>();
-	private String blank = "・未入力です。";
-	private String duplicate = "・登録済みです。";
-	private String errorMessage;
 
 	public String execute()  throws SQLException{
 
@@ -143,7 +141,7 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 			ErrorCount++;
 		}
 		if(userAddress.length() < 1 || userAddress.length() > 16){
-			errorMessage = "・住所は15文字以上50文字以下で入力してください。";
+			errorUserAddress = "・住所は15文字以上50文字以下で入力してください。";
 			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
 		}
@@ -192,7 +190,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 			result = SUCCESS;
 		}
 
-		session.put("errorMessageList", errorMessageList);
 		return result;
 	}
 
@@ -256,12 +253,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public List<String> getErrorMessageList() {
-		return errorMessageList;
-	}
-	public void setErrorMessageList(List<String> errorMessageList) {
-		this.errorMessageList = errorMessageList;
-	}
 	public String getBlank() {
 		return blank;
 	}
@@ -321,12 +312,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	}
 	public void setErrorEmailList(List<String> errorEmailList) {
 		this.errorEmailList = errorEmailList;
-	}
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
 	}
 
 }

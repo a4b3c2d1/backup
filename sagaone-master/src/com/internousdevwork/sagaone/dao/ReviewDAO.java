@@ -31,7 +31,7 @@ public class ReviewDAO {
 				reviewdto.setId(rs.getInt("id"));
 				reviewdto.setUser_id(rs.getString("user_id"));
 				reviewdto.setProduct_id(rs.getInt("product_id"));
-				reviewdto.setValue(rs.getInt("value"));
+				reviewdto.setValue(rs.getInt("value")*20);
 				reviewdto.setReview(rs.getString("review"));
 				reviewdto.setUpdate_date(StringUtils.left(rs.getString("update_date"), 16));
 				reviewDTOList.add(reviewdto);
@@ -60,7 +60,7 @@ public class ReviewDAO {
 				reviewdto.setId(rs.getInt("id"));
 				reviewdto.setUser_id(rs.getString("user_id"));
 				reviewdto.setProduct_id(rs.getInt("product_id"));
-				reviewdto.setValue(rs.getInt("value"));
+				reviewdto.setValue(rs.getInt("value")*20);
 				reviewdto.setReview(rs.getString("review"));
 				reviewdto.setUpdate_date(StringUtils.left(rs.getString("update_date"), 16));
 

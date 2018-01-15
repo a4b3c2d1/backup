@@ -47,6 +47,9 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private String message;
 	private String str_product_id;
 	private Collection<String> checkboxList;
+	private int allPrice = 0;
+	private String cartJugde;
+
 	public String result;
 
 
@@ -57,8 +60,12 @@ public class CartAction extends ActionSupport implements SessionAware{
 		if(cartFlg != null){
 			if(loginFlg){
 				String user_id = session.get("loginUserId").toString();
+				cartJugde = "1";
 
 				cartList = cartDAO.getCartInfo(user_id);
+				for(int i = 0; i < cartList.size(); i++){
+					allPrice += cartList.get(i).getTotalCount();
+				}
 
 				Iterator<CartDTO> itertor = cartList.iterator();
 				if(!(itertor.hasNext())){
@@ -240,5 +247,19 @@ public class CartAction extends ActionSupport implements SessionAware{
 		this.count = count;
 	}
 
+	public int getAllPrice() {
+		return allPrice;
+	}
 
+	public void setAllPrice(int allPrice) {
+		this.allPrice = allPrice;
+	}
+
+	public String getCartJugde() {
+		return cartJugde;
+	}
+
+	public void setCartJugde(String cartJugde) {
+		this.cartJugde = cartJugde;
+	}
 }

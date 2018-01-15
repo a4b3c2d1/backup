@@ -22,7 +22,7 @@ public class PurchaseHistoryDAO {
 	private DBConnector dbConnector = new DBConnector();
 	private Connection connection = dbConnector.getConnection();
 
-	public ArrayList<PurchaseHistoryDTO> getPurchaseHistory(String user_id) throws SQLException {
+	public ArrayList<PurchaseHistoryDTO> getPurchaseHistory(String userId) throws SQLException {
 
 		ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList = new ArrayList<PurchaseHistoryDTO>();
 		String sql = "select phi.id, phi.user_id, phi.product_id, pi.category_id, pi.product_name, pi.product_name_kana, pi.image_file_path, pi.image_file_name, pi.price, pi.release_company, pi.release_date from purchase_history_info phi left join product_info pi on phi.product_id = pi.product_id where phi.user_id = ? order by phi.regist_date desc";
@@ -30,7 +30,7 @@ public class PurchaseHistoryDAO {
 		// DBからテーブルpurchase_history_infoとproduct_infoを結合の上、user_idで検索。
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, user_id);
+			preparedStatement.setString(1, userId);
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -39,16 +39,16 @@ public class PurchaseHistoryDAO {
 				PurchaseHistoryDTO purchaseHistoryDTO = new PurchaseHistoryDTO();
 
 				purchaseHistoryDTO.setId(resultSet.getInt("id"));
-				purchaseHistoryDTO.setUser_id(resultSet.getString("user_id"));
-				purchaseHistoryDTO.setProduct_id(resultSet.getInt("product_id"));
-				purchaseHistoryDTO.setCategory_id(resultSet.getInt("category_id"));
-				purchaseHistoryDTO.setProduct_name(resultSet.getString("product_name"));
-				purchaseHistoryDTO.setProduct_name_kana(resultSet.getString("product_name_kana"));
-				purchaseHistoryDTO.setImage_file_path(resultSet.getString("image_file_path"));
-				purchaseHistoryDTO.setImage_file_name(resultSet.getString("image_file_name"));
+				purchaseHistoryDTO.setUserId(resultSet.getString("user_id"));
+				purchaseHistoryDTO.setProductId(resultSet.getInt("product_id"));
+				purchaseHistoryDTO.setCategoryId(resultSet.getInt("category_id"));
+				purchaseHistoryDTO.setProductName(resultSet.getString("product_name"));
+				purchaseHistoryDTO.setProductNameKana(resultSet.getString("product_name_kana"));
+				purchaseHistoryDTO.setImageFilePath(resultSet.getString("image_file_path"));
+				purchaseHistoryDTO.setImageFileName(resultSet.getString("image_file_name"));
 				purchaseHistoryDTO.setPrice(resultSet.getInt("price"));
-				purchaseHistoryDTO.setRelease_company(resultSet.getString("release_company"));
-				purchaseHistoryDTO.setRelease_date(resultSet.getString("release_date"));
+				purchaseHistoryDTO.setReleaseCompany(resultSet.getString("release_company"));
+				purchaseHistoryDTO.setReleaseDate(resultSet.getString("release_date"));
 
 				purchaseHistoryDTOList.add(purchaseHistoryDTO);
 			}
@@ -61,14 +61,14 @@ public class PurchaseHistoryDAO {
 	}
 
 	// 購入履歴全削除メソッド
-	public int deletePurchaseHistory(String user_id) throws SQLException {
+	public int deletePurchaseHistory(String userId) throws SQLException {
 
 		String sql = "delete from purchase_history_info where user_id = ?";
 		int result = 0;
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, user_id);
+			preparedStatement.setString(1, userId);
 
 			result = preparedStatement.executeUpdate();
 

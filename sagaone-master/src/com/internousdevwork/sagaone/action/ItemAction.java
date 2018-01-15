@@ -17,9 +17,11 @@ public class ItemAction extends ActionSupport implements SessionAware {
 
 	public String execute() {
 
-		// 商品一覧取得
+		// 全商品一覧取得
 		itemDTOList = itemDAO.getiteminfo();
 		session.put("itemDTOList", itemDTOList);
+
+
 
 		// 商品ページへ
 		return SUCCESS;

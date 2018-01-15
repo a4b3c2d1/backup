@@ -21,22 +21,25 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 	public Map<String,Object> session;
 	private PaymentUserInfoDTO paymentUserInfoDTO = new PaymentUserInfoDTO();
 	private PaymentUserAddressDTO userAddressDTO = new PaymentUserAddressDTO();
+	private List<PaymentUserAddressDTO> addressDTOList = new ArrayList<PaymentUserAddressDTO>();
 	private PaymentCartInfoDTO paymentCartInfoDTO = new PaymentCartInfoDTO();
 	private List<PaymentCartInfoDTO> cartInfoList = new ArrayList<PaymentCartInfoDTO>();
 	private List<PaymentProductInfoDTO> productDTOList = new ArrayList<PaymentProductInfoDTO>();
 	private PaymentUserInfoDAO userInfoDAO = new PaymentUserInfoDAO();
 	private PaymentUserAddressDAO userAddressDAO = new PaymentUserAddressDAO();
 	private PaymentCartInfoDAO paymentCartInfoDAO = new PaymentCartInfoDAO();
+	private int sumPrice = 0;
 
 	public String execute(){
 		String ret = SUCCESS;
 
 		paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
 
-		userAddressDTO = userAddressDAO.getUserAddress(session.get("loginUserId").toString());
+		addressDTOList = userAddressDAO.getUserAddress(session.get("loginUserId").toString());
 
 		cartInfoList = paymentCartInfoDAO.getCartInfo(session.get("loginUserId").toString());
 
+		// if文でcartInfoListが空の場合のエラー処理をする。
 		for(int i = 0; i<cartInfoList.size(); i++){
 			PaymentProductInfoDAO paymentProductDAO = new PaymentProductInfoDAO();
 			PaymentProductInfoDTO paymentProductInfoDTO = new PaymentProductInfoDTO();
@@ -46,12 +49,16 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 			productDTOList.add(paymentProductInfoDTO);
 		}
 
+		for(int i = 0; i<productDTOList.size(); i++){
+			sumPrice += productDTOList.get(i).getTotalPrice();
+		}
 
 //paymentPage.jsp
 		session.put("paymentUserInfoDTO", paymentUserInfoDTO);
-		session.put("userAddressDTO", userAddressDTO);
+		session.put("addressDTOList", addressDTOList);
 		session.put("cartInfoList", cartInfoList);
 		session.put("productDTOList", productDTOList);
+		session.put("sumPrice", sumPrice);
 
 		return ret;
 	}

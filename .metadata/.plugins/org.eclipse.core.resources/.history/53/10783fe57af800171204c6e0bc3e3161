@@ -1,0 +1,47 @@
+package com.internousdevwork.sagaone.action;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ReviewEditAction extends ActionSupport implements SessionAware {
+	private String changeflg;
+	private String deleteflg;
+	public Map<String, Object> session;
+	public String result;
+
+	public String execute() {
+
+		if (changeflg.equals("1")) {
+			// レビュー変更画面へ
+			result = "change";
+
+		} else if () {
+			// 削除メソッド
+			result = "delete";
+		}
+		return result;
+	}
+
+	public String getChangeflg() {
+		return changeflg;
+	}
+
+	public void setChangeflg(String changeflg) {
+		this.changeflg = changeflg;
+	}
+
+	public String getDeleteflg() {
+		return deleteflg;
+	}
+
+	public void setDeleteflg(String deleteflg) {
+		this.deleteflg = deleteflg;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+}

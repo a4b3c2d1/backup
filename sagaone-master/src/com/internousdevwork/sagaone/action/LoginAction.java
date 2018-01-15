@@ -13,6 +13,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	// 前衛
 	private String loginUserId;
 	private String loginPassword;
+	private String loginMemory= "";
 	public Map<String, Object> session;
 	private String errorMessage;
 	private String blankErrorMessageID;
@@ -38,6 +39,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		} else if(!(loginUserId.equals("")) && !(loginPassword.equals(""))){
 			setErrorMessage("IDかパスワードが違うよー(○・▽・○)<br>");
 			ret= ERROR;
+		}
+
+		if (loginMemory.equals("true")) {
+			session.put("loginMemory", true);
+		} else {
+			session.put("loginMemory", false);
 		}
 
 		// 未入力時
@@ -71,6 +78,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 	public void setLoginPassword (String loginPassword) {
 		this.loginPassword= loginPassword;
+	}
+
+	public String getLoginMemory() {
+		return loginMemory;
+	}
+	public void setLoginMemory(String loginMemory) {
+		this.loginMemory= loginMemory;
 	}
 
 	public void setSession (Map<String, Object> session) {

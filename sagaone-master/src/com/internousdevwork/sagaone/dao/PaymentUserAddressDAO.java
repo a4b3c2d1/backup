@@ -3,6 +3,8 @@ package com.internousdevwork.sagaone.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.internousdevwork.sagaone.dto.PaymentUserAddressDTO;
 import com.internousdevwork.sagaone.util.DBConnector;
@@ -11,9 +13,9 @@ import com.internousdevwork.sagaone.util.DBConnector;
 public class PaymentUserAddressDAO {
 	private DBConnector db= new DBConnector();
 	private Connection con= db.getConnection();
-	private PaymentUserAddressDTO paymentUserAddressDTO= new PaymentUserAddressDTO();
+	private List<PaymentUserAddressDTO> addressDTOList = new ArrayList<PaymentUserAddressDTO>();
 
-	public PaymentUserAddressDTO getUserAddress (String loginUserId) {
+	public List<PaymentUserAddressDTO> getUserAddress (String loginUserId) {
 		String sql= "select * from destination_info where user_id= ?";
 
 		try {
@@ -23,16 +25,18 @@ public class PaymentUserAddressDAO {
 			ResultSet rs= ps.executeQuery();
 
 
-			if (rs.next()) {
+			while (rs.next()) {
+				PaymentUserAddressDTO paymentUserAddressDTO= new PaymentUserAddressDTO();
 				paymentUserAddressDTO.setTelNumber(rs.getString("tel_number"));
 				paymentUserAddressDTO.setUserAddress(rs.getString("user_address"));
+				addressDTOList.add(paymentUserAddressDTO);
 		    }
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return paymentUserAddressDTO;
+		return addressDTOList;
 	}
 
 }

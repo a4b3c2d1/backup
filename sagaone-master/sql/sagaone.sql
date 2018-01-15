@@ -33,6 +33,7 @@ first_name_kana varchar(32) not null,
 email varchar(32) not null,
 tel_number varchar(13) not null,
 user_address varchar(50) not null,
+status tinyint default 0 not null,
 regist_date datetime not null,
 update_date datetime,
 foreign key(user_id) references user_info(user_id)
@@ -71,7 +72,7 @@ foreign key(category_id) references m_category(category_id)
 create table if not exists cart_info(
 id int not null primary key auto_increment,
 user_id varchar(16),
-temp_user_id varchar(128) unique,
+temp_user_id varchar(128),
 product_id int not null,
 product_count int not null,
 price int not null,
@@ -136,5 +137,7 @@ insert into cart_info values(1, "taro", "taro", 1, 1, 5000, "2018/01/09", "2018/
 insert into cart_info values(2, "taro", "taro2", 2, 2, 500, "2018/01/11", "2018/01/11");
 insert into purchase_history_info values(1, "taro", 1, 1, 5000, "2018/01/09", "2018/01/09");
 insert into purchase_history_info values(2, "taro", 2, 1, 500, "2018/01/09", "2018/01/09");
-insert into destination_info values(1, "taro", "山田", "太郎", "やまだ", "たろう", "taro@aaa.com", "00011112222", "東京都渋谷区渋谷1-1-1", "2018/01/09", "2018/01/09") ;
+insert into destination_info values(1, "taro", "山田", "太郎", "やまだ", "たろう", "taro@aaa.com", "00011112222", "東京都渋谷区渋谷1-1-1",1, "2018/01/09", "2018/01/09") ;
+insert into destination_info values(2, "taro", "山田", "太郎", "やまだ", "たろう", "taro@aaa.com", "00011112222", "東京都千代田区丸の内1-1-1",0, "2018/01/09", "2018/01/09") ;
+
 

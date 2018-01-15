@@ -15,8 +15,6 @@ public class StartAction extends ActionSupport implements SessionAware{
 		boolean loginFlg = false;
 		session.put("temp_user_id", randomId);
 		session.put("loginFlg", loginFlg);
-		System.out.println(randomId);
-		System.out.println(loginFlg);
 		return SUCCESS;
 	}
 

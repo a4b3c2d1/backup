@@ -1,0 +1,54 @@
+package com.internousdevwork.sagaone.action;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.internousdevwork.sagaone.dao.ReviewDeleteDAO;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class ReviewEditAction extends ActionSupport implements SessionAware {
+	private String changeflg;
+	private String deleteflg;
+	public Map<String, Object> session;
+	public String result;
+	private ReviewDeleteDAO reviewDeleteDAO = new ReviewDeleteDAO();
+
+	public String execute() {
+
+		if (!(changeflg == null)) {
+			// レビュー変更画面へ
+			result = "change";
+
+		} else if (!(deleteflg == null)) {
+			// 削除メソッド
+			reviewDeleteDAO.deletereview(session.get("review_user_id").toString(),
+					session.get("review_product_id").toString());
+			result = "delete";
+			// 商品詳細再読み込み
+
+		}
+		return result;
+	}
+
+	public String getChangeflg() {
+		return changeflg;
+	}
+
+	public void setChangeflg(String changeflg) {
+		this.changeflg = changeflg;
+	}
+
+	public String getDeleteflg() {
+		return deleteflg;
+	}
+
+	public void setDeleteflg(String deleteflg) {
+		this.deleteflg = deleteflg;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+}

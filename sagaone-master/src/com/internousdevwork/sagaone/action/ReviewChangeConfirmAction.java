@@ -14,21 +14,35 @@ public class ReviewChangeConfirmAction extends ActionSupport implements SessionA
 	private String review;
 	private String reviewErrormessage;
 
+	private int value2;
+
 	public String execute() {
 
-		//入力されているかの確認
+		// 入力されているかの確認
 		if (!(value.equals("")) && !(review.equals(""))) {
 			session.put("review_change_value", value);
 			session.put("review_change_review", review);
 
-			//確認画面へ
+			//次ページで表示させるため
+
+			value2=Integer.parseInt(value)*20;
+
+			// 確認画面へ
 			return SUCCESS;
 		} else {
 			setReviewErrormessage("未入力です");
 
-			//入力画面へ
+			// 入力画面へ
 			return ERROR;
 		}
+	}
+
+	public int getValue2() {
+		return value2;
+	}
+
+	public void setValue2(int value2) {
+		this.value2 = value2;
 	}
 
 	public String getValue() {
