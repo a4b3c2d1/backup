@@ -82,6 +82,7 @@
 
 						<li>
 							<s:form action="ItemAction">
+							<s:hidden name="offset" value="0"></s:hidden>
 								<s:submit value="商品一覧" />
 							</s:form>
 						</li>

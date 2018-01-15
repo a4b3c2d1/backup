@@ -111,7 +111,7 @@
 			</s:form>
 		</s:iterator>
 	</p>
-	<s:a href="ItemAction">商品一覧へ</s:a>
+	<s:a href="ItemAction?offset=0">商品一覧へ</s:a>
 
 </body>
 </html>

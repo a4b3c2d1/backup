@@ -24,40 +24,42 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 	private ReviewDAO reviewDAO = new ReviewDAO();
 	private ItemDAO itemDAO = new ItemDAO();
 
-
-
 	public Map<String, Object> session;
 
-	//商品id情報格納
+	// 商品id情報格納
 	private String product_id;
 
-	//商品カテゴリ情報格納
+	// 商品カテゴリ情報格納
 	private String category_id;
 
-
-
+	private int offset;
 
 	public String execute() {
 
-		//商品詳細表示用リスト作成
+		// 商品詳細表示用リスト作成
 		itemdetailDTOList = itemrelativeDAO.getdetailinfo(product_id);
 		session.put("itemdetailDTOList", itemdetailDTOList);
 
-
-		//関連商品表示用リスト作成
+		// 関連商品表示用リスト作成
 		itemrelativeDTOList = itemrelativeDAO.getrelativeinfo(product_id, category_id);
 		session.put("itemrelativeDTOList", itemrelativeDTOList);
 
-
-		//レビュー表示用リスト作成
+		// レビュー表示用リスト作成
 		reviewDTO2List = reviewDAO.getreviewinfo2(product_id);
 		session.put("reviewDTO2List", reviewDTO2List);
 
-
 		// 商品一覧再読み込み用
-		itemDTOList = itemDAO.getiteminfo();
+		itemDTOList = itemDAO.getiteminfo2(offset);
 		session.put("itemDTOList", itemDTOList);
 		return SUCCESS;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
 	}
 
 	public String getProduct_id() {

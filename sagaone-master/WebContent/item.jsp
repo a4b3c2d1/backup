@@ -55,6 +55,20 @@
 		</s:iterator>
 	</p>
 
+	<s:iterator id="itm" value="allpages" status="st">
+		<s:if test='%{#st.count==page}'>
+			<s:property value="itm" />
+		</s:if>
+		<s:else>
+			<s:a href="ItemAction?offset=%{#st.index} ">
+				<s:property value="itm" />
+
+			</s:a>
+		</s:else>
+	</s:iterator>
+
+
+
 
 </body>
 </html>
