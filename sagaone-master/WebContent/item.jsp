@@ -13,7 +13,6 @@
 <title>商品一覧</title>
 </head>
 <style type="text/css">
-
 #main {
 	margin-top: 100px;
 	margin-bottom: 60px;
@@ -21,6 +20,7 @@
 	height: auto !important;
 	height: 100%;
 	position: relative;
+	width: 100%;
 }
 
 a {
@@ -32,49 +32,55 @@ a:visited {
 	text-decoration: none
 }
 
-#info:hover {
+a:hover {
 	color: #9aa132;
 	cursor: pointer;
 	text-decoration: underline;
 }
 
-#price {
-	color: #B12704;
-}
 
-#item {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	float: left;
-	width: 33%;
-	text-align: center;
-}
-
-#item2 {
-	clear: both;
-}
-
-.main-container {
-	text-align: center;
-}
 
 .main1 {
 	position: relative;
 }
 
 .main2 {
-	margin: 150px;
+	margin: 0 auto;
+	width: 100%;
+	display: table;
 }
 
-.main3 {
+#price {
+	color: #B12704;
+}
+#price:hover {
+	text-decoration: none;
+}
+.items {
+	width: 800px;
+	margin: 0 auto;
+}
+.items2 {
 	clear: both;
 }
 
-.a:hover {
-	color: #eb1515;
-	cursor: pointer;
-	text-decoration: underline;
+.item {
+	float: left;
+	width: 200px;
+	height: 170px;
+	margin: 30px;
 }
+
+.o {
+	width: 200px;
+	text-align: center;
+}
+
+.main3,.main4{
+text-align: center;
+}
+
+
 
 </style>
 <body>
@@ -163,57 +169,57 @@ a:visited {
 
 	</header>
 	<div id="main">
-		<div class="main-container">
-			<div class="main1">
 
-				<p>
-					<s:if test='%{addFlg =="1"}'>カートに入りました！
+		<div class="main1">
+
+			<div class="cartitem">
+				<s:if test='%{addFlg =="1"}'>カートに入りました！
 		<s:iterator value="#session.itemdetailDTOList">
-							<s:form action="ItemDetailAction">
-								<tr>
-									<td><s:property value="product_name" />
-									<td><input type="hidden" name="product_id"
-										value="<s:property value='product_id' />"></input></td>
-									<td><input type="hidden" name="category_id"
-										value="<s:property value='category_id' />"></input></td>
-									<td><input type="image"
-										src="<s:property value="image_file_path"/>" width=auto
-										height="100" /></td>
-								</tr>
-							</s:form>
-						</s:iterator>
+						<s:form action="ItemDetailAction">
+							<tr>
+								<td><s:property value="product_name" />
+								<td><input type="hidden" name="product_id"
+									value="<s:property value='product_id' />"></input></td>
+								<td><input type="hidden" name="category_id"
+									value="<s:property value='category_id' />"></input></td>
+								<td><input type="image"
+									src="<s:property value="image_file_path"/>" width=auto
+									height="100" /></td>
+							</tr>
+						</s:form>
+					</s:iterator>
 
 
-						<s:a href="CartAction?cartFlg=1">カート編集へ</s:a>
-						<s:a href="PaymentAction">決済へ</s:a>
+					<s:a href="CartAction?cartFlg=1">カート編集へ</s:a>
+					<s:a href="PaymentAction">決済へ</s:a>
 
-					</s:if>
-				</p>
-
+				</s:if>
 			</div>
-			<div class="main2">
 
+		</div>
+		<div class="main2">
+			<div class="items">
 				<s:iterator value="#session.itemDTOList" status="st">
 
-					<div id="item">
+					<div class="item">
+						<div class="o">
+							<a
+								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
+								<img src=<s:property value="image_file_path"/> width=auto
+								height="100"><br> <s:property value="product_name" />
+								（ <s:property value="product_name_kana" /> ）
+							</a> <br> <a
+								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
+								<span id="price">&#xA5;&nbsp;&nbsp;<s:property
+										value="price" /></span>
+							</a>
 
-						<a
-							href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-							<span id="info"> <img
-								src=<s:property value="image_file_path"/> width=auto
-								height="100"> <br> <s:property value="product_name" />
-								（<s:property value="product_name_kana" />）
-						</span>
-						</a> <br> <a
-							href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-							<span id="price">&#xA5;&nbsp;&nbsp;<s:property
-									value="price" /></span>
-						</a>
-
-
+						</div>
 					</div>
+
+
 					<s:if test='%{#st.count%3==0}'>
-						<div id="item2">
+						<div class="items2">
 							<hr />
 						</div>
 					</s:if>
@@ -221,25 +227,27 @@ a:visited {
 				</s:iterator>
 
 			</div>
-
-			<div class="main3">
-				<s:iterator id="itm" value="allpages" status="st">
-					<s:if test='%{#st.count==page}'>
-						<s:property value="itm" />
-					</s:if>
-					<s:else>
-						<s:a href="ItemAction?offset=%{#st.index} ">
-							<span class="a"> <s:property value="itm" /></span>
-
-						</s:a>
-					</s:else>
-				</s:iterator>
-			</div>
 		</div>
 		<div class="main3">
-			 <s:a href="GoHomeAction"><span class="a">ホームへ戻る</span></s:a>
+			<s:iterator id="itm" value="allpages" status="st">
+				<s:if test='%{#st.count==page}'>
+					<s:property value="itm" />
+				</s:if>
+				<s:else>
+					<s:a href="ItemAction?offset=%{#st.index} ">
+						<span class="a"> <s:property value="itm" /></span>
+
+					</s:a>
+				</s:else>
+			</s:iterator>
 		</div>
 	</div>
+	<div class="main4">
+		<s:a href="GoHomeAction">
+			<span class="a">ホームへ戻る</span>
+		</s:a>
+	</div>
+
 	<footer>© 2017-2018, Sagaone.com</footer>
 
 </body>
