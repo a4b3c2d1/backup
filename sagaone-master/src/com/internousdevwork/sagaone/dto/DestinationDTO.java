@@ -9,25 +9,24 @@ package com.internousdevwork.sagaone.dto;
  */
 public class DestinationDTO {
 
-	private String id;
+	private String destinationId;
 	private String userId;
 	private String familyName;
 	private String firstName;
 	private String familyNameKana;
 	private String firstNameKana;
-	private String sex;
-	private int sexNum;
 	private String userAddress;
 	private String telNumber;
 	private String email;
+	private String myAddressFlg;
 	private String updateDate;
 
 
-	public String getId() {
-		return id;
+	public String getDestinationId() {
+		return destinationId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setDestinationId(String destinationId) {
+		this.destinationId = destinationId;
 	}
 	public String getUserId() {
 		return userId;
@@ -59,18 +58,6 @@ public class DestinationDTO {
 	public void setFirstNameKana(String firstNameKana) {
 		this.firstNameKana = firstNameKana;
 	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public int getSexNum() {
-		return sexNum;
-	}
-	public void setSexNum(int sexNum) {
-		this.sexNum = sexNum;
-	}
 	public String getUserAddress() {
 		return userAddress;
 	}
@@ -88,6 +75,12 @@ public class DestinationDTO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getMyAddressFlg() {
+		return myAddressFlg;
+	}
+	public void setMyAddressFlg(String myAddressFlg) {
+		this.myAddressFlg = myAddressFlg;
 	}
 	public String getUpdateDate() {
 		return updateDate;

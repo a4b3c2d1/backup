@@ -22,31 +22,63 @@ public class DestinationDAO {
 	DBConnector dbConnector = new DBConnector();
 	Connection connection = dbConnector.getConnection();
 
+	private ArrayList<DestinationDTO> destinationDTOList = new ArrayList<DestinationDTO>();
+
 	private DateUtil dateUtil = new DateUtil();
 
-	public ArrayList<DestinationDTO> DestinationInfo(String userId) throws SQLException {
+	public DestinationDTO defaultDestinationInfo(String loginUserId) throws SQLException {
 
-		ArrayList<DestinationDTO> destinationDTOList = new ArrayList<DestinationDTO>();
+		DestinationDTO defaultDestinationDTO = new DestinationDTO();
 
-		String sql = "select * from destinatin_info where user_id = ?";
-
-		DestinationDTO destinationDTO = new DestinationDTO();
+		String sql = "select * from destination_info where user_id = ? and status = 1";
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, userId);
+			preparedStatement.setString(1, loginUserId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				defaultDestinationDTO.setDestinationId(resultSet.getString("id"));
+				defaultDestinationDTO.setUserId(loginUserId);
+				defaultDestinationDTO.setFamilyName(resultSet.getString("family_name"));
+				defaultDestinationDTO.setFirstName(resultSet.getString("first_name"));
+				defaultDestinationDTO.setFamilyNameKana(resultSet.getString("family_name_kana"));
+				defaultDestinationDTO.setFirstNameKana(resultSet.getString("first_name_kana"));
+				defaultDestinationDTO.setEmail(resultSet.getString("email"));
+				defaultDestinationDTO.setTelNumber(resultSet.getString("tel_number"));
+				defaultDestinationDTO.setUserAddress(resultSet.getString("user_address"));
+				defaultDestinationDTO.setMyAddressFlg(Integer.toString(resultSet.getInt("status")));
+				defaultDestinationDTO.setUpdateDate(dateUtil.getDate());
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return defaultDestinationDTO;
+
+	}
+
+	public ArrayList<DestinationDTO> destinationInfo(String loginUserId) throws SQLException {
+
+
+		String sql = "select * from destination_info where user_id = ? and status = 0";
+
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, loginUserId);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				destinationDTO.setId(resultSet.getString("id"));
-				destinationDTO.setUserId(userId);
-				destinationDTO.setFamilyName(resultSet.getString("famlyName"));
-				destinationDTO.setFirstName(resultSet.getString("firstName"));
-				destinationDTO.setFamilyNameKana(resultSet.getString("familyNameKana"));
-				destinationDTO.setFirstNameKana(resultSet.getString("firstNameKana"));
+				DestinationDTO destinationDTO = new DestinationDTO();
+				destinationDTO.setDestinationId(resultSet.getString("id"));
+				destinationDTO.setUserId(loginUserId);
+				destinationDTO.setFamilyName(resultSet.getString("family_name"));
+				destinationDTO.setFirstName(resultSet.getString("first_name"));
+				destinationDTO.setFamilyNameKana(resultSet.getString("family_name_kana"));
+				destinationDTO.setFirstNameKana(resultSet.getString("first_name_kana"));
 				destinationDTO.setEmail(resultSet.getString("email"));
-				destinationDTO.setUserAddress(resultSet.getString("userAddress"));
-				destinationDTO.setTelNumber(resultSet.getString("telNumber"));
+				destinationDTO.setTelNumber(resultSet.getString("tel_number"));
+				destinationDTO.setUserAddress(resultSet.getString("user_address"));
+				destinationDTO.setMyAddressFlg(Integer.toString(resultSet.getInt("status")));
 				destinationDTO.setUpdateDate(dateUtil.getDate());
 				destinationDTOList.add(destinationDTO);
 			}

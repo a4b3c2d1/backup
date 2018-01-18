@@ -2,7 +2,7 @@ package com.internousdevwork.sagaone.dto;
 
 public class CartDTO {
 	private String id;
-	private String productId;
+	private int productId;
 	private String productName;
 	private String productNameKana;
 	private String imageFilePath;
@@ -13,11 +13,11 @@ public class CartDTO {
 	private String registDate;
 	private int totalCount = 0;
 
-	public String getProductId(){
+	public int getProductId(){
 		return productId;
 	}
 
-	public void setProductId(String productId){
+	public void setProductId(int productId){
 		this.productId = productId;
 	}
 

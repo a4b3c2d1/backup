@@ -22,11 +22,11 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	private String firstName;
 	private String familyNameKana;
 	private String firstNameKana;
-	private String sex;
-	private int sexNum;
 	private String userAddress;
 	private String telNumber;
 	private String email;
+
+	private String destinationFlg;
 
 	public Map<String, Object> session;
 
@@ -61,10 +61,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 		session.put("firstName", firstName);
 		session.put("familyNameKana", familyNameKana);
 		session.put("firstNameKana", firstNameKana);
-
-		sexNum = Integer.parseInt(getSex());
-
-		session.put("sex",sexNum);
 		session.put("userAddress", userAddress);
 		session.put("telNumber", telNumber);
 		session.put("email", email);
@@ -81,7 +77,7 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 			errorFamilyNameList.add(errorFamilyName);
 			ErrorCount++;
 		}
-		if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶ]+$")) {
+		if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶー]+$")) {
 			errorFamilyName = "・姓は半角英数、ひらがな、カタカナ、漢字で入力してください。";
 			errorFamilyNameList.add(errorFamilyName);
 			ErrorCount++;
@@ -97,7 +93,7 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 			errorFirstNameList.add(errorFirstName);
 			ErrorCount++;
 		}
-		if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶ]+$")) {
+		if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶー]+$")) {
 			errorFirstName = "・名前は半角英数、ひらがな、カタカナ、漢字で入力してください。";
 			errorFirstNameList.add(errorFirstName);
 			ErrorCount++;
@@ -140,12 +136,12 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
 		}
-		if(userAddress.length() < 1 || userAddress.length() > 16){
+		if(userAddress.length() < 15 || userAddress.length() > 50){
 			errorUserAddress = "・住所は15文字以上50文字以下で入力してください。";
 			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
 		}
-		if (!userAddress.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠ァ-ヶ]+$")) {
+		if (!userAddress.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠ァ-ヶー]+$")) {
 			errorUserAddress = "・住所は半角英数記号、ひらがな、カタカナ、漢字で入力してください。";
 			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
@@ -223,18 +219,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	public void setFirstNameKana(String firstNameKana) {
 		this.firstNameKana = firstNameKana;
 	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public int getSexNum() {
-		return sexNum;
-	}
-	public void setSexNum(int sexNum) {
-		this.sexNum = sexNum;
-	}
 	public String getUserAddress() {
 		return userAddress;
 	}
@@ -253,6 +237,14 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getDestinationFlg() {
+		return destinationFlg;
+	}
+	public void setDestinationFlg(String destinationFlg) {
+		this.destinationFlg = destinationFlg;
+	}
+
 	public String getBlank() {
 		return blank;
 	}

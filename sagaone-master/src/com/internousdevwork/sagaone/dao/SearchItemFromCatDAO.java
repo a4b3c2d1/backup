@@ -19,12 +19,11 @@ public class SearchItemFromCatDAO {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
 
-	public List<SearchItemInfoDTO> getItemInfoFromCat(int categoryId, String productDescription){
-		String sql = "SELECT * FROM product_info WHERE category_id = ? AND product_description LIKE ? ";
+	public List<SearchItemInfoDTO> getItemInfoFromCat(int categoryId){
+		String sql = "SELECT * FROM product_info WHERE category_id = ?";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, categoryId);
-			ps.setString(2, "%" + productDescription + "%");
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()){

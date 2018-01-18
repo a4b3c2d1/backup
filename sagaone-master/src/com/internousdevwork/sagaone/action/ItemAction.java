@@ -21,7 +21,6 @@ public class ItemAction extends ActionSupport implements SessionAware {
 
 	public String execute() {
 
-
 		// 現在のページ
 		page = offset + 1;
 
@@ -30,8 +29,6 @@ public class ItemAction extends ActionSupport implements SessionAware {
 		offset = offset * 9;
 		itemDTOList = itemDAO.getiteminfo2(offset);
 		session.put("itemDTOList", itemDTOList);
-		System.out.println(offset);
-
 
 
 		// 表示するページ数を計算。

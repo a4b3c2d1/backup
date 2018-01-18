@@ -132,7 +132,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				errorFamilyList.add(errorFamily);
 				ErrorCount++;
 			}
-			if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶ]+$")) {
+			if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶ]+$")) {
 				errorFamily = "半角英数、ひらがな、カタカナ、漢字で入力してください。";
 				errorFamilyList.add(errorFamily);
 				ErrorCount++;
@@ -144,7 +144,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				errorFirstList.add(errorFirst);
 				ErrorCount++;
 			}
-			if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶ]+$")) {
+			if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶ]+$")) {
 				errorFirst = "半角英数、ひらがな、カタカナ、漢字で入力してください。";
 				errorFirstList.add(errorFirst);
 				ErrorCount++;

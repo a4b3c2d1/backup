@@ -24,8 +24,9 @@ public class PurchaseHistoryDAO {
 
 	public ArrayList<PurchaseHistoryDTO> getPurchaseHistory(String userId) throws SQLException {
 
+		// product_countとregist_dateを追加する。
 		ArrayList<PurchaseHistoryDTO> purchaseHistoryDTOList = new ArrayList<PurchaseHistoryDTO>();
-		String sql = "select phi.id, phi.user_id, phi.product_id, pi.category_id, pi.product_name, pi.product_name_kana, pi.image_file_path, pi.image_file_name, pi.price, pi.release_company, pi.release_date from purchase_history_info phi left join product_info pi on phi.product_id = pi.product_id where phi.user_id = ? order by phi.regist_date desc";
+		String sql = "select phi.id, phi.user_id, phi.product_id, phi.product_count,phi.regist_date, pi.category_id, pi.product_name, pi.product_name_kana, pi.image_file_path, pi.image_file_name, pi.price, pi.release_company, pi.release_date from purchase_history_info phi left join product_info pi on phi.product_id = pi.product_id where phi.user_id = ? order by phi.regist_date desc";
 
 		// DBからテーブルpurchase_history_infoとproduct_infoを結合の上、user_idで検索。
 		try {
@@ -41,6 +42,8 @@ public class PurchaseHistoryDAO {
 				purchaseHistoryDTO.setId(resultSet.getInt("id"));
 				purchaseHistoryDTO.setUserId(resultSet.getString("user_id"));
 				purchaseHistoryDTO.setProductId(resultSet.getInt("product_id"));
+				purchaseHistoryDTO.setProductCount(resultSet.getInt("product_count"));
+				purchaseHistoryDTO.setRegistDate(resultSet.getString("regist_date"));
 				purchaseHistoryDTO.setCategoryId(resultSet.getInt("category_id"));
 				purchaseHistoryDTO.setProductName(resultSet.getString("product_name"));
 				purchaseHistoryDTO.setProductNameKana(resultSet.getString("product_name_kana"));

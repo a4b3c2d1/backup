@@ -8,7 +8,7 @@ public class ItemDTO {
 	public String product_name_kana;
 	public String product_description;
 	public int category_id;
-	public int price;
+	public String price;
 	public String image_file_path;
 	public String image_file_name;
 	public String release_date;
@@ -65,11 +65,11 @@ public class ItemDTO {
 		this.category_id = category_id;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

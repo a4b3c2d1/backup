@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -25,8 +26,10 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.internousdevwork.sagaone.dao.AddCartDAO;
 import com.internousdevwork.sagaone.dao.AddTempCartDAO;
 import com.internousdevwork.sagaone.dao.CartDAO;
+import com.internousdevwork.sagaone.dao.ItemDAO;
 import com.internousdevwork.sagaone.dao.TempCartDAO;
 import com.internousdevwork.sagaone.dto.CartDTO;
+import com.internousdevwork.sagaone.dto.ItemDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -40,6 +43,8 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private CartDAO cartDAO = new CartDAO();
 	private TempCartDAO tempCartDAO = new TempCartDAO();
 	private CartDTO cartDTO = new CartDTO();
+	private List<ItemDTO> itemDTOList2 = new ArrayList<ItemDTO>();
+	private ItemDAO itemDAO = new ItemDAO();
 	private String count;
 	private String deleteFlg;
 	private String addFlg;
@@ -49,6 +54,10 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private Collection<String> checkboxList;
 	private int allPrice = 0;
 	private String cartJugde;
+	private String errorFlg;
+	private int offset;
+	private int page;
+	private int[] allpages;
 
 	public String result;
 
@@ -56,6 +65,16 @@ public class CartAction extends ActionSupport implements SessionAware{
 	public String execute() throws SQLException{
 
 		boolean loginFlg = Boolean.parseBoolean(session.get("loginFlg").toString());
+
+		if(deleteFlg != null){
+
+			if(errorFlg != null){
+				cartFlg = "1";
+			}else{
+				delete();
+				cartFlg = "1";
+			}
+		}
 
 		if(cartFlg != null){
 			if(loginFlg){
@@ -75,6 +94,9 @@ public class CartAction extends ActionSupport implements SessionAware{
 				String temp_user_id = session.get("temp_user_id").toString();
 
 				cartList = tempCartDAO.getTempCartInfo(temp_user_id);
+				for(int i = 0; i < cartList.size(); i++){
+					allPrice += cartList.get(i).getTotalCount();
+				}
 
 				Iterator<CartDTO> itertor = cartList.iterator();
 
@@ -85,33 +107,33 @@ public class CartAction extends ActionSupport implements SessionAware{
 			result = SUCCESS;
 		}
 
-		if(deleteFlg != null){
-			delete();
-			if(loginFlg){
-				String user_id = session.get("loginUserId").toString();
-
-				cartList = cartDAO.getCartInfo(user_id);
-
-				Iterator<CartDTO> itertor = cartList.iterator();
-				if(!(itertor.hasNext())){
-					cartList = null;
-				}
-			}else{
-				String temp_user_id = session.get("temp_user_id").toString();
-
-				cartList = tempCartDAO.getTempCartInfo(temp_user_id);
-
-				Iterator<CartDTO> itertor = cartList.iterator();
-
-				if(!(itertor.hasNext())){
-					cartList = null;
-				}
-			}
-			result = SUCCESS;
-		}
 		if(addFlg != null){
 			addCart();
-			result = "update";
+			page = offset + 1;
+			session.get("itemDTOList");
+			System.out.println(session.get("itemDTOList"));
+
+			// 表示するページ数を計算。
+
+			itemDTOList2 = itemDAO.getiteminfo1();
+			int pgs = itemDTOList2.size() / 9;
+
+			// あまりが０以外の場合、
+
+			if (itemDTOList2.size() % 9 != 0) {
+
+				pgs = pgs + 1;
+
+			}
+
+			// １から最終ページまでの数字を格納するための配列
+			allpages = new int[pgs];
+
+			for (int i = 0; i < pgs; i++) {
+
+				allpages[i] = i + 1;
+				result = "update";
+			}
 		}
 		return result;
 	}
@@ -136,6 +158,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 		}else{
 			cartDTO = addTempCartDAO.getTempCartInfo(product_id);
 			String temp_user_id = session.get("temp_user_id").toString();
+			session.put("count", count);
 
 			addTempCartDAO.addTempCartInfo(
 					cartDTO.getId(),
@@ -261,5 +284,37 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 	public void setCartJugde(String cartJugde) {
 		this.cartJugde = cartJugde;
+	}
+
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int[] getAllpages() {
+		return allpages;
+	}
+
+	public void setAllpages(int[] allpages) {
+		this.allpages = allpages;
+	}
+
+	public String getErrorFlg() {
+		return errorFlg;
+	}
+
+	public void setErrorFlg(String errorFlg) {
+		this.errorFlg = errorFlg;
 	}
 }

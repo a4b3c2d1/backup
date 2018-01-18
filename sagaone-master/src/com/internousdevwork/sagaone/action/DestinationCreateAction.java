@@ -24,11 +24,13 @@ public class DestinationCreateAction extends ActionSupport implements SessionAwa
 	private String telNumber;
 	private String email;
 
+	private String destinationFlg;
+
 	public Map<String, Object> session;
 
 	public String execute() {
 
-			return SUCCESS;
+		return SUCCESS;
 	}
 
 	public String getUserId() {
@@ -84,6 +86,13 @@ public class DestinationCreateAction extends ActionSupport implements SessionAwa
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getDestinationFlg() {
+		return destinationFlg;
+	}
+	public void setDestinationFlg(String destinationFlg) {
+		this.destinationFlg = destinationFlg;
 	}
 
 	public Map<String, Object> getSession() {

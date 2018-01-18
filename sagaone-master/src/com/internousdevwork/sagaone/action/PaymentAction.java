@@ -18,6 +18,8 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class PaymentAction extends ActionSupport implements SessionAware{
 
+	private String message;
+
 	public Map<String,Object> session;
 	private PaymentUserInfoDTO paymentUserInfoDTO = new PaymentUserInfoDTO();
 	private PaymentUserAddressDTO userAddressDTO = new PaymentUserAddressDTO();
@@ -41,17 +43,18 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
 		// if文でcartInfoListが空の場合のエラー処理をする。
 		for(int i = 0; i<cartInfoList.size(); i++){
+
 			PaymentProductInfoDAO paymentProductDAO = new PaymentProductInfoDAO();
 			PaymentProductInfoDTO paymentProductInfoDTO = new PaymentProductInfoDTO();
 			paymentProductInfoDTO = paymentProductDAO.getProductInfo(cartInfoList.get(i).getProductId());
 			paymentProductInfoDTO.setProductCount(cartInfoList.get(i).getProductCount());
 			paymentProductInfoDTO.setTotalPrice(paymentProductInfoDTO.getPrice() * paymentProductInfoDTO.getProductCount());
 			productDTOList.add(paymentProductInfoDTO);
-		}
 
-		for(int i = 0; i<productDTOList.size(); i++){
 			sumPrice += productDTOList.get(i).getTotalPrice();
-		}
+	    	}
+
+
 
 //paymentPage.jsp
 		session.put("paymentUserInfoDTO", paymentUserInfoDTO);
@@ -139,6 +142,18 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
 	public void setPaymentCartInfoDAO(PaymentCartInfoDAO paymentCartInfoDAO) {
 		this.paymentCartInfoDAO = paymentCartInfoDAO;
+	}
+
+
+
+	public String getMessage() {
+		return message;
+	}
+
+
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 

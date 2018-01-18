@@ -120,11 +120,12 @@ insert into user_info values(1, "taro", "123", "山田", "太郎", "やまだ", 
 insert into m_category values(1, 1, "本", "本です", "2018/01/09", "2018/01/09");
 insert into m_category values(2, 2, "家電・パソコン", "家電・パソコンです", "2018/01/09", "2018/01/09");
 insert into m_category values(3, 3, "おもちゃ・ゲーム", "おもちゃ・ゲームです", "2018/01/09", "2018/01/09");
+insert into m_category values(4, 4, "おもちゃ・ぬいぐるみ", "おもちゃ・ぬいぐるみです", "2018/01/09", "2018/01/09");
 
-insert into product_info values(1, 1, "カメラ", "かめら", "カメラです。", 2, 5000, "./img/camera.jpg", "camera", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(2, 2, "マウス", "まうす", "まうすです。", 2, 500, "./img/mausu.jpg", "mausu", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(3, 3, "ノートパソコン", "のーとぱそこん", "最新のノートパソコン。", 2, 100000, "./img/notepc1.jpg", "notepc1", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(4, 4, "一丸レフカメラ", "いちがんれふかめら", "高性能の一眼レフカメラ。", 2, 70000, "./img/camera1.jpg", "camera1", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(1, 1, "カメラ", "かめら", "低価格で扱いやすいコンパクトカメラです。", 2, 5000, "./img/camera.jpg", "camera", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(2, 2, "マウス", "まうす", "お手ごろな価格ながら使いやすいPC用マウスです", 2, 500, "./img/mausu.jpg", "mausu", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(3, 3, "ノートパソコン", "のーとぱそこん", "最新のノートパソコンです。薄さが売りながらも、ハイスペックです。", 2, 100000, "./img/notepc1.jpg", "notepc1", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(4, 4, "一眼レフカメラ", "いちがんれふかめら", "高性能の一眼レフカメラ。プロにも愛された不朽の名品です。", 2, 70000, "./img/camera1.jpg", "camera1", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
 insert into product_info values(5, 5, "キーボード", "きーぼーど", "安いPC用キーボード。", 2, 3000, "./img/keyboad1.jpg", "keyboad1", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
 
 insert into product_info values(6, 6, "嘔吐", "おうと", "嘔吐：サルトル著", 1, 3000, "./img/outo.jpg", "outo", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
@@ -132,6 +133,8 @@ insert into product_info values(7, 7, "人を動かす", "ひとをうごかす"
 insert into product_info values(8, 8, "壁", "かべ", "壁：阿部公房著", 1, 3000, "./img/kabe.jpg", "kabe", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
 insert into product_info values(9, 9, "こころ", "こころ", "こころ：夏目漱石著", 1, 3000, "./img/kokoro.jpg", "kokoro", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
 insert into product_info values(10, 10, "人間失格", "にんげんしっかく", "人間失格：太宰治著", 1, 3000, "./img/ninngennsikkaku.jpg", "ninngennsikkaku", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(11, 11, "トゲデマルのぬいぐるみ", "とげでまるのぬいぐるみ", "ポケモンセンター。トゲデマルのかわいいぬいぐるみです。", 1, 800, "./img/togedemaru.jpg", "togedemaru", "2018/01/01", "pokemonn-center", 1, "2018/01/01", "2018/01/01");
+insert into product_info values(12, 12, "エモンガのぬいぐるみ", "えもんがのぬいぐるみ", "ポケモンセンター。エモンガのかっこいいぬいぐるみです。", 1, 800, "./img/emonga.jpg", "emonga", "2018/01/01", "pokemonn-center", 1, "2018/01/01", "2018/01/01");
 
 insert into cart_info values(1, "taro", "taro", 1, 1, 5000, "2018/01/09", "2018/01/09");
 insert into cart_info values(2, "taro", "taro2", 2, 2, 500, "2018/01/11", "2018/01/11");

@@ -12,62 +12,117 @@
 	<header>
 
 	<div id="main-logo">
-		<img src="./css/sagaone_logo.png" height="100px">
+
+		<a href= ' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" alt= "logo"></a>
 	</div>
 
+	<div id="menu">
+			<div id="search-form">
 
-
-	<s:form action="SearchItemAction">
-		<div class= "search-form">
-		<select name="itemCategory">
-			<option value="0" <s:if test="session.itemCategory == '0' ">selected</s:if> >全てのカテゴリー</option>
-			<option value="1" <s:if test="session.itemCategory == '1' ">selected</s:if> >本</option>
-			<option value="2" <s:if test="session.itemCategory == '2' ">selected</s:if> >家電・パソコン</option>
-			<option value="3" <s:if test="session.itemCategory == '3' ">selected</s:if> >おもちゃ・ゲーム</option>
-		</select>
-		<input type="text" name="searchWord" value=<s:property value="searchWord"/> />
+			<s:form action="SearchItemAction">
+				<div id="search-box">
+					<select name="itemCategory" id="category">
+						<option value="0">全てのカテゴリー</option>
+						<option value="1">本</option>
+						<option value="2">家電・パソコン</option>
+						<option value="3">おもちゃ・ゲーム</option>
+					</select>
+					<input type="text" name="searchWord" id="search"/>
+				</div>
+				<div class="search-btn">
+				<input type="image" src="./css/searchIcon.png" width="20" height="20" class="icon"/>
+				</div>
+			</s:form>
 		</div>
-		<s:submit value="検索"/>
-	</s:form>
 
 
 		<div id="header-container">
-			<div class="a-btn">
+			<div class="header-menu">
 				<s:if test="session.loginUserId != null">
-					<a href= '<s:url action="MyPageAction" /> '>マイページ</a>
+						<s:property value="#session.loginUserId"/>でログイン中
 				</s:if>
 			</div>
 
-			<div class="a-btn">
-				<s:if test="session == null">
-					<a href= '<s:url action="LoginPageAction" />'>ログイン</a>
-				</s:if>
-			</div>
+				<div class="home-btn">
+					<a href=' <s:url action= "GoHomeAction" />'>&#x1f3e0;</a>
+				</div>
+							<ul id= "normal" class="dropmenu">
 
-			<div class="a-btn">
-				<s:if test="session.loginUser == null">
-					<a href= '<s:url action="LoginPageAction" />'>ログイン</a>
-				</s:if>
-			</div>
+				<li>アカウントメニュー
+					<ul>
+
+						<s:if test="session.loginUserId != null">
+							<li>
+								<s:form action="MyPageAction">
+									<s:submit value="マイページ" cssClass="b-btn"/>
+								</s:form>
+							</li>
+						</s:if>
+
+						<s:if test="session == null">
+							<li>
+								<s:form action="LoginPageAction">
+									<s:submit value="ログイン画面へ" cssClass="b-btn"/>
+								</s:form>
+							</li>
+						</s:if>
+
+						<s:if test="session.loginUser == null">
+							<li>
+								<s:form action="LoginPageAction">
+									<s:submit value="ログイン画面へ" cssClass="b-btn"/>
+								</s:form>
+							</li>
+						</s:if>
+
+						<s:if test="session.loginUser != null">
+							<li>
+								<s:form action="LogoutAction">
+									<s:submit value="ログアウト" cssClass="b-btn"/>
+								</s:form>
+							</li>
+						</s:if>
+
+						<li>
+							<s:form action="UserCreateAction">
+								<s:submit value="ユーザー登録" cssClass="b-btn"/>
+							</s:form>
+						</li>
+
+						<li>
+							<s:form action="ItemAction">
+								<s:hidden name="offset" value="0"></s:hidden>
+								<s:submit value="商品一覧" cssClass="b-btn"/>
+							</s:form>
+						</li>
+
+						<li>
+							<s:form action="CartAction">
+								<s:hidden name="cartFlg" value="1"></s:hidden>
+								<s:submit value="カート確認" cssClass="b-btn"/>
+							</s:form>
+						</li>
+
+						<li>
+							<s:form action="PaymentAction">
+								<s:submit value="決済" cssClass="b-btn"/>
+							</s:form>
+						</li>
+					</ul>
+				</li>
+			</ul>
 
 
-			<div class="a-btn">
-				<s:if test="session.loginUser != null">
-					<a href= '<s:url action="LogoutAction" />'>ログイン</a>
-				</s:if>
-			</div>
-
-			<div class="a-btn">
-					<a href= '<s:url action="UserCreateAction" />'>新規登録</a>
-			</div>
-
-
-
-			<div class= "a-btn"><a href= '<s:url action="GoHomeAction" />' >&#x1f3e0;</a></div>
-</div>
-
+		</div>
+	</div>
 	</header>
-	<br><br><br><br><br><br>
+
+
+
+
+	<br><br><br><br><br><br><br>
+
+	<a href= ' <s:url action= "SortSearchAction" /> '>価格の安い順に並び替え</a>
 
 	<s:if test="session.searchErrorMessage != ''">
 		'&thinsp;<s:property value="searchWord"/>&thinsp;'&thinsp;の<s:property value="session.searchErrorMessage"/>
@@ -75,11 +130,13 @@
 
 	<s:if test="session.searchErrorMessage == ''">
 		<s:iterator value="session.searchItemList" status="st">
+
+		&#x1f50d;   &#x1f3e0;
 				<table>
 					<tbody>
 					<tr>
-						<s:form action="ItemdetailAction">
-							<td><input type="hidden" name="id" value="<s:property value='id' />"></input></td>
+						<s:form action="ItemDetailAction">
+							<td><input type="hidden" name="product_id" value="<s:property value='productId' />"></input></td>
 							<td><input type="hidden" name="category_id" value="<s:property value='categoryId' />"></input></td>
 							<td><input type="image" src="<s:property value="imageFilePath"/>" width=auto height="100" /></td>
 						</s:form>

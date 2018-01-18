@@ -23,11 +23,11 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 	private String firstName;
 	private String familyNameKana;
 	private String firstNameKana;
-	private String sex;
-	private int sexNum;
-	private String userAddress;
 	private String telNumber;
+	private String userAddress;
 	private String email;
+
+	private String selectFlg;
 
 	public Map<String, Object> session;
 
@@ -36,8 +36,8 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 	private String errorFirstName;
 	private String errorFamilyNameKana;
 	private String errorFirstNameKana;
-	private String errorUserAddress;
 	private String errorTelNumber;
+	private String errorUserAddress;
 	private String errorEmail;
 	private String blank = "・未入力です。";
 	private String duplicate = "・登録済みです。";
@@ -47,8 +47,8 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 	private List<String> errorFirstNameList = new ArrayList<>();
 	private List<String> errorFamilyNameKanaList = new ArrayList<>();
 	private List<String> errorFirstNameKanaList = new ArrayList<>();
-	private List<String> errorUserAddressList = new ArrayList<>();
 	private List<String> errorTelNumberList = new ArrayList<>();
+	private List<String> errorUserAddressList = new ArrayList<>();
 	private List<String> errorEmailList = new ArrayList<>();
 
 	public String execute(){
@@ -61,12 +61,8 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 		session.put("firstName", firstName);
 		session.put("familyNameKana", familyNameKana);
 		session.put("firstNameKana", firstNameKana);
-
-		sexNum = Integer.parseInt(getSex());
-
-		session.put("sex",sexNum);
-		session.put("userAddress", userAddress);
 		session.put("telNumber", telNumber);
+		session.put("userAddress", userAddress);
 		session.put("email", email);
 
 		// ↓バリデーション始まり↓
@@ -81,7 +77,7 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 			errorFamilyNameList.add(errorFamilyName);
 			ErrorCount++;
 		}
-		if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶ]+$")) {
+		if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶー]+$")) {
 			errorFamilyName = "・姓は半角英数、ひらがな、カタカナ、漢字で入力してください。";
 			errorFamilyNameList.add(errorFamilyName);
 			ErrorCount++;
@@ -97,7 +93,7 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 			errorFirstNameList.add(errorFirstName);
 			ErrorCount++;
 		}
-		if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶ]+$")) {
+		if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶー]+$")) {
 			errorFirstName = "・名前は半角英数、ひらがな、カタカナ、漢字で入力してください。";
 			errorFirstNameList.add(errorFirstName);
 			ErrorCount++;
@@ -134,22 +130,6 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 			errorFirstNameKanaList.add(errorFirstNameKana);
 			ErrorCount++;
 		}
-		//住所
-		if(userAddress.equals("")) {
-			errorUserAddress = blank;
-			errorUserAddressList.add(errorUserAddress);
-			ErrorCount++;
-		}
-		if(userAddress.length() < 1 || userAddress.length() > 16){
-			errorUserAddress = "・住所は15文字以上50文字以下で入力してください。";
-			errorUserAddressList.add(errorUserAddress);
-			ErrorCount++;
-		}
-		if (!userAddress.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠ァ-ヶ]+$")) {
-			errorUserAddress = "・住所は半角英数記号、ひらがな、カタカナ、漢字で入力してください。";
-			errorUserAddressList.add(errorUserAddress);
-			ErrorCount++;
-		}
 		//電話番号
 		if(telNumber.equals("")){
 			errorTelNumber = blank;
@@ -164,6 +144,22 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 		if (!telNumber.matches("^[0-9]+$")) {
 			errorTelNumber = "・電話番号は半角数字で入力してください。";
 			errorTelNumberList.add(errorTelNumber);
+			ErrorCount++;
+		}
+		//住所
+		if(userAddress.equals("")) {
+			errorUserAddress = blank;
+			errorUserAddressList.add(errorUserAddress);
+			ErrorCount++;
+		}
+		if(userAddress.length() < 15 || userAddress.length() > 50){
+			errorUserAddress = "・住所は15文字以上50文字以下で入力してください。";
+			errorUserAddressList.add(errorUserAddress);
+			ErrorCount++;
+		}
+		if (!userAddress.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠ァ-ヶー]+$")) {
+			errorUserAddress = "・住所は半角英数記号、ひらがな、カタカナ、漢字で入力してください。";
+			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
 		}
 		//メール
@@ -229,18 +225,6 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 	public void setFirstNameKana(String firstNameKana) {
 		this.firstNameKana = firstNameKana;
 	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public int getSexNum() {
-		return sexNum;
-	}
-	public void setSexNum(int sexNum) {
-		this.sexNum = sexNum;
-	}
 	public String getUserAddress() {
 		return userAddress;
 	}
@@ -271,12 +255,19 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 	public void setDuplicate(String duplicate) {
 		this.duplicate = duplicate;
 	}
+	public String getSelectFlg() {
+		return selectFlg;
+	}
+	public void setSelectFlg(String selectFlg) {
+		this.selectFlg = selectFlg;
+	}
 	public Map<String, Object> getSession() {
 		return session;
 	}
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
+
 	public List<String> getErrorFamilyNameList() {
 		return errorFamilyNameList;
 	}

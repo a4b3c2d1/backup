@@ -15,6 +15,9 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 	// レビュー情報格納
 	private String review;
 
+	// レビュー確認用
+	public String review2;
+
 	// レビューエラーメッセージ格納用
 	private String reviewErrormessage;
 
@@ -22,17 +25,33 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 
 	public String execute() {
 
+
+		//改行だけの場合を回避
+		review2 = review;
+		review2=review.replaceAll("\r\n", "").replaceAll( "&nbsp"," ");
+
 		// 入力されているかの確認
-		if (!(value.equals("")) && !(review.equals(""))) {
-			session.put("review_value", value);
+		if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
 
-			// 次ページで表示させるため
+			review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;");
 
-			value2 = Integer.parseInt(value) * 20;
+			if (review.length() > 255) {
+				setReviewErrormessage("文字数オーバーです");
+				review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ");
 
-			session.put("review_review", review);
-			// 確認画面へ
-			return SUCCESS;
+				return ERROR;
+
+			} else {
+				session.put("review_review", review);
+
+				session.put("review_value", value);
+
+				// 次ページで星を正しく表示させるため
+				value2 = Integer.parseInt(value) * 20;
+
+				// 確認画面へ
+				return SUCCESS;
+			}
 		} else {
 
 			setReviewErrormessage("未入力です");

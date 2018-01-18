@@ -6,8 +6,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+
 <title>レビュー</title>
 <style type="text/css">
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: #0066c0;
+	text-decoration: none
+}
+
+#main {
+	margin-top: 100px;
+	margin-bottom: 60px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}
+
+.main1 {
+	float: left;
+	margin: 50px;
+	padding-left: 100px;
+}
+
+#text {
+	width: 600px;
+	height: 200px;
+	font-size: 20px;
+
+}
+
 .hyouka {
 	float: left;
 	display: -ms-flex;
@@ -27,6 +61,16 @@
 	justify-content: right;
 }
 
+.main2 {
+	clear: both;
+}
+
+.a:hover {
+	color: #eb1515;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 .hyouka input[type='radio'] {
 	display: none;
 }
@@ -36,44 +80,147 @@
 	padding: 10px 0px 20px 0px;
 	color: #bbb;
 	cursor: pointer;
-	font-size: 30px;
+	font-size: 40px;
 }
 
 .hyouka label:hover, .hyouka label:hover ~ label, .hyouka input[type='radio']:checked
 	 ~ label {
-	color: #faee2e;
+	color: #ffcc33;
+}
+
+.main1 input[type='submit'],input[type='button']{
+float:right;
 }
 </style>
+
+<script type="text/javascript">
+	function hoge() {
+		document.getElementById("text").value = "";
+	}
+</script>
 </head>
 <body>
-	<s:if test="reviewErrormessage !=''">
-		<s:property value="reviewErrormessage" escape="false" />
+	<header>
 
-	</s:if>
-	<s:form action="ReviewConfirmAction">
+	<div id="main-logo">
+		<img src="./css/sagaone_logo.png" height="100px">
+	</div>
 
-		<div class="hyouka">
-			<input id="hoshi1" type="radio" name="value" value="5" /> <label for="hoshi1">★</label>
-			<input id="hoshi2" type="radio" name="value" value="4" /> <label for="hoshi2">★</label>
-			<input id="hoshi3" type="radio" name="value" value="3" /> <label for="hoshi3">★</label>
-			<input id="hoshi4" type="radio" name="value" value="2" /> <label for="hoshi4">★</label>
-			<input id="hoshi5" type="radio" name="value" value="1" /> <label for="hoshi5">★</label>
-			<input type="radio" name="value" value="" checked="checked" style="display:none;" />
+	<div id="search-form">
+
+		<s:form action="SearchItemAction">
+			<div id="search-box">
+				<select name="itemCategory" id="category">
+					<option value="0">全てのカテゴリー</option>
+					<option value="1">本</option>
+					<option value="2">家電・パソコン</option>
+					<option value="3">おもちゃ・ゲーム</option>
+				</select> <input type="text" name="searchWord" id="search" />
+			</div>
+			<div class="search-btn">
+				<input type="image" src="./css/searchIcon.png" width="20"
+					height="20" class="icon" />
+			</div>
+		</s:form>
+	</div>
+
+	<div id="header-container">
+
+		<ul id="normal" class="dropmenu">
+
+			<li><s:if test="session.loginUserId != null">
+					<s:property value="#session.loginUserId" />でログイン中
+					</s:if></li>
+
+			<li>アカウントメニュー
+				<ul>
+					<s:if test="session.loginUserId != null">
+						<li><s:form action="MyPageAction">
+								<s:submit value="マイページ" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<s:if test="session == null">
+						<li><s:form action="LoginPageAction">
+								<s:submit value="ログイン画面へ" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<s:if test="session.loginUser == null">
+						<li><s:form action="LoginPageAction">
+								<s:submit value="ログイン画面へ" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<s:if test="session.loginUser != null">
+						<li><s:form action="LogoutAction">
+								<s:submit value="ログアウト" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<li><s:form action="UserCreateAction">
+							<s:submit value="ユーザー登録" cssClass="b-btn" />
+						</s:form></li>
+
+					<li><s:form action="ItemAction">
+							<s:hidden name="offset" value="0"></s:hidden>
+							<s:submit value="商品一覧" cssClass="b-btn" />
+						</s:form></li>
+
+					<li><s:form action="CartAction">
+							<s:hidden name="cartFlg" value="1"></s:hidden>
+							<s:submit value="カート確認" cssClass="b-btn" />
+						</s:form></li>
+
+					<s:if test="session.loginUser != null">
+						<li><s:form action="PaymentAction">
+								<s:submit value="決済" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+
+	</header>
+	<div id="main">
+		<div class="main1">
+			<h1>カスタマーレビューフォーム</h1>
+			<s:if test="reviewErrormessage !=''">
+				<s:property value="reviewErrormessage" escape="false" />
+
+			</s:if>
+			<s:form action="ReviewConfirmAction">
+
+				<div class="hyouka">
+					<input id="hoshi1" type="radio" name="value" value="5" /> <label
+						for="hoshi1">★</label> <input id="hoshi2" type="radio"
+						name="value" value="4" /> <label for="hoshi2">★</label> <input
+						id="hoshi3" type="radio" name="value" value="3" /> <label
+						for="hoshi3">★</label> <input id="hoshi4" type="radio"
+						name="value" value="2" /> <label for="hoshi4">★</label> <input
+						id="hoshi5" type="radio" name="value" value="1" /> <label
+						for="hoshi5">★</label> <input type="radio" name="value" value=""
+						checked="checked" style="display: none;" />
+				</div>
+
+				<s:textarea id="text" name="review" placeholder="レビュー内容"></s:textarea>
+
+				<br>
+				<input type="submit" value="レビューする" />
+				<input type="button" value="クリア" onClick="hoge()" />
+			</s:form>
 		</div>
-	レビュー:
-	<s:textarea name="review" />
-		<br>
-		<s:submit value="レビューする" />
-	</s:form>
 
-	<s:form action="ItemDetailAction">
+		<div class="main2">
 
-		<td><input type="hidden" name="product_id"
-			value="<s:property value='session.review_product_id' />"></input></td>
-		<td><input type="hidden" name="category_id"
-			value="<s:property value='session.review_category_id' />"></input></td>
-		<s:submit value="商品詳細へ戻る">
-		</s:submit>
-	</s:form>
+			<a
+				href='<s:url action="ItemDetailAction"><s:param name="product_id" value="session.review_product_id" /><s:param name="category_id" value="session.review_category_id" /></s:url>'>
+				<span class="a">商品一覧へ</span>
+			</a>
+		</div>
+	</div>
 </body>
+
 </html>

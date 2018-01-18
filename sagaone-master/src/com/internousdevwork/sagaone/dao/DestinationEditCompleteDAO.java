@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.internousdevwork.sagaone.dao;
 
@@ -21,9 +21,10 @@ public class DestinationEditCompleteDAO {
 
 	private DateUtil dateUtil = new DateUtil();
 
-	private String sql = "insert into destination_info(user_id, family_name, first_name, family_name_kana, first_name_kana, email, tel_number, user_address, update_date) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-	public void destinationCreate(String userId, String familyName, String firstName, String familyNameKana, String firstNameKana, String email, String telNumber, String userAddress) throws SQLException {
+	public void destinationUpdate(String userId, String familyName, String firstName, String familyNameKana, String firstNameKana, String email, String telNumber, String userAddress, String destinationId) throws SQLException {
+
+		String sql = "update destination_info set user_id = ?, family_name = ?, first_name = ?, family_name_kana = ?, first_name_kana = ?, email = ?, tel_number = ?, user_address = ?, update_date = ? where id = ?";
 
 		// フォームで入力した情報をDBに格納
 		try {
@@ -38,6 +39,7 @@ public class DestinationEditCompleteDAO {
 			preparedStatement.setString(7, telNumber);
 			preparedStatement.setString(8, userAddress);
 			preparedStatement.setString(9, dateUtil.getDate());
+			preparedStatement.setString(10, destinationId);
 
 			preparedStatement.execute();
 

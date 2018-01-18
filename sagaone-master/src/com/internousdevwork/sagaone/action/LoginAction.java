@@ -1,11 +1,19 @@
 package com.internousdevwork.sagaone.action;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdevwork.sagaone.dao.AddCartDAO;
 import com.internousdevwork.sagaone.dao.LoginDAO;
+import com.internousdevwork.sagaone.dao.TempCartDAO;
+import com.internousdevwork.sagaone.dto.CartDTO;
 import com.internousdevwork.sagaone.dto.LoginDTO;
+import com.internousdevwork.sagaone.util.DBConnector;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport implements SessionAware {
@@ -21,8 +29,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	private LoginDAO loginDAO= new LoginDAO();
 	private LoginDTO loginDTO= new LoginDTO();
+	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
+	private AddCartDAO addCartDAO = new AddCartDAO();
+	private TempCartDAO tempCartDAO = new TempCartDAO();
 
-	public String execute() {
+	public String execute() throws SQLException {
 		String ret=ERROR;;
 		int ErrorCount= 0;
 
@@ -34,13 +45,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		session.put("loginFlg", loginDTO.getLoginFlg());
 
 		if (((LoginDTO) session.get("loginUser")).getLoginFlg()) {
-		ret= SUCCESS;
+			ret= SUCCESS;
 
 		} else if(!(loginUserId.equals("")) && !(loginPassword.equals(""))){
 			setErrorMessage("IDかパスワードが違うよー(○・▽・○)<br>");
 			ret= ERROR;
 		}
-
 		if (loginMemory.equals("true")) {
 			session.put("loginMemory", true);
 		} else {
@@ -49,20 +59,58 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 		// 未入力時
 		if(loginUserId.equals("")) {
-		setBlankErrorMessageID("ログインIDが入ってないよー(○・▽・○)<br>");
-		ErrorCount++;
+			setBlankErrorMessageID("ログインIDが入ってないよー(○・▽・○)<br>");
+			ErrorCount++;
 		}
 
 		if (loginPassword.equals("")) {
-		setBlankErrorMessagePassword("パスワードが入ってないよー(○・▽・○)<br>");
-		ErrorCount++;
+			setBlankErrorMessagePassword("パスワードが入ってないよー(○・▽・○)<br>");
+			ErrorCount++;
 		}
 		if(ErrorCount>0) {
-		ret = ERROR;
+			ret = ERROR;
 		}
 
-			return ret;
+		String user_id = session.get("temp_user_id").toString();
+		cartList = tempCartDAO.getTempCartInfo(user_id);
+
+		if(!(cartList == null)){
+			for(int i = 0; i < cartList.size(); i++){
+				addCartDAO.addCartInfo(
+						cartList.get(i).getId(),
+						session.get("loginUserId").toString(),
+						cartList.get(i).getProductId(),
+						session.get("count").toString(),
+						cartList.get(i).getPrice()
+						);
+			}
+
+			DBConnector db = new DBConnector();
+			Connection con = db.getConnection();
+			String sql = "DELETE FROM cart_info WHERE temp_user_id = ?";
+
+			PreparedStatement ps;
+
+			try {
+				ps = con.prepareStatement(sql);
+				ps.setString(1, user_id);
+
+				ps.executeUpdate();
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+
+
+
 		}
+
+
+
+
+		return ret;
+	}
+
+
 
 
 	// 後衛
@@ -112,6 +160,5 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		this.errorMessage = errorMessage;
 	}
 
+
 }
-
-

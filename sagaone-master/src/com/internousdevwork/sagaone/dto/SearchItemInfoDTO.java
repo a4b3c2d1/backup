@@ -13,7 +13,9 @@ public class SearchItemInfoDTO {
 	private String releaseDate;
 	private String releaseCompany;
 	private int status;
-
+	private String searchFlg = "1";
+	private String descriptionAll = productDescription;
+	private String searchWords;
 
 
 	public String getId() {
@@ -88,6 +90,25 @@ public class SearchItemInfoDTO {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	public String getSearchFlg() {
+		return searchFlg;
+	}
+	public void setSearchFlg(String searchFlg) {
+		this.searchFlg = searchFlg;
+	}
+	public String getDescriptionAll() {
+		return descriptionAll;
+	}
+	public void setDescriptionAll(String descriptionAll) {
+		this.descriptionAll = descriptionAll;
+	}
+	public String getSearchWords() {
+		return searchWords;
+	}
+	public void setSearchWords(String searchWords) {
+		this.searchWords = searchWords;
+	}
 
 
-}
+
+	}

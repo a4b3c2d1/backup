@@ -19,11 +19,10 @@ public class SearchItemFromAllDAO {
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
 
-	public List<SearchItemInfoDTO> getItemInfoFromAll(String productDescription){
-		String sql = "SELECT * FROM product_info WHERE product_description LIKE ? ";
+	public List<SearchItemInfoDTO> getItemInfoFromAll(){
+		String sql = "SELECT * FROM product_info";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, "%" + productDescription + "%");
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()){
