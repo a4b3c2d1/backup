@@ -29,8 +29,8 @@ public class PaymentCompleteAction extends ActionSupport implements SessionAware
 
 		List<PaymentProductInfoDTO> productDTOList = (List<PaymentProductInfoDTO>)session.get("productDTOList");
 
-		System.out.println(productDTOList.get(0).getProductId());
-		System.out.println(productDTOList.get(1).getProductId());
+//		System.out.println(productDTOList.get(0).getProductId());
+//		System.out.println(productDTOList.get(1).getProductId());←エラーの原因
 
 		try{
 			for(int i = 0; i<productDTOList.size(); i++){

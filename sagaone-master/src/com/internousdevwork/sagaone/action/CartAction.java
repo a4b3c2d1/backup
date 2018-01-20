@@ -49,6 +49,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private String deleteFlg;
 	private String addFlg;
 	private String cartFlg;
+	private String paymentFlg;
 	private String message;
 	private String str_product_id;
 	private Collection<String> checkboxList;
@@ -62,17 +63,42 @@ public class CartAction extends ActionSupport implements SessionAware{
 	public String result;
 
 
+
 	public String execute() throws SQLException{
 
 		boolean loginFlg = Boolean.parseBoolean(session.get("loginFlg").toString());
+		result = SUCCESS;
 
 		if(deleteFlg != null){
-
-			if(errorFlg != null){
-				cartFlg = "1";
-			}else{
 				delete();
 				cartFlg = "1";
+		}
+
+		if(addFlg != null){
+			addCart();
+			cartFlg = "1";
+			page = offset + 1;
+			session.get("itemDTOList");
+
+			// 表示するページ数を計算。
+
+			itemDTOList2 = itemDAO.getiteminfo1();
+			int pgs = itemDTOList2.size() / 9;
+
+			// あまりが０以外の場合、
+
+			if (itemDTOList2.size() % 9 != 0) {
+
+				pgs = pgs + 1;
+
+			}
+
+			// １から最終ページまでの数字を格納するための配列
+			allpages = new int[pgs];
+
+			for (int i = 0; i < pgs; i++) {
+
+				allpages[i] = i + 1;
 			}
 		}
 
@@ -104,37 +130,17 @@ public class CartAction extends ActionSupport implements SessionAware{
 					cartList = null;
 				}
 			}
-			result = SUCCESS;
 		}
 
 		if(addFlg != null){
-			addCart();
-			page = offset + 1;
-			session.get("itemDTOList");
-			System.out.println(session.get("itemDTOList"));
-
-			// 表示するページ数を計算。
-
-			itemDTOList2 = itemDAO.getiteminfo1();
-			int pgs = itemDTOList2.size() / 9;
-
-			// あまりが０以外の場合、
-
-			if (itemDTOList2.size() % 9 != 0) {
-
-				pgs = pgs + 1;
-
-			}
-
-			// １から最終ページまでの数字を格納するための配列
-			allpages = new int[pgs];
-
-			for (int i = 0; i < pgs; i++) {
-
-				allpages[i] = i + 1;
-				result = "update";
-			}
+			result = "update";
 		}
+
+		if(paymentFlg != null){
+			session.put("paymentFlg", paymentFlg);
+			result = "login";
+		}
+
 		return result;
 	}
 
@@ -317,4 +323,14 @@ public class CartAction extends ActionSupport implements SessionAware{
 	public void setErrorFlg(String errorFlg) {
 		this.errorFlg = errorFlg;
 	}
+
+	public String getPaymentFlg() {
+		return paymentFlg;
+	}
+
+	public void setPaymentFlg(String paymentFlg) {
+		this.paymentFlg = paymentFlg;
+	}
+
+
 }

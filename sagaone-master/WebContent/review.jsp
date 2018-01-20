@@ -30,20 +30,31 @@ a:visited {
 }
 
 .main1 {
-	float: left;
-	margin: 50px;
-	padding-left: 100px;
+	padding: 20px;
+	width: 100%;
+	height: 350px;
 }
 
-#text {
+.review1 {
+	height: 250px;
+	float: left;
+	width: 650px;
+}
+
+.text {
 	width: 600px;
 	height: 200px;
 	font-size: 20px;
+}
 
+.main2 {
+	width: 100%;
+	clear:both;
 }
 
 .hyouka {
 	float: left;
+	height: 100px;
 	display: -ms-flex;
 	display: -webkit-flex;
 	display: -moz-flex;
@@ -59,10 +70,6 @@ a:visited {
 	justify-content: -moz-right;
 	justify-content: -o-right;
 	justify-content: right;
-}
-
-.main2 {
-	clear: both;
 }
 
 .a:hover {
@@ -88,8 +95,8 @@ a:visited {
 	color: #ffcc33;
 }
 
-.main1 input[type='submit'],input[type='button']{
-float:right;
+.main1 input[type='submit'], input[type='button'] {
+	float: right;
 }
 </style>
 
@@ -204,12 +211,12 @@ float:right;
 						for="hoshi5">★</label> <input type="radio" name="value" value=""
 						checked="checked" style="display: none;" />
 				</div>
+				<div class="review1">
+					<s:textarea class="text" name="review" placeholder="レビュー内容"></s:textarea>
 
-				<s:textarea id="text" name="review" placeholder="レビュー内容"></s:textarea>
-
-				<br>
-				<input type="submit" value="レビューする" />
-				<input type="button" value="クリア" onClick="hoge()" />
+					<input type="submit" value="レビューする" /> <input type="button"
+						value="クリア" onClick="hoge()" />
+				</div>
 			</s:form>
 		</div>
 
@@ -217,7 +224,7 @@ float:right;
 
 			<a
 				href='<s:url action="ItemDetailAction"><s:param name="product_id" value="session.review_product_id" /><s:param name="category_id" value="session.review_category_id" /></s:url>'>
-				<span class="a">商品一覧へ</span>
+				<span class="a">商品詳細へ</span>
 			</a>
 		</div>
 	</div>

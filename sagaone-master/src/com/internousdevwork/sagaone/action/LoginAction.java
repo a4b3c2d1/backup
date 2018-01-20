@@ -4,15 +4,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdevwork.sagaone.dao.AddCartDAO;
 import com.internousdevwork.sagaone.dao.LoginDAO;
+import com.internousdevwork.sagaone.dao.PaymentCartInfoDAO;
+import com.internousdevwork.sagaone.dao.PaymentProductInfoDAO;
+import com.internousdevwork.sagaone.dao.PaymentUserAddressDAO;
+import com.internousdevwork.sagaone.dao.PaymentUserInfoDAO;
 import com.internousdevwork.sagaone.dao.TempCartDAO;
 import com.internousdevwork.sagaone.dto.CartDTO;
 import com.internousdevwork.sagaone.dto.LoginDTO;
+import com.internousdevwork.sagaone.dto.PaymentCartInfoDTO;
+import com.internousdevwork.sagaone.dto.PaymentProductInfoDTO;
+import com.internousdevwork.sagaone.dto.PaymentUserAddressDTO;
+import com.internousdevwork.sagaone.dto.PaymentUserInfoDTO;
 import com.internousdevwork.sagaone.util.DBConnector;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -21,6 +30,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	// 前衛
 	private String loginUserId;
 	private String loginPassword;
+	private String paymentFlg;
 	private String loginMemory= "";
 	public Map<String, Object> session;
 	private String errorMessage;
@@ -33,8 +43,21 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private AddCartDAO addCartDAO = new AddCartDAO();
 	private TempCartDAO tempCartDAO = new TempCartDAO();
 
+	private String paymentMessage;
+
+	private PaymentUserInfoDTO paymentUserInfoDTO = new PaymentUserInfoDTO();
+	private PaymentUserAddressDTO userAddressDTO = new PaymentUserAddressDTO();
+	private List<PaymentUserAddressDTO> addressDTOList = new ArrayList<PaymentUserAddressDTO>();
+	private PaymentCartInfoDTO paymentCartInfoDTO = new PaymentCartInfoDTO();
+	private List<PaymentCartInfoDTO> cartInfoList = new ArrayList<PaymentCartInfoDTO>();
+	private List<PaymentProductInfoDTO> productDTOList = new ArrayList<PaymentProductInfoDTO>();
+	private PaymentUserInfoDAO userInfoDAO = new PaymentUserInfoDAO();
+	private PaymentUserAddressDAO userAddressDAO = new PaymentUserAddressDAO();
+	private PaymentCartInfoDAO paymentCartInfoDAO = new PaymentCartInfoDAO();
+	private int sumPrice = 0;
+
 	public String execute() throws SQLException {
-		String ret=ERROR;;
+		String ret=ERROR;
 		int ErrorCount= 0;
 
 		// ログイン実行
@@ -99,14 +122,43 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			}catch (Exception e){
 				e.printStackTrace();
 			}
-
-
-
 		}
 
 
+		if (session.get("paymentFlg") != null) {
+			paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
+
+			addressDTOList = userAddressDAO.getUserAddress(session.get("loginUserId").toString());
+
+			cartInfoList = paymentCartInfoDAO.getCartInfo(session.get("loginUserId").toString());
+
+			// if文でcartInfoListが空の場合のエラー処理をする。
+			for(int i = 0; i<cartInfoList.size(); i++){
+
+				PaymentProductInfoDAO paymentProductDAO = new PaymentProductInfoDAO();
+				PaymentProductInfoDTO paymentProductInfoDTO = new PaymentProductInfoDTO();
+				paymentProductInfoDTO = paymentProductDAO.getProductInfo(cartInfoList.get(i).getProductId());
+				paymentProductInfoDTO.setProductCount(cartInfoList.get(i).getProductCount());
+				paymentProductInfoDTO.setTotalPrice(paymentProductInfoDTO.getPrice() * paymentProductInfoDTO.getProductCount());
+				productDTOList.add(paymentProductInfoDTO);
+
+				sumPrice += productDTOList.get(i).getTotalPrice();
+			}
 
 
+			if (cartInfoList.isEmpty()) {
+				paymentMessage = "カートに商品が入っていません";
+				session.put("paymentMessage", paymentMessage);
+			} else {
+				//paymentPage.jsp
+				session.put("paymentUserInfoDTO", paymentUserInfoDTO);
+				session.put("addressDTOList", addressDTOList);
+				session.put("cartInfoList", cartInfoList);
+				session.put("productDTOList", productDTOList);
+				session.put("sumPrice", sumPrice);
+			}
+			ret= "payment";
+		}
 		return ret;
 	}
 
@@ -126,6 +178,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 	public void setLoginPassword (String loginPassword) {
 		this.loginPassword= loginPassword;
+	}
+
+	public String getPaymentFlg() {
+		return paymentFlg;
+	}
+	public void setPaymentFlg(String paymentFlg){
+		this.paymentFlg= paymentFlg;
 	}
 
 	public String getLoginMemory() {
@@ -160,5 +219,84 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		this.errorMessage = errorMessage;
 	}
 
+	public PaymentUserInfoDTO getPaymentUserInfoDTO() {
+		return paymentUserInfoDTO;
+	}
 
+
+
+	public void setPaymentUserInfoDTO(PaymentUserInfoDTO paymentUserInfoDTO) {
+		this.paymentUserInfoDTO = paymentUserInfoDTO;
+	}
+
+
+
+	public PaymentUserAddressDTO getUserAddressDTO() {
+		return userAddressDTO;
+	}
+
+
+
+	public void setUserAddressDTO(PaymentUserAddressDTO userAddressDTO) {
+		this.userAddressDTO = userAddressDTO;
+	}
+
+
+
+	public PaymentCartInfoDTO getPaymentCartInfoDTO() {
+		return paymentCartInfoDTO;
+	}
+
+
+
+	public void setPaymentCartInfoDTO(PaymentCartInfoDTO paymentCartInfoDTO) {
+		this.paymentCartInfoDTO = paymentCartInfoDTO;
+	}
+
+
+
+	public PaymentUserInfoDAO getUserInfoDAO() {
+		return userInfoDAO;
+	}
+
+
+
+	public void setUserInfoDAO(PaymentUserInfoDAO userInfoDAO) {
+		this.userInfoDAO = userInfoDAO;
+	}
+
+
+
+	public PaymentUserAddressDAO getUserAddressDAO() {
+		return userAddressDAO;
+	}
+
+
+
+	public void setUserAddressDAO(PaymentUserAddressDAO userAddressDAO) {
+		this.userAddressDAO = userAddressDAO;
+	}
+
+
+	public PaymentCartInfoDAO getPaymentCartInfoDAO() {
+		return paymentCartInfoDAO;
+	}
+
+
+
+	public void setPaymentCartInfoDAO(PaymentCartInfoDAO paymentCartInfoDAO) {
+		this.paymentCartInfoDAO = paymentCartInfoDAO;
+	}
+
+
+
+	public String getPaymentMessage() {
+		return paymentMessage;
+	}
+
+
+
+	public void setPaymentMessage(String paymentMessage) {
+		this.paymentMessage = paymentMessage;
+	}
 }

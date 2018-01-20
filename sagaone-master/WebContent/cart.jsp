@@ -160,7 +160,8 @@
 				<s:if test="cartList != null">
 			カート内合計金額:<s:property value="allPrice" />円<br>
 					<s:if test="cartJugde == null">
-						<a href='<s:url action="LoginPageAction" />'><span id="login">決済に進むにはログインしてください</span></a>
+						<input type="hidden" name="paymentFlg" value="1">
+						<input type="submit" value="決済に進むにはログインしてください"  />
 					</s:if>
 					<s:elseif test="cartJugde == 1">
 						<a href='<s:url action="PaymentAction" />'><span id="kessai">決済へ進む</span></a>
@@ -203,7 +204,7 @@
 			  });
 
 			  $('.check').on('click', function() {
-			    if ($('.s :checked').length == $('.zebra :input').length){
+			    if ($('.zebra :checked').length == $('.zebra :input[name=checkboxList]').length){
 			      $('#allCheck01').prop('checked', 'checked');
 			    }else{
 			      $('#allCheck01').prop('checked', false);

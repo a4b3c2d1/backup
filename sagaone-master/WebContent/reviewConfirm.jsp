@@ -19,21 +19,20 @@
 }
 
 .main1 {
+	padding: 20px;
+	width: 100%;
+	height: 350px;
+}
+
+.review1 {
+	height: 250px;
 	float: left;
-	margin: 50px;
-	padding-left: 100px;
+	width: 650px;
 }
 
 .text {
 	border: solid;
-	margin: 50px;
-	width: 600px;
-	font-size: 20px;
-	min-height: 200px;
-	font-family: monospace;
-	border-color: rgb(169, 169, 169);
 	border-width: 1px;
-	margin: 50px;
 	width: 600px;
 	font-size: 20px;
 	min-height: 200px;
@@ -42,9 +41,10 @@
 }
 
 .rating {
+	float: left;
 	position: relative;
 	width: 5em;
-	height: 1em;
+	height: 100px;
 	font-size: 40px;
 }
 
@@ -159,7 +159,7 @@
 	<div id="main">
 		<div class="main1">
 			<h1>確認画面</h1>
-			登録する内容は以下でよろしいですか。
+			<h2>登録する内容は以下でよろしいですか。</h2>
 
 			<div class="rating">
 				<div class="rating-front"
@@ -168,32 +168,32 @@
 			</div>
 
 
-
-			<div class="text">
-				<s:property value="session.review_review" escape="false" />
-			</div>
-
-
-			<s:form action="ReviewConpleteAction" onClick="alert('完了しました');">
+			<div class="review1">
+				<div class="text">
+					<s:property value="session.review_review" escape="false" />
+				</div>
 
 
-				<span class="b"> <input type="submit" value="完了"></span>
-
-			</s:form>
+				<s:form action="ReviewConpleteAction" onClick="alert('完了しました');">
 
 
-
-			<s:iterator value="#session.itemdetailDTOList">
-				<s:form action="ReviewAction">
-
-					<input type="hidden" name="product_id"
-						value="<s:property value='session.review_product_id' />"></input>
-					<input type="hidden" name="category_id"
-						value="<s:property value='session.review_category_id' />"></input>
-					<span class="c"> <input type="submit" value="戻る"></span>
+					<span class="b"> <input type="submit" value="完了"></span>
 				</s:form>
-			</s:iterator>
 
+
+
+
+				<s:iterator value="#session.itemdetailDTOList">
+					<s:form action="ReviewAction">
+
+						<input type="hidden" name="product_id"
+							value="<s:property value='session.review_product_id' />"></input>
+						<input type="hidden" name="category_id"
+							value="<s:property value='session.review_category_id' />"></input>
+						<span class="c"> <input type="submit" value="戻る"></span>
+					</s:form>
+				</s:iterator>
+			</div>
 		</div>
 	</div>
 </body>

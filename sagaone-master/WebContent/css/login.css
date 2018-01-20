@@ -1,0 +1,180 @@
+@CHARSET "UTF-8";
+
+
+/*
+ * フォーム
+ *
+ */
+
+.form-style {
+	text-align: center;
+    margin:40px auto;
+    max-width: 400px;
+    padding: 50px 12px 10px 20px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+
+.form-style li {
+    padding: 0;
+    display: block;
+    list-style: none;
+    margin: 10px 0 0 0;
+}
+
+.form-style input[type=text],
+.form-style input[type=password],
+select{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+}
+
+.form-style input[type=text]:focus,
+.form-style input[type=password]:focus,
+.form-style select:focus{
+    -moz-box-shadow: 0 0 8px #88D5E9;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+
+.form-style .field-holder{
+    width: 49%;
+}
+
+.form-style input[type=submit]{
+	margin-bottom: 10px;
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: 1px solid white;
+    color: #fff;
+}
+.form-style input[type=submit]:hover{
+    background: white;
+    color: #4B99AD;
+    box-shadow:none;
+    border: 1px solid #4B99AD;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+.sub{
+	text-align: center;
+}
+
+
+.form-style .login{
+	text-decoration: none;
+    background: #4B99AD;
+    padding: 5px 7px 5px 7px;
+    border: none;
+    color: #c8cfd1;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.form-style .login:hover{
+    background: #22505b;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+
+.form-style placeholder {
+	color: lightglay;
+}
+
+
+/*
+ * エラーメッセージ
+ */
+
+
+.error {
+	font-size: 12px;
+	color:  #f66;
+}
+
+
+/*
+ * ID保存checkbox
+ */
+
+
+#login {
+	display: none;
+}
+
+input+label,
+input+label::before,
+input+label::after {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+input+label {
+  display: inline-block;
+  position: relative;
+  width: 37px;
+  height: 17px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+input+label::before {
+  display: block;
+  content: attr(data-off-label);
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+input+label::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+input:checked+label::before {
+  content: attr(data-on-label);
+  left: 5px;
+  right: auto;
+  color: #fff;
+}
+input:checked+label::after {
+  left: 22px;
+  background-color: #f7f7f7;
+}
+
+
+/* demo01 */
+#login+label {
+  background-color: #eee;
+}
+#login+label::before {
+  color: #aaa;
+}
+#login:checked+label {
+  background-color: #3498db;
+}
+#login:checked+label::before {
+  color: #fff;
+}
+
+
+
+

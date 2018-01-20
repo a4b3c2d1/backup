@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+/*
+ * ヘッダー全体
+ */
 
 header{
 	display: inline;
@@ -13,9 +16,14 @@ header{
 	background-image: linear-gradient(-90deg, #5265D1, #2FB3CA);
 	color: white;
 	font-size: 15px;
-
+	text-decoration: none;
 }
 
+
+
+/*
+ * ロゴ画像
+ */
 
 #main-logo{
 	float: left;
@@ -23,7 +31,6 @@ header{
     width: 200px;
     height: 100px;
     margin:0px auto;
-
 }
 
 #main-logo img {
@@ -38,16 +45,33 @@ header{
     height:100%;
 }
 
+
+
+/*
+ * ヘッダーの画像外部分
+ */
+
 #menu{
-	pojision: relative;
+	position: relative;
 	height: 100px;
-	width:100%;
+	width: calc(100% - 200px);
 	margin-left: 230px;
 }
 
+
+/*
+ * 検索フォーム
+ *
+ * search-form： 検索フォーム全体
+ * search-box： select、textbox
+ * category： select カテゴリー
+ * search： textbox
+ * search-btn： 検索ボタン
+ */
+
 #search-form{
 	position:absolute;
-	right: 0;
+	float: left;
 	width: 500px;
 	margin-top: 20px;
 	display: inline-block;
@@ -57,19 +81,17 @@ header{
 
 #search-box{
 	margin: 0;
-	float:left;
+	float: left;
 	height: 30px;
 }
 
 #category{
-
 	margin: 0;
 	float:left;
 	height: 30px;
 }
 
 #search{
-
 	margin: 0;
 	float: left;
 	height: 24px;
@@ -99,64 +121,103 @@ header{
 	opacity: 0.9;
 }
 
+
+
+/*
+ * 検索フォームの下部分全体
+ */
+
 #header-container{
 	clear: both;
 	position: fixed;
 	right: 0;
 	top: 50px;
-	width: 500px;
+	width: calc(100% - 200px);
 	height: 50px;
-	float: right;
+	float: left;
 }
+
+
+/*
+ * ○○ログイン中 表示
+ */
 
 .header-menu{
 	line-height: 50px;
-	float: left;
+	float: right;
 }
 
-.home-btn {
+
+/*
+ * 下のボタン全体
+ *
+ * home-btn： ホームボタン
+ * home-btn-logout: ログアウトボタン
+ * dropmenu： アカウントメニュー
+ */
+
+#header-container .ex  {
+	clear: both;
+	float: right;
+	width: 300px;
+	height: 50px;
+	list-style: none;
+	right: 0;
+}
+
+
+#header-container .home-btn > a {
+	float: left;
+	text-decoration: none;
 	position: absolute;
-	bottom:0;
+	bottom: 0;
 	width: 40px;
 	height: 40px;
-	float: left;
 	text-align: center;
-	line-height: 35px;
+	line-height: 40px;
 	background-color: white;
 }
 
-.home-btn > a {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-
-.home-btn :hover {
-    background: #619ed3;
+#header-container .home-btn :hover {
+    background: rgba(255, 255, 255, .2);
 	font-color: white;
 }
 
-.dropmenu {
+#header-container .home-btn-logout > a {
+	float: left;
+	text-decoration: none;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: white;
+}
+
+
+#header-container .home-btn-logout> a :hover {
+    background: rgba(255, 255, 255, .2);
+	font-color: white;
+}
+
+
+#header-container .dropmenu {
+	float: left;
+	bottom: 0px;
 	width: 160px;
 	height: 40px;
-
-	padding-right: 40px;
-
-
 }
 
 .dropmenu > li{
 	float: left;
 	position: absolute;
-	bottom: 0px;
 	width: 160px;
 	height: 40px;
-	float: left;
     display: inline-block;
     text-decoration: none;
     background-color:white;
     text-align: center;
-	line-height: 35px;
+	line-height: 40px;
     color: #5d8eaf;
 
   border:none;
@@ -166,7 +227,6 @@ header{
   -ms-transition: 0.3s;
   list-style: none;
   transition: 0.3s;
-
 }
 
 .dropmenu:before, .dropmenu:after{
@@ -181,7 +241,6 @@ header{
   background-color: rgba(255, 255, 255, .2);
   color: white;
 }
-
 
 
 .dropmenu li .b-btn{
@@ -202,7 +261,7 @@ header{
   list-style: none;
   position: absolute;
   z-index: 9999;
-  top: 100%;
+
   left: 0;
   margin: 0;
   padding: 0;
@@ -210,7 +269,7 @@ header{
     transition: opacity 0.2s linear;
 }
 .dropmenu li ul li{
-  width: 100%;
+  width: 160px;
 }
 .dropmenu li ul li .b-btn{
   padding: 13px 15px;
@@ -245,4 +304,6 @@ header{
   overflow: visible;
   height: 38px;
 }
+
+
 

@@ -102,7 +102,7 @@
 							<label>ログインID</label>
 						</td>
 						<td>
-							<input type="text" name="userId" <s:if test="session != null"> value="<s:property value="userId"/>"</s:if>>
+							<input type="text" name="userId" <s:if test="session != null"> value="<s:property value="userId"/>"</s:if>placeholder="半角英数字・1～8字"size="35">
 						</td>
 						<td>
 							<p class="error">
@@ -119,7 +119,7 @@
 							<label>パスワード</label>
 						</td>
 						<td>
-								<input id="stringRow" type="text" name="password" type= "text"  <s:if test="session != null"> value="<s:property value="password"/>"</s:if>/>
+								<input id="stringRow" type="text" name="password" type= "text"  <s:if test="session != null"> value="<s:property value="password"/>"</s:if>placeholder="半角英数字・3～16字" size="35"/>
 						</td>
 						<td>		
 								<input type="button" id="btn"  name="btn" value="自動生成"/>
@@ -139,7 +139,7 @@
 							<label>苗字</label>
 						</td>
 						<td>
-							<input type="text" name="familyName" <s:if test="session != null"> value="<s:property value="familyName"/>"</s:if>>
+							<input type="text" name="familyName" <s:if test="session != null"> value="<s:property value="familyName"/>"</s:if>placeholder="半角英数/ひらがな/カタカナ/漢字・1～16字" size="35">
 						</td>
 						<td>		
 								<p class="error">
@@ -154,7 +154,7 @@
 							<label>名前</label>
 						</td>
 						<td>
-							<input type="text" name="firstName" <s:if test="session != null"> value="<s:property value="firstName"/>"</s:if>>
+							<input type="text" name="firstName" <s:if test="session != null"> value="<s:property value="firstName"/>"</s:if>placeholder="半角英数/ひらがな/カタカナ/漢字・1～16字" size="35">
 						</td>
 						<td>
 								<p class="error">
@@ -169,7 +169,7 @@
 							<label>みょうじ</label>
 						</td>
 						<td>
-							<input type="text" name="familyNameKana" <s:if test="session != null"> value="<s:property value="familyNameKana"/>"</s:if>>
+							<input type="text" name="familyNameKana" <s:if test="session != null"> value="<s:property value="familyNameKana"/>"</s:if>placeholder="ひらがな・1～16字" size="35">
 						</td>
 						<td>
 								<p class="error">
@@ -184,7 +184,7 @@
 							<label>なまえ</label>
 						</td>
 						<td>
-							<input type="text" name="firstNameKana" <s:if test="session != null"> value="<s:property value="firstNameKana"/>"</s:if>>
+							<input type="text" name="firstNameKana" <s:if test="session != null"> value="<s:property value="firstNameKana"/>"</s:if>placeholder="ひらがな・1～16字" size="35">
 						</td>
 						<td>
 								<p class="error">
@@ -216,7 +216,7 @@
 							<label>メールアドレス</label>
 						</td>
 						<td>
-							<input type="text" name="email" <s:if test="session != null"> value="<s:property value="email"/>"</s:if>>
+							<input type="text" name="email" <s:if test="session != null"> value="<s:property value="email"/>"</s:if> placeholder="abcdefg@gmail.com" size="35">
 						</td>
 						<td>
 								<p class="error">

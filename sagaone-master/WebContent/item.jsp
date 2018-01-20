@@ -32,7 +32,7 @@ a:visited {
 	text-decoration: none
 }
 
-a:hover {
+.a:hover {
 	color: #9aa132;
 	cursor: pointer;
 	text-decoration: underline;
@@ -40,48 +40,55 @@ a:hover {
 
 
 
+.b:hover {
+	color: #eb1515;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 .main1 {
 	position: relative;
 }
 
 .main2 {
+	padding-top: 20px;
 	margin: 0 auto;
 	width: 100%;
 	display: table;
+
 }
 
 #price {
 	color: #B12704;
 }
+
 #price:hover {
 	text-decoration: none;
 }
+
 .items {
-	width: 800px;
+	width: 900px;
 	margin: 0 auto;
 }
+
 .items2 {
 	clear: both;
 }
 
 .item {
 	float: left;
-	width: 200px;
-	height: 170px;
-	margin: 30px;
-}
+	width: 250px;
+	height: 250px;
+margin:20px;
 
-.o {
-	width: 200px;
 	text-align: center;
 }
 
-.main3,.main4{
-text-align: center;
+
+.main3, .main4 {
+	text-align: center;
+
 }
-
-
-
 </style>
 <body>
 	<header>
@@ -183,11 +190,12 @@ text-align: center;
 								<td><input type="hidden" name="category_id"
 									value="<s:property value='category_id' />"></input></td>
 								<td><input type="image"
-									src="<s:property value="image_file_path"/>" width=auto
-									height="100" /></td>
+									src="<s:property value="image_file_path"/>"  style="width:130px;height:130px; margin:10px;
+								"/></td>
 							</tr>
 						</s:form>
 					</s:iterator>
+					<s:property value="allPrice" />
 
 
 					<s:a href="CartAction?cartFlg=1">カート編集へ</s:a>
@@ -202,19 +210,19 @@ text-align: center;
 				<s:iterator value="#session.itemDTOList" status="st">
 
 					<div class="item">
-						<div class="o">
+
 							<a
 								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-								<img src=<s:property value="image_file_path"/> width=auto
-								height="100"><br> <s:property value="product_name" />
-								（ <s:property value="product_name_kana" /> ）
+								<span class="a"><img
+									src=<s:property value="image_file_path"/> style="width:130px;height:130px; margin:10px;
+									"><br> <s:property value="product_name" />
+									（ <s:property value="product_name_kana" /> ）</span>
 							</a> <br> <a
 								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
 								<span id="price">&#xA5;&nbsp;&nbsp;<s:property
 										value="price" /></span>
 							</a>
 
-						</div>
 					</div>
 
 
@@ -235,20 +243,20 @@ text-align: center;
 				</s:if>
 				<s:else>
 					<s:a href="ItemAction?offset=%{#st.index} ">
-						<span class="a"> <s:property value="itm" /></span>
+						<span class="b"> <s:property value="itm" /></span>
 
 					</s:a>
 				</s:else>
 			</s:iterator>
 		</div>
-	</div>
-	<div class="main4">
-		<s:a href="GoHomeAction">
-			<span class="a">ホームへ戻る</span>
-		</s:a>
+		<div class="main4">
+			<s:a href="GoHomeAction">
+				<span class="b">ホームへ戻る</span>
+			</s:a>
+		</div>
 	</div>
 
-	<footer>© 2017-2018, Sagaone.com</footer>
+
 
 </body>
 </html>

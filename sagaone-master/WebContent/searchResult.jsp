@@ -26,6 +26,7 @@
 						<option value="1">本</option>
 						<option value="2">家電・パソコン</option>
 						<option value="3">おもちゃ・ゲーム</option>
+						<option value= "4">おもちゃ・ぬいぐるみ</option>
 					</select>
 					<input type="text" name="searchWord" id="search"/>
 				</div>
@@ -43,12 +44,13 @@
 				</s:if>
 			</div>
 
-				<div class="home-btn">
+				<li class= "ex"><div class="home-btn">
 					<a href=' <s:url action= "GoHomeAction" />'>&#x1f3e0;</a>
 				</div>
+				</li>
 							<ul id= "normal" class="dropmenu">
 
-				<li>アカウントメニュー
+				<li class= "ex">アカウントメニュー
 					<ul>
 
 						<s:if test="session.loginUserId != null">
@@ -75,13 +77,6 @@
 							</li>
 						</s:if>
 
-						<s:if test="session.loginUser != null">
-							<li>
-								<s:form action="LogoutAction">
-									<s:submit value="ログアウト" cssClass="b-btn"/>
-								</s:form>
-							</li>
-						</s:if>
 
 						<li>
 							<s:form action="UserCreateAction">
@@ -110,13 +105,18 @@
 						</li>
 					</ul>
 				</li>
+
 			</ul>
+
+							<li class= "ex"><s:if test="session.loginUser != null">
+								<a class= "home-btn-logout" href= ' <s:url action= "LogoutAction" />'>&#x1f6aa;</a>
+						</s:if></li>
+
 
 
 		</div>
 	</div>
 	</header>
-
 
 
 
@@ -152,7 +152,12 @@
 					</tbody>
 				</table>
 		</s:iterator>
+	<s:iterator value="pageNumList" status="status">
+		<a href= ' <s:url action= "SearchItemAction" /> '><s:param name="pageNum" value="#status.index" /><s:property/></a>
+	</s:iterator>
+
 	</s:if>
 
 </body>
 </html>
+

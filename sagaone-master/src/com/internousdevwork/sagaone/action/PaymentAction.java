@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class PaymentAction extends ActionSupport implements SessionAware{
 
-	private String message;
+	private String paymentMessage;
 
 	public Map<String,Object> session;
 	private PaymentUserInfoDTO paymentUserInfoDTO = new PaymentUserInfoDTO();
@@ -34,6 +34,8 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
 	public String execute(){
 		String ret = SUCCESS;
+
+
 
 		paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
 
@@ -55,14 +57,17 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 	    	}
 
 
-
-//paymentPage.jsp
-		session.put("paymentUserInfoDTO", paymentUserInfoDTO);
-		session.put("addressDTOList", addressDTOList);
-		session.put("cartInfoList", cartInfoList);
-		session.put("productDTOList", productDTOList);
-		session.put("sumPrice", sumPrice);
-
+		if (cartInfoList.isEmpty()) {
+			paymentMessage = "カートに商品が入っていません";
+			session.put("paymentMessage", paymentMessage);
+		} else {
+			//paymentPage.jsp
+			session.put("paymentUserInfoDTO", paymentUserInfoDTO);
+			session.put("addressDTOList", addressDTOList);
+			session.put("cartInfoList", cartInfoList);
+			session.put("productDTOList", productDTOList);
+			session.put("sumPrice", sumPrice);
+		}
 		return ret;
 	}
 
@@ -146,14 +151,14 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
 
 
-	public String getMessage() {
-		return message;
+	public String getPaymentMessage() {
+		return paymentMessage;
 	}
 
 
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setPaymentMessage(String paymentMessage) {
+		this.paymentMessage = paymentMessage;
 	}
 
 

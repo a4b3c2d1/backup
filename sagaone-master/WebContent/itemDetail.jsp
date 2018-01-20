@@ -6,13 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css" />
+
 <link rel="stylesheet" type="text/css" href="./css/style.css">
 
 <title>商品詳細</title>
 <style type="text/css">
-
-
 a:visited {
 	color: #0066c0;
 	text-decoration: none
@@ -25,24 +23,52 @@ a:visited {
 	height: auto !important;
 	height: 100%;
 	position: relative;
-	width:100%
+	width: 100%
 }
 
 .main1 {
-	margin: 150px;
-
-}
-.main1 ul {
-	list-style: none;
-}
-
-.main1 h1 {
-	margin-right: 20px;
+	padding: 55px;
+	height: 400px;
+	width: 75%;
+	margin: 0 auto;
 }
 
-.main1 h2 {
+.main1-1 {
+	width: 450px;
+	float: left;
+	height: 400px;
+}
+
+.main1-2 {
+	width: 500px;
+	height: 400px;
+	float: left;
+	position: relative;
+}
+
+.main1-3 {
+	float: left;
+	height: 400px;
+	width: 200px;
+	position: relative;
+}
+
+.name {
+	font-size: 35px;
+	width: 400px;
+}
+
+.price {
+	font-size: 25px;
 	color: #B12704;
 	margin-right: 20px;
+	width: 350px;
+}
+
+.main1 ul {
+	list-style: none;
+	padding: 0;
+	width: 350px;
 }
 
 #a {
@@ -53,10 +79,10 @@ a:visited {
 #b {
 	border-style: solid;
 	border-color: #999;
-	porder: 1px;
+	position: absolute;
 	padding: 20px;
-	float: right;
-	margin-right: 150px;
+	bottom: 0px;
+	right: 0px;
 }
 
 .main2 {
@@ -203,49 +229,48 @@ a:visited {
 		<div class="main1">
 			<s:iterator value="#session.itemdetailDTOList">
 				<s:form action="CartAction">
-					<span id="a"> <img src=<s:property value="image_file_path"/>
-						width=auto height="350"></span>
+					<div class="main1-1">
+						<img src=<s:property value="image_file_path"/>
+							style="width: 380; height: 380px; margin: 10px;">
+					</div>
+					<div class="main1-2">
+						<div class="name">
+							<s:property value="product_name" />
+							<br> (
+							<s:property value="product_name_kana" />
+							)
+						</div>
+						<br> <span class="price"> 価格： &#xA5; <s:property
+								value="price" />
+						</span>
+						<ul>
+							<li>メーカー：<s:property value="release_company" /></li>
+							<li>発売日：<s:property value="release_date" /></li>
+							<li>商品詳細：<s:property value="product_description" /></li>
+						</ul>
 
-					<h1>
-						<s:property value="product_name" />
-						(
-						<s:property value="product_name_kana" />
-						)
-					</h1>
-					<br>
-
-					<h2>
-						価格： &#xA5;
-						<s:property value="price" />
-					</h2>
-					<ul>
-						<li>メーカー：<s:property value="release_company" /></li>
-						<li>発売日：<s:property value="release_date" /></li>
-						<li>商品詳細：<s:property value="product_description" /></li>
-					</ul>
-
-					<input type="hidden" name="product_id"
-						value="<s:property value='product_id' />"></input>
-					<s:hidden name="addFlg" value="1"></s:hidden>
+						<input type="hidden" name="product_id"
+							value="<s:property value='product_id' />"></input>
+						<s:hidden name="addFlg" value="1"></s:hidden>
 
 
-					<span id="b"> 数量：<select name="count">
-							<option value="1" selected="selected">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
+						<span id="b"> 数量：<select name="count">
+								<option value="1" selected="selected">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
 
-					</select><br> <input type="submit" value="カートに入れる"></span>
-
+						</select><br> <input type="submit" value="カートに入れる"></span>
+					</div>
 
 				</s:form>
 			</s:iterator>
 
 		</div>
-
+		<hr width="95%">
 		<div class="main2">
-			<hr>
+
 			<h2>カスタマーレビュー</h2>
 			<s:iterator value="#session.itemdetailDTOList">
 				<s:form action="ReviewAction">
@@ -270,15 +295,16 @@ a:visited {
 							<div class="rating-back">★★★★★</div>
 						</div>
 					</li>
-					<li><br><s:property value="review" escape="false"  /></li>
+					<li><br> <s:property value="review" escape="false" /></li>
 				</ul>
 				<br>
 
 			</s:iterator>
 
 		</div>
+		<hr width="95%">
 		<div class="main3">
-			<hr>
+
 			<h2>関連商品</h2>
 			<s:iterator value="#session.itemrelativeDTOList" begin="0" end="2">
 				<p>

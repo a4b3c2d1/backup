@@ -97,7 +97,6 @@ foreign key(product_id) references product_info(product_id)
 );
 
 
-
 create table if not exists review_info(
 id int not null primary key auto_increment,
 user_id varchar(16),
@@ -108,10 +107,6 @@ update_date datetime,
 foreign key(user_id) references user_info(user_id),
 foreign key(product_id) references product_info(product_id)
 );
-
-
-
-
 
 
 
@@ -133,8 +128,9 @@ insert into product_info values(7, 7, "人を動かす", "ひとをうごかす"
 insert into product_info values(8, 8, "壁", "かべ", "壁：阿部公房著", 1, 3000, "./img/kabe.jpg", "kabe", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
 insert into product_info values(9, 9, "こころ", "こころ", "こころ：夏目漱石著", 1, 3000, "./img/kokoro.jpg", "kokoro", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
 insert into product_info values(10, 10, "人間失格", "にんげんしっかく", "人間失格：太宰治著", 1, 3000, "./img/ninngennsikkaku.jpg", "ninngennsikkaku", "2018/01/09", "sagawa", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(11, 11, "トゲデマルのぬいぐるみ", "とげでまるのぬいぐるみ", "ポケモンセンター。トゲデマルのかわいいぬいぐるみです。", 1, 800, "./img/togedemaru.jpg", "togedemaru", "2018/01/01", "pokemonn-center", 1, "2018/01/01", "2018/01/01");
-insert into product_info values(12, 12, "エモンガのぬいぐるみ", "えもんがのぬいぐるみ", "ポケモンセンター。エモンガのかっこいいぬいぐるみです。", 1, 800, "./img/emonga.jpg", "emonga", "2018/01/01", "pokemonn-center", 1, "2018/01/01", "2018/01/01");
+insert into product_info values(11, 11, "トゲデマルのぬいぐるみ", "とげでまるのぬいぐるみ", "ポケモンセンター。トゲデマルのかわいいぬいぐるみです。", 4, 800, "./img/togedemaru.jpg", "togedemaru", "2018/01/01", "pokemonn-center", 1, "2018/01/01", "2018/01/01");
+insert into product_info values(12, 12, "エモンガのぬいぐるみ", "えもんがのぬいぐるみ", "ポケモンセンター。エモンガのかっこいいぬいぐるみです。", 4, 800, "./img/emonga.jpg", "emonga", "2018/01/01", "pokemonn-center", 1, "2018/01/01", "2018/01/01");
+insert into product_info values(13, 13, "公衆電話", "こうしゅうでんわ", "1分10円取られます。",2, 60000, "./img/dennwa.jpg", "koushuudennaw", "1970/01/09", "日本電信株式会社", 1, "2018/01/09", "2018/01/09");
 
 insert into cart_info values(1, "taro", "taro", 1, 1, 5000, "2018/01/09", "2018/01/09");
 insert into cart_info values(2, "taro", "taro2", 2, 2, 500, "2018/01/11", "2018/01/11");

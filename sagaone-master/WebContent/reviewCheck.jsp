@@ -8,13 +8,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" type="text/css" href="./css/style.css">
 <title>レビュー表示</title>
 <style type="text/css">
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: #0066c0;
+	text-decoration: none
+}
+
+#main {
+	margin-top: 100px;
+	margin-bottom: 60px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}
+
 .rating {
+	float: left;
 	position: relative;
 	width: 5em;
-	height: 1em;
-	font-size: 25px;
+	height: 100px;
+	font-size: 40px;
 }
 
 .rating-front {
@@ -27,6 +47,37 @@
 
 .rating-back {
 	color: #ccc;
+}
+
+.main2 {
+	width: 100%;
+	clear: both;
+}
+
+.a:hover {
+	color: #eb1515;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.review2 {
+	height: 250px;
+	float: left;
+	width: 650px;
+}
+
+.text {
+	border: solid;
+	border-width: 1px;
+	width: 600px;
+	font-size: 20px;
+	min-height: 200px;
+	font-family: monospace;
+	border-color: rgb(169, 169, 169);
+}
+
+.b {
+	float: right;
 }
 </style>
 
@@ -42,48 +93,134 @@
 	}
 </script>
 </head>
+<header>
+
+
+<div id="main-logo">
+	<img src="./css/sagaone_logo.png" height="100px">
+</div>
+
+<div id="search-form">
+
+	<s:form action="SearchItemAction">
+		<div id="search-box">
+			<select name="itemCategory" id="category">
+				<option value="0">全てのカテゴリー</option>
+				<option value="1">本</option>
+				<option value="2">家電・パソコン</option>
+				<option value="3">おもちゃ・ゲーム</option>
+			</select> <input type="text" name="searchWord" id="search" />
+		</div>
+		<div class="search-btn">
+			<input type="image" src="./css/searchIcon.png" width="20" height="20"
+				class="icon" />
+		</div>
+	</s:form>
+</div>
+
+<div id="header-container">
+
+	<ul id="normal" class="dropmenu">
+
+		<li><s:if test="session.loginUserId != null">
+				<s:property value="#session.loginUserId" />でログイン中
+					</s:if></li>
+
+		<li>アカウントメニュー
+			<ul>
+				<s:if test="session.loginUserId != null">
+					<li><s:form action="MyPageAction">
+							<s:submit value="マイページ" cssClass="b-btn" />
+						</s:form></li>
+				</s:if>
+
+				<s:if test="session == null">
+					<li><s:form action="LoginPageAction">
+							<s:submit value="ログイン画面へ" cssClass="b-btn" />
+						</s:form></li>
+				</s:if>
+
+				<s:if test="session.loginUser == null">
+					<li><s:form action="LoginPageAction">
+							<s:submit value="ログイン画面へ" cssClass="b-btn" />
+						</s:form></li>
+				</s:if>
+
+				<s:if test="session.loginUser != null">
+					<li><s:form action="LogoutAction">
+							<s:submit value="ログアウト" cssClass="b-btn" />
+						</s:form></li>
+				</s:if>
+
+				<li><s:form action="UserCreateAction">
+						<s:submit value="ユーザー登録" cssClass="b-btn" />
+					</s:form></li>
+
+				<li><s:form action="ItemAction">
+						<s:hidden name="offset" value="0"></s:hidden>
+						<s:submit value="商品一覧" cssClass="b-btn" />
+					</s:form></li>
+
+				<li><s:form action="CartAction">
+						<s:hidden name="cartFlg" value="1"></s:hidden>
+						<s:submit value="カート確認" cssClass="b-btn" />
+					</s:form></li>
+
+				<s:if test="session.loginUser != null">
+					<li><s:form action="PaymentAction">
+							<s:submit value="決済" cssClass="b-btn" />
+						</s:form></li>
+				</s:if>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+
+</header>
 <body>
-	<s:iterator value="#session.reviewDTOList">
+	<div id="main">
 
-		<tr>
-			<td><s:property value="user_id" /></td>
-			<td><s:property value="update_date" /></td>
+		<h2>以前この商品に書いた内容</h2>
+		<div class="main1">
+			<s:iterator value="#session.reviewDTOList">
 
-			<td>
+				<div class="review1">
+					<span> <s:property value="user_id" /></span> <br>
+					<span> <s:property value="update_date" /></span>
+				</div>
+
 				<div class="rating">
 					<div class="rating-front"
 						style="width:<s:property value="value" />%">★★★★★</div>
 					<div class="rating-back">★★★★★</div>
 				</div>
-			</td>
 
-			<td><s:property value="review" /></td>
-		</tr>
+				<div class="review2">
+					<div class="text">
+						<s:property value="review" />
+					</div>
 
-	</s:iterator>
+					<s:form action="ReviewEditAction">
+						<td><input type="hidden" name="changeflg" value="1"></input></td>
+						<span class="b"> <s:submit value="新しく書き直す"></s:submit></span>
 
-	<s:form action="ReviewEditAction">
-		<td><input type="hidden" name="changeflg" value="1"></input></td>
-		<s:submit value="新しく書き直す"></s:submit>
+					</s:form>
+					<br>
+					<s:form action="ReviewEditAction" onSubmit="return showConfirm()">
+						<td><input type="hidden" name="deleteflg" value="1"></input></td>
+						<span class="b"> <s:submit value="削除"></s:submit></span>
+					</s:form>
+				</div>
+			</s:iterator>
+		</div>
+		<div class="main2">
 
-	</s:form>
-
-	<s:form action="ReviewEditAction" onSubmit="return showConfirm()">
-		<td><input type="hidden" name="deleteflg" value="1"></input></td>
-		<s:submit value="削除"></s:submit>
-	</s:form>
-
-
-
-	<s:form action="ItemDetailAction">
-
-		<td><input type="hidden" name="product_id"
-			value="<s:property value='session.review_product_id' />"></input></td>
-		<td><input type="hidden" name="category_id"
-			value="<s:property value='session.review_category_id' />"></input></td>
-		<s:submit value="商品詳細へ">
-		</s:submit>
-	</s:form>
-
+			<a
+				href='<s:url action="ItemDetailAction"><s:param name="product_id" value="session.review_product_id" /><s:param name="category_id" value="session.review_category_id" /></s:url>'>
+				<span class="a">商品詳細へ戻る</span>
+			</a>
+		</div>
+	</div>
 </body>
 </html>

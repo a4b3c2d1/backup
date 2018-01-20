@@ -30,6 +30,8 @@ public class ItemAction extends ActionSupport implements SessionAware {
 		itemDTOList = itemDAO.getiteminfo2(offset);
 		session.put("itemDTOList", itemDTOList);
 
+		//
+
 
 		// 表示するページ数を計算。
 

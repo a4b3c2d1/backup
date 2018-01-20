@@ -51,8 +51,6 @@ public class AddCartDAO{
 			ps.execute();
 		}catch(Exception e){
 			e.printStackTrace();
-		}finally{
-			con.close();
 		}
 	}
 }

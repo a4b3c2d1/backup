@@ -1,0 +1,180 @@
+@CHARSET "UTF-8";
+body{
+	font-family: Ariel, sans-serif;
+}
+
+#main{
+	margin-top: 200px;
+	margin-bottom: 60px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}
+
+header{
+	display: inline;
+	position:absolute;
+	top:0px;
+	left: 0px;
+	height: 100px;
+	min-width: 100%;
+	width: 100%;
+	padding-left: 10px;
+	background-image: linear-gradient(-90deg, #3A1FA8, #61D5FF);
+	color: white;
+	font-size: 40px;
+	line-height: 70px;
+}
+
+input{
+	outline: none;
+}
+
+#main-logo{
+	float: left;
+}
+
+#search-form{
+	float: left;
+	margin-top: 20px;
+	display: inline-block;
+	height: 30px;
+	width: 500px;
+	line-height: 20px;
+	border: none;
+}
+
+#search-box{
+	margin: 0;
+	float:left;
+	height: 30px;
+}
+
+#category{
+	margin: 0;
+	float:left;
+	height: 30px;
+}
+
+#search{
+	margin: 0;
+	float: left;
+	height: 24px;
+	width: 300px;
+}
+
+.search-btn{
+	position: relative;
+	top: 1px;
+	margin: 0;
+	float: left;
+	height: 29px;
+	width: 35px;
+	background-color: #ffa200;
+	box-sizing:border-box;
+	border: none;
+	color: black;
+	box-shadow: none;
+	outline: none;
+	inline: none;
+	text-align: center;
+	line-height: 22px;
+}
+
+.search-btn:hover{
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+#header-container{
+	margin-right: 80px;
+	float: right;
+}
+
+
+.dropmenu{
+float: left;
+  *zoom: 1;
+  list-style-type: none;
+  width: 500px;
+  height:30px;
+  margin: 5px auto 30px;
+  padding: 0;
+  font-size: 14px;
+}
+.dropmenu:before, .dropmenu:after{
+  content: "";
+  display: table;
+}
+.dropmenu:after{
+  clear: both;
+}
+.dropmenu li{
+  position: relative;
+  width: 30%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.dropmenu li .b-btn{
+  display: block;
+  margin: 0;
+  padding: 15px 0 11px;
+  width: 100%;
+  background: #fff;
+  color: black;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  border: transparent 1px solid ;
+  transition: 0.2s;
+}
+.dropmenu li ul{
+  list-style: none;
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+    border: 1px solid #aaa;
+    transition: opacity 0.2s linear;
+}
+.dropmenu li ul li{
+  width: 100%;
+}
+.dropmenu li ul li .b-btn{
+  padding: 13px 15px;
+  background: #fff;
+  text-align: center;
+}
+.dropmenu li:hover > .b-btn{
+  background: #6e7c0c;
+  transition: .2s;
+}
+.dropmenu li .b-btn:hover{
+  	letter-spacing: 3px;
+	background-color: #59c5ff;
+	color: #fff;
+}
+
+#normal li ul{
+  display: none;
+}
+#normal li:hover ul{
+  display: block;
+}
+
+#dropmenu li ul li{
+  overflow: hidden;
+  height: 0;
+  transition: .2s;
+}
+
+#dropmenu li:hover ul li{
+  overflow: visible;
+  height: 38px;
+}

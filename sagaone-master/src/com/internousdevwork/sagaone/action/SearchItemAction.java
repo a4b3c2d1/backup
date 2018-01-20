@@ -19,28 +19,38 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 	private List<SearchItemInfoDTO> searchResultList = new ArrayList<SearchItemInfoDTO>();
 	private List<String> reformedSearchWordList = new ArrayList<String>();
 	private List<String> normalSearchWordList = new ArrayList<String>();
+	private List<SearchItemInfoDTO> pageItemList = new ArrayList<SearchItemInfoDTO>();
+	private int page;
+	private List<String> pageNumList = new ArrayList<String>();
+
 
 	public String execute(){
 		String ret = ERROR;
 
+		//検索ワードを整備しリスト化
+		char[] c={'\u3000'};
+		String wspace=new String(c);
+		String result=searchWord.replaceAll(wspace," ");
+		searchWordList = result.split(" ");
 
-		searchWordList = searchWord.split(" ");
-		searchWordList = searchWord.split("　");
-
+		//スペースが連なった状態を解消（たぶん現在は必要ない）
 		for(int i=0; i<searchWordList.length; i++){
 			if(!(searchWordList[i].equals(" ") || searchWordList[i].equals("　"))){
 				reformedSearchWordList.add(searchWordList[i]);
 			}
 		}
 
+		//検索ワードをノーマライズ
 		for(int i=0; i<reformedSearchWordList.size(); i++){
 			String normSW = Normalizer.normalize(reformedSearchWordList.get(i).toString(),Normalizer.Form.NFKC );
 			normalSearchWordList.add(normSW);
 		}
 
+		//全商品取得
 		List<SearchItemInfoDTO> searchItemDTOList =(List<SearchItemInfoDTO>)session.get("allItem");
 
 
+		//検索カテゴリー・ワードを全商品と比較
 		if(!(itemCategory.equals("0"))){
 			for(int i=0; i<searchItemDTOList.size(); i++){
 				for(int j=0; j<normalSearchWordList.size(); j++){
@@ -53,7 +63,6 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 
 				}
 			}
-
 		}else{
 			for(int i=0; i<searchItemDTOList.size(); i++){
 				for(int j=0; j<normalSearchWordList.size(); j++){
@@ -67,16 +76,39 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 			}
 		}
 
+		//検索該当商品のみ抜き出してリストに入れる
 		for(int i=0; i<searchItemDTOList.size(); i++){
 			if(searchItemDTOList.get(i).getSearchFlg().toString().equals("1")){
 				searchResultList.add(searchItemDTOList.get(i));
 			}
 		}
 
+		// 1ページ目の9商品抜き出し
+		page = searchResultList.size() / 9 + 1;
+		for(int i=0; i<page; i++){
+			String s = String.valueOf(i + 1);
+			pageNumList.add(s);
+		}
+
+		for(int i=0; i<1; i++){
+			if(searchResultList.size() >= 9){
+				for(int j=0; j<9; j++){
+					pageItemList.add(i,searchItemDTOList.get(j));
+				}
+
+			}else{
+				for(int j=0; j<searchResultList.size(); j++){
+					pageItemList.add(i,searchItemDTOList.get(j));
+				}
+			}
+		}
 
 
-		if(!(searchResultList.isEmpty())){
-			session.put("searchItemList", searchResultList);
+
+
+		//検索にヒットしているか判定
+		if(!(pageItemList.isEmpty())){
+			session.put("searchItemList", pageItemList);
 			searchErrorMessage = "";
 			ret = SUCCESS;
 		}else{
@@ -109,6 +141,33 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
 	}
+
+
+
+	public int getPage() {
+		return page;
+	}
+
+
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+
+
+
+
+	public List<String> getPageNumList() {
+		return pageNumList;
+	}
+
+
+
+	public void setPageNumList(List<String> pageNumList) {
+		this.pageNumList = pageNumList;
+	}
+
 
 	@Override
 	public void setSession(Map<String, Object> session) {

@@ -14,12 +14,15 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class PasswordChangeConfirmAction extends ActionSupport implements SessionAware {
 	private String userId;
-	private String newLoginPassword;	
+	private String newLoginPassword;
+	private String newLoginPassword2;
 	private String errorId;
 	private String errorPassword;
-		
+	private String errorPassword2;
+
 	private List<String> errorIdList = new ArrayList<>();
 	private List<String> errorPasswordList = new ArrayList<>();
+	private List<String> errorPasswordList2 = new ArrayList<>();
 	private String blank;
 
 	public Map<String,Object> session;
@@ -33,13 +36,18 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 
 		loginDTO= passwordChangeDAO.getNewLoginUserInfo(newLoginPassword, userId);
 
-		if(userId.equals("") || 
-				newLoginPassword.equals("")){
+		if(userId.equals("") ||
+				newLoginPassword.equals("") || newLoginPassword2.equals("")){
 			blank = "未入力項目があります。";
 			session.put("blankMessage", blank);
 			errorCount++;
 		}else{
-			
+
+			session.put("newLoginPassword", newLoginPassword);
+			session.put("newLoginPassword2", newLoginPassword2);
+
+
+
 			//ログインID
 			if(!(checkDAO.checkCount(userId)>0)){
 				errorId = "ログインIDが間違っています。";
@@ -48,21 +56,28 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 			}
 
 			//パスワード
-			if(newLoginPassword.length()<1||newLoginPassword.length()>16){
-				errorPassword="新しいパスワードは1文字以上16文字以内で入力してください。";
+			if(newLoginPassword.length()<3||newLoginPassword.length()>16){
+				errorPassword="新しいパスワードは3文字以上16文字以内で入力してください。";
 				errorPasswordList.add(errorPassword);
 				errorCount++;
 			}
-			
+
 			if (!newLoginPassword.matches("^[0-9a-zA-Z]+$")) {
 				errorPassword = "新しいパスワードは半角英数字で入力してください。";
 				errorPasswordList.add(errorPassword);
 				errorCount++;
 			}
+			if (!(session.get("newLoginPassword").toString().equals(session.get("newLoginPassword2").toString()))) {
+				errorPassword2= "パスワードのどっちかが違うよー(○・▽・○)";
+				errorPasswordList2.add(errorPassword2);
+				errorCount++;
+			}
+
+
 		session.put("blankMessage", blank);
 		}
-		
-					
+
+
 		if (errorCount>0){
 			ret= ERROR;
 		}else {
@@ -73,8 +88,8 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 		return ret;
 	}
 
-	
-	
+
+
 	public String getUserId() {
 		return userId;
 	}
@@ -89,8 +104,16 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 		this.newLoginPassword= newLoginPassword;
 	}
 
-	
-	
+	public String getNewLoginPassword2() {
+		return newLoginPassword2;
+	}
+	public void setNewLoginPassword2 (String newLoginPassword2) {
+		this.newLoginPassword2= newLoginPassword2;
+	}
+
+
+
+
 	//エラー関係
 	public String getErrorId() {
 		return errorId;
@@ -124,6 +147,14 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 		this.errorPasswordList = errorPasswordList;
 	}
 
+	public List<String> getErrorPasswordList2() {
+		return errorPasswordList2;
+	}
+
+	public void setErrorPasswordList2(List<String> errorPasswordList2) {
+		this.errorPasswordList2 = errorPasswordList2;
+	}
+
 	public Map<String,Object> getSession() {
 		return session;
 	}
@@ -135,6 +166,6 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 	public LoginDTO getLoginDTO() {
 		return loginDTO;
 	}
-	
+
 
 }

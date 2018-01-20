@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+/*
+ * ヘッダー全体
+ */
 
 header{
 	display: inline;
@@ -10,43 +13,297 @@ header{
 	min-width: 100%;
 	width: 100%;
 	padding-left: 10px;
-	background-image: linear-gradient(-90deg, #3d6999, #74c4e0);
+	background-image: linear-gradient(-90deg, #5265D1, #2FB3CA);
 	color: white;
-	line-height: 40px;
-	font-size: 15pxpx;
+	font-size: 15px;
+	text-decoration: none;
 }
+
+
+
+/*
+ * ロゴ画像
+ */
 
 #main-logo{
 	float: left;
+    position:relative;
+    width: 200px;
+    height: 100px;
+    margin:0px auto;
 }
+
+#main-logo img {
+	height: 100px;
+}
+
+#main-logo a{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+
+
+/*
+ * ヘッダーの画像外部分
+ */
+
+#menu{
+	position: relative;
+	height: 100px;
+	width: calc(100% - 200px);
+	margin-left: 230px;
+}
+
+
+/*
+ * 検索フォーム
+ *
+ * search-form： 検索フォーム全体
+ * search-box： select、textbox
+ * category： select カテゴリー
+ * search： textbox
+ * search-btn： 検索ボタン
+ */
 
 #search-form{
-	float: right;
-	display: inline-block;
-	width: 500px;
-}
-#header-container{
-	float: right;
-}
-
-header .a-btn{
+	position:absolute;
 	float: left;
-	position: fixed;
-	top: 55px;
-	right: 20px;
-	height: 35px;
-	padding-top: 10px
-    display: inline-block;
-    padding: 0.3em 1em;
-    text-decoration: none;
-    color: #3d6999;
-    border-left: solid 4px #3d6999;
-    border-right: solid 4px #3d6999;
-    transition: .4s;
-    background: white;
+	width: 500px;
+	margin-top: 20px;
+	display: inline-block;
+	height: 30px;
+	line-height: 20px;
 }
 
-.a-btn: hover{
-    background: #3d6999;
-    color: #FFF;
+#search-box{
+	margin: 0;
+	float: left;
+	height: 30px;
 }
+
+#category{
+	margin: 0;
+	float:left;
+	height: 30px;
+}
+
+#search{
+	margin: 0;
+	float: left;
+	height: 24px;
+	width: 300px;
+}
+
+.search-btn{
+	position: relative;
+	top: 1px;
+	margin: 0;
+	float: left;
+	height: 29px;
+	width: 35px;
+	background-color: #ffa200;
+	box-sizing:border-box;
+	border: none;
+	color: black;
+	box-shadow: none;
+	outline: none;
+	inline: none;
+	text-align: center;
+	line-height: 22px;
+}
+
+.search-btn:hover{
+	cursor: pointer;
+	opacity: 0.9;
+}
+
+
+
+/*
+ * 検索フォームの下部分全体
+ */
+
+#header-container{
+	clear: both;
+	position: fixed;
+	right: 0;
+	top: 50px;
+	width: calc(100% - 200px);
+	height: 50px;
+	float: left;
+}
+
+
+/*
+ * ○○ログイン中 表示
+ */
+
+.header-menu{
+	line-height: 50px;
+	float: right;
+}
+
+
+/*
+ * 下のボタン全体
+ *
+ * home-btn： ホームボタン
+ * home-btn-logout: ログアウトボタン
+ * dropmenu： アカウントメニュー
+ */
+
+#header-container .ex  {
+	clear: both;
+	float: right;
+	width: 300px;
+	height: 50px;
+	list-style: none;
+	right: 0;
+}
+
+
+#header-container .home-btn > a {
+	float: left;
+	text-decoration: none;
+	position: absolute;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: white;
+}
+
+#header-container .home-btn :hover {
+    background: rgba(255, 255, 255, .2);
+	font-color: white;
+}
+
+#header-container .home-btn-logout > a {
+	float: left;
+	text-decoration: none;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: white;
+}
+
+
+#header-container .home-btn-logout> a :hover {
+    background: rgba(255, 255, 255, .2);
+	font-color: white;
+}
+
+
+#header-container .dropmenu {
+	float: left;
+	bottom: 0px;
+	width: 160px;
+	height: 40px;
+}
+
+.dropmenu > li{
+	float: left;
+	position: absolute;
+	width: 160px;
+	height: 40px;
+    display: inline-block;
+    text-decoration: none;
+    background-color:white;
+    text-align: center;
+	line-height: 40px;
+    color: #5d8eaf;
+
+  border:none;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  list-style: none;
+  transition: 0.3s;
+}
+
+.dropmenu:before, .dropmenu:after{
+  content: "";
+  display: table;
+}
+.dropmenu:after{
+  clear: both;
+}
+
+ .dropmenu:hover > li{
+  background-color: rgba(255, 255, 255, .2);
+  color: white;
+}
+
+
+.dropmenu li .b-btn{
+  display: block;
+  margin: 0;
+  padding: 15px 0 11px;
+  width: 160px;
+  background: #fff;
+  color: black;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  border: transparent 1px solid ;
+  transition: 0.2s;
+}
+.dropmenu li ul{
+  list-style: none;
+  position: absolute;
+  z-index: 9999;
+
+  left: 0;
+  margin: 0;
+  padding: 0;
+    border: 1px solid #aaa;
+    transition: opacity 0.2s linear;
+}
+.dropmenu li ul li{
+  width: 160px;
+}
+.dropmenu li ul li .b-btn{
+  padding: 13px 15px;
+  background: #fff;
+  text-align: center;
+}
+.dropmenu li:hover > .b-btn{
+  background: #6e7c0c;
+  transition: .2s;
+}
+.dropmenu li .b-btn:hover{
+  	letter-spacing: 3px;
+	background-color: #59c5ff;
+	color: #fff;
+}
+
+
+#normal li ul{
+  display: none;
+}
+#normal li:hover ul{
+  display: block;
+}
+
+#dropmenu li ul li{
+  overflow: hidden;
+  height: 0;
+  transition: .2s;
+}
+
+#dropmenu li:hover ul li{
+  overflow: visible;
+  height: 38px;
+}
+
+
+

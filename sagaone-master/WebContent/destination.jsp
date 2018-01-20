@@ -208,6 +208,7 @@
 		<div class="mypage">
 			<p><a href='<s:url action="MyPageAction" />'>マイページへ戻る</a></p>
 			<p><a href='<s:url action="DestinationAction" />'>更新</a></p>
+			<p><a href='<s:url action="UnsubscribeAction" />'>退会する</a></p>
 		</div>
 
 	</div>

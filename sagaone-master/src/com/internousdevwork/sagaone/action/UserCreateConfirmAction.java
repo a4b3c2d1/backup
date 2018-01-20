@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class UserCreateConfirmAction extends ActionSupport implements SessionAware {
 
-	
+
 	private String userId; //ログインIDのこと
 
 	private String password;
@@ -33,17 +33,17 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 	private String firstNameKana;
 
 	private String sex;
-	
+
 	private int sexNum;
 
 	private String email;
-	
-	
+
+
 
 	public Map<String,Object> session;
 
-	
-	
+
+
 	//エラーのリスト
 	private List<String> errorIdList = new ArrayList<>();
 	private List<String> errorPasswordList = new ArrayList<>();
@@ -52,12 +52,10 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 	private List<String> errorFamilyKanaList = new ArrayList<>();
 	private List<String> errorFirstKanaList = new ArrayList<>();
 	private List<String> errorEmailList = new ArrayList<>();
-	
-	
-	
+
 	private String blank = "";
 	private String duplicate = "ログインIDが登録済みです。";
-	
+
 	//エラーの変数
 	private String errorId;
 	private String errorPassword;
@@ -66,9 +64,9 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 	private String errorFamilyKana;
 	private String errorFirstKana;
 	private String errorEmail;
-	
 
-	
+
+
 	private UserCheckDAO checkDAO = new UserCheckDAO();
 
 	public String execute()  throws SQLException{
@@ -79,54 +77,59 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 
 
 
-		
-		if(userId.equals("") || 
-				password.equals("") || 
-				familyName.equals("") || 
-				firstName.equals("") || 
-				familyNameKana.equals("") || 
+
+		if(userId.equals("") ||
+				password.equals("") ||
+				familyName.equals("") ||
+				firstName.equals("") ||
+				familyNameKana.equals("") ||
 				firstNameKana.equals("") ||
 				email.equals("")){
 			blank = "未入力項目があります。";
 			session.put("blankMessage", blank);
 			ErrorCount++;
 		}else{
-		
+
 			//ユーザーID(ログインID)
 			if((checkDAO.checkCount(userId)>0)){
 				errorId = duplicate;
 				errorIdList.add(errorId);
 				ErrorCount++;
 			}
-	
+
 			if(userId.length()<1||userId.length()>8){
 				errorId = "1文字以上8文字以内で入力してください。";
 				errorIdList.add(errorId);
 				ErrorCount++;
 			}
-			
+
 			if (!userId.matches("^[0-9a-zA-Z]+$")) {
 				errorId = "半角英数字で入力してください。";
 				errorIdList.add(errorId);
 				ErrorCount++;
 			}
 			//パスワード
-	
-			
-			if(password.length()<1||password.length()>16){
-				errorPassword = "1文字以上16文字以内で入力してください。";
+
+			if(password == userId) {
+				errorPassword= "ユーザーIDをパスワードとして使用できません。";
 				errorPasswordList.add(errorPassword);
 				ErrorCount++;
 			}
-			
+
+			if(password.length()<3||password.length()>16){
+				errorPassword = "3文字以上16文字以内で入力してください。";
+				errorPasswordList.add(errorPassword);
+				ErrorCount++;
+			}
+
 			if (!password.matches("^[0-9a-zA-Z]+$")) {
 				errorPassword = "半角英数字で入力してください。";
 				errorPasswordList.add(errorPassword);
 				ErrorCount++;
 			}
-	
+
 			//姓
-	
+
 			if(familyName.length()<1 || familyName.length()>16){
 				errorFamily = "1文字以上16文字以下で入力してください。";
 				errorFamilyList.add(errorFamily);
@@ -138,7 +141,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				ErrorCount++;
 			}
 			//名前
-	
+
 			if(firstName.length()<1 || firstName.length()>16){
 				errorFirst ="1文字以上16文字以下で入力してください。";
 				errorFirstList.add(errorFirst);
@@ -150,7 +153,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				ErrorCount++;
 			}
 			//姓ふりがな
-	
+
 			if(familyNameKana.length()<1 || familyNameKana.length()>16){
 				errorFamilyKana = "1文字以上16文字以下で入力してください。";
 				errorFamilyKanaList.add(errorFamilyKana);
@@ -162,7 +165,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				ErrorCount++;
 			}
 			//名前ふりがな
-	
+
 			if(firstNameKana.length()<1 || firstNameKana.length()>16){
 				errorFirstKana = "1文字以上16文字以下で入力してください。";
 				errorFirstKanaList.add(errorFirstKana);
@@ -174,7 +177,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				ErrorCount++;
 			}
 			//メール
-	
+
 			if(email.length()<14 || email.length()>32){
 				errorEmail = "14文字以上32文字以下で入力してください。";
 				errorEmailList.add(errorEmail);
@@ -185,7 +188,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 				errorEmailList.add(errorEmail);
 				ErrorCount++;
 			}
-			
+
 			session.put("blankMessage", blank);
 		}
 
@@ -198,21 +201,21 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		session.put("firstName", firstName);
 		session.put("familyNameKana", familyNameKana);
 		session.put("firstNameKana", firstNameKana);
-		
+
 		sexNum = Integer.parseInt(getSex());
-		
+
 		session.put("sex",sexNum);
 		session.put("email", email);
 		session.put("blankMessage", blank);
 		result = SUCCESS;
-		
-		
+
+
 	}
-		
-	
-	
-		
-		
+
+
+
+
+
 	session.put("errorIdList", getErrorIdList());
 	session.put("errorPassword", getErrorPasswordList());
 	session.put("errorFamily", getErrorFamilyList());
@@ -220,7 +223,7 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 	session.put("errorFamilyKana", getErrorFamilyKanaList());
 	session.put("errorFirstKana", getErrorFirstKanaList());
 	session.put("errorEmail", getErrorEmailList());
-	
+
 
 	return result;
 
@@ -285,8 +288,8 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		this.password = password;
 	}
 
-	
-	
+
+
 	public List<String> getErrorIdList() {
 		return errorIdList;
 	}
@@ -360,9 +363,9 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 	public Map<String,Object> getSession() {
 		return session;
 	}
-	
+
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
+
 }

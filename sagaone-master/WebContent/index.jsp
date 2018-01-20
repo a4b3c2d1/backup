@@ -16,16 +16,33 @@
 
 <title>HOME</title>
 
-<link type="text/css" rel="stylesheet"
-  href="http://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.min.css" />
-<script type="text/javascript"
-  src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript"
-  src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/redmond/jquery-ui.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/i18n/jquery-ui-i18n.min.js"></script>
+
 <script type="text/javascript" src="./js/autocomplete.js"></script>
 
 <script type="text/javascript" src="./js/test.js"></script>
 <script src="./slick/slick.min.js"></script>
+<style>
+<!--
+.ui-autocomplete {
+    max-height: 90px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 20px;
+    border-radius: 0px;
+    font-size: 12px;
+}
+#jquery-ui-autocomplete label {
+    float: left;
+    margin-right: 0.5em;
+    color: black;
+    font-size: 15px;
+}
+-->
+</style>
 
 <script>
 	$(document).ready(function() {
@@ -38,7 +55,6 @@
 		});
 	});
 </script>
-
 
 </head>
 <body>
@@ -58,7 +74,7 @@
 						<option value="2">家電・パソコン</option>
 						<option value="3">おもちゃ・ゲーム</option>
 					</select>
-					<input type="text" name="searchWord" id="search" />
+					<input type="text" name="searchWord" id="jquery-ui-autocomplete-input" />
 				</div>
 				<div class="search-btn">
 				<input type="image" src="./css/searchIcon.png" width="20" height="20" class="icon"/>
@@ -154,8 +170,8 @@
 
 	<footer>© 2017-2018, Sagaone.com</footer>
 
-<form name="form_test">
-		<input type="hidden" name="input_test" value="<s:iterator value="array" ><s:property /></s:iterator>">
+	<form name="form_test">
+		<input type="hidden" name="input_test" value="<s:iterator value="allWordsList" ><s:property /></s:iterator>">
 	</form>
 </body>
 </html>

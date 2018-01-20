@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+body{
+	width: 100%;
+}
+/*z-index:対象をどれだけ前に出すかを指定。今回はヘッダーを常に固定するため必ず入れてください*/
+header {
+	display: inline;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100px;
+	min-width: 100%;
+	width: 100%;
+	padding-left: 10px;
+	background-image: linear-gradient(-90deg, #5265D1, #2FB3CA);
+	color: white;
+	font-size: 15px;
+	z-index: 9999;
+}
+
+#main-logo {
+	float: left;
+	position: relative;
+	width: 200px;
+	height: 100px;
+	margin: 0px auto;
+}
+
+#main-logo img {
+	height: 100px;
+}
+
+#main-logo a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#main {
+	position: relative;
+	top: 200px;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	display: inline-block;
+}

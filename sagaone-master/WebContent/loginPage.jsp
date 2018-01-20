@@ -16,7 +16,6 @@
 			<script src="./slick/slick.min.js"></script>
 
 
-
 	</head>
 
 	<body>
@@ -43,14 +42,15 @@
 				<s:property value="blankErrorMessageID" escape="false" /></s:if></span>
 				<input type="text" name="loginUserId" class= "field-holder" value= '<s:property value= "#session.checkedLoginUserId" />' placeholder= "login ID" ></li>
 
-			<li>
 				<span class= "error">
 				<s:if test="blankErrorMessagePassword != null ">
 				<s:property value="blankErrorMessagePassword" escape="false" /></s:if></span>
+
+				<li>
 				<input type="password" name="loginPassword" class= "field-holder" value= "" placeholder= "password" ></li>
 
 			<li><input type="checkbox" id="login" name= "loginMemory" value= "true" checked /><label for="login" data-on-label="On" data-off-label="Off"></label> <label for="login">IDを保存</label></li>
-			<li><input type= "hidden" name= "cartFlg" value= "1"><s:submit value="enter" /><br><a class= "login" href="history.back()">戻る</a>&emsp;&emsp;<a class= "login" href= '<s:url action= "GoHomeAction" />'>&#x1f3e0;</a></li>
+			<li><s:submit value="enter" /><br><a class= "login" href="history.back()">戻る</a>&emsp;&emsp;<a class= "login" href= '<s:url action= "GoHomeAction" />'>&#x1f3e0;</a></li>
 
 
 			</ul>

@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -24,13 +25,14 @@ public class StartAction extends ActionSupport implements SessionAware {
 	private ArrayList<List<String>> descriptionMeishi = new ArrayList<List<String>>();
 	private ArrayList<String> array = new ArrayList<String>();
 	private String test1;
-
+	private Set<String> allWordsList = new LinkedHashSet<String>();
 
 	public String execute() {
 		Random randomId = new java.util.Random();
 		boolean loginFlg = false;
 		session.put("temp_user_id", randomId);
 		session.put("loginFlg", loginFlg);
+
 
 		itemdto = startdto.getiteminfo();
 		Collections.shuffle(itemdto);
@@ -53,14 +55,19 @@ public class StartAction extends ActionSupport implements SessionAware {
 			descriptionMeishi.add(listB);
 		}
 
-		array.add("あいうえお,");
-		array.add("かきくけこ,");
-		test1 = "テストです";
-
-
+		for(int i=0; i<descriptionMeishi.size(); i++) {
+			AllAutoCompleteAction aaca = new AllAutoCompleteAction();
+			List<String> list = aaca.allAutoComplete(descriptionMeishi.get(i));
+			for(int j=0; j<list.size(); j++) {
+				allWordsList.add(list.get(j));
+			}
+		}
 
 		return SUCCESS;
 	}
+
+
+
 
 	public Map<String, Object> getSession() {
 		return session;
@@ -93,6 +100,21 @@ public class StartAction extends ActionSupport implements SessionAware {
 	public void setTest1(String test1) {
 		this.test1 = test1;
 	}
+
+
+
+
+	public Set<String> getAllWordsList() {
+		return allWordsList;
+	}
+
+
+
+
+	public void setAllWordsList(Set<String> allWordsList) {
+		this.allWordsList = allWordsList;
+	}
+
 
 
 
