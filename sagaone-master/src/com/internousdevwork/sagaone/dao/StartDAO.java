@@ -16,7 +16,7 @@ public class StartDAO {
 	private List<StartDTO> startDTOList = new ArrayList<StartDTO>();
 
 	public List<StartDTO> getiteminfo() {
-		String sql = "select * from product_info ";
+		String sql = "select a.*,round(avg(b.value),1) as avgvalue ,count(b.value) as countvalue from product_info a left join review_info b on a.product_id=b.product_id group by a.product_id order by a.id asc; ";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -39,7 +39,8 @@ public class StartDAO {
 				startdto.setStatus(rs.getInt("status"));
 				startdto.setRegist_date(rs.getString("regist_date"));
 				startdto.setUpdate_date(rs.getString("update_date"));
-
+				startdto.setAvgvalue(rs.getFloat("avgvalue"));
+				startdto.setCountvalue(rs.getInt("countvalue"));
 				startDTOList.add(startdto);
 			}
 		} catch (Exception e) {

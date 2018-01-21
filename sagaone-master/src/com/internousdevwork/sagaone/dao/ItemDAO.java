@@ -15,13 +15,14 @@ public class ItemDAO {
 	private Connection con = db.getConnection();
 	private List<ItemDTO> itemDTOList = new ArrayList<ItemDTO>();
 	private List<ItemDTO> itemDTOList2 = new ArrayList<ItemDTO>();
-    NumberFormat nfNum = NumberFormat.getNumberInstance();
+	NumberFormat nfNum = NumberFormat.getNumberInstance();
+
 	/**
 	 * 商品情報取得
 	 */
 
 	public List<ItemDTO> getiteminfo1() {
-		String sql = "select * from product_info ";
+		String sql = "select a.*,round(avg(b.value),1) as avgvalue ,count(b.value) as countvalue from product_info a left join review_info b on a.product_id=b.product_id group by a.product_id order by a.id asc;";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -44,6 +45,8 @@ public class ItemDAO {
 				itemdto.setStatus(rs.getInt("status"));
 				itemdto.setRegist_date(rs.getString("regist_date"));
 				itemdto.setUpdate_date(rs.getString("update_date"));
+				itemdto.setAvgvalue(rs.getFloat("avgvalue"));
+				itemdto.setCountvalue(rs.getInt("countvalue"));
 
 				itemDTOList2.add(itemdto);
 			}
@@ -56,7 +59,7 @@ public class ItemDAO {
 	}
 
 	public List<ItemDTO> getiteminfo2(int offset) {
-		String sql = "select * from product_info limit 9 offset ?";
+		String sql = "select a.*,round(avg(b.value),1) as avgvalue ,count(b.value) as countvalue from product_info a left join review_info b on a.product_id=b.product_id group by a.product_id order by a.id asc limit 9 offset ?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -79,7 +82,8 @@ public class ItemDAO {
 				itemdto.setStatus(rs.getInt("status"));
 				itemdto.setRegist_date(rs.getString("regist_date"));
 				itemdto.setUpdate_date(rs.getString("update_date"));
-
+				itemdto.setAvgvalue(rs.getFloat("avgvalue"));
+				itemdto.setCountvalue(rs.getInt("countvalue"));
 				itemDTOList.add(itemdto);
 			}
 

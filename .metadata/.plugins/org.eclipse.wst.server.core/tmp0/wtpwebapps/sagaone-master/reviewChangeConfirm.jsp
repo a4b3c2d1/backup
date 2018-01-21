@@ -6,13 +6,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
 <title>変更確認画面</title>
 <style type="text/css">
+#main {
+	margin-top: 100px;
+	margin-bottom: 60px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}
+
+.main1 {
+	padding: 20px;
+	width: 100%;
+	height: 300px;
+}
+
+.main2 {
+	width: 650px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.main3 {
+	padding: 20px;
+	width: 100%;
+	height: 380px;
+}
+
+.review2 {
+	float: left;
+	width: 650px;
+}
+
 .rating {
+	float: left;
 	position: relative;
 	width: 5em;
-	height: 1em;
-	font-size: 25px;
+	height: 100px;
+	font-size: 40px;
+	position: relative;
 }
 
 .rating-front {
@@ -26,53 +62,174 @@
 .rating-back {
 	color: #ccc;
 }
+
+.botton1 {
+	float: right;
+	margin: 10px;
+}
+
+.text {
+	border: solid;
+	border-width: 1px;
+	width: 600px;
+	font-size: 25px;
+	min-height: 200px;
+	font-family: monospace;
+	border-color: rgb(169, 169, 169);
+}
 </style>
+<script type="text/javascript">
+	function showConfirm() {
+
+		if (window.confirm('この内容で書き換えてもよろしいですか？')) {
+			window.alert("書き換わりました")
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
-	変更前
-	<s:iterator value="#session.reviewDTOList">
+	<header>
 
-		<tr>
-			<td><s:property value="user_id" /></td>
-			<td><s:property value="update_date" /></td>
+	<div id="main-logo">
+		<img src="./css/sagaone_logo.png" height="100px">
+	</div>
 
-			<td>
-				<div class="rating">
-					<div class="rating-front"
-						style="width:<s:property value="value" />%">★★★★★</div>
-					<div class="rating-back">★★★★★</div>
-				</div>
-			</td>
-			<td><s:property value="review" /></td>
-		</tr>
+	<div id="search-form">
 
-	</s:iterator>
+		<s:form action="SearchItemAction">
+			<div id="search-box">
+				<select name="itemCategory" id="category">
+					<option value="0">全てのカテゴリー</option>
+					<option value="1">本</option>
+					<option value="2">家電・パソコン</option>
+					<option value="3">おもちゃ・ゲーム</option>
+				</select> <input type="text" name="searchWord" id="search" />
+			</div>
+			<div class="search-btn">
+				<input type="image" src="./css/searchIcon.png" width="20"
+					height="20" class="icon" />
+			</div>
+		</s:form>
+	</div>
 
-	↓ 変更内容
-	<br> 評価
+	<div id="header-container">
 
+		<ul id="normal" class="dropmenu">
 
-	<div class="rating">
-		<div class="rating-front"
-			style="width:<s:property value="value2" />%">★★★★★</div>
-		<div class="rating-back">★★★★★</div>
+			<li><s:if test="session.loginUserId != null">
+					<s:property value="#session.loginUserId" />でログイン中
+					</s:if></li>
+
+			<li>アカウントメニュー
+				<ul>
+					<s:if test="session.loginUserId != null">
+						<li><s:form action="MyPageAction">
+								<s:submit value="マイページ" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<s:if test="session == null">
+						<li><s:form action="LoginPageAction">
+								<s:submit value="ログイン画面へ" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<s:if test="session.loginUser == null">
+						<li><s:form action="LoginPageAction">
+								<s:submit value="ログイン画面へ" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<s:if test="session.loginUser != null">
+						<li><s:form action="LogoutAction">
+								<s:submit value="ログアウト" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+
+					<li><s:form action="UserCreateAction">
+							<s:submit value="ユーザー登録" cssClass="b-btn" />
+						</s:form></li>
+
+					<li><s:form action="ItemAction">
+							<s:hidden name="offset" value="0"></s:hidden>
+							<s:submit value="商品一覧" cssClass="b-btn" />
+						</s:form></li>
+
+					<li><s:form action="CartAction">
+							<s:hidden name="cartFlg" value="1"></s:hidden>
+							<s:submit value="カート確認" cssClass="b-btn" />
+						</s:form></li>
+
+					<s:if test="session.loginUser != null">
+						<li><s:form action="PaymentAction">
+								<s:submit value="決済" cssClass="b-btn" />
+							</s:form></li>
+					</s:if>
+				</ul>
+			</li>
+		</ul>
 	</div>
 
 
-	<s:property value="session.review_change_review" />
-	内容
+	</header>
+	<div id="main">
+		<div class="main1">
+			<h2>変更前</h2>
+			<s:iterator value="#session.reviewDTOList">
+
+				<div class="review1">
+					<span> 書き込み日：<s:property value="update_date" />
+					</span>
+				</div>
+				<div class="rating">
+					<div class="rating-front"
+						style="width:calc(<s:property value="value" />*20%)">★★★★★</div>
+					<div class="rating-back">★★★★★</div>
+				</div>
+				<div class="review2">
+					<div class="text">
+						<s:property value="review" />
+					</div>
+				</div>
+			</s:iterator>
+		</div>
+		<div class="main2">
+			<span>↓</span>
+		</div>
+		<div class="main3">
+
+			<h2>変更内容</h2>
+
+			<div class="rating">
+				<div class="rating-front"
+					style="width:calc(<s:property value="value" />*20%)">★★★★★</div>
+				<div class="rating-back">★★★★★</div>
+			</div>
+
+			<div class="review2">
+				<div class="text">
+					<s:property value="session.review_change_review" />
+				</div>
+
+				<s:form action="ReviewChangeConpleteAction"
+					onSubmit="return showConfirm()">
+					<span class="botton1"> <s:submit value="書き込む">
+						</s:submit></span>
+				</s:form>
+
+				<s:form action="ReviewEditAction">
+					<td><input type="hidden" name="changeflg" value="1"></input></td>
+					<span class="botton1"> <s:submit value="戻る">
+						</s:submit></span>
+				</s:form>
+			</div>
 
 
-	<s:form action="ReviewChangeConpleteAction">
-		<s:submit value="完了">
-		</s:submit>
-	</s:form>
 
-	<s:form action="ReviewEditAction">
-		<td><input type="hidden" name="changeflg" value="1"></input></td>
-		<s:submit value="戻る">
-		</s:submit>
-	</s:form>
-
+		</div>
+	</div>
 </body>
 </html>

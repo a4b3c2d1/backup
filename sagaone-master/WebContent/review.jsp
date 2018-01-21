@@ -44,12 +44,18 @@ a:visited {
 .text {
 	width: 600px;
 	height: 200px;
-	font-size: 20px;
+	font-size: 25px;
+
+}
+.botton1{
+float:right;
+margin:10px;
+
 }
 
 .main2 {
 	width: 100%;
-	clear:both;
+	clear: both;
 }
 
 .hyouka {
@@ -95,9 +101,7 @@ a:visited {
 	color: #ffcc33;
 }
 
-.main1 input[type='submit'], input[type='button'] {
-	float: right;
-}
+
 </style>
 
 <script type="text/javascript">
@@ -214,8 +218,9 @@ a:visited {
 				<div class="review1">
 					<s:textarea class="text" name="review" placeholder="レビュー内容"></s:textarea>
 
-					<input type="submit" value="レビューする" /> <input type="button"
-						value="クリア" onClick="hoge()" />
+					<span class="botton1"><input type="submit" value="レビューする" /></span><span
+						class="botton1"> <input type="button" value="クリア"
+						onClick="hoge()" /></span>
 				</div>
 			</s:form>
 		</div>
@@ -224,7 +229,7 @@ a:visited {
 
 			<a
 				href='<s:url action="ItemDetailAction"><s:param name="product_id" value="session.review_product_id" /><s:param name="category_id" value="session.review_category_id" /></s:url>'>
-				<span class="a">商品詳細へ</span>
+				<span class="a">商品詳細へ戻る</span>
 			</a>
 		</div>
 	</div>

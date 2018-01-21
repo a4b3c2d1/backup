@@ -1,4 +1,4 @@
-commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>01/19</message>\r\n<message>1/18</message>\r\n<message>01/16</message>\r\n<message>01/15</message>\r\n<message>01/14</message>\r\n<message>\u7DF4\u7FD2</message>\r\n<message>01/08</message>\r\n<message>1/08</message>\r\n<message>01/07</message>\r\n</messages>
+commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>1/20</message>\r\n<message>01/19</message>\r\n<message>1/18</message>\r\n<message>01/16</message>\r\n<message>01/15</message>\r\n<message>01/14</message>\r\n<message>\u7DF4\u7FD2</message>\r\n<message>01/08</message>\r\n<message>1/08</message>\r\n<message>01/07</message>\r\n</messages>
 eclipse.preferences.version=1
 show_git_prefix_warning=false
 show_home_drive_warning=false

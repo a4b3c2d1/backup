@@ -16,6 +16,8 @@ public class ItemDTO {
 	public int status;
 	public String regist_date;
 	public String update_date;
+	public float avgvalue;
+	public int countvalue;
 
 	public int getId() {
 		return id;
@@ -127,6 +129,23 @@ public class ItemDTO {
 
 	public void setUpdate_date(String update_date) {
 		this.update_date = update_date;
+	}
+
+
+	public float getAvgvalue() {
+		return avgvalue;
+	}
+
+	public void setAvgvalue(float avgvalue) {
+		this.avgvalue = avgvalue;
+	}
+
+	public int getCountvalue() {
+		return countvalue;
+	}
+
+	public void setCountvalue(int countvalue) {
+		this.countvalue = countvalue;
 	}
 
 }

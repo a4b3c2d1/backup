@@ -39,7 +39,7 @@
 		<action name="LoginAction" class="com.internousdevwork.sagaone.action.LoginAction"
 			method="execute">
 			<result name="success">index.jsp</result>
-			<result name= "payment">paymentPage.jsp</result>
+			<result name="payment">paymentPage.jsp</result>
 			<result name="error">loginPage.jsp</result>
 		</action>
 
@@ -144,12 +144,14 @@
 		</action>
 
 		<action name="PaymentConfirmAction"
-			class="com.internousdevwork.sagaone.action.PaymentConfirmAction" method="execute">
+			class="com.internousdevwork.sagaone.action.PaymentConfirmAction"
+			method="execute">
 			<result name="success">paymentConfirm.jsp</result>
 		</action>
 
 		<action name="PaymentCompleteAction"
-			class="com.internousdevwork.sagaone.action.PaymentCompleteAction" method="execute">
+			class="com.internousdevwork.sagaone.action.PaymentCompleteAction"
+			method="execute">
 			<result name="success">paymentComplete.jsp</result>
 		</action>
 
@@ -185,7 +187,7 @@
 		<action name="ReviewChangeConpleteAction"
 			class="com.internousdevwork.sagaone.action.ReviewChangeConpleteAction"
 			method="execute">
-			<result name="success">reviewChangeConplete.jsp</result>
+			<result name="success">itemDetail.jsp</result>
 		</action>
 
 		<action name="ReviewEditAction"
@@ -194,27 +196,39 @@
 			<result name="delete">itemDetail.jsp</result>
 		</action>
 
-		<action name="DestinationAction" class="com.internousdevwork.sagaone.action.DestinationAction" method="execute">
+		<action name="DestinationAction"
+			class="com.internousdevwork.sagaone.action.DestinationAction" method="execute">
 			<result name="success">destination.jsp</result>
 		</action>
-		<action name="DestinationEditAction" class="com.internousdevwork.sagaone.action.DestinationEditAction" method="execute">
+		<action name="DestinationEditAction"
+			class="com.internousdevwork.sagaone.action.DestinationEditAction"
+			method="execute">
 			<result name="success">destinationEdit.jsp</result>
 		</action>
-		<action name="DestinationEditConfirmAction" class="com.internousdevwork.sagaone.action.DestinationEditConfirmAction" method="execute">
+		<action name="DestinationEditConfirmAction"
+			class="com.internousdevwork.sagaone.action.DestinationEditConfirmAction"
+			method="execute">
 			<result name="success">destinationEditConfirm.jsp</result>
 			<result name="error">destinationEdit.jsp</result>
 		</action>
-		<action name="DestinationEditCompleteAction" class="com.internousdevwork.sagaone.action.DestinationEditCompleteAction" method="execute">
+		<action name="DestinationEditCompleteAction"
+			class="com.internousdevwork.sagaone.action.DestinationEditCompleteAction"
+			method="execute">
 			<result name="success">destinationEditComplete.jsp</result>
 		</action>
-		<action name="DestinationSelectAction" class="com.internousdevwork.sagaone.action.DestinationSelectAction" method="execute">
+		<action name="DestinationSelectAction"
+			class="com.internousdevwork.sagaone.action.DestinationSelectAction"
+			method="execute">
 			<result name="success">destination.jsp</result>
 		</action>
-		<action name="DestinationDeleteAction" class="com.internousdevwork.sagaone.action.DestinationDeleteAction" method="execute">
+		<action name="DestinationDeleteAction"
+			class="com.internousdevwork.sagaone.action.DestinationDeleteAction"
+			method="execute">
 			<result name="success">destination.jsp</result>
 		</action>
 
-		<action name="UnsubscribeAction" class="com.internousdevwork.sagaone.action.UnsubscribeAction" method="execute">
+		<action name="UnsubscribeAction"
+			class="com.internousdevwork.sagaone.action.UnsubscribeAction" method="execute">
 			<result name="success">unsubscribe.jsp</result>
 		</action>
 

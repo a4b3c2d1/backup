@@ -34,7 +34,7 @@
 	border: solid;
 	border-width: 1px;
 	width: 600px;
-	font-size: 20px;
+	font-size: 25px;
 	min-height: 200px;
 	font-family: monospace;
 	border-color: rgb(169, 169, 169);
@@ -60,13 +60,11 @@
 	color: #ccc;
 }
 
-.b {
-	float: right;
-}
 
-.c {
+
+.botton1 {
 	float: right;
-}
+	margin: 10px;
 }
 </style>
 </head>
@@ -158,12 +156,12 @@
 	</header>
 	<div id="main">
 		<div class="main1">
-			<h1>確認画面</h1>
-			<h2>登録する内容は以下でよろしいですか。</h2>
+
+			<h2>レビュー内容は以下でよろしいですか？</h2>
 
 			<div class="rating">
 				<div class="rating-front"
-					style="width:<s:property value="value2" />%">★★★★★</div>
+					style="width:calc(<s:property value="session.review_value"/>*20%)">★★★★★</div>
 				<div class="rating-back">★★★★★</div>
 			</div>
 
@@ -177,7 +175,7 @@
 				<s:form action="ReviewConpleteAction" onClick="alert('完了しました');">
 
 
-					<span class="b"> <input type="submit" value="完了"></span>
+					<span class="botton1"> <input type="submit" value="問題なし！"></span>
 				</s:form>
 
 
@@ -190,7 +188,7 @@
 							value="<s:property value='session.review_product_id' />"></input>
 						<input type="hidden" name="category_id"
 							value="<s:property value='session.review_category_id' />"></input>
-						<span class="c"> <input type="submit" value="戻る"></span>
+						<span class="botton1"> <input type="submit" value="戻る"></span>
 					</s:form>
 				</s:iterator>
 			</div>

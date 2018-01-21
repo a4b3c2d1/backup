@@ -21,7 +21,6 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 	// レビューエラーメッセージ格納用
 	private String reviewErrormessage;
 
-	private int value2;
 
 	public String execute() {
 
@@ -46,8 +45,7 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 
 				session.put("review_value", value);
 
-				// 次ページで星を正しく表示させるため
-				value2 = Integer.parseInt(value) * 20;
+
 
 				// 確認画面へ
 				return SUCCESS;
@@ -60,13 +58,7 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 		}
 	}
 
-	public int getValue2() {
-		return value2;
-	}
 
-	public void setValue2(int value2) {
-		this.value2 = value2;
-	}
 
 	public void setSession(Map<String, Object> session) {
 		this.session = session;

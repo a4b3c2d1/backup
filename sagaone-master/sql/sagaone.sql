@@ -140,3 +140,43 @@ insert into destination_info values(1, "taro", "山田", "太郎", "やまだ", 
 insert into destination_info values(2, "taro", "山田", "太郎", "やまだ", "たろう", "taro@aaa.com", "00011112222", "東京都千代田区丸の内1-1-1",0, "2018/01/09", "2018/01/09") ;
 
 
+
+
+//*
+insert into product_info values(1, 1, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/3dprinter.jpg", "3dprinter", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(2, 2, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/allinone-pc.jpg", "allinone-pc", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(3, 3, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/caliculator.jpg", "caliculator", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(4, 4, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/camera2.jpg", "camera2", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(5, 5, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/camera3.jpg", "camera3", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(6, 6, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/cellphone1.jpg", "cellphone1", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(7, 7, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/cellphone2.jpg", "cellphone2", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(8, 8, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/chess.jpg", "chess", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(9, 9, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/coffeemaker.jpg", "coffeemaker", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(10,10, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/dennshirennzi.jpg", "dennshirennzi", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(11,11, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/dennwa.jpg", "dennwa", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(12,12, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/desktoppc.jpg", "desktoppc", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(13,13, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/dvdplayer.jpg", "dvdplayer", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(14,14, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/earphone.jpg", "earphone", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(15,15, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/fax.jpg", "fax", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(16,16, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/freezer.jpg", "freezer", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(17,17, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/gakumonnnosusume.jpg", "gakumonnnosusume", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(18,18, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/game-machine.jpg", "game-machine", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(19,19, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/game-machine2.jpg", "game-machine2", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(20,20, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/game-machine3.jpg", "game-machine3", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(21,21, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/game-machine4.jpg", "game-machine4", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(22,22, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/gameboy.jpg", "gameboy", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(23,23, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/headphone.jpg", "headphone", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(24,24, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/hericopter.jpg", "hericopter", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(25,25, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/hitowougokasu.jpg", "hitowougokasu", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(26,26, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/itigan_camera.jpg", "itigan_camera", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(27,27, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/kabe.jpg", "kabe", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(28,28, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/keyboad1.jpg", "keyboad1", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(29,29, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/kokoro.jpg", "kokoro", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(30,30, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/Kurodenwa.jpg", "Kurodenwa", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+
+
+
+
+
+
+

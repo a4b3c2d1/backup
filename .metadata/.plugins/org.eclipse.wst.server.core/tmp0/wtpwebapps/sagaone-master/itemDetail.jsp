@@ -279,6 +279,9 @@ a:visited {
 						value="<s:property value='product_id' />"></input>
 					<input type="hidden" name="category_id"
 						value="<s:property value='category_id' />"></input>
+					<input type="hidden" name="reviewFlg"
+						value="1"></input>
+
 					<input type="submit" value="レビューを書く"
 						<s:if test="#session.loginUserId == null">
 					onClick="alert('ログインしてください！');"</s:if>>
@@ -291,7 +294,7 @@ a:visited {
 					<li>
 						<div class="rating">
 							<div class="rating-front"
-								style="width:<s:property value="value" />%">★★★★★</div>
+								style="width:calc(<s:property value="value" />*20%)">★★★★★</div>
 							<div class="rating-back">★★★★★</div>
 						</div>
 					</li>

@@ -29,6 +29,12 @@ a:visited {
 	position: relative;
 }
 
+.main1 {
+	padding: 20px;
+	width: 100%;
+	height: 380px;
+}
+
 .rating {
 	float: left;
 	position: relative;
@@ -49,6 +55,11 @@ a:visited {
 	color: #ccc;
 }
 
+.botton1 {
+	float: right;
+	margin: 10px;
+}
+
 .main2 {
 	width: 100%;
 	clear: both;
@@ -61,7 +72,6 @@ a:visited {
 }
 
 .review2 {
-	height: 250px;
 	float: left;
 	width: 650px;
 }
@@ -70,14 +80,10 @@ a:visited {
 	border: solid;
 	border-width: 1px;
 	width: 600px;
-	font-size: 20px;
+	font-size: 25px;
 	min-height: 200px;
 	font-family: monospace;
 	border-color: rgb(169, 169, 169);
-}
-
-.b {
-	float: right;
 }
 </style>
 
@@ -181,35 +187,37 @@ a:visited {
 <body>
 	<div id="main">
 
-		<h2>以前この商品に書いた内容</h2>
 		<div class="main1">
+
+			<h2>以前この商品に書いた内容</h2>
 			<s:iterator value="#session.reviewDTOList">
 
 				<div class="review1">
-					<span> <s:property value="user_id" /></span> <br>
-					<span> <s:property value="update_date" /></span>
+					<span>ユーザー名： <s:property value="user_id" /></span> <br> <span>
+						書き込み日：<s:property value="update_date" />
+					</span>
 				</div>
 
 				<div class="rating">
 					<div class="rating-front"
-						style="width:<s:property value="value" />%">★★★★★</div>
+						style="width:calc(<s:property value="value" />*20%)">★★★★★</div>
 					<div class="rating-back">★★★★★</div>
 				</div>
 
 				<div class="review2">
 					<div class="text">
-						<s:property value="review" />
+						<s:property value="review" escape="false" />
 					</div>
 
 					<s:form action="ReviewEditAction">
-						<td><input type="hidden" name="changeflg" value="1"></input></td>
-						<span class="b"> <s:submit value="新しく書き直す"></s:submit></span>
+						<input type="hidden" name="changeflg" value="1"></input>
+						<span class="botton1"> <s:submit value="新しく書き直す"></s:submit></span>
 
 					</s:form>
-					<br>
+
 					<s:form action="ReviewEditAction" onSubmit="return showConfirm()">
-						<td><input type="hidden" name="deleteflg" value="1"></input></td>
-						<span class="b"> <s:submit value="削除"></s:submit></span>
+						<input type="hidden" name="deleteflg" value="1"></input>
+						<span class="botton1"> <s:submit value="削除する"></s:submit></span>
 					</s:form>
 				</div>
 			</s:iterator>

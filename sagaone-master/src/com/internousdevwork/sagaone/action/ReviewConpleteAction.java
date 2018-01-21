@@ -23,15 +23,19 @@ public class ReviewConpleteAction extends ActionSupport implements SessionAware 
 
 	public String execute() {
 		// レビューを登録
-		reviewConpleteDAO.insertreview(session.get("review_user_id").toString(),
-				session.get("review_product_id").toString(), session.get("review_value").toString(),
-				session.get("review_review").toString());
 
-		// レビュー表示用再読み込み
-		reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
-		session.put("reviewDTO2List", reviewDTO2List);
-		// 完了画面へ
+		if (session.get("reviewFlg").toString().equals("1")) {
+			reviewConpleteDAO.insertreview(session.get("review_user_id").toString(),
+					session.get("review_product_id").toString(), session.get("review_value").toString(),
+					session.get("review_review").toString());
 
+			session.put("reviewFlg", 0);
+
+			// レビュー表示用再読み込み
+			reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
+			session.put("reviewDTO2List", reviewDTO2List);
+			// 完了画面へ
+		}
 		return SUCCESS;
 
 	}

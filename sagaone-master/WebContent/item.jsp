@@ -38,8 +38,6 @@ a:visited {
 	text-decoration: underline;
 }
 
-
-
 .b:hover {
 	color: #eb1515;
 	cursor: pointer;
@@ -48,14 +46,78 @@ a:visited {
 
 .main1 {
 	position: relative;
+	width: 100%;
+	padding: 20px;
+	margin: 0 auto;
+}
+
+.cartitem {
+	height: 100px;
+	width: 1100px;
+	margin: auto;
+	border-style: solid;
+	border-color: #999;
+	border-width: 1px;
+}
+
+.check {
+	padding-left: 20px;
+	margin: 5px;
+	height: 100px;
+	float: left;
+	margin: 5px;
+	font-size: 75px;
+	margin: auto;
+}
+
+.cartitem1 {
+	float: left;
+	height: 90px;
+	margin: 5px;
+}
+
+.tuika {
+	padding-right: 5px;
+	padding-left: 5px;
+	float: left;
+	height: 100px;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	border-right-style: solid;
+	border-right-color: #999;
+	border-right-width: 1px;
+	float: left;
+}
+
+.cartitem2 {
+	padding-right: 5px;
+	padding-left: 5px;
+	float: left;
+	height: 100px;
+	font-size: 20px;
+	display: flex;
+	align-items: center;
+	float: left;
+}
+
+.cartitem3 {
+	float: right;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	right: 10px;
+}
+
+.botton1 {
+	margin: 20px;
 }
 
 .main2 {
-	padding-top: 20px;
+	padding-top: 10px;
 	margin: 0 auto;
 	width: 100%;
 	display: table;
-
 }
 
 #price {
@@ -78,17 +140,85 @@ a:visited {
 .item {
 	float: left;
 	width: 250px;
-	height: 250px;
-margin:20px;
-
+	height: 280px;
+	margin: 20px;
 	text-align: center;
 }
-
 
 .main3, .main4 {
 	text-align: center;
-
 }
+
+.hyouka {
+	width: 250px;
+	text-align: center;
+	position: relative;
+}
+
+.rating:hover .balloon {
+	display: inline;
+}
+
+.rating {
+	margin: auto;
+	position: relative;
+	width: 100px;
+	height: 1em;
+	font-size: 20px;
+}
+
+.rating-front {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	color: #ffcc33;
+	width: 100px;
+}
+
+.rating-back {
+	color: #ccc;
+}
+
+.balloon2 {
+	border-color: #999;
+	position: absolute;
+	border-style: solid;
+	border-width: 1px;
+	display: none;
+	padding: 2px;
+	background-color: #ffffff;
+	width: 100px;
+	left: 30%;
+	top: 100%;
+	margin-top: 12px;
+	font-size: 10px;
+	position: absolute;
+}
+
+.balloon2:after {
+	border-bottom: 12px solid rgba(102, 102, 255, 0.50);
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	top: -12px;
+	left: 5%;
+	content: "";
+	position: absolute;
+	top: -12px;
+	left: 5%;
+	content: "";
+}
+
+.count {
+	font-size: 15px;
+}
+
+.aa, .bb, .cc, .dd {
+	float: left;
+	width: 250px;
+}
+
+
 </style>
 <body>
 	<header>
@@ -177,54 +307,90 @@ margin:20px;
 	</header>
 	<div id="main">
 
-		<div class="main1">
+		<s:if test='%{addFlg =="1"}'>
+			<div class="main1">
 
-			<div class="cartitem">
-				<s:if test='%{addFlg =="1"}'>カートに入りました！
-		<s:iterator value="#session.itemdetailDTOList">
+				<div class="cartitem">
+					<s:iterator value="#session.itemdetailDTOList">
 						<s:form action="ItemDetailAction">
-							<tr>
-								<td><s:property value="product_name" />
-								<td><input type="hidden" name="product_id"
-									value="<s:property value='product_id' />"></input></td>
-								<td><input type="hidden" name="category_id"
-									value="<s:property value='category_id' />"></input></td>
-								<td><input type="image"
-									src="<s:property value="image_file_path"/>"  style="width:130px;height:130px; margin:10px;
-								"/></td>
-							</tr>
+
+							<div class="check">&#10003;</div>
+							<div class="cartitem1">
+								<a
+									href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
+									<img src=<s:property value="image_file_path"/>
+									style="width: 90px; height: 90px; border-style: solid; border-color: #999; border-width: 1px;" />
+								</a>
+							</div>
+
+
+							<div class="tuika">追加されました！</div>
 						</s:form>
 					</s:iterator>
-					<s:property value="allPrice" />
+					<div class="cartitem2">
+						カートの小計 <span id="price" style="font-size: 40px;">&nbsp;&#xA5;&nbsp;&nbsp;<s:property
+								value="allPrice" /></span> 円
+					</div>
+					<div class="cartitem3">
 
+						<form action="CartAction">
+							<input type="hidden" name="cartFlg" value="1"> <span
+								class="botton1"><input type="submit" value="カート編集へ"></span>
+						</form>
+						<s:if test="#session.loginUserId != null">
+							<form action="PaymentAction">
+								<span class="botton1"> <input type="submit" value="決済へ"></span>
 
-					<s:a href="CartAction?cartFlg=1">カート編集へ</s:a>
-					<s:a href="PaymentAction">決済へ</s:a>
+							</form>
 
-				</s:if>
+						</s:if>
+
+					</div>
+				</div>
+
 			</div>
-
-		</div>
+		</s:if>
 		<div class="main2">
 			<div class="items">
 				<s:iterator value="#session.itemDTOList" status="st">
 
 					<div class="item">
-
+						<div class="aa">
 							<a
 								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-								<span class="a"><img
-									src=<s:property value="image_file_path"/> style="width:130px;height:130px; margin:10px;
-									"><br> <s:property value="product_name" />
-									（ <s:property value="product_name_kana" /> ）</span>
-							</a> <br> <a
+								<img src=<s:property value="image_file_path"/>
+								style="width: 130px; height: 130px; margin: 10px;">
+							</a>
+						</div>
+						<div class="bb">
+							<a
+								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
+								<span class="a"> <s:property value="product_name" /> （ <s:property
+										value="product_name_kana" /> ）
+							</span>
+							</a>
+						</div>
+						<div class="cc">
+							<a
 								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
 								<span id="price">&#xA5;&nbsp;&nbsp;<s:property
 										value="price" /></span>
 							</a>
+						</div>
+						<div class="dd">
+							<div class="rating">
+								<div class="rating-front"
+									style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
+								<div class="rating-back">★★★★★</div>
 
+
+								<span class="balloon2"> 5つ星のうち<s:property value="avgvalue" /></span>
+
+								<span class="count"> (<s:property value="countvalue" />)
+								</span>
+							</div>
+						</div>
 					</div>
-
 
 					<s:if test='%{#st.count%3==0}'>
 						<div class="items2">

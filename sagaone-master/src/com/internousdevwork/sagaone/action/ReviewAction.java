@@ -22,6 +22,8 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 	// カテゴリー情報格納
 	private String category_id;
 
+	private String reviewFlg;
+
 	public Map<String, Object> session;
 
 	// loginUserId情報格納の変数
@@ -48,6 +50,8 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 				session.put("review_user_id", reviewloginuser_id);
 				session.put("review_product_id", product_id);
 				session.put("review_category_id", category_id);
+				session.put("reviewFlg", reviewFlg);
+
 
 				// 書いたことがない場合
 				if (reviewDTOList.size() == 0) {
@@ -93,6 +97,14 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 
 	public void setCategory_id(String category_id) {
 		this.category_id = category_id;
+	}
+
+	public String getReviewFlg() {
+		return reviewFlg;
+	}
+
+	public void setReviewFlg(String reviewFlg) {
+		this.reviewFlg = reviewFlg;
 	}
 
 }
