@@ -165,14 +165,14 @@ insert into product_info values(19,19, "pss", "ぷれすてーしょんずー", 
 insert into product_info values(20,20, "wiii", "うぃいい", "家族でゲームを楽しめます。", 3, 20000, "./img/game-machine3.jpg", "game-machine3", "2016/01/01", "任天", 1, "2018/01/09", "2018/01/09");
 insert into product_info values(21,21, "zbox", "ぜっとぼっくす", "海外のゲームです。", 3, 30000, "./img/game-machine4.jpg", "game-machine4", "2016/01/01", "マイクロ", 1, "2018/01/09", "2018/01/09");
 insert into product_info values(22,22, "ゲームポーイ", "げーむぽーい", "懐かしのゲーム機です。", 3, 10000, "./img/gameboy.jpg", "gameboy", "2016/01/01", "任天", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(23,23, "ヘッドフォン", "へっどふぉん", "いい音で聴けます。", 2, 10000, "./img/headphone.jpg", "headphone", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(24,24, "ヘリコプター", "へりこぷたー", "安いヘリコプターです。", 4, 1000000, "./img/hericopter.jpg", "hericopter", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(25,25, "人を動かす", "ひとをうごかす", "面白い本です。", 1, 500, "./img/hitowougokasu.jpg", "hitowougokasu", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(26,26, "一眼カメラ", "いちがんかめら", "高性能の一眼カメラです。", 2, 10000, "./img/itigan_camera.jpg", "itigan_camera", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(27,27, "壁", "かべ", "ためになる本です。", 1, 500, "./img/kabe.jpg", "kabe", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(28,28, "キーボード", "きーぼーど", "使いやすいキーボードです。", 2, 5000, "./img/keyboad1.jpg", "keyboad1", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(29,29, "こころ", "こころ", "夏目漱石の代表的な本です。", 1, 500, "./img/kokoro.jpg", "kokoro", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
-insert into product_info values(30,30, "電話", "でんわ", "くろいでんわです。", 2, 10000, "./img/Kurodenwa.jpg", "Kurodenwa", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(23,23, "ヘッドフォン", "へっどふぉん", "いい音で聴けます", 2, 10000, "./img/headphone.jpg", "headphone", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(24,24, "ヘリコプター", "へりこぷたー", "安いヘリコプターです", 4, 1000000, "./img/hericopter.jpg", "hericopter", "2016/01/01", "sagaone", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(25,25, "人を動かす", "ひとをうごかす", "面白い本です", 1, 500, "./img/hitowougokasu.jpg", "hitowougokasu", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(26,26, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/itigan_camera.jpg", "itigan_camera", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(27,27, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/kabe.jpg", "kabe", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(28,28, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/keyboad1.jpg", "keyboad1", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(29,29, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/kokoro.jpg", "kokoro", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
+insert into product_info values(30,30, "3Dプリンター", "すりーでぃーぷりんたー", "3Dでぷりんとできます。", 2, 50000, "./img/Kurodenwa.jpg", "Kurodenwa", "2016/01/01", "fuji", 1, "2018/01/09", "2018/01/09");
 
 
 
