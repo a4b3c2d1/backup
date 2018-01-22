@@ -85,6 +85,13 @@ a:visited {
 	font-family: monospace;
 	border-color: rgb(169, 169, 169);
 }
+
+input[type=submit] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
 </style>
 
 <script type="text/javascript">

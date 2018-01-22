@@ -60,11 +60,16 @@
 	color: #ccc;
 }
 
-
-
 .botton1 {
 	float: right;
 	margin: 10px;
+}
+
+input[type=submit] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
 }
 </style>
 </head>

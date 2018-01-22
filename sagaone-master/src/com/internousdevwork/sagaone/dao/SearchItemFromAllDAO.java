@@ -20,7 +20,7 @@ public class SearchItemFromAllDAO {
 	Connection con = db.getConnection();
 
 	public List<SearchItemInfoDTO> getItemInfoFromAll(){
-		String sql = "SELECT * FROM product_info";
+		String sql = "select a.*,round(avg(b.value),1) as avgvalue ,count(b.value) as countvalue from product_info a left join review_info b on a.product_id=b.product_id group by a.product_id order by a.id asc;";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -39,6 +39,8 @@ public class SearchItemFromAllDAO {
 				dto.setReleaseDate(StringUtils.left(rs.getString("release_date"),10));
 				dto.setReleaseCompany(rs.getString("release_company"));
 				dto.setStatus(rs.getInt("status"));
+				dto.setAvgvalue(rs.getFloat("avgvalue"));
+				dto.setCountvalue(rs.getInt("countvalue"));
 				searchItemInfoDTOList.add(dto);
 			}
 

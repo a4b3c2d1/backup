@@ -21,11 +21,13 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 	private List<String> normalSearchWordList = new ArrayList<String>();
 	private List<SearchItemInfoDTO> pageItemList = new ArrayList<SearchItemInfoDTO>();
 	private int page;
-	private List<String> pageNumList = new ArrayList<String>();
+	private List<Integer> pageNumList = new ArrayList<Integer>();
+	private int nowPage;
 
 
 	public String execute(){
 		String ret = ERROR;
+		nowPage=0;
 
 		//検索ワードを整備しリスト化
 		char[] c={'\u3000'};
@@ -82,23 +84,23 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 				searchResultList.add(searchItemDTOList.get(i));
 			}
 		}
+		session.put("searchResultList", searchResultList);
 
 		// 1ページ目の9商品抜き出し
 		page = searchResultList.size() / 9 + 1;
 		for(int i=0; i<page; i++){
-			String s = String.valueOf(i + 1);
-			pageNumList.add(s);
+			pageNumList.add(i + 1);
 		}
 
 		for(int i=0; i<1; i++){
 			if(searchResultList.size() >= 9){
 				for(int j=0; j<9; j++){
-					pageItemList.add(i,searchItemDTOList.get(j));
+					pageItemList.add(i,searchResultList.get(j));
 				}
 
 			}else{
 				for(int j=0; j<searchResultList.size(); j++){
-					pageItemList.add(i,searchItemDTOList.get(j));
+					pageItemList.add(i,searchResultList.get(j));
 				}
 			}
 		}
@@ -156,17 +158,29 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 
 
 
-
-
-	public List<String> getPageNumList() {
+	public List<Integer> getPageNumList() {
 		return pageNumList;
 	}
 
 
 
-	public void setPageNumList(List<String> pageNumList) {
+	public void setPageNumList(List<Integer> pageNumList) {
 		this.pageNumList = pageNumList;
 	}
+
+
+
+
+	public int getNowPage() {
+		return nowPage;
+	}
+
+
+
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+
 
 
 	@Override

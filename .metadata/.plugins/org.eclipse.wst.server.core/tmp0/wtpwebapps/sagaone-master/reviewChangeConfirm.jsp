@@ -77,6 +77,13 @@
 	font-family: monospace;
 	border-color: rgb(169, 169, 169);
 }
+
+input[type=submit] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
 </style>
 <script type="text/javascript">
 	function showConfirm() {
@@ -191,7 +198,7 @@
 				</div>
 				<div class="review2">
 					<div class="text">
-						<s:property value="review" />
+						<s:property value="review" escape="false" />
 					</div>
 				</div>
 			</s:iterator>
@@ -211,7 +218,7 @@
 
 			<div class="review2">
 				<div class="text">
-					<s:property value="session.review_change_review" />
+					<s:property value="session.review_change_review" escape="false" />
 				</div>
 
 				<s:form action="ReviewChangeConpleteAction"

@@ -11,12 +11,14 @@ import com.internousdevwork.sagaone.dao.ItemrelativeDAO;
 import com.internousdevwork.sagaone.dao.ReviewDAO;
 import com.internousdevwork.sagaone.dto.ItemDTO;
 import com.internousdevwork.sagaone.dto.ReviewDTO;
+import com.internousdevwork.sagaone.dto.ReviewDetailDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ItemDetailAction extends ActionSupport implements SessionAware {
 
 	private List<ItemDTO> itemdetailDTOList = new ArrayList<ItemDTO>();
 	private List<ItemDTO> itemrelativeDTOList = new ArrayList<ItemDTO>();
+	private List<ReviewDetailDTO> reviewdetailDTO1List = new ArrayList<ReviewDetailDTO>();
 	private List<ReviewDTO> reviewDTO2List = new ArrayList<ReviewDTO>();
 	private List<ItemDTO> itemDTOList = new ArrayList<ItemDTO>();
 
@@ -47,6 +49,10 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 		// レビュー表示用リスト作成
 		reviewDTO2List = reviewDAO.getreviewinfo2(product_id);
 		session.put("reviewDTO2List", reviewDTO2List);
+
+		// レビュー詳細リスト
+		reviewdetailDTO1List = reviewDAO.getreviewinfo3(product_id);
+		session.put("reviewdetailDTO1List", reviewdetailDTO1List);
 
 		// 商品一覧再読み込み用
 		itemDTOList = itemDAO.getiteminfo2(offset);

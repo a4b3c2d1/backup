@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdevwork.sagaone.dao.ItemrelativeDAO;
 import com.internousdevwork.sagaone.dao.ReviewDAO;
 import com.internousdevwork.sagaone.dao.ReviewEditDAO;
+import com.internousdevwork.sagaone.dto.ItemDTO;
 import com.internousdevwork.sagaone.dto.ReviewDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -26,6 +28,8 @@ public class ReviewEditAction extends ActionSupport implements SessionAware {
 	private String deleteflg;
 
 	public String result;
+	private ItemrelativeDAO itemrelativeDAO = new ItemrelativeDAO();
+	private List<ItemDTO> itemdetailDTOList = new ArrayList<ItemDTO>();
 
 	public String execute() {
 
@@ -44,9 +48,13 @@ public class ReviewEditAction extends ActionSupport implements SessionAware {
 			session.put("reviewDTO2List", reviewDTO2List);
 			session.put("deleteflg", deleteflg);
 			result = "delete";
+			// 商品詳細表示用リスト作成
+			itemdetailDTOList = itemrelativeDAO.getdetailinfo(session.get("review_product_id").toString());
+			session.put("itemdetailDTOList", itemdetailDTOList);
 
 		}
 		return result;
+
 	}
 
 	public void setSession(Map<String, Object> session) {

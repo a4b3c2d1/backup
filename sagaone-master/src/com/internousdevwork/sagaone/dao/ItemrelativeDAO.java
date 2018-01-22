@@ -18,13 +18,13 @@ public class ItemrelativeDAO {
 	private Connection con = db.getConnection();
 	NumberFormat nfNum = NumberFormat.getNumberInstance();
 
-	public List<ItemDTO> getdetailinfo(String id) {
+	public List<ItemDTO> getdetailinfo(String product_id) {
 
-		String sql1 = "select * from product_info where product_id=?";
+		String sql1 = "select a.*,round(avg(b.value),1) as avgvalue ,count(b.value) as countvalue from product_info a left join review_info b on a.product_id=b.product_id where a.product_id=?";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql1);
-			ps.setString(1, id);
+			ps.setString(1, product_id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				ItemDTO itemdto = new ItemDTO();
@@ -42,7 +42,8 @@ public class ItemrelativeDAO {
 				itemdto.setStatus(rs.getInt("status"));
 				itemdto.setRegist_date(rs.getString("regist_date"));
 				itemdto.setUpdate_date(rs.getString("update_date"));
-
+				itemdto.setAvgvalue(rs.getFloat("avgvalue"));
+				itemdto.setCountvalue(rs.getInt("countvalue"));
 				itemdetailDTOList.add(itemdto);
 			}
 		} catch (

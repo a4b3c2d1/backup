@@ -9,13 +9,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	
+
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
-	
+
 			<script type="text/javascript"
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 			<script src="./slick/slick.min.js"></script>
-	
+
 				<script>
 				jQuery(function($) {
 					jQuery(document).on("click", "#btn", function(){
@@ -24,74 +24,78 @@
 						document.getElementById("stringRow").value = randamStr;
 					});
 				});
-				
+
 				function getRandom(length) {
-					
-					var ram = 0;
-					var result = "";
-					var str = "";
-					
-						str += "0123456789abcdefghijklmnopqrstuvwxyz";
-						ram += 36;
-					
-					// ランダム文字列生成
-					for(var i=0; i<length; i++) {
-						result += str.charAt(Math.floor(Math.random() * ram));
+					if(length > 16 || length < 1){
+						var result = "";
+						return result;
+					}else{
+						var ram = 0;
+						var result = "";
+						var str = "";
+
+							str += "0123456789abcdefghijklmnopqrstuvwxyz";
+							ram += 36;
+
+						// ランダム文字列生成
+						for(var i=0; i<length; i++) {
+							result += str.charAt(Math.floor(Math.random() * ram));
+						}
+						return result;
 					}
-					return result;
 				}
-		
+
 				</script>
-		
+
 	<title>UserCreate画面</title>
-	
+
 	<style type="text/css">
 		p.error{
 			color: red;
 		}
-		
+
 		#title{
-			
+
 			height: 100px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
-		
-				
-		
+
+
+
 		input[type="button"]{
 			background: #4B99AD;
 		    padding: 8px 15px 8px 15px;
 		    border: none;
 		    color: #fff;
 		}
-		
+
 		input[type="submit"]{
 			background: #4B99AD;
 		    padding: 8px 15px 8px 15px;
 		    border: none;
 		    color: #fff;
 		}
-		
-	</style>	
-	
+
+	</style>
+
 </head>
 <body>
-	
+
 	<header>
 		<div id="main-logo">
 			<img src="./css/sagaone_logo.png" height="100px">
 		</div>
 		<div id="title">ユーザー新規登録</div>
 	</header>
-	
-	
+
+
 	<div id="main">
-		
+
 			<table>
 				<s:form action="UserCreateConfirmAction">
-				
+
 				<p class ="error">
 					<s:if test="session.blankMessage != ''">
 						<s:property value="session.blankMessage"/>
@@ -121,9 +125,9 @@
 						<td>
 								<input id="stringRow" type="text" name="password" type= "text"  <s:if test="session != null"> value="<s:property value="password"/>"</s:if>placeholder="半角英数字・3～16字" size="35"/>
 						</td>
-						<td>		
+						<td>
 								<input type="button" id="btn"  name="btn" value="自動生成"/>
-								桁数：<input id="length" type="text" name="length" value="5" size="1"/>
+								桁数：<input id="length" type="number" name="length" value="5" min="1" max="16"/>
 						</td>
 						<td>
 								<p class="error">
@@ -132,7 +136,7 @@
 								</s:iterator>
 								</p>
 						</td>
-						
+
 					</tr>
 					<tr>
 						<td>
@@ -141,7 +145,7 @@
 						<td>
 							<input type="text" name="familyName" <s:if test="session != null"> value="<s:property value="familyName"/>"</s:if>placeholder="半角英数/ひらがな/カタカナ/漢字・1～16字" size="35">
 						</td>
-						<td>		
+						<td>
 								<p class="error">
 								<s:iterator value="errorFamilyList" var="errorFamily">
 									<s:property value="errorFamily" escape="false" />
@@ -194,7 +198,7 @@
 								</p>
 						</td>
 					</tr>
-	
+
 					<tr>
 						<td>
 							<label>性別</label>
@@ -210,7 +214,7 @@
 							</s:if>
 						</td>
 					</tr>
-	
+
 					<tr>
 						<td>
 							<label>メールアドレス</label>
@@ -229,15 +233,15 @@
 					<tr>
 						<td><s:submit value="登録"/></td>
 					</tr>
-				
+
 				</s:form>
 					<tr>
 						<td><input type="button"  value="戻る" onclick="history.back()"></td>
 					<tr>
 			</table>
 	</div>
-	
+
 	<footer>© 2017-2018, Sagaone.com</footer>
-	
+
 </body>
 </html>

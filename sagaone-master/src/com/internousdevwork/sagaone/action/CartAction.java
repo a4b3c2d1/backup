@@ -51,7 +51,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private String cartFlg;
 	private String paymentFlg;
 	private String message;
-	private String str_product_id;
+	private String strProductId;
 	private Collection<String> checkboxList;
 	private int allPrice = 0;
 	private String cartJugde;
@@ -148,7 +148,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 		AddTempCartDAO addTempCartDAO = new AddTempCartDAO();
 		AddCartDAO addCartDAO = new AddCartDAO();
-		int product_id = Integer.parseInt(str_product_id);
+		int product_id = Integer.parseInt(strProductId);
 		boolean loginFlg = Boolean.parseBoolean(session.get("loginFlg").toString());
 
 		if(loginFlg){
@@ -252,11 +252,11 @@ public class CartAction extends ActionSupport implements SessionAware{
 	}
 
 	public String getProduct_id(){
-		return str_product_id;
+		return strProductId;
 	}
 
 	public void setProduct_id(String product_id){
-		this.str_product_id = product_id;
+		this.strProductId = product_id;
 	}
 
 

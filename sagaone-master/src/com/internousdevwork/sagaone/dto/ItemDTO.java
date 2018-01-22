@@ -19,6 +19,7 @@ public class ItemDTO {
 	public float avgvalue;
 	public int countvalue;
 
+
 	public int getId() {
 		return id;
 	}

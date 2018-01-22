@@ -16,6 +16,8 @@ public class SearchItemInfoDTO {
 	private String searchFlg = "1";
 	private String descriptionAll = productDescription;
 	private String searchWords;
+	private float avgvalue;
+	private int countvalue;
 
 
 	public String getId() {
@@ -108,6 +110,20 @@ public class SearchItemInfoDTO {
 	public void setSearchWords(String searchWords) {
 		this.searchWords = searchWords;
 	}
+	public float getAvgvalue() {
+		return avgvalue;
+	}
+	public void setAvgvalue(float avgvalue) {
+		this.avgvalue = avgvalue;
+	}
+	public int getCountvalue() {
+		return countvalue;
+	}
+	public void setCountvalue(int countvalue) {
+		this.countvalue = countvalue;
+	}
+
+
 
 
 

@@ -128,12 +128,13 @@ header{
  */
 
 #header-container{
-	clear: both;
+
 	position: fixed;
-	right: 0;
+	bottom: 0;
+	margin-left: 0;
 	top: 50px;
 	width: calc(100% - 200px);
-	height: 50px;
+	height: 40px;
 	float: left;
 }
 
@@ -144,7 +145,8 @@ header{
 
 .header-menu{
 	line-height: 50px;
-	float: right;
+	float: left;
+
 }
 
 
@@ -156,23 +158,19 @@ header{
  * dropmenu： アカウントメニュー
  */
 
-#header-container .ex  {
-	clear: both;
+#header-container .ex> a {
 	float: right;
-	width: 300px;
-	height: 50px;
+	margin-left:40px;
 	list-style: none;
-	right: 0;
 }
 
 
-#header-container .home-btn > a {
-	float: left;
+#header-container .home-btn >a {
+	float: right;
+	bottom: 0;
 	text-decoration: none;
 	position: absolute;
-	bottom: 0;
 	width: 40px;
-	height: 40px;
 	text-align: center;
 	line-height: 40px;
 	background-color: white;
@@ -183,22 +181,6 @@ header{
 	font-color: white;
 }
 
-#header-container .home-btn-logout > a {
-	float: left;
-	text-decoration: none;
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	text-align: center;
-	line-height: 40px;
-	background-color: white;
-}
-
-
-#header-container .home-btn-logout> a :hover {
-    background: rgba(255, 255, 255, .2);
-	font-color: white;
-}
 
 
 #header-container .dropmenu {
@@ -209,8 +191,6 @@ header{
 }
 
 .dropmenu > li{
-	float: left;
-	position: absolute;
 	width: 160px;
 	height: 40px;
     display: inline-block;
@@ -245,7 +225,7 @@ header{
 
 .dropmenu li .b-btn{
   display: block;
-  margin: 0;
+
   padding: 15px 0 11px;
   width: 160px;
   background: #fff;
@@ -305,5 +285,24 @@ header{
   height: 38px;
 }
 
+
+
+
+#header-container .home-btn-logout > a {
+	float: right;
+	text-decoration: none;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: white;
+}
+
+
+#header-container .home-btn-logout> a :hover {
+    background: rgba(255, 255, 255, .2);
+	font-color: white;
+}
 
 

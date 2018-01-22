@@ -29,7 +29,17 @@
 
 			<tr>
 				<th>既定の住所：</th><td><s:property value="#session.myPageAddress.userAddress"/></td></tr>
-			<tr><td></td><td></td><td><a id= "page" href= ' <s:url action= "DestinationAction" /> '>&#x1f527;</a>&emsp;&emsp;&emsp;<a id= "page" href= '<s:url action= "GoHomeAction" />'>&#x1f3e0;</a></td><td><a id = "page" href = ' <s:url action= "PurchaseHistoryAction" /> '>購入履歴</a></td></tr>
+				
+					<tr><td class="bar" colspan="6"></td> </tr>
+				<tr>
+				<th>クレジットカード（カード番号）：</th><td><s:property value="#session.myPageCardDTO.cardNumber"/></td></tr>
+			
+				
+			<tr><td></td><td></td><td><a id= "page" href= ' <s:url action= "DestinationAction" /> '>&#x1f527;</a>&emsp;&emsp;&emsp;
+			
+			<a id= "page" href= ' <s:url action= "CardUpdateAction" /> '>&#x1f527;</a>&emsp;&emsp;&emsp;
+			
+			<a id= "page" href= '<s:url action= "GoHomeAction" />'>&#x1f3e0;</a></td><td><a id = "page" href = ' <s:url action= "PurchaseHistoryAction" /> '>購入履歴</a></td></tr>
 
 		</table>
 	</s:iterator>

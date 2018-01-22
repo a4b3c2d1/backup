@@ -29,6 +29,7 @@ public class PaymentUserAddressDAO {
 				PaymentUserAddressDTO paymentUserAddressDTO= new PaymentUserAddressDTO();
 				paymentUserAddressDTO.setTelNumber(rs.getString("tel_number"));
 				paymentUserAddressDTO.setUserAddress(rs.getString("user_address"));
+				paymentUserAddressDTO.setStatus(rs.getInt("status"));
 				addressDTOList.add(paymentUserAddressDTO);
 		    }
 

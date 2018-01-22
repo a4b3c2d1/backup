@@ -150,7 +150,7 @@
 				</div>
 				<div id="deletebtn">
 					<input type="hidden" name="deleteFlg" value="1"> <input
-						type="submit" value="選択した項目を削除" id="btn_confirmation" />
+						type="submit" value="選択した項目を削除" id="btnConfirmation" />
 				</div>
 			</s:form>
 
@@ -176,11 +176,11 @@
 		$(function() {
 	        $('.check').change(function() {
 	            if ($('.check').is(':checked')) {
-	                $('#btn_confirmation').prop('disabled', false);
-	                $('#btn_confirmation').css('background-color','#4B99AD');
+	                $('#btnConfirmation').prop('disabled', false);
+	                $('#btnConfirmation').css('background-color','#4B99AD');
 	            } else {
-	                $('#btn_confirmation').prop('disabled', true);
-	                $('#btn_confirmation').css('background-color','#777');
+	                $('#btnConfirmation').prop('disabled', true);
+	                $('#btnConfirmation').css('background-color','#777');
 	            }
 	        } ).change();
 	    });
@@ -188,11 +188,11 @@
 		$(function() {
 	        $('#allCheck01').change(function() {
 	            if ($('#allCheck01').is(':checked')) {
-	                $('#btn_confirmation').prop('disabled', false);
-	                $('#btn_confirmation').css('background-color','#4B99AD');
+	                $('#btnConfirmation').prop('disabled', false);
+	                $('#btnConfirmation').css('background-color','#4B99AD');
 	            } else {
-	                $('#btn_confirmation').prop('disabled', true);
-	                $('#btn_confirmation').css('background-color','#777');
+	                $('#btnConfirmation').prop('disabled', true);
+	                $('#btnConfirmation').css('background-color','#777');
 	            }
 	        } ).change();
 	    });

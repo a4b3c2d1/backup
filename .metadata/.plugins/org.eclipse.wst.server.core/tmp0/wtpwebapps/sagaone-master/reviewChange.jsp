@@ -102,7 +102,26 @@ a:visited {
 	 ~ label {
 	color: #ffcc33;
 }
+
+input[type=submit] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+
+input[type=button] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
 </style>
+<script type="text/javascript">
+	function hoge() {
+		document.js.review.value = "";
+	}
+</script>
 <body>
 	<header>
 
@@ -212,7 +231,8 @@ a:visited {
 
 				<div class="review1">
 					<s:textarea class="text" name="review" placeholder="レビュー内容" />
-					<br> <span class="botton1"> <s:submit value="レビューする" /></span>
+					<br> <span class="botton1"> <s:submit value="レビューする" /></span><input
+						type="button" value="クリア" onclick="hoge()" />
 				</div>
 			</s:form>
 

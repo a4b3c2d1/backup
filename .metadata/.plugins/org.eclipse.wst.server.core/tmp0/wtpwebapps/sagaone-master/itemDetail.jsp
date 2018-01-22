@@ -29,21 +29,24 @@ a:visited {
 .main1 {
 	padding: 55px;
 	height: 400px;
-	width: 75%;
+	width: 1000px;
 	margin: 0 auto;
 }
 
 .main1-1 {
-	width: 450px;
 	float: left;
-	height: 400px;
+	width: 500px;
+    height: 500px;
+	margin: 0 25px 50px 0;
 }
+.main1-1 img {
+	width: 450px;
+    height: 450px;
+    margin: 50px 25px;}
 
 .main1-2 {
-	width: 500px;
-	height: 400px;
+	width: 460px;
 	float: left;
-	position: relative;
 }
 
 .main1-3 {
@@ -52,12 +55,18 @@ a:visited {
 	width: 200px;
 	position: relative;
 }
+.name-box {
 
+}
 .name {
 	font-size: 35px;
 	width: 400px;
+	margin-bottom: 0;
 }
-
+.kana {
+	font-size: 20px;
+	margin: 0;
+}
 .price {
 	font-size: 25px;
 	color: #B12704;
@@ -76,15 +85,18 @@ a:visited {
 	margin-right: 30px;
 }
 
-#b {
-	border-style: solid;
-	border-color: #999;
-	position: absolute;
-	padding: 20px;
-	bottom: 0px;
-	right: 0px;
+.cart {
+	margin-top: 30px;
 }
-
+.cart-btn {
+	display: block;
+ 	background: #4B99AD;
+    margin: 10px 0 0 0;
+    padding: 8px 15px 8px 15px;
+    width: 350px;
+    border: none;
+    color: #fff;
+}
 .main2 {
 	clear: both;
 	margin: 50px;
@@ -113,6 +125,10 @@ a:visited {
 	color: #ccc;
 }
 
+.count {
+	color: #000;
+}
+
 .main3 {
 	margin: 50px;
 }
@@ -137,6 +153,49 @@ a:visited {
 	cursor: pointer;
 	text-decoration: underline;
 }
+
+input[type=submit] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+
+.balloon2 {
+	border-color: #999;
+	position: absolute;
+	border-style: solid;
+	border-width: 1px;
+	display: none;
+	padding: 2px;
+	background-color: #ffffff;
+	width: 100px;
+	left: 30%;
+	top: 100%;
+	margin-top: 12px;
+	font-size: 10px;
+	position: absolute;
+}
+
+.balloon2:after {
+	border-bottom: 12px solid rgba(102, 102, 255, 0.50);
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	top: -12px;
+	left: 5%;
+	content: "";
+	position: absolute;
+	top: -12px;
+	left: 5%;
+	content: "";
+}
+.title{
+	width: 350px;
+	margin: 5px;
+    padding: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d4d4d4;}
+
 </style>
 </head>
 <body>
@@ -230,15 +289,29 @@ a:visited {
 			<s:iterator value="#session.itemdetailDTOList">
 				<s:form action="CartAction">
 					<div class="main1-1">
-						<img src=<s:property value="image_file_path"/>
-							style="width: 380; height: 380px; margin: 10px;">
+						<img src=<s:property value="image_file_path"/>>
 					</div>
 					<div class="main1-2">
-						<div class="name">
-							<s:property value="product_name" />
-							<br> (
-							<s:property value="product_name_kana" />
-							)
+						<div class="title">
+							<div class="name-box">
+								<p class="name"><s:property value="product_name" /></p>
+								<p class="kana"><s:property value="product_name_kana" /></p>
+
+							</div>
+							<div class="rating">
+								<div class="rating-front"
+									style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
+								<div class="rating-back">
+									★★★★★<span class="count">(<s:property value="countvalue" />)
+									</span>
+								</div>
+
+
+								<span class="balloon2"> 5つ星のうち<s:property
+										value="avgvalue" /></span>
+
+
+							</div>
 						</div>
 						<br> <span class="price"> 価格： &#xA5; <s:property
 								value="price" />
@@ -254,14 +327,17 @@ a:visited {
 						<s:hidden name="addFlg" value="1"></s:hidden>
 
 
-						<span id="b"> 数量：<select name="count">
-								<option value="1" selected="selected">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-
-						</select><br> <input type="submit" value="カートに入れる"></span>
+						<div class="cart">
+							<span id="b"> 数量：</span>
+								<select name="count">
+									<option value="1" selected="selected">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							<input class="cart-btn" type="submit" value="カートに入れる">
+						</div>
 					</div>
 
 				</s:form>
@@ -279,13 +355,34 @@ a:visited {
 						value="<s:property value='product_id' />"></input>
 					<input type="hidden" name="category_id"
 						value="<s:property value='category_id' />"></input>
-					<input type="hidden" name="reviewFlg"
-						value="1"></input>
+					<input type="hidden" name="reviewFlg" value="1"></input>
 
 					<input type="submit" value="レビューを書く"
 						<s:if test="#session.loginUserId == null">
 					onClick="alert('ログインしてください！');"</s:if>>
 				</s:form>
+			</s:iterator>
+
+
+			<s:iterator value="session.itemdetailDTOList">
+
+				<div class="rating">
+					<div class="rating-front"
+						style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
+					<div class="rating-back">★★★★★</div>
+
+
+					<span class="balloon2"> 5つ星のうち<s:property value="avgvalue" /></span>
+
+					<span class="count"> (<s:property value="countvalue" />)
+					</span>
+				</div>
+
+			</s:iterator>
+			<s:iterator value="#session.reviewdetailDTO1List">
+				<ul>
+					<li><s:property value="value" />：<s:property value="cnt" /></li>
+				</ul>
 			</s:iterator>
 			<s:iterator value="#session.reviewDTO2List">
 				<ul>
@@ -317,9 +414,12 @@ a:visited {
 							src=<s:property value="image_file_path"/> width=auto height="100">
 					</span>
 					</a>
-				</p>
 			</s:iterator>
-
+			<s:iterator value="#session.itemrelativeDTOList" begin="0" end="0">
+				さらに関連商品を見たい方は<s:a href="SearchItemAction">
+					<s:param name="itemCategory" value="category_id" />
+					<s:param name="searchWord" value=" " />こちら</s:a>
+			</s:iterator>
 		</div>
 		<div class="main4">
 			<s:a href="ItemAction?offset=0">

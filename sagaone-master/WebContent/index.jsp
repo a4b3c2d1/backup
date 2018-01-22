@@ -43,19 +43,6 @@
 }
 -->
 </style>
-
-<script>
-	$(document).ready(function() {
-		$('.abc').slick({
-			infinite : true,
-
-			slidesToShow : 3,
-			slidesToScroll : 3
-
-		});
-	});
-</script>
-
 </head>
 <body>
 	<header>
@@ -144,28 +131,24 @@
 			</ul>
 		</div>
 
-
 	</header>
 	<div id="main">
-
-
-		<ul class="abc">
+		<div class="slider-top" style="width: 100%;">
+			<img src="./img/top-book.jpg" alt="book">
+			<img src="./img/top-electronics.jpg" alt="electronics">
+			<img src="./img/top-game.jpg" alt="game">
+		</div>
+		<div class="slider-sub" style="width:800px; margin: 30px auto;">
 			<s:iterator value="#session.pickupitem" begin="0" end="9">
-				<s:form action="ItemDetailAction">
-					<input type="hidden" name="product_id"
-						value="<s:property value='product_id' />"></input>
-					<input type="hidden" name="category_id"
-						value="<s:property value='category_id' />"></input>
-					<li><input type="image"
-						src="<s:property value="image_file_path"/>" width=auto
-						height="100" /></li>
-
-				</s:form>
+				<div>
+					<s:form action="ItemDetailAction">
+						<input type="hidden" name="product_id" value="<s:property value='product_id' />"></input>
+						<input type="hidden" name="category_id" value="<s:property value='category_id' />"></input>
+						<input type="image" src="<s:property value="image_file_path"/>" width="200" height="200" />
+					</s:form>
+				</div>
 			</s:iterator>
-		</ul>
-
-
-
+		</div>
 	</div>
 
 	<footer>© 2017-2018, Sagaone.com</footer>
@@ -173,5 +156,34 @@
 	<form name="form_test">
 		<input type="hidden" name="input_test" value="<s:iterator value="allWordsList" ><s:property /></s:iterator>">
 	</form>
+
+	<script>
+	$(function() {
+		$('.slider-top').slick({
+			infinite: true,
+			fade: true,
+			speed: 2000,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			dots: true,
+			arrows: false,
+		});
+	});
+	$(function() {
+		$('.slider-sub').slick({
+			infinite: true,
+			adaptiveHeight: true,
+			centerMode: true,
+			centerPadding: '80px',
+			autoplay: true,
+			autoplaySpeed: 2000,
+			slidesToShow: 3,
+			slidesToScroll: 3,
+			cssEase: 'ease'
+		});
+	});
+</script>
 </body>
 </html>

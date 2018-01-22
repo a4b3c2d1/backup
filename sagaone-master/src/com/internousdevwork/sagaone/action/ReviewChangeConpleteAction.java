@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdevwork.sagaone.dao.ItemrelativeDAO;
 import com.internousdevwork.sagaone.dao.ReviewChangeConpleteDAO;
 import com.internousdevwork.sagaone.dao.ReviewDAO;
+import com.internousdevwork.sagaone.dto.ItemDTO;
 import com.internousdevwork.sagaone.dto.ReviewDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,6 +19,8 @@ public class ReviewChangeConpleteAction extends ActionSupport implements Session
 	public ReviewChangeConpleteDAO reviewChangeConpleteDAO = new ReviewChangeConpleteDAO();
 	private List<ReviewDTO> reviewDTO2List = new ArrayList<ReviewDTO>();
 	private ReviewDAO reviewDAO = new ReviewDAO();
+	private List<ItemDTO> itemdetailDTOList = new ArrayList<ItemDTO>();
+	private ItemrelativeDAO itemrelativeDAO = new ItemrelativeDAO();
 
 	public String execute() {
 
@@ -29,6 +33,10 @@ public class ReviewChangeConpleteAction extends ActionSupport implements Session
 		// レビュー表示用再読み込み
 		reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
 		session.put("reviewDTO2List", reviewDTO2List);
+
+		// 商品詳細表示用リスト作成
+		itemdetailDTOList = itemrelativeDAO.getdetailinfo(session.get("review_product_id").toString());
+		session.put("itemdetailDTOList", itemdetailDTOList);
 
 		// 完了画面へ
 		return SUCCESS;

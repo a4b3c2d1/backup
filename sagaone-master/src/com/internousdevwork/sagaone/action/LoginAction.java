@@ -34,8 +34,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private String loginMemory= "";
 	public Map<String, Object> session;
 	private String errorMessage;
-	private String blankErrorMessageID;
-	private String blankErrorMessagePassword;
+	private String errorId;
+	private String errorId1;
+	private String errorId2;
+	private String errorPassword;
+	private String errorPassword1;
+	private String errorPassword2;
 
 	private LoginDAO loginDAO= new LoginDAO();
 	private LoginDTO loginDTO= new LoginDTO();
@@ -44,6 +48,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private TempCartDAO tempCartDAO = new TempCartDAO();
 
 	private String paymentMessage;
+
 
 	private PaymentUserInfoDTO paymentUserInfoDTO = new PaymentUserInfoDTO();
 	private PaymentUserAddressDTO userAddressDTO = new PaymentUserAddressDTO();
@@ -60,38 +65,74 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		String ret=ERROR;
 		int ErrorCount= 0;
 
-		// ログイン実行
-		loginDTO= loginDAO.getLoginUserInfo(loginUserId, loginPassword);
-		session.put("loginUser", loginDTO);
-		session.put("loginUserId", loginUserId);
-		session.put("loginPassword", loginPassword);
-		session.put("loginFlg", loginDTO.getLoginFlg());
-
-		if (((LoginDTO) session.get("loginUser")).getLoginFlg()) {
-			ret= SUCCESS;
-
-		} else if(!(loginUserId.equals("")) && !(loginPassword.equals(""))){
+		if(!(loginUserId.equals("")) && !(loginPassword.equals(""))){
 			setErrorMessage("IDかパスワードが違うよー(○・▽・○)<br>");
-			ret= ERROR;
-		}
-		if (loginMemory.equals("true")) {
-			session.put("loginMemory", true);
-		} else {
-			session.put("loginMemory", false);
+			ErrorCount++;
 		}
 
 		// 未入力時
 		if(loginUserId.equals("")) {
-			setBlankErrorMessageID("ログインIDが入ってないよー(○・▽・○)<br>");
+			setErrorId("ログインIDが入ってないよー(○・▽・○)<br>");
 			ErrorCount++;
 		}
 
 		if (loginPassword.equals("")) {
-			setBlankErrorMessagePassword("パスワードが入ってないよー(○・▽・○)<br>");
+			setErrorPassword("パスワードが入ってないよー(○・▽・○)<br>");
 			ErrorCount++;
 		}
+
+
+		// その他エラー
+		if(loginUserId.length()<1||loginUserId.length()>8 && !(loginUserId.equals(""))){
+			setErrorId1("1文字以上8文字以内で入力してねー(○・▽・○)<br>");
+			ErrorCount++;
+		}
+
+		if (!(loginUserId.matches("^[0-9a-zA-Z]+$")) && !(loginUserId.equals(""))) {
+			setErrorId2("半角英数字で入力してねー(○・▽・○)<br>");
+			ErrorCount++;
+		}
+
+
+		if(loginPassword.length()<3||loginPassword.length()>16 && !(loginPassword.equals(""))){
+			setErrorPassword1("3文字以上16文字以内で入力してねー(○・▽・○)<br>");
+			ErrorCount++;
+		}
+
+		if (!(loginPassword.matches("^[0-9a-zA-Z]+$")) && !(loginPassword.equals(""))) {
+			setErrorPassword2("半角英数字で入力してねー(○・▽・○)<br>");
+			ErrorCount++;
+		}
+
 		if(ErrorCount>0) {
 			ret = ERROR;
+		}
+
+
+
+		// ログイン実行
+		loginDTO= loginDAO.getLoginUserInfo(loginUserId, loginPassword);
+
+		if (loginUserId.equals(loginDTO.getLoginId())) {
+			if (loginPassword.equals(loginDTO.getLoginPassword())){
+
+
+			session.put("loginUser", loginDTO);
+			session.put("loginUserId", loginUserId);
+			session.put("loginPassword", loginPassword);
+			session.put("loginFlg", loginDTO.getLoginFlg());
+
+			ret= SUCCESS;
+			}
+		}else{
+			ret = ERROR;
+		}
+
+
+		if (loginMemory.equals("true")) {
+			session.put("loginMemory", true);
+		} else {
+			session.put("loginMemory", false);
 		}
 
 		String user_id = session.get("temp_user_id").toString();
@@ -159,6 +200,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			}
 			ret= "payment";
 		}
+
 		return ret;
 	}
 
@@ -198,19 +240,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		this.session= session;
 	}
 
-	public String getBlankErrorMessageID() {
-		return blankErrorMessageID;
-	}
-	public void setBlankErrorMessageID(String blankErrorMessageID) {
-		this.blankErrorMessageID = blankErrorMessageID;
-	}
-
-	public String getBlankErrorMessagePassword() {
-		return blankErrorMessagePassword;
-	}
-	public void setBlankErrorMessagePassword(String blankErrorMessagePassword) {
-		this.blankErrorMessagePassword = blankErrorMessagePassword;
-	}
 
 	public String getErrorMessage() {
 		return errorMessage;
@@ -218,6 +247,50 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
+
+	public String getErrorId() {
+		return errorId;
+	}
+	public void setErrorId(String errorId){
+		this.errorId= errorId;
+	}
+
+	public String getErrorId1() {
+		return errorId1;
+	}
+	public void setErrorId1(String errorId1){
+		this.errorId1= errorId1;
+	}
+
+	public String getErrorId2() {
+		return errorId2;
+	}
+	public void setErrorId2(String errorId2){
+		this.errorId2= errorId2;
+	}
+
+	public String getErrorPassword() {
+		return errorPassword;
+	}
+	public void setErrorPassword(String errorPassword){
+		this.errorPassword= errorPassword;
+	}
+	public String getErrorPassword1() {
+		return errorPassword1;
+	}
+	public void setErrorPassword1(String errorPassword1){
+		this.errorPassword1= errorPassword1;
+	}
+
+
+	public String getErrorPassword2() {
+		return errorPassword2;
+	}
+	public void setErrorPassword2(String errorPassword2){
+		this.errorPassword2= errorPassword2;
+	}
+
+
 
 	public PaymentUserInfoDTO getPaymentUserInfoDTO() {
 		return paymentUserInfoDTO;

@@ -5,8 +5,11 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdevwork.sagaone.dao.MyPageAddressDAO;
+//カード
+import com.internousdevwork.sagaone.dao.MyPageCardDAO;
 import com.internousdevwork.sagaone.dao.MyPageDAO;
 import com.internousdevwork.sagaone.dto.MyPageAddressDTO;
+import com.internousdevwork.sagaone.dto.MyPageCardDTO;
 import com.internousdevwork.sagaone.dto.MyPageDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,6 +20,10 @@ public class MyPageAction extends ActionSupport implements SessionAware{
 	private MyPageDTO myPageDTO = new MyPageDTO();
 	private MyPageAddressDTO myPageAddressDTO = new MyPageAddressDTO();
 	private String myAddressFlg = "0";
+	
+	//クレジットカード
+	private MyPageCardDAO myPageCardDAO = new MyPageCardDAO();
+	private MyPageCardDTO myPageCardDTO = new MyPageCardDTO();
 
 	public String execute(){
 		String ret = ERROR;
@@ -25,12 +32,19 @@ public class MyPageAction extends ActionSupport implements SessionAware{
 			myPageDTO = myPageDAO.myPageInfo(session.get("loginUserId").toString());
 			ret = SUCCESS;
 		}
+		
+		//カード
+		if( session.get("loginUserId") != null){
+			myPageCardDTO  = myPageCardDAO.getCard(session.get("loginUserId").toString());
+			ret = SUCCESS;
+		}
 
 		myPageAddressDTO = new MyPageAddressDAO().getUserAddress(session.get("loginUserId").toString());
 
 		myAddressFlg = "1";
 
 		session.put("myPageDTO", myPageDTO);
+		session.put("myPageCardDTO", myPageCardDTO);
 		session.put("myPageAddress", myPageAddressDTO);
 		session.put("myAddressFlg", myAddressFlg);
 

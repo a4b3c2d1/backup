@@ -3,6 +3,7 @@ package com.internousdevwork.sagaone.dto;
 public class PaymentUserAddressDTO {
 	private String telNumber;
 	private String userAddress;
+	private int status;
 
 
 
@@ -20,6 +21,14 @@ public class PaymentUserAddressDTO {
 
 	public void setTelNumber(String telNumber) {
 		this.telNumber = telNumber;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 
