@@ -1,5 +1,4 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+			<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -107,18 +106,11 @@ input[type=submit] {
 	border: none;
 	color: #fff;
 }
-
-input[type=button] {
-	background: #4B99AD;
-	padding: 8px 15px 8px 15px;
-	border: none;
-	color: #fff;
-}
 </style>
 
 <script type="text/javascript">
 	function hoge() {
-		document.js.review.value = "";
+		document.getElementById("text").value = "";
 	}
 </script>
 </head>
@@ -214,7 +206,7 @@ input[type=button] {
 				<s:property value="reviewErrormessage" escape="false" />
 
 			</s:if>
-			<s:form action="ReviewConfirmAction" name="js">
+			<s:form action="ReviewConfirmAction">
 
 				<div class="hyouka">
 					<input id="hoshi1" type="radio" name="value" value="5" /> <label
@@ -232,7 +224,7 @@ input[type=button] {
 
 					<span class="botton1"><input type="submit" value="レビューする" /></span><span
 						class="botton1"> <input type="button" value="クリア"
-						onclick="hoge()" /></span>
+						onClick="hoge()" /></span>
 				</div>
 			</s:form>
 		</div>
