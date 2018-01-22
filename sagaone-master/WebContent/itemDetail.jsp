@@ -289,26 +289,26 @@ input[type=submit] {
 			<s:iterator value="#session.itemdetailDTOList">
 				<s:form action="CartAction">
 					<div class="main1-1">
-						<img src=<s:property value="image_file_path"/>>
+						<img src=<s:property value="imageFilePath"/>>
 					</div>
 					<div class="main1-2">
 						<div class="title">
 							<div class="name-box">
-								<p class="name"><s:property value="product_name" /></p>
-								<p class="kana"><s:property value="product_name_kana" /></p>
+								<p class="name"><s:property value="productName" /></p>
+								<p class="kana"><s:property value="productNameKana" /></p>
 
 							</div>
 							<div class="rating">
 								<div class="rating-front"
-									style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
+									style="width: calc(<s:property value="avgValue" />*20%)">★★★★★</div>
 								<div class="rating-back">
-									★★★★★<span class="count">(<s:property value="countvalue" />)
+									★★★★★<span class="count">(<s:property value="countValue" />)
 									</span>
 								</div>
 
 
 								<span class="balloon2"> 5つ星のうち<s:property
-										value="avgvalue" /></span>
+										value="avgValue" /></span>
 
 
 							</div>
@@ -317,13 +317,13 @@ input[type=submit] {
 								value="price" />
 						</span>
 						<ul>
-							<li>メーカー：<s:property value="release_company" /></li>
-							<li>発売日：<s:property value="release_date" /></li>
-							<li>商品詳細：<s:property value="product_description" /></li>
+							<li>メーカー：<s:property value="releaseCompany" /></li>
+							<li>発売日：<s:property value="releaseDate" /></li>
+							<li>商品詳細：<s:property value="productDescription" /></li>
 						</ul>
 
 						<input type="hidden" name="product_id"
-							value="<s:property value='product_id' />"></input>
+							value="<s:property value='productId' />"></input>
 						<s:hidden name="addFlg" value="1"></s:hidden>
 
 
@@ -352,9 +352,9 @@ input[type=submit] {
 				<s:form action="ReviewAction">
 
 					<input type="hidden" name="product_id"
-						value="<s:property value='product_id' />"></input>
+						value="<s:property value='productId' />"></input>
 					<input type="hidden" name="category_id"
-						value="<s:property value='category_id' />"></input>
+						value="<s:property value='categoryId' />"></input>
 					<input type="hidden" name="reviewFlg" value="1"></input>
 
 					<input type="submit" value="レビューを書く"
@@ -368,13 +368,13 @@ input[type=submit] {
 
 				<div class="rating">
 					<div class="rating-front"
-						style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
+						style="width: calc(<s:property value="avgValue" />*20%)">★★★★★</div>
 					<div class="rating-back">★★★★★</div>
 
 
-					<span class="balloon2"> 5つ星のうち<s:property value="avgvalue" /></span>
+					<span class="balloon2"> 5つ星のうち<s:property value="avgValue" /></span>
 
-					<span class="count"> (<s:property value="countvalue" />)
+					<span class="count"> (<s:property value="countValue" />)
 					</span>
 				</div>
 
@@ -386,8 +386,8 @@ input[type=submit] {
 			</s:iterator>
 			<s:iterator value="#session.reviewDTO2List">
 				<ul>
-					<li>ユーザー名：<s:property value="user_id" /></li>
-					<li>書き込み日：<s:property value="update_date" /></li>
+					<li>ユーザー名：<s:property value="userId" /></li>
+					<li>書き込み日：<s:property value="updateDate" /></li>
 					<li>
 						<div class="rating">
 							<div class="rating-front"
@@ -409,15 +409,15 @@ input[type=submit] {
 			<s:iterator value="#session.itemrelativeDTOList" begin="0" end="2">
 				<p>
 					<a
-						href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-						<span class="a"> <s:property value="product_name" /> <img
-							src=<s:property value="image_file_path"/> width=auto height="100">
+						href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
+						<span class="a"> <s:property value="productName" /> <img
+							src=<s:property value="imageFilePath"/> width=auto height="100">
 					</span>
 					</a>
 			</s:iterator>
 			<s:iterator value="#session.itemrelativeDTOList" begin="0" end="0">
 				さらに関連商品を見たい方は<s:a href="SearchItemAction">
-					<s:param name="itemCategory" value="category_id" />
+					<s:param name="itemCategory" value="categoryId" />
 					<s:param name="searchWord" value=" " />こちら</s:a>
 			</s:iterator>
 		</div>

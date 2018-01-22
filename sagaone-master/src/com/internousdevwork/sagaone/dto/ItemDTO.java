@@ -3,150 +3,118 @@ package com.internousdevwork.sagaone.dto;
 public class ItemDTO {
 
 	public int id;
-	public int product_id;
-	public String product_name;
-	public String product_name_kana;
-	public String product_description;
-	public int category_id;
+	public int productId;
+	public String productName;
+	public String productNameKana;
+	public String productDescription;
+	public int categoryId;
 	public String price;
-	public String image_file_path;
-	public String image_file_name;
-	public String release_date;
-	public String release_company;
+	public String imageFilePath;
+	public String imageFileName;
+	public String releaseDate;
+	public String releaseCompany;
 	public int status;
-	public String regist_date;
-	public String update_date;
-	public float avgvalue;
-	public int countvalue;
-
-
+	public String registDate;
+	public String updateDate;
+	public float avgValue;
+	public int countValue;
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getProduct_id() {
-		return product_id;
+	public int getProductId() {
+		return productId;
 	}
-
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
-
-	public String getProduct_name() {
-		return product_name;
+	public String getProductName() {
+		return productName;
 	}
-
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
-
-	public String getProduct_name_kana() {
-		return product_name_kana;
+	public String getProductNameKana() {
+		return productNameKana;
 	}
-
-	public void setProduct_name_kana(String product_name_kana) {
-		this.product_name_kana = product_name_kana;
+	public void setProductNameKana(String productNameKana) {
+		this.productNameKana = productNameKana;
 	}
-
-	public String getProduct_description() {
-		return product_description;
+	public String getProductDescription() {
+		return productDescription;
 	}
-
-	public void setProduct_description(String product_description) {
-		this.product_description = product_description;
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
 	}
-
-	public int getCategory_id() {
-		return category_id;
+	public int getCategoryId() {
+		return categoryId;
 	}
-
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
-
 	public String getPrice() {
 		return price;
 	}
-
 	public void setPrice(String price) {
 		this.price = price;
 	}
-
-	public String getImage_file_path() {
-		return image_file_path;
+	public String getImageFilePath() {
+		return imageFilePath;
 	}
-
-	public void setImage_file_path(String image_file_path) {
-		this.image_file_path = image_file_path;
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
 	}
-
-	public String getImage_file_name() {
-		return image_file_name;
+	public String getImageFileName() {
+		return imageFileName;
 	}
-
-	public void setImage_file_name(String image_file_name) {
-		this.image_file_name = image_file_name;
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
 	}
-
-	public String getRelease_date() {
-		return release_date;
+	public String getReleaseDate() {
+		return releaseDate;
 	}
-
-	public void setRelease_date(String release_date) {
-		this.release_date = release_date;
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
 	}
-
-	public String getRelease_company() {
-		return release_company;
+	public String getReleaseCompany() {
+		return releaseCompany;
 	}
-
-	public void setRelease_company(String release_company) {
-		this.release_company = release_company;
+	public void setReleaseCompany(String releaseCompany) {
+		this.releaseCompany = releaseCompany;
 	}
-
 	public int getStatus() {
 		return status;
 	}
-
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
-	public String getRegist_date() {
-		return regist_date;
+	public String getRegistDate() {
+		return registDate;
+	}
+	public void setRegistDate(String registDate) {
+		this.registDate = registDate;
+	}
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+	public float getAvgValue() {
+		return avgValue;
+	}
+	public void setAvgValue(float avgValue) {
+		this.avgValue = avgValue;
+	}
+	public int getCountValue() {
+		return countValue;
+	}
+	public void setCountValue(int countValue) {
+		this.countValue = countValue;
 	}
 
-	public void setRegist_date(String regist_date) {
-		this.regist_date = regist_date;
-	}
 
-	public String getUpdate_date() {
-		return update_date;
-	}
-
-	public void setUpdate_date(String update_date) {
-		this.update_date = update_date;
-	}
-
-
-	public float getAvgvalue() {
-		return avgvalue;
-	}
-
-	public void setAvgvalue(float avgvalue) {
-		this.avgvalue = avgvalue;
-	}
-
-	public int getCountvalue() {
-		return countvalue;
-	}
-
-	public void setCountvalue(int countvalue) {
-		this.countvalue = countvalue;
-	}
 
 }

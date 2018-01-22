@@ -200,8 +200,8 @@ input[type=submit] {
 			<s:iterator value="#session.reviewDTOList">
 
 				<div class="review1">
-					<span>ユーザー名： <s:property value="user_id" /></span> <br> <span>
-						書き込み日：<s:property value="update_date" />
+					<span>ユーザー名： <s:property value="userId" /></span> <br> <span>
+						書き込み日：<s:property value="updateDate" />
 					</span>
 				</div>
 

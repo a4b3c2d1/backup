@@ -31,11 +31,11 @@ public class ReviewDAO {
 			while (rs.next()) {
 				ReviewDTO reviewdto = new ReviewDTO();
 				reviewdto.setId(rs.getInt("id"));
-				reviewdto.setUser_id(rs.getString("user_id"));
-				reviewdto.setProduct_id(rs.getInt("product_id"));
+				reviewdto.setUserId(rs.getString("user_id"));
+				reviewdto.setProductId(rs.getInt("product_id"));
 				reviewdto.setValue(rs.getInt("value"));
 				reviewdto.setReview(rs.getString("review"));
-				reviewdto.setUpdate_date(StringUtils.left(rs.getString("update_date"), 16));
+				reviewdto.setUpdateDate(StringUtils.left(rs.getString("update_date"), 16));
 				reviewDTOList.add(reviewdto);
 			}
 		} catch (
@@ -62,11 +62,11 @@ public class ReviewDAO {
 			while (rs.next()) {
 				ReviewDTO reviewdto = new ReviewDTO();
 				reviewdto.setId(rs.getInt("id"));
-				reviewdto.setUser_id(rs.getString("user_id"));
-				reviewdto.setProduct_id(rs.getInt("product_id"));
+				reviewdto.setUserId(rs.getString("user_id"));
+				reviewdto.setProductId(rs.getInt("product_id"));
 				reviewdto.setValue(rs.getInt("value"));
 				reviewdto.setReview(rs.getString("review"));
-				reviewdto.setUpdate_date(StringUtils.left(rs.getString("update_date"), 16));
+				reviewdto.setUpdateDate(StringUtils.left(rs.getString("update_date"), 16));
 
 				reviewDTO2List.add(reviewdto);
 			}

@@ -3,58 +3,47 @@ package com.internousdevwork.sagaone.dto;
 public class ReviewDTO {
 
 	public int id;
-	public String user_id;
-	public int product_id;
+	public String userId;
+	public int productId;
 	public int value;
 	public String review;
-	public String update_date;
-
+	public String updateDate;
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public String getUser_id() {
-		return user_id;
+	public String getUserId() {
+		return userId;
 	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-
-	public int getProduct_id() {
-		return product_id;
+	public int getProductId() {
+		return productId;
 	}
-
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
-
 	public int getValue() {
 		return value;
 	}
-
 	public void setValue(int value) {
 		this.value = value;
 	}
-
 	public String getReview() {
 		return review;
 	}
-
 	public void setReview(String review) {
 		this.review = review;
 	}
-
-	public String getUpdate_date() {
-		return update_date;
+	public String getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
 
-	public void setUpdate_date(String update_date) {
-		this.update_date = update_date;
-	}
 
 }

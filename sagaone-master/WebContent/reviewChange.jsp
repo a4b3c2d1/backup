@@ -109,7 +109,20 @@ input[type=submit] {
 	border: none;
 	color: #fff;
 }
+
+input[type=button] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
 </style>
+<script type="text/javascript">
+	function hoge() {
+		document.ReviewChangeConfirmAction.review.value = "";
+	}
+</script>
+</head>
 <body>
 	<header>
 
@@ -219,7 +232,9 @@ input[type=submit] {
 
 				<div class="review1">
 					<s:textarea class="text" name="review" placeholder="レビュー内容" />
-					<br> <span class="botton1"> <s:submit value="レビューする" /></span>
+					<br> <span class="botton1"> <s:submit value="レビューする" /></span><span
+						class="botton1"> <input type="button" value="クリア"
+						onClick="hoge()" /></span>
 				</div>
 			</s:form>
 

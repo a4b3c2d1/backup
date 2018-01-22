@@ -106,11 +106,17 @@ input[type=submit] {
 	border: none;
 	color: #fff;
 }
+input[type=button] {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
 </style>
 
 <script type="text/javascript">
 	function hoge() {
-		document.getElementById("text").value = "";
+		document.ReviewConfirmAction.review.value = "";
 	}
 </script>
 </head>

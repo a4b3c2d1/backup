@@ -111,8 +111,8 @@
 							<div class="check">&#10003;</div>
 							<div class="cartitem1">
 								<a
-									href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-									<img src=<s:property value="image_file_path"/>
+									href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
+									<img src=<s:property value="imageFilePath"/>
 									style="width: 90px; height: 90px; border-style: solid; border-color: #999; border-width: 1px;" />
 								</a>
 							</div>
@@ -151,22 +151,22 @@
 					<div class="item">
 						<div class="aa">
 							<a
-								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-								<img src=<s:property value="image_file_path"/>
+								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
+								<img src=<s:property value="imageFilePath"/>
 								style="width: 130px; height: 130px; margin: 10px;">
 							</a>
 						</div>
 						<div class="bb">
 							<a
-								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-								<span class="a"> <s:property value="product_name" /> （ <s:property
-										value="product_name_kana" /> ）
+								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
+								<span class="a"> <s:property value="productName" /> （ <s:property
+										value="productNameKana" /> ）
 							</span>
 							</a>
 						</div>
 						<div class="cc">
 							<a
-								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
+								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
 								<span id="price">&#xA5;&nbsp;&nbsp;<s:property
 										value="price" /></span>
 							</a>
@@ -174,13 +174,13 @@
 						<div class="dd">
 							<div class="rating">
 								<div class="rating-front"
-									style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
+									style="width: calc(<s:property value="avgValue" />*20%)">★★★★★</div>
 								<div class="rating-back">★★★★★</div>
 
 
 								<span class="balloon2"> 5つ星のうち<s:property
-										value="avgvalue" /></span> <span class="count"> (<s:property
-										value="countvalue" />)
+										value="avgValue" /></span> <span class="count"> (<s:property
+										value="countValue" />)
 								</span>
 							</div>
 						</div>

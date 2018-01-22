@@ -29,21 +29,21 @@ public class ItemrelativeDAO {
 			while (rs.next()) {
 				ItemDTO itemdto = new ItemDTO();
 				itemdto.setId(rs.getInt("id"));
-				itemdto.setProduct_id(rs.getInt("product_id"));
-				itemdto.setProduct_name(rs.getString("product_name"));
-				itemdto.setProduct_name_kana(rs.getString("product_name_kana"));
-				itemdto.setProduct_description(rs.getString("product_description"));
-				itemdto.setCategory_id(rs.getInt("category_id"));
+				itemdto.setProductId(rs.getInt("product_id"));
+				itemdto.setProductName(rs.getString("product_name"));
+				itemdto.setProductNameKana(rs.getString("product_name_kana"));
+				itemdto.setProductDescription(rs.getString("product_description"));
+				itemdto.setCategoryId(rs.getInt("category_id"));
 				itemdto.setPrice(nfNum.format(rs.getInt("price")));
-				itemdto.setImage_file_path(rs.getString("image_file_path"));
-				itemdto.setImage_file_name(rs.getString("image_file_name"));
-				itemdto.setRelease_date(rs.getString("release_date"));
-				itemdto.setRelease_company(rs.getString("release_company"));
+				itemdto.setImageFilePath(rs.getString("image_file_path"));
+				itemdto.setImageFileName(rs.getString("image_file_name"));
+				itemdto.setReleaseDate(rs.getString("release_date"));
+				itemdto.setReleaseCompany(rs.getString("release_company"));
 				itemdto.setStatus(rs.getInt("status"));
-				itemdto.setRegist_date(rs.getString("regist_date"));
-				itemdto.setUpdate_date(rs.getString("update_date"));
-				itemdto.setAvgvalue(rs.getFloat("avgvalue"));
-				itemdto.setCountvalue(rs.getInt("countvalue"));
+				itemdto.setRegistDate(rs.getString("regist_date"));
+				itemdto.setUpdateDate(rs.getString("update_date"));
+				itemdto.setAvgValue(rs.getFloat("avgvalue"));
+				itemdto.setCountValue(rs.getInt("countvalue"));
 				itemdetailDTOList.add(itemdto);
 			}
 		} catch (
@@ -68,19 +68,19 @@ public class ItemrelativeDAO {
 			while (rs.next()) {
 				ItemDTO itemdto = new ItemDTO();
 				itemdto.setId(rs.getInt("id"));
-				itemdto.setProduct_id(rs.getInt("product_id"));
-				itemdto.setProduct_name(rs.getString("product_name"));
-				itemdto.setProduct_name_kana(rs.getString("product_name_kana"));
-				itemdto.setProduct_description(rs.getString("product_description"));
-				itemdto.setCategory_id(rs.getInt("category_id"));
+				itemdto.setProductId(rs.getInt("product_id"));
+				itemdto.setProductName(rs.getString("product_name"));
+				itemdto.setProductNameKana(rs.getString("product_name_kana"));
+				itemdto.setProductDescription(rs.getString("product_description"));
+				itemdto.setCategoryId(rs.getInt("category_id"));
 				itemdto.setPrice(nfNum.format(rs.getInt("price")));
-				itemdto.setImage_file_path(rs.getString("image_file_path"));
-				itemdto.setImage_file_name(rs.getString("image_file_name"));
-				itemdto.setRelease_date(rs.getString("release_date"));
-				itemdto.setRelease_company(rs.getString("release_company"));
+				itemdto.setImageFilePath(rs.getString("image_file_path"));
+				itemdto.setImageFileName(rs.getString("image_file_name"));
+				itemdto.setReleaseDate(rs.getString("release_date"));
+				itemdto.setReleaseCompany(rs.getString("release_company"));
 				itemdto.setStatus(rs.getInt("status"));
-				itemdto.setRegist_date(rs.getString("regist_date"));
-				itemdto.setUpdate_date(rs.getString("update_date"));
+				itemdto.setRegistDate(rs.getString("regist_date"));
+				itemdto.setUpdateDate(rs.getString("update_date"));
 
 				itemrelativeDTOList.add(itemdto);
 			}

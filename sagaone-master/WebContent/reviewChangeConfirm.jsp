@@ -188,7 +188,7 @@ input[type=submit] {
 			<s:iterator value="#session.reviewDTOList">
 
 				<div class="review1">
-					<span> 書き込み日：<s:property value="update_date" />
+					<span> 書き込み日：<s:property value="updateDate" />
 					</span>
 				</div>
 				<div class="rating">
