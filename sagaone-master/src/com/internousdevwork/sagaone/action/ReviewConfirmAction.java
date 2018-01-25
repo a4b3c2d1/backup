@@ -27,7 +27,7 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 
 		//改行だけの場合を回避
 		review2 = review;
-		review2=review.replaceAll("\r\n", "").replaceAll( "&nbsp"," ");
+		review2=review.replaceAll("\r\n", "").replaceAll("&nbsp"," ");
 
 		// 入力されているかの確認
 		if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
@@ -41,11 +41,13 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 				return ERROR;
 
 			} else {
-				session.put("review_review", review);
 
+				session.put("review_review", review);
 				session.put("review_value", value);
 
-
+				review2 = review;
+				review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ");
+				session.put("review_review2", review2);
 
 				// 確認画面へ
 				return SUCCESS;

@@ -29,11 +29,12 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 	// loginUserId情報格納の変数
 	private String reviewloginuser_id;
 
+	private String backflg;
+
 	// 戻り値変数
 	public String ret;
 
 	public String execute() {
-
 		// セッション名("loginUser")の存在確認
 		if ((session.get("loginUser")) != null) {
 
@@ -52,7 +53,6 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 				session.put("review_category_id", category_id);
 				session.put("reviewFlg", reviewFlg);
 
-
 				// 書いたことがない場合
 				if (reviewDTOList.size() == 0) {
 
@@ -69,6 +69,14 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 
 		}
 		return ret;
+	}
+
+	public String getBackflg() {
+		return backflg;
+	}
+
+	public void setBackflg(String backflg) {
+		this.backflg = backflg;
 	}
 
 	public void setSession(Map<String, Object> session) {

@@ -1,0 +1,291 @@
+@CHARSET "UTF-8";
+
+a:visited {
+	color: #0066c0;
+	text-decoration: none
+}
+
+#main {
+
+    margin-bottom: 60px;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+.main1 {
+	padding: 55px;
+	height: 400px;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.main1-1 {
+	float: left;
+	width: 500px;
+	height: 500px;
+	margin: 0 25px 50px 0;
+}
+
+.main1-1 img {
+	width: 450px;
+	height: 450px;
+	margin: 50px 25px;
+}
+
+.main1-2 {
+	width: 460px;
+	float: left;
+}
+
+.main1-3 {
+	float: left;
+	height: 400px;
+	width: 200px;
+	position: relative;
+}
+
+.main2 {
+	padding-left: 30px;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+.name-box {
+
+}
+
+.name {
+	font-size: 35px;
+	width: 400px;
+	margin-bottom: 0;
+}
+
+.kana {
+	font-size: 20px;
+	margin: 0;
+}
+
+.price {
+	font-size: 25px;
+	color: #B12704;
+	margin-right: 20px;
+	width: 350px;
+}
+
+.main1 ul {
+	list-style: none;
+	padding: 0;
+	width: 350px;
+}
+
+#a {
+	float: left;
+	margin-right: 30px;
+}
+
+.cart {
+	margin-top: 30px;
+}
+
+.cart-btn {
+	display: block;
+	background: #4B99AD;
+	margin: 10px 0 0 0;
+	padding: 8px 15px 8px 15px;
+	width: 350px;
+	border: none;
+	color: #fff;
+}
+
+.main2 {
+	clear: both;
+	margin: 50px 150px 50px 150px;
+}
+
+.main2 ul {
+	list-style: none;
+}
+
+.rating {
+	margin-bottom: 25px;
+	position: relative;
+	height: 1em;
+	width: 100px;
+	font-size: 20px;
+}
+
+.rating-front {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	color: #ffcc33;
+}
+
+.rating-back {
+	width: 180px;
+	color: #ccc;
+}
+
+.rating:hover .balloon2 {
+	display: inline;
+}
+
+.count {
+	font-size: 15px;
+	color: #000;
+}
+
+.main3 {
+	padding-left: 30px;
+	margin: 50px 150px 35px 150px;
+}
+
+#info:hover {
+	color: #9aa132;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.main4 {
+	clear: both;
+}
+
+.a:hover {
+	color: #eb1515;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.form-style {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+.form-style :hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+
+
+.balloon2 {
+	border-color: #999;
+	position: absolute;
+	border-style: solid;
+	border-width: 1px;
+	display: none;
+	background-color: #ffffff;
+	width: 75px;
+	left: 15%;
+	top: 100%;
+	margin-top: 12px;
+	font-size: 10px;
+}
+
+.balloon2:after {
+	border-bottom: 12px solid rgba(102, 102, 255, 0.50);
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	top: -12px;
+	left: -5%;
+	content: "";
+	position: absolute;
+	top: -12px;
+	left: 5%;
+	content: "";
+}
+
+.title {
+	width: 350px;
+	margin: 5px;
+	padding: 10px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.graph {
+	padding-top: 5px;
+	width: 250px;
+	height: 20px;
+}
+
+.graph1 {
+	margin-right: 10px;
+}
+
+.graph2 {
+	float: left;
+	position: relative; /* IE is dumb */
+	width: 100px;
+	border: 1px solid #207870;
+	padding: 2px;
+}
+
+.graph2 .bar {
+	display: block;
+	position: relative;
+	background: #409890;
+	text-align: center;
+	color: #f0ffff;
+	height: 15px;
+	line-height: 1em;
+}
+
+.graph2 .bar span {
+	position: absolute;
+	left: 1em;
+}
+
+.main2-1 {
+	width: 500px;
+	height: 200px;
+}
+
+.main2-1-1 {
+	height: 200px;
+	width: 250px;
+	float: left;
+}
+
+.main2-2-2 {
+	float: left;
+	margin: 20px 10px 0 75px;
+}
+
+.graph1 {
+	float: left;
+}
+
+.graph3 {
+	margin-left: 10px;
+	float: left;
+}
+
+.main3-1 {
+	float: left;
+	padding: 0 30px 0 30px;
+	height: 170px;
+	margin: 10px 30px 0px 30px;
+}
+
+.main3-2 {
+	position: absolute;
+	bottom: 0px;
+	right: 0;
+}
+
+.itemrelate {
+	width: 900px;
+	height: 220px;
+	position: relative;
+}
+
+.main4 {
+	text-align: center;
+}

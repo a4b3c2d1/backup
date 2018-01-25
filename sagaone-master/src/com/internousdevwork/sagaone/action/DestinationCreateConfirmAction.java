@@ -38,8 +38,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	private String errorUserAddress;
 	private String errorTelNumber;
 	private String errorEmail;
-	private String blank = "・未入力です。";
-	private String duplicate = "・登録済みです。";
 
 	//エラーメッセージ表示用List
 	private List<String> errorFamilyNameList = new ArrayList<>();
@@ -55,125 +53,101 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 		String result = ERROR;
 		int ErrorCount= 0;
 
-		// 入力情報をsessionに格納
-		session.put("userId", userId);
-		session.put("familyName", familyName);
-		session.put("firstName", firstName);
-		session.put("familyNameKana", familyNameKana);
-		session.put("firstNameKana", firstNameKana);
-		session.put("userAddress", userAddress);
-		session.put("telNumber", telNumber);
-		session.put("email", email);
-
 		// ↓バリデーション始まり↓
 		//姓
 		if(familyName.equals("")) {
-			errorFamilyName = blank;
+			errorFamilyName = "・姓を入力してください。";
 			errorFamilyNameList.add(errorFamilyName);
 			ErrorCount++;
-		}
-		if(familyName.length() < 1 || familyName.length() > 16){
+		} else if(familyName.length() < 1 || familyName.length() > 16){
 			errorFamilyName = "・姓は1文字以上16文字以下で入力してください。";
 			errorFamilyNameList.add(errorFamilyName);
 			ErrorCount++;
-		}
-		if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶー]+$")) {
+		} else if (!familyName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶー]+$")) {
 			errorFamilyName = "・姓は半角英数、ひらがな、カタカナ、漢字で入力してください。";
 			errorFamilyNameList.add(errorFamilyName);
 			ErrorCount++;
 		}
 		//名前
 		if(firstName.equals("")) {
-			errorFirstName = blank;
+			errorFirstName = "・名前を入力してください。";
 			errorFirstNameList.add(errorFirstName);
 			ErrorCount++;
-		}
-		if(firstName.length() < 1 || firstName.length() > 16){
+		} else if(firstName.length() < 1 || firstName.length() > 16){
 			errorFirstName = "・名前は1文字以上16文字以下で入力してください。";
 			errorFirstNameList.add(errorFirstName);
 			ErrorCount++;
-		}
-		if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠ァ-ヶー]+$")) {
+		} else if (!firstName.matches("^[a-zA-Zぁ-ゞ一-龠々ァ-ヶー]+$")) {
 			errorFirstName = "・名前は半角英数、ひらがな、カタカナ、漢字で入力してください。";
 			errorFirstNameList.add(errorFirstName);
 			ErrorCount++;
 		}
 		//姓ふりがな
 		if(familyNameKana.equals("")) {
-			errorFamilyNameKana = blank;
+			errorFamilyNameKana = "・姓（ふりがな）を入力してください。";
 			errorFamilyNameKanaList.add(errorFamilyNameKana);
 			ErrorCount++;
-		}
-		if(familyNameKana.length() < 1 || familyNameKana.length() > 16){
+		} else if(familyNameKana.length() < 1 || familyNameKana.length() > 16){
 			errorFamilyNameKana = "・姓（ふりがな）は1文字以上16文字以下で入力してください。";
 			errorFamilyNameKanaList.add(errorFamilyNameKana);
 			ErrorCount++;
-		}
-		if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
+		} else if (!familyNameKana.matches("^[ぁ-ゞ]+$")) {
 			errorFamilyNameKana = "・姓（ふりがな）はひらがなで入力してください。";
 			errorFamilyNameKanaList.add(errorFamilyNameKana);
 			ErrorCount++;
 		}
 		//名前ふりがな
 		if(firstNameKana.equals("")) {
-			errorFirstNameKana = blank;
+			errorFirstNameKana = "・名前(ふりがな）を入力してください。";
 			errorFirstNameKanaList.add(errorFirstNameKana);
 			ErrorCount++;
-		}
-		if(firstNameKana.length() < 1 || firstNameKana.length() > 16){
+		} else if(firstNameKana.length() < 1 || firstNameKana.length() > 16){
 			errorFirstNameKana = "・名前(ふりがな）は1文字以上16文字以下で入力してください。";
 			errorFirstNameKanaList.add(errorFirstNameKana);
 			ErrorCount++;
-		}
-		if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
+		} else if (!firstNameKana.matches("^[ぁ-ゞ]+$")) {
 			errorFirstNameKana = "・名前（ふりがな）はひらがなで入力してください。";
 			errorFirstNameKanaList.add(errorFirstNameKana);
 			ErrorCount++;
 		}
 		//住所
 		if(userAddress.equals("")) {
-			errorUserAddress = blank;
+			errorUserAddress = "・住所を入力してください。";
 			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
-		}
-		if(userAddress.length() < 15 || userAddress.length() > 50){
+		} else if(userAddress.length() < 15 || userAddress.length() > 50){
 			errorUserAddress = "・住所は15文字以上50文字以下で入力してください。";
 			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
-		}
-		if (!userAddress.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠ァ-ヶー]+$")) {
+		} else if (!userAddress.matches("^[a-zA-Z0-9 -/:-@\\[-\\`\\{-\\~ぁ-ゞ一-龠々ァ-ヶー]+$")) {
 			errorUserAddress = "・住所は半角英数記号、ひらがな、カタカナ、漢字で入力してください。";
 			errorUserAddressList.add(errorUserAddress);
 			ErrorCount++;
 		}
 		//電話番号
 		if(telNumber.equals("")){
-			errorTelNumber = blank;
+			errorTelNumber = "・電話番号を入力してください。";
 			errorTelNumberList.add(errorTelNumber);
 			ErrorCount++;
-		}
-		if(telNumber.length() < 11 || telNumber.length() > 13){
+		} else if(telNumber.length() < 11 || telNumber.length() > 13){
 			errorTelNumber = "・電話番号は11桁以上13桁以内で入力してください。";
 			errorTelNumberList.add(errorTelNumber);
 			ErrorCount++;
-		}
-		if (!telNumber.matches("^[0-9]+$")) {
+		} else if (!telNumber.matches("^[0-9]+$")) {
 			errorTelNumber = "・電話番号は半角数字で入力してください。";
 			errorTelNumberList.add(errorTelNumber);
 			ErrorCount++;
 		}
 		//メール
 		if(email.equals("")){
-			errorEmail = blank;
+			errorEmail = "・メールアドレスを入力してください。";
 			errorEmailList.add(errorEmail);
 			ErrorCount++;
-		}
-		if(email.length() <10 || email.length() > 32){
-			errorEmail = "・メールアドレスは10文字以上32文字以下で入力してください。";
+		} else if(email.length() <18 || email.length() > 32){
+			errorEmail = "・メールアドレスは18文字以上32文字以下で入力してください。";
 			errorEmailList.add(errorEmail);
 			ErrorCount++;
-		}
-		if (!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+		} else if (!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
 			errorEmail = "・正しいメールアドレスの形式で入力してください。";
 			errorEmailList.add(errorEmail);
 			ErrorCount++;
@@ -183,8 +157,19 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 		if(ErrorCount > 0) {
 			result = ERROR;
 		}else{
+			// 入力情報をsessionに格納
+			session.put("userId", userId);
+			session.put("familyName", familyName);
+			session.put("firstName", firstName);
+			session.put("familyNameKana", familyNameKana);
+			session.put("firstNameKana", firstNameKana);
+			session.put("userAddress", userAddress);
+			session.put("telNumber", telNumber);
+			session.put("email", email);
+
 			result = SUCCESS;
 		}
+
 
 		return result;
 	}
@@ -245,18 +230,6 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 		this.destinationFlg = destinationFlg;
 	}
 
-	public String getBlank() {
-		return blank;
-	}
-	public void setBlank(String blank) {
-		this.blank = blank;
-	}
-	public String getDuplicate() {
-		return duplicate;
-	}
-	public void setDuplicate(String duplicate) {
-		this.duplicate = duplicate;
-	}
 	public Map<String, Object> getSession() {
 		return session;
 	}

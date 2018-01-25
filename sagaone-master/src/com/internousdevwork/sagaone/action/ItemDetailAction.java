@@ -20,11 +20,11 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 	private List<ItemDTO> itemrelativeDTOList = new ArrayList<ItemDTO>();
 	private List<ReviewDetailDTO> reviewdetailDTO1List = new ArrayList<ReviewDetailDTO>();
 	private List<ReviewDTO> reviewDTO2List = new ArrayList<ReviewDTO>();
-	private List<ItemDTO> itemDTOList = new ArrayList<ItemDTO>();
+
 
 	private ItemrelativeDAO itemrelativeDAO = new ItemrelativeDAO();
 	private ReviewDAO reviewDAO = new ReviewDAO();
-	private ItemDAO itemDAO = new ItemDAO();
+
 
 	public Map<String, Object> session;
 
@@ -54,9 +54,6 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 		reviewdetailDTO1List = reviewDAO.getreviewinfo3(product_id);
 		session.put("reviewdetailDTO1List", reviewdetailDTO1List);
 
-		// 商品一覧再読み込み用
-		itemDTOList = itemDAO.getiteminfo2(offset);
-		session.put("itemDTOList", itemDTOList);
 		return SUCCESS;
 	}
 

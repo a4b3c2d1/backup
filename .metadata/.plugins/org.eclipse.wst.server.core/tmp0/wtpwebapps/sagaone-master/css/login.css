@@ -1,94 +1,70 @@
 @CHARSET "UTF-8";
+body{
+	font-family: Ariel, sans-serif;
+}
 
-/*
- * ヘッダー全体
- */
+#main{
+	margin-top: 200px;
+	margin-bottom: 60px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}
 
 header{
 	display: inline;
-	position:fixed;
+	position:absolute;
 	top:0px;
 	left: 0px;
 	height: 100px;
 	min-width: 100%;
 	width: 100%;
 	padding-left: 10px;
-	background-image: linear-gradient(-90deg, #5265D1, #2FB3CA);
+	background-image: linear-gradient(-90deg, #3A1FA8, #61D5FF);
 	color: white;
-	font-size: 15px;
-	text-decoration: none;
+	font-size: 40px;
+	line-height: 70px;
 }
 
-
-
-/*
- * ロゴ画像
- */
+input{
+	outline: none;
+}
 
 #main-logo{
 	float: left;
-    position:relative;
-    width: 200px;
-    height: 100px;
-    margin:0px auto;
 }
-
-#main-logo img {
-	height: 100px;
-}
-
-#main-logo a{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-}
-
-
-
-/*
- * ヘッダーの画像外部分
- */
-
-#menu{
-	position: relative;
-	height: 100px;
-	width: calc(100% - 200px);
-	margin-left: 230px;
-}
-
-
-/*
- * 検索フォーム
- *
- * search-form： 検索フォーム全体
- * search-box： select、textbox
- * category： select カテゴリー
- * search： textbox
- * search-btn： 検索ボタン
- */
 
 #search-form{
-	position:absolute;
-	float: left;
-	width: 500px;
+	position: absolute;
 	margin-top: 20px;
 	display: inline-block;
 	height: 30px;
+	width: 700px;
 	line-height: 20px;
+	border: none;
 }
 
 #search-box{
 	margin: 0;
-	float: left;
+	float:left;
 	height: 30px;
 }
 
-#category{
+select{
+	appearance: none;
+	border-radius: 0;
+	background: #fff;
+	vertical-align: middle;
+	color: black;
+	box-sizing: content-box;
+	border: 0;
 	margin: 0;
 	float:left;
 	height: 30px;
+	width: 140px;
+	font-size: 12px;
+	text-align: center;
 }
 
 #search{
@@ -100,10 +76,9 @@ header{
 
 .search-btn{
 	position: relative;
-	top: 1px;
 	margin: 0;
 	float: left;
-	height: 29px;
+	height: 30px;
 	width: 35px;
 	background-color: #ffa200;
 	box-sizing:border-box;
@@ -121,94 +96,41 @@ header{
 	opacity: 0.9;
 }
 
-
-
-/*
- * 検索フォームの下部分全体
- */
-
 #header-container{
-
-	position: fixed;
-	bottom: 0;
-	margin-left: 0;
-	top: 50px;
-	width: calc(100% - 200px);
-	height: 40px;
-	float: left;
-}
-
-
-/*
- * ○○ログイン中 表示
- */
-
-.header-menu{
-	line-height: 50px;
-	float: left;
-
-}
-
-
-/*
- * 下のボタン全体
- *
- * home-btn： ホームボタン
- * home-btn-logout: ログアウトボタン
- * dropmenu： アカウントメニュー
- */
-
-#header-container .ex> a {
-	float: right;
-	margin-left:40px;
-	list-style: none;
-}
-
-
-#header-container .home-btn >a {
-	float: right;
-	bottom: 0;
-	text-decoration: none;
 	position: absolute;
-	width: 40px;
-	text-align: center;
-	line-height: 40px;
-	background-color: white;
+	margin-top: 40px;
+	margin-left: 180px;
+	width: 700px;
 }
 
-#header-container .home-btn :hover {
-    background: rgba(255, 255, 255, .2);
-	font-color: white;
-}
-
-
-
-#header-container .dropmenu {
+#itemmenu{
 	float: left;
-	bottom: 0px;
-	width: 160px;
-	height: 40px;
 }
 
-.dropmenu > li{
-	width: 160px;
-	height: 40px;
-    display: inline-block;
-    text-decoration: none;
-    background-color:white;
-    text-align: center;
-	line-height: 40px;
-    color: #5d8eaf;
-
-  border:none;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -o-transition: 0.3s;
-  -ms-transition: 0.3s;
-  list-style: none;
-  transition: 0.3s;
+#acountmenu{
+	float: right;
 }
 
+#welcome{
+	float: right;
+}
+
+.sankaku{
+	font-size: 8px;
+	color: #f1f1f1;
+}
+
+
+.dropmenu{
+float: left;
+  *zoom: 1;
+  list-style-type: none;
+  width: 700px;
+  height:30px;
+  margin: 5px auto 30px;
+  padding: 0;
+  font-size: 14px;
+}
 .dropmenu:before, .dropmenu:after{
   content: "";
   display: table;
@@ -216,19 +138,21 @@ header{
 .dropmenu:after{
   clear: both;
 }
-
- .dropmenu:hover > li{
-  background-color: rgba(255, 255, 255, .2);
-  color: white;
+.dropmenu li{
+  position: relative;
+  width: 30%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
-
-
-.dropmenu li .b-btn{
+.dropmenu li .b-btn, .c-btn{
   display: block;
-
+  margin: 0;
   padding: 15px 0 11px;
-  width: 160px;
+  width: 100%;
   background: #fff;
+  box-shadow: 3px 3px 10px #cccccc;
   color: black;
   font-size: 14px;
   line-height: 1;
@@ -241,7 +165,7 @@ header{
   list-style: none;
   position: absolute;
   z-index: 9999;
-
+  top: 100%;
   left: 0;
   margin: 0;
   padding: 0;
@@ -249,7 +173,7 @@ header{
     transition: opacity 0.2s linear;
 }
 .dropmenu li ul li{
-  width: 160px;
+  width: 100%;
 }
 .dropmenu li ul li .b-btn{
   padding: 13px 15px;
@@ -257,7 +181,7 @@ header{
   text-align: center;
 }
 .dropmenu li:hover > .b-btn{
-  background: #6e7c0c;
+  background: #59c5ff;
   transition: .2s;
 }
 .dropmenu li .b-btn:hover{
@@ -266,6 +190,20 @@ header{
 	color: #fff;
 }
 
+.dropmenu li ul li .c-btn{
+  padding: 13px 15px;
+  background: #fff;
+  text-align: center;
+}
+.dropmenu li:hover > .c-btn{
+  background: #00d977;
+  transition: .2s;
+}
+.dropmenu li .c-btn:hover{
+  	letter-spacing: 3px;
+	background-color: #00d977;
+	color: #fff;
+}
 
 #normal li ul{
   display: none;
@@ -285,26 +223,15 @@ header{
   height: 38px;
 }
 
-
-
-
-#header-container .home-btn-logout > a {
-	float: right;
-	text-decoration: none;
-	position: absolute;
-	width: 40px;
+footer{
+	clear: both;
+	bottom: 0;
+	width: 100%;
 	height: 40px;
+	line-height: 50px;
+	position: relative;
 	text-align: center;
-	line-height: 40px;
-	background-color: white;
 }
-
-
-#header-container .home-btn-logout> a :hover {
-    background: rgba(255, 255, 255, .2);
-	font-color: white;
-}
-
 
 
 
@@ -386,13 +313,13 @@ select{
     background: #4B99AD;
     padding: 5px 7px 5px 7px;
     border: none;
-    color: #c8cfd1;
+    color: white;
     margin-right: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
 }
 .form-style .login:hover{
-    background: #22505b;
+    background: #428191;
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
@@ -484,6 +411,57 @@ input:checked+label::after {
   color: #fff;
 }
 
+
+
+/*
+ * マイページtable
+ */
+
+.myPage  {
+	margin: 0 auto;
+    width: 600px;
+
+}
+
+.myPage th {
+    vertical-align: middle;
+    color: #4C5C5D;
+    width: 100px;
+    border-right: solid 1px #727E82;
+    text-align: left;
+    font-weight: bold;
+    background-color: #DAE1DB;
+}
+
+.myPage td {
+    vertical-align: middle;
+}
+
+.myPage th, td{
+	padding: 10px;
+}
+
+.myPage td.bar{
+
+    width: 100%;
+    border-top: solid 1px #34495e;
+}
+
+.page{
+	text-decoration: none;
+	float: left;
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    margin-right: 10px;
+}
+.page:hover{
+    background: #428191;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
 
 
 

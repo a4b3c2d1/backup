@@ -131,7 +131,7 @@ public class MyPageAddressDTOTest {
 		MyPageAddressDTO myadd = new MyPageAddressDTO();
 		String test = "abc123";
 		myadd.setUserAddress(test);
-		assertEquals(test, myadd.getTelNumber());
+		assertEquals(test, myadd.getUserAddress());
 	}
 
 	@Test
@@ -139,7 +139,7 @@ public class MyPageAddressDTOTest {
 		MyPageAddressDTO myadd = new MyPageAddressDTO();
 		String test = "あいう１２３";
 		myadd.setUserAddress(test);
-		assertEquals(test, myadd.getTelNumber());
+		assertEquals(test, myadd.getUserAddress());
 	}
 
 	@Test
@@ -147,7 +147,7 @@ public class MyPageAddressDTOTest {
 		MyPageAddressDTO myadd = new MyPageAddressDTO();
 		String test = "abc123あいう１２３漢字";
 		myadd.setUserAddress(test);
-		assertEquals(test, myadd.getTelNumber());
+		assertEquals(test, myadd.getUserAddress());
 	}
 
 	@Test
@@ -155,7 +155,7 @@ public class MyPageAddressDTOTest {
 		MyPageAddressDTO myadd = new MyPageAddressDTO();
 		String test = null;
 		myadd.setUserAddress(test);
-		assertEquals(test, myadd.getTelNumber());
+		assertEquals(test, myadd.getUserAddress());
 	}
 
 	@Test
@@ -163,7 +163,7 @@ public class MyPageAddressDTOTest {
 		MyPageAddressDTO myadd = new MyPageAddressDTO();
 		String test = "";
 		myadd.setUserAddress(test);
-		assertEquals(test, myadd.getTelNumber());
+		assertEquals(test, myadd.getUserAddress());
 	}
 
 	@Test
@@ -171,7 +171,7 @@ public class MyPageAddressDTOTest {
 		MyPageAddressDTO myadd = new MyPageAddressDTO();
 		String test = " ";
 		myadd.setUserAddress(test);
-		assertEquals(test, myadd.getTelNumber());
+		assertEquals(test, myadd.getUserAddress());
 	}
 
 	@Test
@@ -179,7 +179,7 @@ public class MyPageAddressDTOTest {
 		MyPageAddressDTO myadd = new MyPageAddressDTO();
 		String test = "  ";
 		myadd.setUserAddress(test);
-		assertEquals(test, myadd.getTelNumber());
+		assertEquals(test, myadd.getUserAddress());
 	}
 
 	@Test

@@ -10,6 +10,7 @@
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/header.css">
 	
 	<script type="text/javascript"
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -64,9 +65,9 @@
 <body>
 	<header>
 		<div id="main-logo">
-			<img src="./css/sagaone_logo.png" height="100px">
+			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
 		</div>
-		<div id="title">クレジットカード登録</div>
+		<div id="title">クレジットカード新規登録</div>
 	</header>
 	
 	<div id="main">
@@ -83,7 +84,7 @@
 							<label>ログインID</label>
 						</td>
 						<td>
-							<input type="text" name="userId" value= '<s:property value= "#session.checkedLoginUserId" />' placeholder= "ログインID" >
+							<input type="text" name="userId" placeholder= "ログインID"<s:if test="session != null"> value="<s:property value="userId"/>"</s:if>size="35">
 						</td>
 						<td>
 							<p class="error">
@@ -100,7 +101,7 @@
 							<label>カード番号</label>
 						</td>
 						<td>
-							<input type="text" name="cardNumber" placeholder="例）1234123412341234（スペース,ハイフンなし）" <s:if test="session != null"> value="<s:property value="cardNumber"/>"</s:if>>
+							<input type="text" name="cardNumber" placeholder="14～16桁,数字,スペース,ハイフンなし" <s:if test="session != null"> value="<s:property value="cardNumber"/>"</s:if>size="35">
 						</td>
 						<td>
 							<p class="error">
@@ -156,7 +157,7 @@
 							<!-- 3桁もしくは4桁  -->
 						</td>
 						<td>
-							<input type="text" name="securityNumber" placeholder="例）123" <s:if test="session != null"> value="<s:property value="securityNumber"/>"</s:if> >
+							<input type="text" name="securityNumber" placeholder="3～4桁,数字" <s:if test="session != null"> value="<s:property value="securityNumber"/>"</s:if> size="35">
 						</td>
 						<td>
 								<p class="error">
@@ -173,7 +174,7 @@
 							<!-- 半角ローマ字  -->
 						</td>
 						<td>
-							<input type="text" name="nominee" placeholder="例）taro yamada"<s:if test="session != null"> value="<s:property value="nominee"/>"</s:if>>
+							<input type="text" name="nominee" placeholder="taro yamada(半角英字)"<s:if test="session != null"> value="<s:property value="nominee"/>"</s:if>size="35">
 						</td>
 						<td>
 							<p class="error">

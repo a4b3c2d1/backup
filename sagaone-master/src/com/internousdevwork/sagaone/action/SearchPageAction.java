@@ -34,9 +34,13 @@ public class SearchPageAction extends ActionSupport implements SessionAware{
 			for(int i=0; i<9; i++) {
 				pageItemList.add(searchResultList.get(i + pageNum * 9));
 			}
-		}else {
-			for(int i=0; i<searchResultList.size()-9; i++) {
+		}else if(searchResultList.size() >= 9 && searchResultList.size() < (pageNum + 1) * 9){
+			for(int i=0; i< (pageNum + 1) * 9 - searchResultList.size() - 1; i++) {
 				pageItemList.add(searchResultList.get(i + pageNum * 9));
+			}
+		}else if(searchResultList.size() < 9){
+			for(int i=0; i<searchResultList.size(); i++){
+				pageItemList.add(searchResultList.get(i));
 			}
 		}
 

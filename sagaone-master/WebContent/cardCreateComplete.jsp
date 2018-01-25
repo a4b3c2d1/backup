@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Style-Type" content="text/css" />
 	
 <link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="./css/header.css">
 	
 <title>クレジットカード登録完了</title>
 <style type="text/css">
@@ -23,13 +24,10 @@
 <body>
 	<header>
 		<div id="main-logo">
-			<img src="./css/sagaone_logo.png" height="100px">	
+			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
 		</div>
-		<div id="title">
-			クレジットカード登録完了
-		</div>
+		<div id="title">クレジットカード登録完了</div>
 	</header>
-	
 	<div id="main">
 		<h3>クレジットカードの登録が完了致しました。</h3>
 		<div>

@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 		
 <link rel="stylesheet" type="text/css" href="./css/style.css">
-
+<link rel="stylesheet" type="text/css" href="./css/header.css">
 
 
 <title>クレジットカード登録確認</title>
@@ -42,10 +42,10 @@
 <body>
 <header>
 		<div id="main-logo">
-			<img src="./css/sagaone_logo.png" height="100px">
+			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
 		</div>
 		<div id="title">クレジットカード登録確認</div>
-</header>
+</header>	
 <div id="main">
 	<h3>登録する内容は以下でよろしいですか。</h3>
 	<table>

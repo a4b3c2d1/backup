@@ -2,7 +2,7 @@ package com.internousdevwork.sagaone.dto;
 
 public class CartDTO {
 	private String id;
-	private int productId;
+	private int productId = 0;
 	private String productName;
 	private String productNameKana;
 	private String imageFilePath;

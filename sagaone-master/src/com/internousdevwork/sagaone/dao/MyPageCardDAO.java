@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.internousdevwork.sagaone.dto.MyPageCardDTO;
+//試し
+import com.internousdevwork.sagaone.dto.CardUpdateDTO;
 import com.internousdevwork.sagaone.util.DBConnector;
 
 //card_infoテーブル
@@ -14,8 +15,8 @@ public class MyPageCardDAO {
 	private Connection con= db.getConnection();
 
 	
-	public MyPageCardDTO getCard(String loginUserId){
-		MyPageCardDTO myPageCardDTO= new MyPageCardDTO();
+	public CardUpdateDTO getCard(String loginUserId){
+		CardUpdateDTO dto = new CardUpdateDTO();
 		String sql = "select * from card_info where user_id = ?";
 		try{
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -23,8 +24,11 @@ public class MyPageCardDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()){
-				myPageCardDTO.setCardNumber(rs.getString("card_number"));
-				//myPageCardDTO.setUserId(rs.getString("userId"));
+				dto.setCardNumber(rs.getString("card_number"));
+				dto.setLimitYear(rs.getString("limit_year"));
+				dto.setLimitMonth(rs.getString("limit_month"));
+				dto.setSecurityNumber(rs.getString("security_number"));
+				dto.setNominee(rs.getString("nominee"));
 			}
 		}catch (Exception e){
 			e.getMessage();
@@ -36,6 +40,6 @@ public class MyPageCardDAO {
 			e.printStackTrace();
 		}
 		
-		return myPageCardDTO;
+		return dto;
 	}
 }

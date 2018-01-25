@@ -1,0 +1,335 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0;
+}
+.clearfix:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+.btn {
+	display: inline-block;
+    background: #4B99AD;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    margin-right: 10px;
+}
+.btn:hover {
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+
+}
+.btn:active {
+    background: #4291A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.l-btn {
+	display: block;
+	margin-bottom: 10px;
+    padding: 10px 20px;
+}
+
+/* header */
+.header{
+	height: 100px;
+	background-image: linear-gradient(-90deg, #3A1FA8, #61D5FF);
+}
+.main-logo{
+	float: left;
+	margin: 0 15px 0 10px
+}
+
+.search-form{
+	padding-top: 20px;
+	height: 30px;
+	width: ;
+	line-height: 20px;
+}
+.search-box{
+	margin: 0;
+	float:left;
+	height: 30px;
+}
+
+.search{
+	height: 24px;
+	width: 250px;
+}
+.search-text {
+	margin: 0;
+    float: left;
+    height: 24px;
+    width: 250px;
+}
+.search-btn{
+	display: inline-block;
+	height: 30px;
+	border-left: 1px solid #d4d4d4;
+	background-color: #ffa200;
+}
+.-btn {
+	padding: 3px;
+	width: 24px;
+	height: 24px;
+}
+.search-btn:hover{
+	cursor: pointer;
+	opacity: 0.9;
+}
+.header-container{
+	float:right;
+	margin: 10px 30px;
+}
+
+.category{
+	margin: 0;
+	float:left;
+	height: 30px;
+}
+
+.dropmenu{
+float: left;
+  *zoom: 1;
+  list-style-type: none;
+  width: ;
+  height:30px;
+  margin: 5px auto 30px;
+  padding: 0;
+  font-size: 14px;
+  color: #fff;
+}
+.dropmenu:before, .dropmenu:after{
+  content: "";
+  display: table;
+}
+.dropmenu:after{
+  clear: both;
+}
+.dropmenu li{
+  position: relative;
+  width: 100%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.dropmenu li .b-btn{
+  display: block;
+  margin: 0;
+  padding: 15px 0 11px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 3px 3px 10px #cccccc;
+  color: black;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  border: transparent 1px solid ;
+  transition: 0.2s;
+}
+.dropmenu li ul{
+  list-style: none;
+  position: absolute;
+  z-index: 9999;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+    border: 1px solid #aaa;
+    transition: opacity 0.2s linear;
+}
+.dropmenu li ul li{
+  width: 100%;
+}
+.dropmenu li ul li .b-btn{
+  background: #fff;
+  text-align: center;
+}
+.dropmenu li:hover > .b-btn{
+  background: #6e7c0c;
+  transition: .2s;
+}
+.dropmenu li .b-btn:hover{
+  	letter-spacing: 2px;
+	background-color: #59c5ff;
+	color: #fff;
+}
+
+.normal li ul{
+  display: none;
+}
+.normal li:hover ul{
+  display: block;
+}
+
+.dropmenu li ul li{
+  overflow: hidden;
+  height: 0;
+  transition: .2s;
+}
+
+.dropmenu li:hover ul li{
+  overflow: visible;
+  height: 38px;
+}
+
+
+/* main */
+
+.wrapper {
+	max-width: 700px;
+	margin: 20px auto;
+
+}
+.checkbox {
+	float: left;
+	display: block;
+	width: ;
+	height: ;
+}
+.checkbox input {
+	margin: 26px 8px;
+	vertical-align: center;
+}
+.purchase-list {
+	margin-bottom: 15px;
+}
+.regist {
+	border: 1px solid #ddd;
+	border-radius: 4px 4px 0 0;
+	background-color: #f6f6f6;
+}
+.regist-date {
+	float: left;
+
+}
+.regist-date p:first-child {
+	margin: 8px 8px 0;
+	font: 14px #000;
+}
+.regist-date p:last-child {
+	margin: 0 8px 8px;
+	font: 14px #000;
+}
+.item {
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-radius: 0 0 4px 4px;
+}
+.img {
+	float: left;
+	margin: 15px 33px 15px 33px;
+	width: 150px;
+	height: 150px;
+
+}
+.img img {
+	width: 100%;
+	height: 100%;
+}
+
+.detail {
+	float: left;
+
+}
+.detail p {
+	margin: ;
+}
+.hurigana {
+	margin: 8px 0 -6px;
+}
+.name {
+	margin: 0 0 8px;
+	font: 21px bold sans-serif;
+}
+.name a {
+	color: #4B99AD;
+	text-decoration: none;
+}
+.name a:hover {
+	text-decoration: underline;
+}
+.count {
+	margin: 0 0 6px;
+}
+.price {
+	margin: 0 0 6px;
+}
+.company {
+	margin: 0 0 6px;
+}
+.release-date {
+	margin: 0 0 6px;
+}
+
+.review {
+	float: right;
+	margin: 30px auto;
+
+}
+.delete {
+	margin: 10px auto;
+}
+
+/*全体*/
+.hidden_box {
+    margin: 2em 0;/*前後の余白*/
+    padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+	content: 消去;
+    padding: 15px;
+    font-weight: bold;
+    border: solid 2px black;
+    cursor :pointer;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    background: #efefef;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+
+/* footer */
+
+.footer{
+	background-image: linear-gradient(-90deg, #3A1FA8, #61D5FF);
+}
+.footer p {
+	margin: 0;
+	padding: 20px 0;
+	text-align: center;
+
+}

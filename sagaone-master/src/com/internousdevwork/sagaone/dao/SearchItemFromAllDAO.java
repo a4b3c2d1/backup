@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class SearchItemFromAllDAO {
 	private List<SearchItemInfoDTO> searchItemInfoDTOList = new ArrayList<SearchItemInfoDTO>();
 	DBConnector db = new DBConnector();
 	Connection con = db.getConnection();
+	NumberFormat nfNum = NumberFormat.getNumberInstance();
 
 	public List<SearchItemInfoDTO> getItemInfoFromAll(){
 		String sql = "select a.*,round(avg(b.value),1) as avgvalue ,count(b.value) as countvalue from product_info a left join review_info b on a.product_id=b.product_id group by a.product_id order by a.id asc;";
@@ -34,6 +36,7 @@ public class SearchItemFromAllDAO {
 				dto.setProductDescription(rs.getString("product_description"));
 				dto.setCategoryId(rs.getString("category_id"));
 				dto.setPrice(rs.getInt("price"));
+				dto.setPriceStr(nfNum.format(dto.getPrice()));
 				dto.setImageFilePath(rs.getString("image_file_path"));
 				dto.setImageFileName(rs.getString("image_file_name"));
 				dto.setReleaseDate(StringUtils.left(rs.getString("release_date"),10));

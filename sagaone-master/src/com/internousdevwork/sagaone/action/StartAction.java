@@ -63,6 +63,8 @@ public class StartAction extends ActionSupport implements SessionAware {
 			}
 		}
 
+		session.put("allWordsList", allWordsList);
+
 		return SUCCESS;
 	}
 

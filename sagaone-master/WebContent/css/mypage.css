@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+
+/*
+ * フォーム
+ *
+ */
+
+.form-style {
+    margin:120px auto;
+    max-width: 800px;
+    padding: 5px 5px 0px 5px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+/*
+ * マイページtable
+ */
+
+#myPage {
+	margin: 0 auto;
+    width: 700px;
+
+}
+
+#myPage th {
+    vertical-align: middle;
+    color: #4C5C5D;
+    width: 150px;
+    border-right: solid 1px #727E82;
+    text-align: left;
+    font-weight: bold;
+    background-color: #DAE1DB;
+}
+
+#myPage td {
+    vertical-align: middle;
+}
+
+#myPage th, td{
+	padding: 10px;
+}
+
+#myPage td.bar{
+
+    width: 100%;
+    border-top: solid 1px #34495e;
+}
+
+#page{
+	text-decoration: none;
+	float: left;
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    margin-right: 10px;
+}
+#page:hover{
+	cursor: pointer;
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}

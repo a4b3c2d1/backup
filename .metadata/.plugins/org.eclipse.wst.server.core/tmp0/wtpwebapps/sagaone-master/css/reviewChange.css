@@ -1,0 +1,108 @@
+@CHARSET "UTF-8";
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: #0066c0;
+	text-decoration: none
+}
+
+#main {
+	margin-top: 0px;
+	margin-bottom: 60px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}
+
+.main1 {
+	padding: 20px;
+	width: 100%;
+	height: 350px;
+}
+
+.review1 {
+	height: 250px;
+	float: left;
+	width: 650px;
+}
+
+.text {
+	width: 600px;
+	height: 200px;
+	font-size: 25px;
+}
+
+.a:hover {
+	color: #eb1515;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.main2 {
+	width: 100%;
+	clear: both;
+	float: left;
+}
+
+.botton1 {
+	float: right;
+	margin: 10px;
+}
+
+.hyouka {
+	float: left;
+	height: 100px;
+	display: -ms-flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: -ms-row-reverse;
+	flex-direction: -webkit-row-reverse;
+	flex-direction: -moz-row-reverse;
+	flex-direction: -o-row-reverse;
+	flex-direction: row-reverse;
+	justify-content: -ms-right;
+	justify-content: -webkit-right;
+	justify-content: -moz-right;
+	justify-content: -o-right;
+	justify-content: right;
+}
+
+.hyouka input[type='radio'] {
+	display: none;
+}
+
+.hyouka input[type='radio'] {
+	display: none;
+}
+
+.hyouka label {
+	position: relative;
+	padding: 10px 0px 20px 0px;
+	color: #bbb;
+	cursor: pointer;
+	font-size: 40px;
+}
+
+.hyouka label:hover, .hyouka label:hover ~ label, .hyouka input[type='radio']:checked
+	 ~ label {
+	color: #ffcc33;
+}
+
+.form-style {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+.form-style :hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}

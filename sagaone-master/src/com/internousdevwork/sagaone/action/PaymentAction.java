@@ -6,10 +6,12 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdevwork.sagaone.dao.MyPageCardDAO;
 import com.internousdevwork.sagaone.dao.PaymentCartInfoDAO;
 import com.internousdevwork.sagaone.dao.PaymentProductInfoDAO;
 import com.internousdevwork.sagaone.dao.PaymentUserAddressDAO;
 import com.internousdevwork.sagaone.dao.PaymentUserInfoDAO;
+import com.internousdevwork.sagaone.dto.CardUpdateDTO;
 import com.internousdevwork.sagaone.dto.PaymentCartInfoDTO;
 import com.internousdevwork.sagaone.dto.PaymentProductInfoDTO;
 import com.internousdevwork.sagaone.dto.PaymentUserAddressDTO;
@@ -31,12 +33,18 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 	private PaymentUserAddressDAO userAddressDAO = new PaymentUserAddressDAO();
 	private PaymentCartInfoDAO paymentCartInfoDAO = new PaymentCartInfoDAO();
 	private int sumPrice = 0;
+	
+	//クレジットカード
+	private MyPageCardDAO myPageCardDAO = new MyPageCardDAO();
+	private CardUpdateDTO cardUpdateDTO = new CardUpdateDTO();
 
 	public String execute(){
 		String ret = SUCCESS;
 
 
-
+		//クレジットカード
+		cardUpdateDTO =myPageCardDAO.getCard(session.get("loginUserId").toString());
+		
 		paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
 
 		addressDTOList = userAddressDAO.getUserAddress(session.get("loginUserId").toString());
@@ -67,6 +75,8 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 			session.put("cartInfoList", cartInfoList);
 			session.put("productDTOList", productDTOList);
 			session.put("sumPrice", sumPrice);
+			//クレジットカード
+			session.put("cardUpdateDTO",cardUpdateDTO);
 		}
 		return ret;
 	}
@@ -147,6 +157,24 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 
 	public void setPaymentCartInfoDAO(PaymentCartInfoDAO paymentCartInfoDAO) {
 		this.paymentCartInfoDAO = paymentCartInfoDAO;
+	}
+
+
+
+	public CardUpdateDTO getCardUpdateDTO() {
+		return cardUpdateDTO;
+	}
+
+
+
+	public void setCardUpdateDTO(CardUpdateDTO cardUpdateDTO) {
+		this.cardUpdateDTO = cardUpdateDTO;
+	}
+
+
+
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
 

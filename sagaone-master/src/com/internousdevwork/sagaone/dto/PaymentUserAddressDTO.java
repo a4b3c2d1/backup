@@ -3,7 +3,7 @@ package com.internousdevwork.sagaone.dto;
 public class PaymentUserAddressDTO {
 	private String telNumber;
 	private String userAddress;
-	private int status;
+	private int status;  //住所
 
 
 

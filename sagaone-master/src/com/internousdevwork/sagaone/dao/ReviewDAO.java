@@ -48,8 +48,7 @@ public class ReviewDAO {
 
 	public List<ReviewDTO> getreviewinfo2(String product_id) {
 
-		String sql2 = "select * from review_info where product_id=?";
-
+		String sql2 = "select * from review_info where product_id=? order by update_date desc";
 
 		try
 
@@ -80,7 +79,7 @@ public class ReviewDAO {
 
 	public List<ReviewDetailDTO> getreviewinfo3(String product_id) {
 
-		String sql3 = "select review_value.value,countvalue.cnt from review_value left join (select value ,count(value) as cnt from review_info where product_id=? group by id) as countvalue on review_value.value=countvalue.value ;";
+		String sql3 = "select review_value.value,countvalue.cnt from review_value left join (select distinct value ,count(user_id) as cnt from review_info where product_id=? group by value) as countvalue on review_value.value=countvalue.value order by value desc";
 		try
 
 		{
@@ -93,7 +92,6 @@ public class ReviewDAO {
 				ReviewDetailDTO reviewdetaildto = new ReviewDetailDTO();
 				reviewdetaildto.setValue(rs.getInt("value"));
 				reviewdetaildto.setCnt(rs.getInt("cnt"));
-
 				reviewDTO3List.add(reviewdetaildto);
 			}
 		} catch (

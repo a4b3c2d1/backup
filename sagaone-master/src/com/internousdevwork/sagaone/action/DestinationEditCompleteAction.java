@@ -34,6 +34,15 @@ public class DestinationEditCompleteAction extends ActionSupport implements Sess
 				session.get("destinationId").toString()
 				);
 
+		session.remove("familyName");
+		session.remove("firstName");
+		session.remove("familyNameKana");
+		session.remove("firstNameKana");
+		session.remove("email");
+		session.remove("telNumber");
+		session.remove("userAddress");
+
+
 		return SUCCESS;
 
 	}

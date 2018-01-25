@@ -61,9 +61,7 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 
 	// 全削除メソッド
 	public void delete() throws SQLException {
-//		実装時にsession取得に切り替え
-//		String userId = session.get("loginUserId").toString();
-		String userId = "taro";
+		String userId = session.get("loginUserId").toString();
 		int result = purchaseHistoryDAO.deletePurchaseHistory(userId);
 
 		if (result > 0) {
@@ -79,16 +77,15 @@ public class PurchaseHistoryAction extends ActionSupport implements SessionAware
 
 		int result = purchaseHistoryDeleteDAO.deleteCheckedPurchaseHistory(checkboxList);
 
+		String userId = session.get("loginUserId").toString();
+		purchaseHistoryList = purchaseHistoryDAO.getPurchaseHistory(userId);
+		Iterator<PurchaseHistoryDTO> iterator = purchaseHistoryList.iterator();
+		if (!(iterator.hasNext())) {
+			purchaseHistoryList = null;
+		}
+
 		if (result > 0) {
 			setMessage(result + "件削除しました。");
-//			実装時にsession取得に切り替え
-//			String userId = session.get("loginUserId").toString();
-			String userId = "taro";
-			purchaseHistoryList = purchaseHistoryDAO.getPurchaseHistory(userId);
-			Iterator<PurchaseHistoryDTO> iterator = purchaseHistoryList.iterator();
-			if (!(iterator.hasNext())) {
-				purchaseHistoryList = null;
-			}
 		} else if (result == 0) {
 			setMessage("商品購入履歴を削除できませんでした。");
 		}

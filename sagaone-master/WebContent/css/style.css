@@ -1,26 +1,17 @@
 @CHARSET "UTF-8";
 body{
+	margin: 0;
 	font-family: Ariel, sans-serif;
 }
-
-#main{
-	margin-top: 200px;
-	margin-bottom: 60px;
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	position: relative;
+.clearfix:after {
+	content: "";
+	clear: both;
+	display: block;
 }
 
 header{
-	display: inline;
-	position:absolute;
-	top:0px;
-	left: 0px;
 	height: 100px;
-	min-width: 100%;
 	width: 100%;
-	padding-left: 10px;
 	background-image: linear-gradient(-90deg, #3A1FA8, #61D5FF);
 	color: white;
 	font-size: 40px;
@@ -33,16 +24,17 @@ input{
 
 #main-logo{
 	float: left;
+	height: 100px;
+	padding-left: 10px;
 }
 
 #search-form{
 	position: absolute;
-	margin-top: 20px;
 	display: inline-block;
+	padding-top: 20px;
+	margin-left: 60px;
 	height: 30px;
-	width: 700px;
 	line-height: 20px;
-	border: none;
 }
 
 #search-box{
@@ -52,9 +44,20 @@ input{
 }
 
 #category{
+	appearance: none;
+	background: #fff;
+	vertical-align: middle;
+	color: black;
+	box-sizing: content-box;
+	border: 0;
+	border-right: 1px solid #d7d7d7;
+	border-radius: 5px 0 0 5px;
 	margin: 0;
 	float:left;
 	height: 30px;
+	width: 140px;
+	font-size: 12px;
+	text-align: center;
 }
 
 #search{
@@ -66,14 +69,14 @@ input{
 
 .search-btn{
 	position: relative;
-	top: 1px;
 	margin: 0;
 	float: left;
-	height: 29px;
+	height: 30px;
 	width: 35px;
 	background-color: #ffa200;
 	box-sizing:border-box;
 	border: none;
+	border-radius: 0 5px 5px 0;
 	color: black;
 	box-shadow: none;
 	outline: none;
@@ -81,7 +84,9 @@ input{
 	text-align: center;
 	line-height: 22px;
 }
-
+.search-btn input {
+	padding-top: 5px;
+}
 .search-btn:hover{
 	cursor: pointer;
 	opacity: 0.9;
@@ -89,18 +94,37 @@ input{
 
 #header-container{
 	position: absolute;
-	margin-top: 40px;
-	margin-left: 65%;
+	display: inline-block;
+	width: 600px;
+	height: 50px;
+	margin-top: 50px;
+	margin-left: 30px;
 }
 
+#itemmenu{
+	float: left;
+	width: 180px;
+	height: 100%;
+}
+
+#acountmenu{
+	float: left;
+	width: 180px;
+	height: 100%;
+}
+
+#welcome{
+	float: right;
+	height: 45px;
+}
 
 .dropmenu{
 float: left;
   *zoom: 1;
   list-style-type: none;
-  width: 500px;
-  height:30px;
-  margin: 5px auto 30px;
+  width: 700px;
+  height:45px;
+  margin: 5px auto 0;
   padding: 0;
   font-size: 14px;
 }
@@ -111,7 +135,7 @@ float: left;
 .dropmenu:after{
   clear: both;
 }
-.dropmenu li{
+.itemmenu, .acountmenu {
   position: relative;
   width: 30%;
   float: left;
@@ -119,7 +143,12 @@ float: left;
   padding: 0;
   text-align: center;
 }
-.dropmenu li .b-btn{
+.drop-topic {
+	display: inherit;
+	height: 100%;
+	text-align: center;
+}
+.b-btn, .c-btn{
   display: block;
   margin: 0;
   padding: 15px 0 11px;
@@ -134,59 +163,90 @@ float: left;
   border: transparent 1px solid ;
   transition: 0.2s;
 }
-.dropmenu li ul{
+.item-drop, .acount-drop {
+  display: none;
   list-style: none;
   position: absolute;
   z-index: 9999;
   top: 100%;
-  left: 0;
+  width: 180px;
   margin: 0;
   padding: 0;
     border: 1px solid #aaa;
     transition: opacity 0.2s linear;
 }
-.dropmenu li ul li{
+
+.item-drop li{
   width: 100%;
 }
-.dropmenu li ul li .b-btn{
-  padding: 13px 15px;
-  background: #fff;
-  text-align: center;
+.acount-drop li {
+	width: 100%;
 }
-.dropmenu li:hover > .b-btn{
-  background: #6e7c0c;
-  transition: .2s;
-}
-.dropmenu li .b-btn:hover{
-  	letter-spacing: 3px;
-	background-color: #59c5ff;
-	color: #fff;
-}
-
-#normal li ul{
-  display: none;
-}
-#normal li:hover ul{
+.dropmenu li:hover ul{
   display: block;
 }
 
-#dropmenu li ul li{
+.dropmenu li ul li{
   overflow: hidden;
   height: 0;
   transition: .2s;
 }
 
-#dropmenu li:hover ul li{
+.dropmenu li:hover ul li{
   overflow: visible;
   height: 38px;
+}
+.b-btn{
+  padding: 13px 15px;
+  background: #fff;
+  text-align: center;
+}
+.acount-drop:hover > .b-btn{
+  background: #59c5ff;
+  transition: .2s;
+}
+.b-btn:hover{
+  	letter-spacing: 3px;
+	background-color: #59c5ff;
+	color: #fff;
+}
+
+.c-btn{
+  padding: 13px 15px;
+  background: #fff;
+  text-align: center;
+}
+.item-drop:hover > .c-btn{
+  background: #00d977;
+  transition: .2s;
+}
+.c-btn:hover{
+  	letter-spacing: 3px;
+	background-color: #00d977;
+	color: #fff;
+}
+
+.item-drop {
+  display: none;
+}
+
+
+
+#main{
+	margin: 50px 5px 60px ;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
 }
 
 footer{
 	clear: both;
 	bottom: 0;
 	width: 100%;
-	height: 40px;
+	height: 45px;
 	line-height: 50px;
-	position: absolute;
+	position: relative;
 	text-align: center;
+	background-image: linear-gradient(-90deg, #3A1FA8, #61D5FF);
+	color: white;
 }

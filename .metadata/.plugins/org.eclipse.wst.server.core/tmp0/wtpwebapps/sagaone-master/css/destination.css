@@ -1,21 +1,24 @@
 @CHARSET "UTF-8";
 
+
 .clearfix:after {
 	content: "";
 	clear: both;
 	display: block;
 }
 
-.wrapper {
-	max-width: 700px;
-	margin: 0 auto;
+/* main */
+
+#main {
+	width: 700px;
+	margin: 50px auto;
 }
 .create {
 	position: relative;
 	display: inline-block;
-	width: 320px;
-	height: 292px;
-	margin: 0 15px;
+	width: 334px;
+	height: 315px;
+	margin-left: 20px;
 	border: 3px dashed #ccc;
 }
 
@@ -28,7 +31,7 @@
 	height: 25%;
 	padding: 110px 0;
 	text-align: center;
-	font-size: 36px;
+	font-size: 46px;
 	font-weight: bold;
 	color: #ccc;
 	text-decoration: none;
@@ -38,7 +41,7 @@
 	float: left;
 }
 .default-header {
-	width: 324px;
+	width: 338px;
 	border: 1px solid #ddd;
 	border-radius: 4px 4px 0 0;
 	background-color: #f6f6f6;
@@ -48,7 +51,7 @@
 	font-size: 14px;
 }
 .default-main {
-	width: 300px;
+	width: 314px;
 	padding: 12px;
 	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
@@ -60,17 +63,18 @@
 }
 .other-main {
 	float: left;
-/*	display: inline-block; */
-	width: 300px;
-	height: 230px;
-	margin: 0 10px 10px 0;
+	width: 314px;
+	height: 250px;
+	margin: 0 0 10px 20px;
 	padding: 12px;
 	border: 1px solid #ddd;
 	border-radius: 4px;
-
+}
+.other-main:nth-of-type(2n+1) {
+	margin-left: 0;
 }
 .data {
-	height: 190px;
+	height: 215px;
 	margin-bottom: 10px;
 }
 .column {
@@ -78,7 +82,7 @@
 	padding-right: 10px;
 }
 .parameter {
-
+	width: 215px;
 }
 .space {
 	margin: 0 6px;
@@ -108,5 +112,25 @@
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
+}
+.l-btn {
+	display: block;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+}
 
+/* complete.jsp共通 */
+
+.text {
+	margin: 150px 0;
+	text-align: center;
+
+}
+.back {
+	margin: 20px 40px;
+	text-align: right;
+	font-size: 16px;
+}
+.back a {
+	text-decoration: ;
 }

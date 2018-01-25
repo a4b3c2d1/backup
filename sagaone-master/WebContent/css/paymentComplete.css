@@ -1,0 +1,158 @@
+@CHARSET "UTF-8";
+
+
+/*
+ * フォーム
+ *
+ */
+
+.form-style {
+    margin:120px auto;
+    max-width: 800px;
+    padding: 5px 5px 0px 5px;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+
+/*
+ * ラジオボタン
+ */
+
+input[type=radio] {
+  display: none;
+}
+
+.radio{
+  box-sizing: border-box;
+  -webkit-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  position: relative;
+  display: inline-block;
+  margin: 0 20px 8px 0;
+  padding: 12px 12px 12px 42px;
+  border-radius: 8px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.radio:hover:after {
+  border-color: #777;
+}
+.radio:after {
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  display: block;
+  margin-top: -10px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #bbb;
+  border-radius: 6px;
+  content: '';
+}
+
+.radio:before {
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  display: block;
+  margin-top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #4B99AD;
+  content: '';
+  opacity: 0;
+}
+input[type=radio]:checked + .radio:before {
+  opacity: 1;
+}
+
+
+
+
+/*
+ * マイページtable
+ */
+
+.myPage  {
+	margin: 0 auto;
+    width: 550px;
+
+}
+
+.myPage th {
+    vertical-align: middle;
+    color: #4C5C5D;
+    width: 125px;
+    border-right: solid 1px #727E82;
+    text-align: left;
+    font-weight: bold;
+    background-color: #DAE1DB;
+}
+
+.myPage td {
+    vertical-align: middle;
+}
+
+.myPage th, td{
+	padding: 5px;
+}
+
+.myPage td.bar{
+
+    width: 100%;
+    border-top: solid 1px #34495e;
+}
+
+.page{
+	text-decoration: none;
+	float: left;
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.page1{
+	text-decoration: none;
+	float: right;
+    background:#ff9b9b ;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+    margin-right: 10px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    border: 1px solid #ff9b9b;
+}
+.page:hover{
+    background: #428191;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+ input[type=submit]{
+	margin-bottom: 10px;
+    background: #ff9b9b;
+    padding: 8px 15px 8px 15px;
+    border: 1px solid white;
+    color: #fff;
+}
+ input[type=submit]:hover{
+    background: white;
+    color: #ff9b9b;
+    box-shadow:none;
+    border: 1px solid #ff9b9b;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+
+

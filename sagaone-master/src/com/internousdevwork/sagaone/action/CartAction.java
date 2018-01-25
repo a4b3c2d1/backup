@@ -153,7 +153,14 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 		if(loginFlg){
 			cartDTO = addCartDAO.getCartInfo(product_id);
+			cartDTO = addCartDAO.getAddCart(session.get("loginUserId").toString(),product_id);
 
+			if(cartDTO.getProductId() != 0){
+				addCartDAO.addUpdateCart(
+						count,
+						product_id
+						);
+			}else{
 			addCartDAO.addCartInfo(
 					cartDTO.getId(),
 					session.get("loginUserId").toString(),
@@ -161,11 +168,20 @@ public class CartAction extends ActionSupport implements SessionAware{
 					count,
 					cartDTO.getPrice()
 					);
+			}
 		}else{
-			cartDTO = addTempCartDAO.getTempCartInfo(product_id);
 			String temp_user_id = session.get("temp_user_id").toString();
 			session.put("count", count);
+			cartDTO = addTempCartDAO.getTempCartInfo(product_id);
+			cartDTO = addTempCartDAO.getAddCart(temp_user_id, product_id);
+			System.out.println(cartDTO.getProductId());
 
+			if(cartDTO.getProductId() != 0){
+				addCartDAO.addUpdateCart(
+						count,
+						product_id
+						);
+			}else{
 			addTempCartDAO.addTempCartInfo(
 					cartDTO.getId(),
 					temp_user_id,
@@ -173,6 +189,7 @@ public class CartAction extends ActionSupport implements SessionAware{
 					count,
 					cartDTO.getPrice()
 					);
+			}
 		}
 	}
 

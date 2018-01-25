@@ -36,6 +36,11 @@ public class ReviewChangeConfirmAction extends ActionSupport implements SessionA
 				session.put("review_change_value", value);
 				session.put("review_change_review", review);
 
+				review2 = review;
+				review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ");
+				session.put("review_change_review2", review2);
+
+
 				// 確認画面へ
 				return SUCCESS;
 			}

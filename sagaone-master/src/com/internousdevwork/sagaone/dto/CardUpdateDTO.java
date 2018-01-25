@@ -1,13 +1,14 @@
 package com.internousdevwork.sagaone.dto;
 
 public class CardUpdateDTO {
-	
+
 	private String userId;
 	private String cardNumber;
 	private String limitYear;
 	private String limitMonth;
 	private String securityNumber;
 	private String nominee;
+	private String cardNumberLastFour;
 	public String getUserId() {
 		return userId;
 	}
@@ -44,5 +45,12 @@ public class CardUpdateDTO {
 	public void setNominee(String nominee) {
 		this.nominee = nominee;
 	}
-	
+	public String getCardNumberLastFour() {
+		return cardNumberLastFour;
+	}
+	public void setCardNumberLastFour(String cardNumberLastFour) {
+		this.cardNumberLastFour = cardNumberLastFour;
+	}
+
+
 }

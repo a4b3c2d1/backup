@@ -60,8 +60,8 @@ public class CardCreateConfirmAction extends ActionSupport implements SessionAwa
 			}
 			
 			//(カード番号)
-			if(cardNumber.length()<1||cardNumber.length()>16){
-				errorNumber = "1文字以上16文字以内で入力してください。";
+			if(cardNumber.length()<14||cardNumber.length()>16){
+				errorNumber = "14文字以上16文字以内で入力してください。";
 				errorNumberList.add(errorNumber);
 				ErrorCount++;
 			}

@@ -30,6 +30,16 @@ public class DestinationAction extends ActionSupport implements SessionAware {
 	public String execute() {
 
 
+		if (session.containsKey("familyName") && session.containsKey("firstName") && session.containsKey("familyNameKana") && session.containsKey("firstNameKana") && session.containsKey("userAddress") && session.containsKey("telNumber") && session.containsKey("email")) {
+			session.remove("familyName");
+			session.remove("firstName");
+			session.remove("familyNameKana");
+			session.remove("firstNameKana");
+			session.remove("userAddress");
+			session.remove("telNumber");
+			session.remove("email");
+		}
+
 		try {
 			DestinationDAO destinationDAO = new DestinationDAO();
 			defaultDestinationDTO = destinationDAO.defaultDestinationInfo(session.get("loginUserId").toString());

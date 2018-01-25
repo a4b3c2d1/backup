@@ -11,7 +11,8 @@
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
 
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
-
+	<link rel="stylesheet" type="text/css" href="./css/header.css">
+	
 			<script type="text/javascript"
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 			<script src="./slick/slick.min.js"></script>
@@ -26,7 +27,7 @@
 				});
 
 				function getRandom(length) {
-					if(length > 16 || length < 1){
+					if(length > 16 || length < 3){
 						var result = "";
 						return result;
 					}else{
@@ -85,7 +86,7 @@
 
 	<header>
 		<div id="main-logo">
-			<img src="./css/sagaone_logo.png" height="100px">
+			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
 		</div>
 		<div id="title">ユーザー新規登録</div>
 	</header>

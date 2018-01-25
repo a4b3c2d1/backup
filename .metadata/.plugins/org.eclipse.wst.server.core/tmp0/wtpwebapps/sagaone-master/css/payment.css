@@ -1,250 +1,5 @@
 @CHARSET "UTF-8";
 
-header{
-	display: inline;
-	position:fixed;
-	top:0px;
-	left: 0px;
-	height: 100px;
-	min-width: 100%;
-	width: 100%;
-	padding-left: 10px;
-	background-image: linear-gradient(-90deg, #5265D1, #2FB3CA);
-	color: white;
-	font-size: 15px;
-
-}
-
-
-
-#main-logo{
-	float: left;
-    position:relative;
-    width: 200px;
-    height: 100px;
-    margin:0px auto;
-
-}
-
-#main-logo img {
-	height: 100px;
-}
-
-#main-logo a{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-}
-
-#menu{
-	pojision: relative;
-	height: 100px;
-	width:100%;
-	margin-left: 230px;
-}
-
-#search-form{
-	position:absolute;
-	right: 0;
-	width: 500px;
-	margin-top: 20px;
-	display: inline-block;
-	height: 30px;
-	line-height: 20px;
-}
-
-#search-box{
-	margin: 0;
-	float:left;
-	height: 30px;
-}
-
-#category{
-
-	margin: 0;
-	float:left;
-	height: 30px;
-}
-
-#search{
-
-	margin: 0;
-	float: left;
-	height: 24px;
-	width: 300px;
-}
-
-.search-btn{
-	position: relative;
-	top: 1px;
-	margin: 0;
-	float: left;
-	height: 29px;
-	width: 35px;
-	background-color: #ffa200;
-	box-sizing:border-box;
-	border: none;
-	color: black;
-	box-shadow: none;
-	outline: none;
-	inline: none;
-	text-align: center;
-	line-height: 22px;
-}
-
-.search-btn:hover{
-	cursor: pointer;
-	opacity: 0.9;
-}
-
-#header-container{
-	clear: both;
-	position: fixed;
-	right: 0;
-	top: 50px;
-	width: 500px;
-	height: 50px;
-	float: right;
-}
-
-.header-menu{
-	line-height: 50px;
-	float: left;
-}
-
-.home-btn {
-	position: absolute;
-	bottom:0;
-	width: 40px;
-	height: 40px;
-	float: left;
-	text-align: center;
-	line-height: 35px;
-	background-color: white;
-}
-
-.home-btn > a {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-
-.home-btn :hover {
-    background: #619ed3;
-	font-color: white;
-}
-
-.dropmenu {
-	width: 160px;
-	height: 40px;
-
-	padding-right: 40px;
-
-
-}
-
-.dropmenu > li{
-	float: left;
-	position: absolute;
-	bottom: 0px;
-	width: 160px;
-	height: 40px;
-	float: left;
-    display: inline-block;
-    text-decoration: none;
-    background-color:white;
-    text-align: center;
-	line-height: 35px;
-    color: #5d8eaf;
-
-  border:none;
-  -webkit-transition: 0.3s;
-  -moz-transition: 0.3s;
-  -o-transition: 0.3s;
-  -ms-transition: 0.3s;
-  list-style: none;
-  transition: 0.3s;
-
-}
-
-.dropmenu:before, .dropmenu:after{
-  content: "";
-  display: table;
-}
-.dropmenu:after{
-  clear: both;
-}
-
- .dropmenu:hover > li{
-  background-color: rgba(255, 255, 255, .2);
-  color: white;
-}
-
-
-
-.dropmenu li .b-btn{
-  display: block;
-  margin: 0;
-  padding: 15px 0 11px;
-  width: 160px;
-  background: #fff;
-  color: black;
-  font-size: 14px;
-  line-height: 1;
-  text-decoration: none;
-  text-align: center;
-  border: transparent 1px solid ;
-  transition: 0.2s;
-}
-.dropmenu li ul{
-  list-style: none;
-  position: absolute;
-  z-index: 9999;
-  top: 100%;
-  left: 0;
-  margin: 0;
-  padding: 0;
-    border: 1px solid #aaa;
-    transition: opacity 0.2s linear;
-}
-.dropmenu li ul li{
-  width: 100%;
-}
-.dropmenu li ul li .b-btn{
-  padding: 13px 15px;
-  background: #fff;
-  text-align: center;
-}
-.dropmenu li:hover > .b-btn{
-  background: #6e7c0c;
-  transition: .2s;
-}
-.dropmenu li .b-btn:hover{
-  	letter-spacing: 3px;
-	background-color: #59c5ff;
-	color: #fff;
-}
-
-
-#normal li ul{
-  display: none;
-}
-#normal li:hover ul{
-  display: block;
-}
-
-#dropmenu li ul li{
-  overflow: hidden;
-  height: 0;
-  transition: .2s;
-}
-
-#dropmenu li:hover ul li{
-  overflow: visible;
-  height: 38px;
-}
 
 /*
  * フォーム
@@ -259,18 +14,78 @@ header{
 }
 
 
+/*
+ * ラジオボタン
+ */
+
+input[type=radio] {
+  display: none;
+}
+
+.radio{
+  box-sizing: border-box;
+  -webkit-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  position: relative;
+  display: inline-block;
+  margin: 0 20px 8px 0;
+  padding: 12px 12px 12px 42px;
+  border-radius: 8px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.radio:hover:after {
+  border-color: #777;
+}
+.radio:after {
+  -webkit-transition: border-color 0.2s linear;
+  transition: border-color 0.2s linear;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  display: block;
+  margin-top: -10px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #bbb;
+  border-radius: 6px;
+  content: '';
+}
+
+.radio:before {
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  display: block;
+  margin-top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #4B99AD;
+  content: '';
+  opacity: 0;
+}
+input[type=radio]:checked + .radio:before {
+  opacity: 1;
+}
+
+
+
 
 /*
  * マイページtable
  */
 
-#myPage {
+.myPage  {
 	margin: 0 auto;
-    width: 600px;
+    width: 550px;
 
 }
 
-#myPage th {
+.myPage th {
     vertical-align: middle;
     color: #4C5C5D;
     width: 125px;
@@ -280,21 +95,22 @@ header{
     background-color: #DAE1DB;
 }
 
-#myPage td {
+.myPage td {
     vertical-align: middle;
 }
 
-#myPage th, td{
-	padding: 10px;
+.myPage th, td{
+	padding: 5px;
 }
 
-#myPage td.bar{
+.myPage td.bar{
 
     width: 100%;
     border-top: solid 1px #34495e;
 }
 
-.form-style #page{
+.page{
+	text-decoration: none;
 	float: left;
     background: #4B99AD;
     padding: 8px 15px 8px 15px;
@@ -302,65 +118,27 @@ header{
     color: #fff;
     margin-right: 10px;
 }
-.form-style #page:hover{
-    background: #326572;
+.page:hover{
+    background: #428191;
     box-shadow:none;
     -moz-box-shadow:none;
     -webkit-box-shadow:none;
 }
 
+ input[type=submit]{
+	margin-bottom: 10px;
+    background: #ff9b9b;
+    padding: 8px 15px 8px 15px;
+    border: 1px solid white;
+    color: #fff;
+}
+ input[type=submit]:hover{
+    background: white;
+    color: #ff9b9b;
+    box-shadow:none;
+    border: 1px solid #ff9b9b;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
 
-
-/*
- * ラジオボタン
- */
-
-#pay {
-  display: none;
-}
-#pay {
-  position: relative;
-  display: inline-block;
-  padding: 3px 3px 3px 20px;
-  cursor: pointer;
-}
-#pay::before,
-#pay::after {
-  position: absolute;
-  content: '';
-  top: 50%;
-  border-radius: 100%;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-}
-#pay::before {
-  left: 0;
-  width: 14px;
-  height: 14px;
-  margin-top: -8px;
-  background: #f3f3f3;
-  border: 1px solid #ccc;
-}
-#pay:hover::before {
-  background: #fff;
-}
-#pay::after {
-  opacity: 0;
-  left: 4px;
-  width: 8px;
-  height: 8px;
-  margin-top: -4px;
-  background: #3498db;
-  -webkit-transform: scale(2);
-  transform: scale(2);
-}
-input[type="radio"]:checked + #pay::before {
-  background: #fff;
-  border: 1px solid #3498db;
-}
-input[type="radio"]:checked + #pay::after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
 

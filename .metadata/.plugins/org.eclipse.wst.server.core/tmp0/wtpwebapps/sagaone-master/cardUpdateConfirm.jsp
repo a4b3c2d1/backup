@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
 		
 <link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="./css/header.css">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -41,9 +42,10 @@
 
 </head>
 <body>
+
 <header>
 		<div id="main-logo">
-			<img src="./css/sagaone_logo.png" height="100px">
+			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
 		</div>
 		<div id="title">クレジットカード変更確認</div>
 </header>

@@ -6,292 +6,130 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="./css/searchResult.css">
+
+
 <title>HOME</title>
+<!-- *******************ここから前頁共通******************* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/redmond/jquery-ui.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/i18n/jquery-ui-i18n.min.js"></script>
+<script type="text/javascript" src="./js/autocomplete.js"></script>
+<!-- ===================ここまで前頁共通=================== -->
+
 </head>
-<style type="text/css">
-a {
-	text-decoration: none;
-}
 
-a:visited {
-	color: #0066c0;
-	text-decoration: none
-}
-
-.a:hover {
-	color: #9aa132;
-	cursor: pointer;
-	text-decoration: underline;
-}
-
-.b:hover {
-	color: #eb1515;
-	cursor: pointer;
-	text-decoration: underline;
-}
-
-.main1 {
-	position: relative;
-	width: 100%;
-	padding: 20px;
-	margin: 0 auto;
-}
-
-.cartitem {
-	height: 100px;
-	width: 1100px;
-	margin: auto;
-	border-style: solid;
-	border-color: #999;
-	border-width: 1px;
-}
-
-.check {
-	padding-left: 20px;
-	margin: 5px;
-	height: 100px;
-	float: left;
-	margin: 5px;
-	font-size: 75px;
-	margin: auto;
-}
-
-.cartitem1 {
-	float: left;
-	height: 90px;
-	margin: 5px;
-}
-
-.tuika {
-	padding-right: 5px;
-	padding-left: 5px;
-	float: left;
-	height: 100px;
-	font-size: 20px;
-	display: flex;
-	align-items: center;
-	border-right-style: solid;
-	border-right-color: #999;
-	border-right-width: 1px;
-	float: left;
-}
-
-.cartitem2 {
-	padding-right: 5px;
-	padding-left: 5px;
-	float: left;
-	height: 100px;
-	font-size: 20px;
-	display: flex;
-	align-items: center;
-	float: left;
-}
-
-.cartitem3 {
-	float: right;
-	height: 100px;
-	display: flex;
-	align-items: center;
-	right: 10px;
-}
-
-.botton1 {
-	margin: 20px;
-}
-
-.main2 {
-	padding-top: 10px;
-	margin: 0 auto;
-	width: 100%;
-	display: table;
-}
-
-#price {
-	color: #B12704;
-}
-
-#price:hover {
-	text-decoration: none;
-}
-
-.items {
-	width: 900px;
-	margin: 0 auto;
-}
-
-.items2 {
-	clear: both;
-}
-
-.item {
-	float: left;
-	width: 250px;
-	height: 280px;
-	margin: 20px;
-	text-align: center;
-}
-
-.main3, .main4 {
-	text-align: center;
-}
-
-.hyouka {
-	width: 250px;
-	text-align: center;
-	position: relative;
-}
-
-.rating:hover .balloon {
-	display: inline;
-}
-
-.rating {
-	margin: auto;
-	position: relative;
-	width: 100px;
-	height: 1em;
-	font-size: 20px;
-}
-
-.rating-front {
-	position: absolute;
-	top: 0;
-	left: 0;
-	overflow: hidden;
-	color: #ffcc33;
-	width: 100px;
-}
-
-.rating-back {
-	color: #ccc;
-}
-
-.balloon2 {
-	border-color: #999;
-	position: absolute;
-	border-style: solid;
-	border-width: 1px;
-	display: none;
-	padding: 2px;
-	background-color: #ffffff;
-	width: 100px;
-	left: 30%;
-	top: 100%;
-	margin-top: 12px;
-	font-size: 10px;
-	position: absolute;
-}
-
-.balloon2:after {
-	border-bottom: 12px solid rgba(102, 102, 255, 0.50);
-	border-left: 10px solid transparent;
-	border-right: 10px solid transparent;
-	top: -12px;
-	left: 5%;
-	content: "";
-	position: absolute;
-	top: -12px;
-	left: 5%;
-	content: "";
-}
-
-.count {
-	font-size: 15px;
-}
-
-.aa, .bb, .cc, .dd {
-	float: left;
-	width: 250px;
-}
-</style>
 <body>
-		<header>
+<!-- *******************ここから前頁共通******************* -->
+	<header class="clearfix">
+		<div id="main-logo">
+			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
+		</div>
+		<div class="clearfix">
+			<div id="search-form">
 
-	<div id="main-logo">
-		<img src="./css/sagaone_logo.png" height="100px">
-	</div>
-
-	<div id="search-form">
-
-		<s:form action="SearchItemAction">
-			<div id="search-box">
-				<select name="itemCategory" id="category">
-					<option value="0">全てのカテゴリー</option>
-					<option value="1">本</option>
-					<option value="2">家電・パソコン</option>
-					<option value="3">おもちゃ・ゲーム</option>
-				</select> <input type="text" name="searchWord" id="search" />
+				<s:form action="SearchItemAction">
+					<div id="search-box">
+						<select name="itemCategory" id="category">
+							<option value="0">全てのカテゴリー</option>
+							<option value="1">本</option>
+							<option value="2">家電・パソコン</option>
+							<option value="3">おもちゃ・ゲーム</option>
+						</select>
+						<input type="text" name="searchWord" id="jquery-ui-autocomplete-input" />
+					</div>
+					<div class="search-btn">
+					<input type="image" src="./css/searchIcon.png" width="20" height="20" class="icon"/>
+					</div>
+				</s:form>
 			</div>
-			<div class="search-btn">
-				<input type="image" src="./css/searchIcon.png" width="20"
-					height="20" class="icon" />
-			</div>
-		</s:form>
-	</div>
+			<div id="header-container" class="">
+				<ul id="normal" class="dropmenu clearfix">
+					<li id="itemmenu"><span class="drop-topic">商品カテゴリー&thinsp;<span class="sankaku">▼</span></span>
+						<ul class="item-drop">
+							<li>
+								<s:form action="SearchItemAction">
+									<input type="hidden" name="itemCategory" value="0" />
+									<input type="hidden" name="searchWord" value="" />
+									<s:submit value="全てのカテゴリー" cssClass="c-btn" />
+								</s:form>
+							</li>
+							<li>
+								<s:form action="SearchItemAction">
+									<input type="hidden" name="itemCategory" value="1" />
+									<input type="hidden" name="searchWord" value="" />
+									<s:submit value="本" cssClass="c-btn" />
+								</s:form>
+							</li>
+							<li>
+								<s:form action="SearchItemAction">
+									<input type="hidden" name="itemCategory" value="2" />
+									<input type="hidden" name="searchWord" value="" />
+									<s:submit value="家電・パソコン" cssClass="c-btn" />
+								</s:form>
+							</li>
+							<li>
+								<s:form action="SearchItemAction">
+									<input type="hidden" name="itemCategory" value="3" />
+									<input type="hidden" name="searchWord" value="" />
+									<s:submit value="おもちゃ・ゲーム" cssClass="c-btn" />
+								</s:form>
+							</li>
+						</ul>
+					</li>
+					<li id="acountmenu"><span class="drop-topic">アカウントメニュー&thinsp;<span class="sankaku">▼</span></span>
+						<ul class="acount-drop">
+							<s:if test="session.loginUser != null">
+								<li><s:form action="MyPageAction">
+										<s:submit value="マイページ" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
+							<s:if test="session.loginUser == null">
+								<li><s:form action="LoginPageAction">
+										<s:submit value="ログイン画面へ" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
-	<div id="header-container">
+							<s:if test="session.loginUser != null">
+								<li><s:form action="LogoutAction">
+										<s:submit value="ログアウト" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
-		<ul id="normal" class="dropmenu">
+							<li><s:form action="UserCreateAction">
+									<s:submit value="ユーザー登録" cssClass="b-btn" />
+								</s:form>
+							</li>
 
-			<li><s:if test="session.loginUserId != null">
-					<s:property value="#session.loginUserId" />でログイン中
-					</s:if></li>
+							<li><s:form action="CartAction">
+									<s:hidden name="cartFlg" value="1"></s:hidden>
+									<s:submit value="カート確認" cssClass="b-btn" />
+								</s:form>
+							</li>
 
-			<li>アカウントメニュー
-				<ul>
-					<s:if test="session.loginUserId != null">
-						<li><s:form action="MyPageAction">
-								<s:submit value="マイページ" cssClass="b-btn" />
-							</s:form></li>
-					</s:if>
-
-					<s:if test="session == null">
-						<li><s:form action="LoginPageAction">
-								<s:submit value="ログイン画面へ" cssClass="b-btn" />
-							</s:form></li>
-					</s:if>
-
-					<s:if test="session.loginUser == null">
-						<li><s:form action="LoginPageAction">
-								<s:submit value="ログイン画面へ" cssClass="b-btn" />
-							</s:form></li>
-					</s:if>
-
-					<s:if test="session.loginUser != null">
-						<li><s:form action="LogoutAction">
-								<s:submit value="ログアウト" cssClass="b-btn" />
-							</s:form></li>
-					</s:if>
-
-					<li><s:form action="UserCreateAction">
-							<s:submit value="ユーザー登録" cssClass="b-btn" />
-						</s:form></li>
-
-					<li><s:form action="ItemAction">
-							<s:hidden name="offset" value="0"></s:hidden>
-							<s:submit value="商品一覧" cssClass="b-btn" />
-						</s:form></li>
-
-					<li><s:form action="CartAction">
-							<s:hidden name="cartFlg" value="1"></s:hidden>
-							<s:submit value="カート確認" cssClass="b-btn" />
-						</s:form></li>
-
-					<s:if test="session.loginUser != null">
-						<li><s:form action="PaymentAction">
-								<s:submit value="決済" cssClass="b-btn" />
-							</s:form></li>
-					</s:if>
+							<s:if test="session.loginUser != null">
+								<li><s:form action="PaymentAction">
+										<s:submit value="決済" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
+						</ul>
+					</li>
+					<li id="welcome">
+						<s:if test="session.loginUser != null" >
+							<s:property value="#session.loginUserId" />&nbsp;さんでログイン中
+						</s:if>
+					</li>
 				</ul>
-			</li>
-		</ul>
-	</div>
-
-
+			</div>
+		</div>
 	</header>
+<!-- ===================ここまで前頁共通=================== -->
 	<div id="main">
-
-		<a href=' <s:url action= "SortSearchAction" /> '>価格の安い順に並び替え</a>
 		<s:if test='%{addFlg =="1"}'>
 			<div class="main1">
 
@@ -303,7 +141,7 @@ a:visited {
 							<div class="cartitem1">
 								<a
 									href='<s:url action="ItemDetailAction"><s:param name="product_id" value="product_id" /><s:param name="category_id" value="category_id" /></s:url>'>
-									<img src=<s:property value="image_file_path"/>
+									<img src=<s:property value="imageFilePath"/>
 									style="width: 90px; height: 90px; border-style: solid; border-color: #999; border-width: 1px;" />
 								</a>
 							</div>
@@ -335,80 +173,92 @@ a:visited {
 
 			</div>
 		</s:if>
+		<div class="main-0">
+			<a href=' <s:url action= "SortSearchAction" /> '>価格の安い順に並び替え</a>
+		</div>
+
 		<div class="main2">
-			<s:if test="session.searchErrorMessage != ''">
+			<div class="items">
+				<s:if test="session.searchErrorMessage != ''">
 			'&thinsp;<s:property value="searchWord" />&thinsp;'&thinsp;の<s:property
-					value="session.searchErrorMessage" />
-			</s:if>
+						value="session.searchErrorMessage" />
+				</s:if>
 
-			<s:if test="session.searchErrorMessage == ''">
-				<s:iterator value="session.searchItemList" status="st">
+				<s:if test="session.searchErrorMessage == ''">
+					<s:iterator value="session.searchItemList" status="st">
 
-					<div class="item">
-						<div class="aa">
-							<a
-								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
-								<img src=<s:property value="imageFilePath"/>
-								style="width: 130px; height: 130px; margin: 10px;">
-							</a>
-						</div>
-						<div class="bb">
-							<a
-								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
-								<span class="a"> <s:property value="productName" /> （ <s:property
-										value="productNameKana" /> ）
-							</span>
-							</a>
-						</div>
-						<div class="cc">
-							<a
-								href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
-								<span id="price">&#xA5;&nbsp;&nbsp;<s:property
-										value="price" /></span>
-							</a>
-						</div>
-						<div class="dd">
-							<div class="rating">
-								<div class="rating-front"
-									style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
-								<div class="rating-back">★★★★★</div>
-
-
-								<span class="balloon2"> 5つ星のうち<s:property
-										value="avgvalue" /></span> <span class="count"> (<s:property
-										value="countvalue" />)
+						<div class="item">
+							<div class="aa">
+								<a
+									href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
+									<img src=<s:property value="imageFilePath"/>
+									style="width: 130px; height: 130px; margin: 10px;">
+								</a>
+							</div>
+							<div class="bb">
+								<a
+									href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
+									<span class="a"> <s:property value="productName" /> （ <s:property
+											value="productNameKana" /> ）
 								</span>
+								</a>
+							</div>
+							<div class="cc">
+								<a
+									href='<s:url action="ItemDetailAction"><s:param name="product_id" value="productId" /><s:param name="category_id" value="categoryId" /></s:url>'>
+									<span id="price">&#xA5;&nbsp;&nbsp;<s:property
+											value="priceStr" /></span>
+								</a>
+							</div>
+							<div class="dd">
+								<div class="rating">
+									<div class="rating-front"
+										style="width: calc(<s:property value="avgvalue" />*20%)">★★★★★</div>
+									<div class="rating-back">
+										★★★★★<span class="count"> (<s:property
+												value="countvalue" />件)
+										</span>
+									</div>
+
+
+									<span class="balloon2"> 5つ星のうち<s:property
+											value="avgvalue" /></span>
+								</div>
 							</div>
 						</div>
+
+
+					</s:iterator>
+
+					<div class="page">
+
+						<s:iterator value="pageNumList" status="sta">
+							<s:if test='%{#sta.index==nowPage}'>
+								<s:property />
+							</s:if>
+							<s:else>
+								<a
+									href='<s:url action="SearchPageAction"><s:param name="pageNum" value="#sta.index" /></s:url>'><s:property /></a>
+							</s:else>
+						</s:iterator>
 					</div>
-					<s:if test='%{#st.count%3==0}'>
-						<div class="items2">
-							<hr />
-						</div>
-					</s:if>
-
-				</s:iterator>
-
-
-
-				<s:iterator value="pageNumList" status="sta">
-					<s:if test='%{#sta.index==nowPage}'>
-						<s:property />
-					</s:if>
-					<s:else>
-						<a
-							href='<s:url action="SearchPageAction"><s:param name="pageNum" value="#sta.index" /></s:url>'><s:property /></a>
-					</s:else>
-				</s:iterator>
-			</s:if>
+				</s:if>
+			</div>
 		</div>
 
 		<div class="main4">
-			<s:a href="GoHomeAction">
-				<span class="b">ホームへ戻る</span>
-			</s:a>
+			<s:form action="GoHomeAction">
+				<s:submit value="ホームへ戻る" cssClass="d-btn"/>
+			</s:form>
 		</div>
 	</div>
+<!-- *******************ここから前頁共通******************* -->
+	<footer>© 2017-2018, Sagaone.com</footer>
+
+	<form name="form_test">
+		<input type="hidden" name="input_test" value="<s:iterator value="#session.allWordsList" ><s:property /></s:iterator>">
+	</form>
+<!-- ===================ここまで前頁共通=================== -->
 
 </body>
 </html>

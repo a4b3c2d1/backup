@@ -56,4 +56,39 @@ public class AddTempCartDAO{
 		}
 	}
 
+	public CartDTO getAddCart(String user_id, int product_id){
+
+		String sql = "SELECT * FROM cart_info WHERE temp_user_id = ? AND product_id = ?";
+
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, user_id);
+			ps.setInt(2, product_id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				cartDTO.setProductId(rs.getInt("product_id"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return cartDTO;
+	}
+
+	public void addUpdateCart(String count, int product_id)throws SQLException{
+
+		String sql = "UPDATE cart_info set product_count = product_count + ? WHERE product_id = ?";
+
+		try{
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, count);
+		ps.setInt(2, product_id);
+
+		ps.executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
 }

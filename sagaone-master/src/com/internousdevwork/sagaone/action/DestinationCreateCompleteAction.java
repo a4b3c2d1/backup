@@ -36,6 +36,14 @@ public class DestinationCreateCompleteAction extends ActionSupport implements Se
 				session.get("userAddress").toString()
 				);
 
+		session.remove("familyName");
+		session.remove("firstName");
+		session.remove("familyNameKana");
+		session.remove("firstNameKana");
+		session.remove("email");
+		session.remove("telNumber");
+		session.remove("userAddress");
+
 		return SUCCESS ;
 	}
 

@@ -179,7 +179,7 @@ public class PaymentCartInfoDTOTest {
 		PaymentCartInfoDTO paycart = new PaymentCartInfoDTO();
 		int test = 123;
 		paycart.setProductCount(test);
-		int result = paycart.getProductId();
+		int result = paycart.getProductCount();
 		assertEquals(test, result);
 	}
 
@@ -188,7 +188,7 @@ public class PaymentCartInfoDTOTest {
 		PaymentCartInfoDTO paycart = new PaymentCartInfoDTO();
 		int test = 2147483647;
 		paycart.setProductCount(test);
-		int result = paycart.getProductId();
+		int result = paycart.getProductCount();
 		assertEquals(test, result);
 	}
 
@@ -197,7 +197,7 @@ public class PaymentCartInfoDTOTest {
 		PaymentCartInfoDTO paycart = new PaymentCartInfoDTO();
 		int test = -2147483647;
 		paycart.setProductCount(test);
-		int result = paycart.getProductId();
+		int result = paycart.getProductCount();
 		assertEquals(test, result);
 	}
 
@@ -206,7 +206,7 @@ public class PaymentCartInfoDTOTest {
 		PaymentCartInfoDTO paycart = new PaymentCartInfoDTO();
 		int test = 0;
 		paycart.setProductCount(test);
-		int result = paycart.getProductId();
+		int result = paycart.getProductCount();
 		assertEquals(test, result);
 	}
 

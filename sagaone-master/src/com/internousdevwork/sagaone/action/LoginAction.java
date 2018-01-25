@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdevwork.sagaone.dao.AddCartDAO;
+import com.internousdevwork.sagaone.dao.CartDAO;
 import com.internousdevwork.sagaone.dao.LoginDAO;
 import com.internousdevwork.sagaone.dao.PaymentCartInfoDAO;
 import com.internousdevwork.sagaone.dao.PaymentProductInfoDAO;
@@ -44,7 +45,9 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private LoginDAO loginDAO= new LoginDAO();
 	private LoginDTO loginDTO= new LoginDTO();
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
+	private ArrayList<CartDTO> tempCartList = new ArrayList<CartDTO>();
 	private AddCartDAO addCartDAO = new AddCartDAO();
+	private CartDAO cartDAO = new CartDAO();
 	private TempCartDAO tempCartDAO = new TempCartDAO();
 
 	private String paymentMessage;
@@ -83,23 +86,23 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 
 		// その他エラー
-		if(loginUserId.length()<1||loginUserId.length()>8 && !(loginUserId.equals(""))){
+		if(loginUserId.length()<1||loginUserId.length()>8 && !loginUserId.equals("")){
 			setErrorId1("1文字以上8文字以内で入力してねー(○・▽・○)<br>");
 			ErrorCount++;
 		}
 
-		if (!(loginUserId.matches("^[0-9a-zA-Z]+$")) && !(loginUserId.equals(""))) {
+		if (!loginUserId.matches("^[0-9a-zA-Z]+$") && !(loginUserId.equals(""))) {
 			setErrorId2("半角英数字で入力してねー(○・▽・○)<br>");
 			ErrorCount++;
 		}
 
 
-		if(loginPassword.length()<3||loginPassword.length()>16 && !(loginPassword.equals(""))){
+		if(loginPassword.length()<3||loginPassword.length()>16 && !loginPassword.equals("")){
 			setErrorPassword1("3文字以上16文字以内で入力してねー(○・▽・○)<br>");
 			ErrorCount++;
 		}
 
-		if (!(loginPassword.matches("^[0-9a-zA-Z]+$")) && !(loginPassword.equals(""))) {
+		if (!loginPassword.matches("^[0-9a-zA-Z]+$") && !(loginPassword.equals(""))) {
 			setErrorPassword2("半角英数字で入力してねー(○・▽・○)<br>");
 			ErrorCount++;
 		}
@@ -117,12 +120,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			if (loginPassword.equals(loginDTO.getLoginPassword())){
 
 
-			session.put("loginUser", loginDTO);
-			session.put("loginUserId", loginUserId);
-			session.put("loginPassword", loginPassword);
-			session.put("loginFlg", loginDTO.getLoginFlg());
+				session.put("loginUser", loginDTO);
+				session.put("loginUserId", loginUserId);
+				session.put("loginPassword", loginPassword);
+				session.put("loginFlg", loginDTO.getLoginFlg());
 
-			ret= SUCCESS;
+				ret= SUCCESS;
 			}
 		}else{
 			ret = ERROR;
@@ -135,37 +138,55 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			session.put("loginMemory", false);
 		}
 
-		String user_id = session.get("temp_user_id").toString();
-		cartList = tempCartDAO.getTempCartInfo(user_id);
-
-		if(!(cartList == null)){
-			for(int i = 0; i < cartList.size(); i++){
-				addCartDAO.addCartInfo(
-						cartList.get(i).getId(),
-						session.get("loginUserId").toString(),
-						cartList.get(i).getProductId(),
-						session.get("count").toString(),
-						cartList.get(i).getPrice()
-						);
+		if(Boolean.parseBoolean(session.get("loginFlg").toString())){
+			String user_id = session.get("loginUserId").toString();
+			String temp_user_id = session.get("temp_user_id").toString();
+			ArrayList <Integer> idList=new ArrayList<Integer>();
+			cartList = cartDAO.getCartInfo(user_id);
+			tempCartList = tempCartDAO.getTempCartInfo(temp_user_id);
+			int i;
+			for(i=0;i<cartList.size();i++){
+			idList.add(cartList.get(i).getProductId());
 			}
+			if(!(tempCartList.isEmpty())){
+					for( i = 0; i < tempCartList.size(); i++){
+						if(idList.contains(tempCartList.get(i).getProductId())){
+							addCartDAO.joinUpdateCart(
+									tempCartList.get(i).getCount(),
+									user_id,
+									tempCartList.get(i).getProductId()
+									);
+						}else{
+							addCartDAO.addCartInfo(
+									tempCartList.get(i).getId(),
+									session.get("loginUserId").toString(),
+									tempCartList.get(i).getProductId(),
+									tempCartList.get(i).getCount(),
+									tempCartList.get(i).getPrice()
+									);
+						}
+					}
 
-			DBConnector db = new DBConnector();
-			Connection con = db.getConnection();
-			String sql = "DELETE FROM cart_info WHERE temp_user_id = ?";
 
-			PreparedStatement ps;
+				DBConnector db = new DBConnector();
+				Connection con = db.getConnection();
+				String sql = "DELETE FROM cart_info WHERE temp_user_id = ?";
 
-			try {
-				ps = con.prepareStatement(sql);
-				ps.setString(1, user_id);
+				PreparedStatement ps;
 
-				ps.executeUpdate();
-			}catch (Exception e){
-				e.printStackTrace();
+				try {
+					ps = con.prepareStatement(sql);
+					ps.setString(1, temp_user_id);
+
+					ps.executeUpdate();
+				}catch (Exception e){
+					e.printStackTrace();
+				}
 			}
 		}
 
 
+		if(Boolean.parseBoolean(session.get("loginFlg").toString())){
 		if (session.get("paymentFlg") != null) {
 			paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
 
@@ -199,7 +220,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 				session.put("sumPrice", sumPrice);
 			}
 			ret= "payment";
-		}
+		}}
 
 		return ret;
 	}
@@ -372,4 +393,20 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public void setPaymentMessage(String paymentMessage) {
 		this.paymentMessage = paymentMessage;
 	}
+
+
+
+
+	public ArrayList<CartDTO> getCartList() {
+		return cartList;
+	}
+
+
+
+
+	public void setCartList(ArrayList<CartDTO> cartList) {
+		this.cartList = cartList;
+	}
+
+
 }

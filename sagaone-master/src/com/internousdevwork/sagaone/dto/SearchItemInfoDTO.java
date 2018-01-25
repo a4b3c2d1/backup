@@ -8,6 +8,7 @@ public class SearchItemInfoDTO {
 	private String productDescription;
 	private String categoryId;
 	private int price;
+	private String priceStr;
 	private String imageFilePath;
 	private String imageFileName;
 	private String releaseDate;
@@ -61,6 +62,14 @@ public class SearchItemInfoDTO {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+
+	public String getPriceStr() {
+		return priceStr;
+	}
+	public void setPriceStr(String priceStr) {
+		this.priceStr = priceStr;
 	}
 	public String getImageFilePath() {
 		return imageFilePath;

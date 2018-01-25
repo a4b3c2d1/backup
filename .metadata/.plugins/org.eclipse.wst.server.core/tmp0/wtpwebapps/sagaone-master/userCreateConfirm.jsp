@@ -12,6 +12,7 @@
 	
 	
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/header.css">
 	
 	<title>UserCreateConfirm画面</title>
 	
@@ -42,14 +43,11 @@
 
 </head>
 <body>
-	
 	<header>
 		<div id="main-logo">
-			<img src="./css/sagaone_logo.png" height="100px">	
+			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
 		</div>
-		<div id="title">
-			ユーザー登録確認
-		</div>
+		<div id="title">ユーザー登録確認</div>
 	</header>
 	
 	<div id="main">
@@ -137,7 +135,7 @@
 		</div>
 	</div>
 	
-	<footer>© 2017-2018, Sagaone.com</footer>
+		<footer>© 2017-2018, Sagaone.com</footer>
 	
 </body>
 </html>
