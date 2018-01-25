@@ -52,6 +52,7 @@ public class ReviewEditAction extends ActionSupport implements SessionAware {
 			reviewEditDAO.deletereview(session.get("review_user_id").toString(),
 					session.get("review_product_id").toString());
 
+
 			// レビュー再読み込み用
 			reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
 			session.put("reviewDTO2List", reviewDTO2List);

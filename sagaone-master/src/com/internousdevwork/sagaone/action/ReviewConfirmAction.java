@@ -21,46 +21,51 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 	// レビューエラーメッセージ格納用
 	private String reviewErrormessage;
 
+	public String result;
 
 	public String execute() {
 
+		if (session.get("reviewFlg").toString().equals("1")) {
+			// 改行だけの場合を回避
+			review2 = review;
+			review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp;", "").replaceAll("　", "");
 
-		//改行だけの場合を回避
-		review2 = review;
-		review2=review.replaceAll("\r\n", "").replaceAll("&nbsp"," ");
+			// 入力されているかの確認
+			if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
 
-		// 入力されているかの確認
-		if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
+				review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;").replaceAll("　", "&emsp;");
 
-			review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;");
+				if (review.length() > 255) {
+					setReviewErrormessage("文字数オーバーです");
+					review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
 
-			if (review.length() > 255) {
-				setReviewErrormessage("文字数オーバーです");
-				review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ");
+					return ERROR;
 
-				return ERROR;
+				} else {
 
+					session.put("review_review", review);
+					session.put("review_value", value);
+
+					review2 = review;
+					review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
+					session.put("review_review2", review2);
+
+					// 確認画面へ
+					result = SUCCESS;
+				}
 			} else {
 
-				session.put("review_review", review);
-				session.put("review_value", value);
-
-				review2 = review;
-				review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ");
-				session.put("review_review2", review2);
-
-				// 確認画面へ
-				return SUCCESS;
+				setReviewErrormessage("未入力です");
+				// 元の画面に戻す
+				result = ERROR;
 			}
+
 		} else {
-
-			setReviewErrormessage("未入力です");
-			// 元の画面に戻す
-			return ERROR;
+			result = "back";
 		}
+		return result;
+
 	}
-
-
 
 	public void setSession(Map<String, Object> session) {
 		this.session = session;

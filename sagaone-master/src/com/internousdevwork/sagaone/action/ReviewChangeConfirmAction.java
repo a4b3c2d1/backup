@@ -20,16 +20,16 @@ public class ReviewChangeConfirmAction extends ActionSupport implements SessionA
 
 		// 改行だけの場合を回避
 		review2 = review;
-		review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp", " ");
+		review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp", " ").replaceAll("　","");
 
 		// 入力されているかの確認
 		if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
 
-			review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;");
+			review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;").replaceAll("　","&emsp;");
 
 			if (review.length() > 255) {
 				setReviewErrormessage("文字数オーバーです");
-				review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ");
+				review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;","　");
 				return ERROR;
 
 			} else {
@@ -37,7 +37,7 @@ public class ReviewChangeConfirmAction extends ActionSupport implements SessionA
 				session.put("review_change_review", review);
 
 				review2 = review;
-				review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ");
+				review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;","　");
 				session.put("review_change_review2", review2);
 
 

@@ -30,6 +30,9 @@ public class ReviewConpleteAction extends ActionSupport implements SessionAware 
 	private List<ReviewDetailDTO> reviewdetailDTO1List = new ArrayList<ReviewDetailDTO>();
 	private List<SearchItemInfoDTO> searchItemDTOList = new ArrayList<SearchItemInfoDTO>();
 	private SearchItemFromAllDAO searchItemFromAllDAO = new SearchItemFromAllDAO();
+	public String result;
+	public int reviewFlg;
+
 
 	public String execute() {
 		// レビューを登録
@@ -39,7 +42,12 @@ public class ReviewConpleteAction extends ActionSupport implements SessionAware 
 					session.get("review_product_id").toString(), session.get("review_value").toString(),
 					session.get("review_review").toString());
 
-			session.put("reviewFlg", 0);
+
+			reviewFlg=0;
+
+			session.put("reviewFlg", reviewFlg);
+
+
 
 			// レビュー表示用再読み込み
 			reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
@@ -58,22 +66,14 @@ public class ReviewConpleteAction extends ActionSupport implements SessionAware 
 			searchItemDTOList = gswa.getSearghWord(searchItemDTOList);
 			session.put("allItem", searchItemDTOList);
 
+			result = SUCCESS;
+
+		} else {
+
+			result = "back";
+
 		}
-
-		// レビュー詳細リスト
-		reviewdetailDTO1List = reviewDAO.getreviewinfo3(session.get("review_product_id").toString());
-		session.put("reviewdetailDTO1List", reviewdetailDTO1List);
-
-		// 全商品DTOに詰めます
-		searchItemDTOList = searchItemFromAllDAO.getItemInfoFromAll();
-		ReformCharaAction reformedItemList = new ReformCharaAction();
-		searchItemDTOList = reformedItemList.reformDescription(searchItemDTOList);
-		GetSearchWordsAction gswa = new GetSearchWordsAction();
-		searchItemDTOList = gswa.getSearghWord(searchItemDTOList);
-		session.put("allItem", searchItemDTOList);
-
-		return SUCCESS;
-
+		return result;
 	}
 
 	public void setSession(Map<String, Object> session) {
