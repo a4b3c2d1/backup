@@ -7,6 +7,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.internousdevwork.sagaone.dto.ItemDTO;
 import com.internousdevwork.sagaone.util.DBConnector;
 
@@ -37,7 +39,7 @@ public class ItemrelativeDAO {
 				itemdto.setPrice(nfNum.format(rs.getInt("price")));
 				itemdto.setImageFilePath(rs.getString("image_file_path"));
 				itemdto.setImageFileName(rs.getString("image_file_name"));
-				itemdto.setReleaseDate(rs.getString("release_date"));
+				itemdto.setReleaseDate(StringUtils.left(rs.getString("release_date"), 16));
 				itemdto.setReleaseCompany(rs.getString("release_company"));
 				itemdto.setStatus(rs.getInt("status"));
 				itemdto.setRegistDate(rs.getString("regist_date"));
@@ -76,7 +78,7 @@ public class ItemrelativeDAO {
 				itemdto.setPrice(nfNum.format(rs.getInt("price")));
 				itemdto.setImageFilePath(rs.getString("image_file_path"));
 				itemdto.setImageFileName(rs.getString("image_file_name"));
-				itemdto.setReleaseDate(rs.getString("release_date"));
+				itemdto.setReleaseDate(StringUtils.left(rs.getString("release_date"), 16));
 				itemdto.setReleaseCompany(rs.getString("release_company"));
 				itemdto.setStatus(rs.getInt("status"));
 				itemdto.setRegistDate(rs.getString("regist_date"));

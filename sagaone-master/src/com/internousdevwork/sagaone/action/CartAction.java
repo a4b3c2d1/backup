@@ -15,6 +15,7 @@ package com.internousdevwork.sagaone.action;
  */
 
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -53,12 +54,15 @@ public class CartAction extends ActionSupport implements SessionAware{
 	private String message;
 	private String strProductId;
 	private Collection<String> checkboxList;
-	private int allPrice = 0;
+	private int allPriceInt = 0;
+	private String allPrice;
 	private String cartJugde;
 	private String errorFlg;
 	private int offset;
 	private int page;
 	private int[] allpages;
+
+	NumberFormat nfNum = NumberFormat.getNumberInstance();
 
 	public String result;
 
@@ -109,7 +113,8 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 				cartList = cartDAO.getCartInfo(user_id);
 				for(int i = 0; i < cartList.size(); i++){
-					allPrice += cartList.get(i).getTotalCount();
+					allPriceInt += cartList.get(i).getTotalCountInt();
+					allPrice = nfNum.format(Double.valueOf(allPriceInt));
 				}
 
 				Iterator<CartDTO> itertor = cartList.iterator();
@@ -121,7 +126,8 @@ public class CartAction extends ActionSupport implements SessionAware{
 
 				cartList = tempCartDAO.getTempCartInfo(temp_user_id);
 				for(int i = 0; i < cartList.size(); i++){
-					allPrice += cartList.get(i).getTotalCount();
+					allPriceInt += cartList.get(i).getTotalCountInt();
+					allPrice = nfNum.format(Double.valueOf(allPriceInt));
 				}
 
 				Iterator<CartDTO> itertor = cartList.iterator();
@@ -174,7 +180,6 @@ public class CartAction extends ActionSupport implements SessionAware{
 			session.put("count", count);
 			cartDTO = addTempCartDAO.getTempCartInfo(product_id);
 			cartDTO = addTempCartDAO.getAddCart(temp_user_id, product_id);
-			System.out.println(cartDTO.getProductId());
 
 			if(cartDTO.getProductId() != 0){
 				addCartDAO.addUpdateCart(
@@ -293,14 +298,6 @@ public class CartAction extends ActionSupport implements SessionAware{
 		this.count = count;
 	}
 
-	public int getAllPrice() {
-		return allPrice;
-	}
-
-	public void setAllPrice(int allPrice) {
-		this.allPrice = allPrice;
-	}
-
 	public String getCartJugde() {
 		return cartJugde;
 	}
@@ -349,5 +346,19 @@ public class CartAction extends ActionSupport implements SessionAware{
 		this.paymentFlg = paymentFlg;
 	}
 
+	public int getAllPriceInt() {
+		return allPriceInt;
+	}
 
+	public void setAllPriceInt(int allPriceInt) {
+		this.allPriceInt = allPriceInt;
+	}
+
+	public String getAllPrice() {
+		return allPrice;
+	}
+
+	public void setAllPrice(String allPrice) {
+		this.allPrice = allPrice;
+	}
 }

@@ -48,8 +48,16 @@ public class DestinationCreateConfirmAction extends ActionSupport implements Ses
 	private List<String> errorTelNumberList = new ArrayList<>();
 	private List<String> errorEmailList = new ArrayList<>();
 
+	private String actionPage;
+
 	public String execute()  throws SQLException{
 
+		actionPage = "DestinationCreateConfirmAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 		String result = ERROR;
 		int ErrorCount= 0;
 

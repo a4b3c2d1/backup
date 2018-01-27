@@ -11,7 +11,19 @@ public class PaymentConfirmAction extends ActionSupport implements SessionAware{
 	Map<String,Object> session;
 	private String payMethod;
 
+	//不具合修正用
+	private String actionPage;
+
 	public String execute(){
+
+		//不具合修正用
+		actionPage = "PaymentConfirmAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
+
 		String ret = SUCCESS;
 
 		session.put("payMethod", payMethod);

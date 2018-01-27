@@ -26,8 +26,16 @@ public class DestinationAction extends ActionSupport implements SessionAware {
 	public Map<String, Object> session;
 	private DestinationDTO defaultDestinationDTO;
 	private ArrayList<DestinationDTO> destinationDTOList = new ArrayList<DestinationDTO>();
+	private String actionPage;
 
 	public String execute() {
+		actionPage = "DestinationAction";
+		session.put("actionPage", actionPage);
+		String ret;
+		if(session.get("loginFlg").toString().equals("false")){
+			ret = ERROR;
+			return ret;
+		}
 
 
 		if (session.containsKey("familyName") && session.containsKey("firstName") && session.containsKey("familyNameKana") && session.containsKey("firstNameKana") && session.containsKey("userAddress") && session.containsKey("telNumber") && session.containsKey("email")) {
@@ -37,6 +45,13 @@ public class DestinationAction extends ActionSupport implements SessionAware {
 			session.remove("firstNameKana");
 			session.remove("userAddress");
 			session.remove("telNumber");
+			session.remove("email");
+		}
+		if (session.containsKey("familyName") && session.containsKey("firstName") && session.containsKey("familyNameKana") && session.containsKey("firstNameKana") && session.containsKey("email")) {
+			session.remove("familyName");
+			session.remove("firstName");
+			session.remove("familyNameKana");
+			session.remove("firstNameKana");
 			session.remove("email");
 		}
 

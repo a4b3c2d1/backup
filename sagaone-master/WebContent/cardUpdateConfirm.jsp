@@ -53,14 +53,7 @@
 	<h3>変更する内容は以下でよろしいですか。</h3>
 	<table>
 				<s:form action="CardUpdateCompleteAction">
-					<tr id="box">
-						<td>
-							<label>ログインID:</label>
-						</td>
-						<td>
-							<s:property value="userId" escape="false" />
-						</td>
-					</tr>
+					
 					<tr>
 						<td>
 							<label>カード番号:</label>

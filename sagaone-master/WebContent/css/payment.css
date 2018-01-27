@@ -125,20 +125,3 @@ input[type=radio]:checked + .radio:before {
     -webkit-box-shadow:none;
 }
 
- input[type=submit]{
-	margin-bottom: 10px;
-    background: #ff9b9b;
-    padding: 8px 15px 8px 15px;
-    border: 1px solid white;
-    color: #fff;
-}
- input[type=submit]:hover{
-    background: white;
-    color: #ff9b9b;
-    box-shadow:none;
-    border: 1px solid #ff9b9b;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
-}
-
-

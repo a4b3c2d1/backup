@@ -41,38 +41,43 @@ public class ReviewEditAction extends ActionSupport implements SessionAware {
 	private List<ReviewDetailDTO> reviewdetailDTO1List = new ArrayList<ReviewDetailDTO>();
 
 	public String execute() {
+		if(session.get("loginFlg").toString()!=("false")){
 
-		if (changeflg != null) {
-			// レビュー変更画面へ
+			if (changeflg != null) {
+				// レビュー変更画面へ
 
-			result = "change";
-			session.put("changeflg", changeflg);
-		} else if (deleteflg != null) {
-			// レビュー削除
-			reviewEditDAO.deletereview(session.get("review_user_id").toString(),
-					session.get("review_product_id").toString());
+				result = "change";
+				session.put("changeflg", changeflg);
+			} else if (deleteflg != null) {
+				// レビュー削除
+				reviewEditDAO.deletereview(session.get("review_user_id").toString(),
+						session.get("review_product_id").toString());
 
+				// レビュー再読み込み用
+				reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
+				session.put("reviewDTO2List", reviewDTO2List);
+				session.put("deleteflg", deleteflg);
+				result = "delete";
+				// 商品詳細表示用リスト作成
+				itemdetailDTOList = itemrelativeDAO.getdetailinfo(session.get("review_product_id").toString());
+				session.put("itemdetailDTOList", itemdetailDTOList);
 
-			// レビュー再読み込み用
-			reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
-			session.put("reviewDTO2List", reviewDTO2List);
-			session.put("deleteflg", deleteflg);
-			result = "delete";
-			// 商品詳細表示用リスト作成
-			itemdetailDTOList = itemrelativeDAO.getdetailinfo(session.get("review_product_id").toString());
-			session.put("itemdetailDTOList", itemdetailDTOList);
+				// 全商品DTOに詰めます
+				searchItemDTOList = searchItemFromAllDAO.getItemInfoFromAll();
+				ReformCharaAction reformedItemList = new ReformCharaAction();
+				searchItemDTOList = reformedItemList.reformDescription(searchItemDTOList);
+				GetSearchWordsAction gswa = new GetSearchWordsAction();
+				searchItemDTOList = gswa.getSearghWord(searchItemDTOList);
+				session.put("allItem", searchItemDTOList);
 
-			// 全商品DTOに詰めます
-			searchItemDTOList = searchItemFromAllDAO.getItemInfoFromAll();
-			ReformCharaAction reformedItemList = new ReformCharaAction();
-			searchItemDTOList = reformedItemList.reformDescription(searchItemDTOList);
-			GetSearchWordsAction gswa = new GetSearchWordsAction();
-			searchItemDTOList = gswa.getSearghWord(searchItemDTOList);
-			session.put("allItem", searchItemDTOList);
+				// レビュー詳細リスト
+				reviewdetailDTO1List = reviewDAO.getreviewinfo3(session.get("review_product_id").toString());
+				session.put("reviewdetailDTO1List", reviewdetailDTO1List);
 
-			// レビュー詳細リスト
-			reviewdetailDTO1List = reviewDAO.getreviewinfo3(session.get("review_product_id").toString());
-			session.put("reviewdetailDTO1List", reviewdetailDTO1List);
+			}
+		} else {
+
+			result = "error2";
 
 		}
 		return result;

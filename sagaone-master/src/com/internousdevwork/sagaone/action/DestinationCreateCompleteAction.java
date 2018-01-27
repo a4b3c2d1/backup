@@ -23,7 +23,23 @@ public class DestinationCreateCompleteAction extends ActionSupport implements Se
 
 	private DestinationCreateCompleteDAO destinationCreateCompleteDAO = new DestinationCreateCompleteDAO();
 
+	private String actionPage;
+
 	public String execute() throws SQLException {
+
+		actionPage = "DestinationCreateCompleteAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
+
+		String result;
+
+		if (!session.containsKey("loginUserId") || !session.containsKey("familyName") || !session.containsKey("firstName") || !session.containsKey("familyNameKana") || !session.containsKey("firstNameKana") || !session.containsKey("email") || !session.containsKey("telNumber") || !session.containsKey("userAddress")) {
+			result = ERROR;
+		}
+
 
 		// 宛先情報をDBに登録します。userIdはsessionではloginUserIdとなっています。
 		destinationCreateCompleteDAO.destinationCreate(session.get("loginUserId").toString(),
@@ -44,7 +60,8 @@ public class DestinationCreateCompleteAction extends ActionSupport implements Se
 		session.remove("telNumber");
 		session.remove("userAddress");
 
-		return SUCCESS ;
+		result = SUCCESS;
+		return result;
 	}
 
 	public String getDestinationFlg() {

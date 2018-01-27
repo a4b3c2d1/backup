@@ -25,10 +25,11 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 
 	public String execute() {
 
-		if (session.get("reviewFlg").toString().equals("1")) {
+		if(session.get("loginFlg").toString()!=("false")){
+
 			// 改行だけの場合を回避
 			review2 = review;
-			review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp;", "").replaceAll("　", "");
+			review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp", " ").replaceAll("　", "");
 
 			// 入力されているかの確認
 			if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
@@ -59,12 +60,12 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 				// 元の画面に戻す
 				result = ERROR;
 			}
-
 		} else {
-			result = "back";
-		}
-		return result;
 
+			result = "error2";
+		}
+
+		return result;
 	}
 
 	public void setSession(Map<String, Object> session) {

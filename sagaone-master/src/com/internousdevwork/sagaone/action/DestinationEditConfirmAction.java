@@ -49,7 +49,17 @@ public class DestinationEditConfirmAction extends ActionSupport implements Sessi
 	private List<String> errorUserAddressList = new ArrayList<>();
 	private List<String> errorEmailList = new ArrayList<>();
 
+	private String actionPage;
+
 	public String execute(){
+
+		actionPage = "DestinationEditConfirmAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
+
 		String result = ERROR;
 		int ErrorCount= 0;
 

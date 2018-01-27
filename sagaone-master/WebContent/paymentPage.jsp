@@ -126,10 +126,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>
@@ -196,11 +199,19 @@
 
 					<s:if test="status == 1">
 						<tr><th>住所</th><td><s:property value="userAddress" />&thinsp;&thinsp;
-						<a href = '<s:url action="PaymentAddressChoiceAction" ><s:param name="adNum" value="#st.index"/></s:url>'>この住所を使う</a></td></tr>
+						<a class = "radio" href = '<s:url action="PaymentAddressChoiceAction" ><s:param  name="adNum" value="#st.index"/></s:url>'>この住所を使う</a></td></tr>
+						<tr>
+						<td class = "bar" colspan = "6"></td>
 					</s:if>
+				</s:iterator>
 
 
-					<s:if test = "status == 0">
+					<tr><td>
+					<a class = "page" href='<s:url action="DestinationAction" />'>住所の変更/登録</a>
+					</td></tr>
+					<td class = "bar" colspan = "6"></td>
+					</s:iterator>
+					<%--<s:if test = "status == 0">
 						<tr>
 							<th class="ac-th"><input class="ac-input" id="ac-1" name="accordion-1" type="checkbox" /> <label class="ac-label" for="ac-1">別の住所を使う</label></th>
 						</tr>
@@ -214,9 +225,9 @@
 					</s:if>
 
 				</s:iterator>
-			</s:iterator>
+			</s:iterator>--%>
 
-			<tr><td class="bar" colspan="6"></td> </tr>
+			<%--<tr><td class="bar" colspan="6"></td> </tr>
 			<tr><th>クレジットカード<br>（カード番号）</th><td><s:property value="#session.cardUpdateDTO.cardNumber" /></td></tr>
 			<tr><td class="bar" colspan="6"></td> </tr>
 			<tr><th>クレジットカード<br>（有効期限）</th><td><s:property value="#session.cardUpdateDTO.limitMonth"/> 月　<s:property value="#session.cardUpdateDTO.limitYear"/> 年</td></tr>
@@ -224,7 +235,7 @@
 			<tr><th>クレジットカード<br>（セキュリティコード）</th><td><s:property value="#session.cardUpdateDTO.securityNumber"/></td></tr>
 			<tr><td class="bar" colspan="6"></td> </tr>
 			<tr><th>クレジットカード<br>（名義人）</th><td><s:property value="#session.cardUpdateDTO.nominee"/></td></tr>
-			<tr><td class="bar" colspan="6"></td> </tr>
+			<tr><td class="bar" colspan="6"></td> </tr>--%>
 
 
 
@@ -264,9 +275,9 @@
 
 
 
-		<p>
+		<%--<p>
 			<a class = "page" href='<s:url action="DestinationCreateAction" />'>宛先登録はこちらから</a>
-		</p>
+		</p>--%>
 
 		<p>
 			<s:if test="#session.cardUpdateDTO.cardNumber == null">

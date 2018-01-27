@@ -19,7 +19,7 @@
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/i18n/jquery-ui-i18n.min.js"></script>
 <script type="text/javascript" src="./js/autocomplete.js"></script>
 <!-- ===================ここまで前頁共通=================== -->
-<title>確認画面</title>
+<title>レビュー確認画面</title>
 
 </head>
 <body>
@@ -103,10 +103,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>

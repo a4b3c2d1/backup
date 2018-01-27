@@ -15,41 +15,47 @@ public class ReviewChangeConfirmAction extends ActionSupport implements SessionA
 	// レビュー確認用
 	public String review2;
 	private String reviewErrormessage;
+	public String result;
 
 	public String execute() {
+		if(session.get("loginFlg").toString()!=("false")){
+			// 改行だけの場合を回避
+			review2 = review;
+			review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp", " ").replaceAll("　", "");
+			;
 
-		// 改行だけの場合を回避
-		review2 = review;
-		review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp", " ").replaceAll("　","");
+			// 入力されているかの確認
+			if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
 
-		// 入力されているかの確認
-		if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
+				review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;").replaceAll("　", "&emsp;");
 
-			review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;").replaceAll("　","&emsp;");
+				if (review.length() > 255) {
+					setReviewErrormessage("文字数オーバーです");
+					review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
+					return ERROR;
 
-			if (review.length() > 255) {
-				setReviewErrormessage("文字数オーバーです");
-				review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;","　");
-				return ERROR;
+				} else {
+					session.put("review_change_value", value);
+					session.put("review_change_review", review);
 
+					review2 = review;
+					review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
+					session.put("review_change_review2", review2);
+
+					// 確認画面へ
+					result = SUCCESS;
+				}
 			} else {
-				session.put("review_change_value", value);
-				session.put("review_change_review", review);
+				setReviewErrormessage("未入力です");
 
-				review2 = review;
-				review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;","　");
-				session.put("review_change_review2", review2);
-
-
-				// 確認画面へ
-				return SUCCESS;
+				// 元の画面に戻す
+				result = ERROR;
 			}
 		} else {
-			setReviewErrormessage("未入力です");
+			result = "error2";
 
-			// 元の画面に戻す
-			return ERROR;
 		}
+		return result;
 	}
 
 	public String getValue() {

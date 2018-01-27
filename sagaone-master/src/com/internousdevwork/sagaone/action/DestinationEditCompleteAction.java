@@ -20,8 +20,16 @@ public class DestinationEditCompleteAction extends ActionSupport implements Sess
 	public Map<String, Object> session;
 	private DestinationEditCompleteDAO destinationEditCompleteDAO = new DestinationEditCompleteDAO();
 
+	private String actionPage;
+
 	public String execute() throws SQLException {
 
+		actionPage = "DestinationEditCompleteAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 
 		destinationEditCompleteDAO.destinationUpdate(session.get("loginUserId").toString(),
 				session.get("familyName").toString(),

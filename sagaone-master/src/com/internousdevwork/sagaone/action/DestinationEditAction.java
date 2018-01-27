@@ -18,11 +18,6 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class DestinationEditAction extends ActionSupport implements SessionAware {
 
-	/**
-	 * sessionからidを取得して、DB接続、宛先情報を検索してから情報を表示。
-	 * jsp上で打ち込んだデータをupdate処理する。
-	 */
-
 	private String destinationId;
 	private String myAddressFlg;
 	private String selectFlg;
@@ -31,7 +26,16 @@ public class DestinationEditAction extends ActionSupport implements SessionAware
 	private DestinationDTO selectDestinationDTO = new DestinationDTO();
 	public Map<String, Object> session;
 
+	private String actionPage;
+
 	public String execute() throws SQLException {
+
+		actionPage = "DestinationEditAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 
 		DestinationEditDAO destinationEditDAO = new DestinationEditDAO();
 

@@ -9,8 +9,8 @@
 	<meta http-equiv="Content-Style-Type" content="text/css" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
 
-	<link rel="stylesheet" type="text/css" href="./css/payment.css">
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/payment.css">
 
 	<title>PaymentChoice画面</title>
 
@@ -96,10 +96,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>

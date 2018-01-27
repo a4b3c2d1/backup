@@ -6,12 +6,13 @@ public class CartDTO {
 	private String productName;
 	private String productNameKana;
 	private String imageFilePath;
-	private int price;
+	private String price;
 	private String count;
 	private String releaseCompany;
 	private String releaseDate;
 	private String registDate;
-	private int totalCount = 0;
+	private String totalCount = "0";
+	private int totalCountInt;
 
 	public int getProductId(){
 		return productId;
@@ -45,11 +46,11 @@ public class CartDTO {
 		this.imageFilePath = imageFilePath;
 	}
 
-	public int getPrice(){
+	public String getPrice(){
 		return price;
 	}
 
-	public void setPrice(int price){
+	public void setPrice(String price){
 		this.price = price;
 	}
 
@@ -93,13 +94,20 @@ public class CartDTO {
 		this.count = count;
 	}
 
-	public int getTotalCount() {
+	public String getTotalCount() {
 		return totalCount;
 	}
 
-	public void setTotalCount(int totalCount) {
+	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
 	}
 
+	public int getTotalCountInt() {
+		return totalCountInt;
+	}
+
+	public void setTotalCountInt(int totalCountInt) {
+		this.totalCountInt = totalCountInt;
+	}
 
 }

@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="./css/searchResult.css">
 
 
-<title>HOME</title>
+<title>商品一覧画面</title>
 <!-- *******************ここから前頁共通******************* -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
@@ -100,10 +100,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>
@@ -158,11 +161,11 @@
 
 						<form action="CartAction">
 							<input type="hidden" name="cartFlg" value="1"> <span
-								class="botton1"><input type="submit" value="カート編集へ"></span>
+								class="botton1"><input type="submit" class="form-style" value="カート編集へ"></span>
 						</form>
 						<s:if test="#session.loginUserId != null">
 							<form action="PaymentAction">
-								<span class="botton1"> <input type="submit" value="決済へ"></span>
+								<span class="botton1"> <input type="submit" class="form-style" value="決済へ"></span>
 
 							</form>
 

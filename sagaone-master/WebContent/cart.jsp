@@ -99,10 +99,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>
@@ -192,7 +195,7 @@
 		</s:elseif>
 
 
-		<div>
+		<div class= "price">
 			<s:form action="CartAction">
 				<s:if test="cartList != null">
 			カート内合計金額:<div class= "allPrice"><s:property value="allPrice" />円</div><br>
@@ -201,7 +204,7 @@
 						<input type="submit" class= "pay" value="決済に進むにはログインしてください"  />
 					</s:if>
 					<s:elseif test="cartJugde == 1">
-						<a class= "pay" href='<s:url action="PaymentAction" />'><span id="kessai">決済へ進む</span></a>
+						<a class= "pay" href='<s:url action="PaymentAction" />'>決済へ進む</a>
 					</s:elseif>
 				</s:if>
 			</s:form>

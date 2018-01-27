@@ -21,7 +21,18 @@ public class PaymentCompleteAction extends ActionSupport implements SessionAware
 	private DBConnector db = new DBConnector();
 	private Connection con = db.getConnection();
 
+	//不具合修正用
+	private String actionPage;
+
 	public String execute() throws SQLException {
+
+		//不具合修正用
+		actionPage = "PaymentCompleteAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 		String ret = SUCCESS;
 
 

@@ -168,13 +168,14 @@
 			method="execute">
 			<result name="success">reviewConfirm.jsp</result>
 			<result name="error">review.jsp</result>
+			<result name="back">itemDetail.jsp</result>
 		</action>
 
 		<action name="ReviewConpleteAction"
 			class="com.internousdevwork.sagaone.action.ReviewConpleteAction"
 			method="execute">
 			<result name="success">itemDetail.jsp</result>
-
+			<result name="back">itemDetail.jsp</result>
 		</action>
 
 

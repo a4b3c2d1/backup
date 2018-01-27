@@ -48,6 +48,14 @@
 		    border: none;
 		    color: #fff;
 		}
+		span.red{
+			color: red;
+		}	
+		
+		span.blue{
+			color: blue;
+		}
+		
 </style>
 
 </head>
@@ -64,21 +72,12 @@
 	<s:form action="CardUpdateConfirmAction">
 		<table>
 			<tbody>
-				<tr>
-					<td>ログインID</td>
-					<td>
-						<input type="text" name="userId" placeholder= "ログインID"<s:if test="session != null"> value="<s:property value="userId"/>"</s:if>size="35">
-					</td>
-					<td>
-						<p class="error">
-						<s:if test="errorIdList != null ">
-							<s:iterator value="errorIdList" var="errorId">
-							<s:property value="errorId" escape="false" />
-							</s:iterator>
-						</s:if>
-						</p>
-					</td>
-				</tr>
+				<p class ="error">
+					<s:if test="session.blankMessage != ''">
+						<s:property value="session.blankMessage"/>
+					</s:if>
+				</p>
+				
 				<tr>
 					<td>新しいカード番号</td>
 					<td>
@@ -170,9 +169,7 @@
 						<td><s:submit value="再設定" /></td>
 				</tr>
 				<tr>
-				<td>
-					<input type="button"  value="戻る" onclick="history.back()">
-				</td>
+					<td><input id="page" type="button" onclick="location.href=' <s:url action= "MyPageAction" />'"value="戻る"></td>
 				</tr>
 				</tbody>
 				</table>

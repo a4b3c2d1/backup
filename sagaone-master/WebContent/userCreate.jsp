@@ -237,7 +237,7 @@
 
 				</s:form>
 					<tr>
-						<td><input type="button"  value="戻る" onclick="history.back()"></td>
+						<td><input id="page" type="button" onclick="location.href=' <s:url action= "StartAction" />'"value="戻る"></td>
 					<tr>
 			</table>
 	</div>

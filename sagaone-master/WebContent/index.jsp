@@ -37,7 +37,6 @@
 		</div>
 		<div class="clearfix">
 			<div id="search-form">
-
 				<s:form action="SearchItemAction">
 					<div id="search-box">
 						<select name="itemCategory" id="category">
@@ -53,9 +52,9 @@
 					</div>
 				</s:form>
 			</div>
-			<div id="header-container" class="">
-				<ul id="normal" class="dropmenu clearfix">
-					<li id="itemmenu"><span class="drop-topic">商品カテゴリー&thinsp;<span class="sankaku">▼</span></span>
+			<div id="header-container">
+				<ul id="normal" class="dropmenu">
+					<li id="itemmenu">商品カテゴリー&thinsp;<span class="sankaku">▼</span>
 						<ul class="item-drop">
 							<li>
 								<s:form action="SearchItemAction">
@@ -109,10 +108,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>
@@ -144,19 +146,70 @@
 			<a href= '<s:url action="SearchItemAction"><s:param name="itemCategory" value="2" /><s:param name="searchWord" /></s:url> '><img src="./img/top-electronics.jpg" alt="electronics"></a>
 			<a href= '<s:url action="SearchItemAction"><s:param name="itemCategory" value="3" /><s:param name="searchWord" /></s:url> '><img src="./img/top-game.jpg" alt="game"></a>
 		</div>
-		<div>
-			<p class="pickup">注目商品</p>
-		</div>
-		<div class="slider-sub">
-			<s:iterator value="#session.pickupitem" begin="0" end="9">
+		<div class="main-contents clearfix">
+			<div class="main-left">
 				<div>
-					<s:form action="ItemDetailAction">
-						<input type="hidden" name="product_id" value="<s:property value='product_id' />"></input>
-						<input type="hidden" name="category_id" value="<s:property value='category_id' />"></input>
-						<input type="image" src="<s:property value="image_file_path"/>" width="200" height="200" />
-					</s:form>
+					<h2 class="pickup">注目商品</h2>
 				</div>
-			</s:iterator>
+				<div class="slider-sub">
+					<s:iterator value="#session.pickupitem" begin="0" end="9">
+						<div class="slider-contents">
+							<s:form action="ItemDetailAction">
+								<input type="hidden" name="product_id" value="<s:property value='product_id' />"></input>
+								<input type="hidden" name="category_id" value="<s:property value='category_id' />"></input>
+								<input class="-img" type="image" src="<s:property value="image_file_path"/>"/>
+							</s:form>
+						</div>
+					</s:iterator>
+				</div>
+			</div>
+			<div class="main-right">
+				<div class="ranking">
+					<h2>売れ筋ランキング</h2>
+					<div class="ranking-wrapper">
+						<div class="ranking-column clearfix">
+							<div class="column-left">
+								<p>１</p>
+							</div>
+							<div class="ranking-img">
+								<img src="">
+							</div>
+						</div>
+						<div class="ranking-column clearfix">
+							<div class="column-left">
+								<p>2</p>
+							</div>
+							<div class="ranking-img">
+								<img src="">
+							</div>
+						</div>
+						<div class="ranking-column clearfix">
+							<div class="column-left">
+								<p>3</p>
+							</div>
+							<div class="ranking-img">
+								<img src="">
+							</div>
+						</div>
+						<div class="ranking-column clearfix">
+							<div class="column-left">
+								<p>4</p>
+							</div>
+							<div class="ranking-img">
+								<img src="">
+							</div>
+						</div>
+						<div class="ranking-column clearfix">
+							<div class="column-left">
+								<p>5</p>
+							</div>
+							<div class="ranking-img">
+								<img src="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -187,12 +240,13 @@
 			infinite: true,
 			adaptiveHeight: true,
 			centerMode: true,
-			centerPadding: '80px',
+			centerPadding: '8%',
 			autoplay: true,
 			autoplaySpeed: 2000,
 			slidesToShow: 3,
 			slidesToScroll: 3,
-			cssEase: 'ease'
+			cssEase: 'ease',
+			arrows: false
 		});
 	});
 	</script>

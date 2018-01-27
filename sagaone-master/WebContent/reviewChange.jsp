@@ -20,7 +20,7 @@
 <script type="text/javascript" src="./js/autocomplete.js"></script>
 <!-- ===================ここまで前頁共通=================== -->
 
-<title>レビュー変更</title>
+<title>レビュー書き換え画面</title>
 </head>
 
 <script type="text/javascript">
@@ -109,10 +109,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>

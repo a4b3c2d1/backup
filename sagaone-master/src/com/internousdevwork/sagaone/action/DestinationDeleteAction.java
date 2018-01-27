@@ -21,7 +21,16 @@ public class DestinationDeleteAction extends ActionSupport implements SessionAwa
 	public Map<String, Object> session;
 	private ArrayList<DestinationDTO> destinationDTOList = new ArrayList<DestinationDTO>();
 
+	private String actionPage;
+
 	public String execute() {
+
+		actionPage = "DestinationDeleteAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 
 		try {
 			DestinationDeleteDAO destinationDeleteDAO = new DestinationDeleteDAO();

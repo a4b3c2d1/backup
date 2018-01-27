@@ -29,7 +29,7 @@ public class AddTempCartDAO{
 
 			if(rs.next()){
 				cartDTO.setId(rs.getString("id"));
-				cartDTO.setPrice(rs.getInt("price"));
+				cartDTO.setPrice(rs.getString("price"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -37,7 +37,7 @@ public class AddTempCartDAO{
 		return cartDTO;
 	}
 
-	public void addTempCartInfo(String id, String temp_user_id, int product_id, String product_count, int price) throws SQLException{
+	public void addTempCartInfo(String id, String temp_user_id, int product_id, String product_count, String price) throws SQLException{
 
 		String sql = "INSERT INTO cart_info(temp_user_id, product_id, product_count, price, regist_date) VALUES(?, ?, ?, ?, ?)";
 		try{
@@ -45,7 +45,7 @@ public class AddTempCartDAO{
 			ps.setString(1, temp_user_id);
 			ps.setInt(2, product_id);
 			ps.setString(3, product_count);
-			ps.setInt(4, price);
+			ps.setString(4, price);
 			ps.setString(5, dateUtil.getDate());
 
 			ps.execute();

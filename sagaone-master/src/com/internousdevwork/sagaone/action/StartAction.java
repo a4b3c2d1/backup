@@ -28,6 +28,7 @@ public class StartAction extends ActionSupport implements SessionAware {
 	private Set<String> allWordsList = new LinkedHashSet<String>();
 
 	public String execute() {
+
 		Random randomId = new java.util.Random();
 		boolean loginFlg = false;
 		session.put("temp_user_id", randomId);

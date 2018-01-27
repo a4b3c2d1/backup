@@ -19,9 +19,17 @@ public class ReviewHistoryAction extends ActionSupport implements SessionAware{
 	private List<ReviewInfoDTO> reviewInfoDTOList = new ArrayList<ReviewInfoDTO>();
 	private List<ReviewProductDTO> reviewProductList = new ArrayList<ReviewProductDTO>();
 	private String message;
+	private String actionPage;
 
 	public String execute() {
 		String ret = SUCCESS;
+
+		actionPage = "ReviewHistoryAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 
 		//レビューした商品を取得
 		reviewInfoDTOList = reviewHistoryDAO.getReviewInfo(session.get("loginUserId").toString());

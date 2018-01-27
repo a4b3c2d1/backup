@@ -33,18 +33,30 @@ public class PaymentAction extends ActionSupport implements SessionAware{
 	private PaymentUserAddressDAO userAddressDAO = new PaymentUserAddressDAO();
 	private PaymentCartInfoDAO paymentCartInfoDAO = new PaymentCartInfoDAO();
 	private int sumPrice = 0;
-	
+
 	//クレジットカード
 	private MyPageCardDAO myPageCardDAO = new MyPageCardDAO();
 	private CardUpdateDTO cardUpdateDTO = new CardUpdateDTO();
 
+	//不具合修正用
+	private String actionPage;
+
 	public String execute(){
+
+		//不具合修正用
+		actionPage = "PaymentAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+			return ERROR;
+		}
+
 		String ret = SUCCESS;
 
 
 		//クレジットカード
 		cardUpdateDTO =myPageCardDAO.getCard(session.get("loginUserId").toString());
-		
+
 		paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
 
 		addressDTOList = userAddressDAO.getUserAddress(session.get("loginUserId").toString());

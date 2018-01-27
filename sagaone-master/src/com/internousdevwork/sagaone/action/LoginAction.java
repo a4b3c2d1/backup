@@ -64,53 +64,53 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private PaymentCartInfoDAO paymentCartInfoDAO = new PaymentCartInfoDAO();
 	private int sumPrice = 0;
 
+
 	public String execute() throws SQLException {
 		String ret=ERROR;
 		int ErrorCount= 0;
 
 		if(!(loginUserId.equals("")) && !(loginPassword.equals(""))){
-			setErrorMessage("IDかパスワードが違うよー(○・▽・○)<br>");
+			setErrorMessage("IDかパスワードが異なります(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 		// 未入力時
 		if(loginUserId.equals("")) {
-			setErrorId("ログインIDが入ってないよー(○・▽・○)<br>");
+			setErrorId("ログインIDが未入力です(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 		if (loginPassword.equals("")) {
-			setErrorPassword("パスワードが入ってないよー(○・▽・○)<br>");
+			setErrorPassword("パスワードが未入力です(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 
 		// その他エラー
 		if(loginUserId.length()<1||loginUserId.length()>8 && !loginUserId.equals("")){
-			setErrorId1("1文字以上8文字以内で入力してねー(○・▽・○)<br>");
+			setErrorId1("1文字以上8文字以内で入力してください(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 		if (!loginUserId.matches("^[0-9a-zA-Z]+$") && !(loginUserId.equals(""))) {
-			setErrorId2("半角英数字で入力してねー(○・▽・○)<br>");
+			setErrorId2("半角英数字で入力してください(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 
 		if(loginPassword.length()<3||loginPassword.length()>16 && !loginPassword.equals("")){
-			setErrorPassword1("3文字以上16文字以内で入力してねー(○・▽・○)<br>");
+			setErrorPassword1("3文字以上16文字以内で入力してください(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 		if (!loginPassword.matches("^[0-9a-zA-Z]+$") && !(loginPassword.equals(""))) {
-			setErrorPassword2("半角英数字で入力してねー(○・▽・○)<br>");
+			setErrorPassword2("半角英数字で入力してください(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 		if(ErrorCount>0) {
 			ret = ERROR;
 		}
-
 
 
 		// ログイン実行
@@ -143,7 +143,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			String temp_user_id = session.get("temp_user_id").toString();
 			ArrayList <Integer> idList=new ArrayList<Integer>();
 			cartList = cartDAO.getCartInfo(user_id);
-			tempCartList = tempCartDAO.getTempCartInfo(temp_user_id);
+			tempCartList = tempCartDAO.getTempCartAdd(temp_user_id);
 			int i;
 			for(i=0;i<cartList.size();i++){
 			idList.add(cartList.get(i).getProductId());
@@ -221,6 +221,11 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			}
 			ret= "payment";
 		}}
+
+		if(session.get("actionPage") != null){
+			ret = session.get("actionPage").toString();
+		}
+
 
 		return ret;
 	}

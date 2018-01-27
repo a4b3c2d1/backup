@@ -653,34 +653,34 @@ public class PaymentProductInfoDTOTest {
 	}
 
 	@Test
-	public void testSetPrice() {
+	public void testSetPrice2() {
 		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
-		int test = 123;
+		int test = 2147483647;
 		paypro.setPrice(test);
 		int result = paypro.getPrice();
 		assertEquals(test, result);
 	}
 
 	@Test
-	public void testSetPrice() {
+	public void testSetPrice3() {
 		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
-		int test = 123;
+		int test = -2147483647;
 		paypro.setPrice(test);
 		int result = paypro.getPrice();
 		assertEquals(test, result);
 	}
 
 	@Test
-	public void testSetPrice() {
+	public void testSetPrice4() {
 		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
-		int test = 123;
+		int test = 0;
 		paypro.setPrice(test);
 		int result = paypro.getPrice();
 		assertEquals(test, result);
 	}
 
 	@Test
-	public void testSetPrice() {
+	public void testSetPrice5() {
 		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
 		try{
 			int test = Integer.parseInt("2147483647");
@@ -691,74 +691,714 @@ public class PaymentProductInfoDTOTest {
 	}
 
 	@Test
-	public void testSetPrice() {
+	public void testSetPrice6() {
 		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
 		try{
-			int test = Integer.parseInt("2147483647");
+			int test = Integer.parseInt("-2147483647");
 			paypro.setPrice(test);
 		}catch(RuntimeException e){
-			assertThat(e.getMessage(), "For input String: \"2147483647\"");
+			assertThat(e.getMessage(), "For input String: \"-2147483647\"");
 		}
 	}
 
 	@Test
 	public void testGetReleaseDate() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setReleaseDate(test);
+		assertEquals(test, paypro.getReleaseDate());
+	}
+
+	@Test
+	public void testGetReleaseDate2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setReleaseDate(test);
+		assertEquals(test, paypro.getReleaseDate());
+	}
+
+	@Test
+	public void testGetReleaseDate3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setReleaseDate(test);
+		assertEquals(test, paypro.getReleaseDate());
+	}
+
+	@Test
+	public void testGetReleaseDate4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setReleaseDate(test);
+		assertEquals(test, paypro.getReleaseDate());
+	}
+
+	@Test
+	public void testGetReleaseDate5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setReleaseDate(test);
+		assertEquals(test, paypro.getReleaseDate());
+	}
+
+	@Test
+	public void testGetReleaseDate6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setReleaseDate(test);
+		assertEquals(test, paypro.getReleaseDate());
+	}
+
+	@Test
+	public void testGetReleaseDate7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setReleaseDate(test);
+		assertEquals(test, paypro.getReleaseDate());
 	}
 
 	@Test
 	public void testSetReleaseDate() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setReleaseDate(test);
+		String result = paypro.getReleaseDate();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseDate2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setReleaseDate(test);
+		String result = paypro.getReleaseDate();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseDate3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setReleaseDate(test);
+		String result = paypro.getReleaseDate();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseDate4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setReleaseDate(test);
+		String result = paypro.getReleaseDate();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseDate5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setReleaseDate(test);
+		String result = paypro.getReleaseDate();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseDate6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setReleaseDate(test);
+		String result = paypro.getReleaseDate();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseDate7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setReleaseDate(test);
+		String result = paypro.getReleaseDate();
+		assertEquals(test, result);
 	}
 
 	@Test
 	public void testGetReleaseCompany() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setReleaseCompany(test);
+		assertEquals(test, paypro.getReleaseCompany());
+	}
+
+	@Test
+	public void testGetReleaseCompany2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setReleaseCompany(test);
+		assertEquals(test, paypro.getReleaseCompany());
+	}
+
+	@Test
+	public void testGetReleaseCompany3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setReleaseCompany(test);
+		assertEquals(test, paypro.getReleaseCompany());
+	}
+
+	@Test
+	public void testGetReleaseCompany4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setReleaseCompany(test);
+		assertEquals(test, paypro.getReleaseCompany());
+	}
+
+	@Test
+	public void testGetReleaseCompany5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setReleaseCompany(test);
+		assertEquals(test, paypro.getReleaseCompany());
+	}
+
+	@Test
+	public void testGetReleaseCompany6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setReleaseCompany(test);
+		assertEquals(test, paypro.getReleaseCompany());
+	}
+
+	@Test
+	public void testGetReleaseCompany7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setReleaseCompany(test);
+		assertEquals(test, paypro.getReleaseCompany());
 	}
 
 	@Test
 	public void testSetReleaseCompany() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setReleaseCompany(test);
+		String result = paypro.getReleaseCompany();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseCompany2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setReleaseCompany(test);
+		String result = paypro.getReleaseCompany();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseCompany3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setReleaseCompany(test);
+		String result = paypro.getReleaseCompany();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseCompany4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setReleaseCompany(test);
+		String result = paypro.getReleaseCompany();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseCompany5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setReleaseCompany(test);
+		String result = paypro.getReleaseCompany();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseCompany6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setReleaseCompany(test);
+		String result = paypro.getReleaseCompany();
+		assertEquals(test, result);
+	}
+
+	@Test
+	public void testSetReleaseCompany7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setReleaseCompany(test);
+		String result = paypro.getReleaseCompany();
+		assertEquals(test, result);
 	}
 
 	@Test
 	public void testGetImageFilePath() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setImageFilePath(test);
+		assertEquals(test, paypro.getImageFilePath());
+	}
+	
+	@Test
+	public void testGetImageFilePath2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setImageFilePath(test);
+		assertEquals(test, paypro.getImageFilePath());
+	}
+	
+	@Test
+	public void testGetImageFilePath3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setImageFilePath(test);
+		assertEquals(test, paypro.getImageFilePath());
+	}
+	
+	@Test
+	public void testGetImageFilePath4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setImageFilePath(test);
+		assertEquals(test, paypro.getImageFilePath());
+	}
+	
+	@Test
+	public void testGetImageFilePath5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setImageFilePath(test);
+		assertEquals(test, paypro.getImageFilePath());
+	}
+	
+	@Test
+	public void testGetImageFilePath6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setImageFilePath(test);
+		assertEquals(test, paypro.getImageFilePath());
+	}
+	
+	@Test
+	public void testGetImageFilePath7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setImageFilePath(test);
+		assertEquals(test, paypro.getImageFilePath());
 	}
 
 	@Test
 	public void testSetImageFilePath() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setImageFilePath(test);
+		String result = paypro.getImageFilePath();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFilePath2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setImageFilePath(test);
+		String result = paypro.getImageFilePath();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFilePath3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setImageFilePath(test);
+		String result = paypro.getImageFilePath();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFilePath4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setImageFilePath(test);
+		String result = paypro.getImageFilePath();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFilePath5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setImageFilePath(test);
+		String result = paypro.getImageFilePath();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFilePath6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setImageFilePath(test);
+		String result = paypro.getImageFilePath();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFilePath7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setImageFilePath(test);
+		String result = paypro.getImageFilePath();
+		assertEquals(test, result);
 	}
 
 	@Test
 	public void testGetImageFileName() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setImageFileName(test);
+		assertEquals(test, paypro.getImageFileName());
+	}
+	
+	@Test
+	public void testGetImageFileName2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setImageFileName(test);
+		assertEquals(test, paypro.getImageFileName());
+	}
+	
+	@Test
+	public void testGetImageFileName3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setImageFileName(test);
+		assertEquals(test, paypro.getImageFileName());
+	}
+	
+	@Test
+	public void testGetImageFileName4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setImageFileName(test);
+		assertEquals(test, paypro.getImageFileName());
+	}
+	
+	@Test
+	public void testGetImageFileName5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setImageFileName(test);
+		assertEquals(test, paypro.getImageFileName());
+	}
+	
+	@Test
+	public void testGetImageFileName6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setImageFileName(test);
+		assertEquals(test, paypro.getImageFileName());
+	}
+	
+	@Test
+	public void testGetImageFileName7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setImageFileName(test);
+		assertEquals(test, paypro.getImageFileName());
 	}
 
 	@Test
 	public void testSetImageFileName() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123";
+		paypro.setImageFileName(test);
+		String result = paypro.getImageFileName();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFileName2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "あいう１２３";
+		paypro.setImageFileName(test);
+		String result = paypro.getImageFileName();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFileName3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "abc123あいう１２３漢字";
+		paypro.setImageFileName(test);
+		String result = paypro.getImageFileName();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFileName4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = null;
+		paypro.setImageFileName(test);
+		String result = paypro.getImageFileName();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFileName5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "";
+		paypro.setImageFileName(test);
+		String result = paypro.getImageFileName();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFileName6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = " ";
+		paypro.setImageFileName(test);
+		String result = paypro.getImageFileName();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetImageFileName7() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		String test = "  ";
+		paypro.setImageFileName(test);
+		String result = paypro.getImageFileName();
+		assertEquals(test, result);
 	}
 
 	@Test
 	public void testGetProductCount() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 123;
+		paypro.setProductCount(test);
+		assertEquals(test, paypro.getProductCount());
+	}
+	
+	@Test
+	public void testGetProductCount2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 2147483647;
+		paypro.setProductCount(test);
+		assertEquals(test, paypro.getProductCount());
+	}
+	
+	@Test
+	public void testGetProductCount3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = -2147483647;
+		paypro.setProductCount(test);
+		assertEquals(test, paypro.getProductCount());
+	}
+	
+	@Test
+	public void testGetProductCount4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 0;
+		paypro.setProductCount(test);
+		assertEquals(test, paypro.getProductCount());
+	}
+	
+	@Test
+	public void testGetProductCount5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("2147483647");
+			paypro.setProductCount(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"2147483647\"");
+		}
+	}
+	
+	@Test
+	public void testGetProductCount6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("-2147483647");
+			paypro.setProductCount(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"-2147483647\"");
+		}
 	}
 
 	@Test
 	public void testSetProductCount() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 123;
+		paypro.setProductCount(test);
+		int result = paypro.getProductCount();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetProductCount2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 2147483647;
+		paypro.setProductCount(test);
+		int result = paypro.getProductCount();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetProductCount3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = -2147483647;
+		paypro.setProductCount(test);
+		int result = paypro.getProductCount();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetProductCount4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 0;
+		paypro.setProductCount(test);
+		int result = paypro.getProductCount();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetProductCount5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("2147483647");
+			paypro.setProductCount(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"2147483647\"");
+		}
+	}
+	
+	@Test
+	public void testSetProductCount6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("-2147483647");
+			paypro.setProductCount(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"-2147483647\"");
+		}
 	}
 
 	@Test
 	public void testGetTotalPrice() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 123;
+		paypro.setTotalPrice(test);
+		assertEquals(test, paypro.getTotalPrice());
+	}
+	
+	@Test
+	public void testGetTotalPrice2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 2147483647;
+		paypro.setTotalPrice(test);
+		assertEquals(test, paypro.getTotalPrice());
+	}
+	
+	@Test
+	public void testGetTotalPrice3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = -2147483647;
+		paypro.setTotalPrice(test);
+		assertEquals(test, paypro.getTotalPrice());
+	}
+	
+	@Test
+	public void testGetTotalPrice4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 0;
+		paypro.setTotalPrice(test);
+		assertEquals(test, paypro.getTotalPrice());
+	}
+	
+	@Test
+	public void testGetTotalPrice5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("2147483647");
+			paypro.setTotalPrice(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"2147483647\"");
+		}
+	}
+	
+	@Test
+	public void testGetTotalPrice6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("-2147483647");
+			paypro.setTotalPrice(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"-2147483647\"");
+		}
 	}
 
 	@Test
 	public void testSetTotalPrice() {
-		fail("まだ実装されていません");
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 123;
+		paypro.setTotalPrice(test);
+		int result = paypro.getTotalPrice();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetTotalPrice2() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 2147483647;
+		paypro.setTotalPrice(test);
+		int result = paypro.getTotalPrice();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetTotalPrice3() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = -2147483647;
+		paypro.setTotalPrice(test);
+		int result = paypro.getTotalPrice();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetTotalPrice4() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		int test = 0;
+		paypro.setTotalPrice(test);
+		int result = paypro.getTotalPrice();
+		assertEquals(test, result);
+	}
+	
+	@Test
+	public void testSetTotalPrice5() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("2147483647");
+			paypro.setTotalPrice(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"2147483647\"");
+		}
+	}
+	
+	@Test
+	public void testSetTotalPrice6() {
+		PaymentProductInfoDTO paypro = new PaymentProductInfoDTO();
+		try{
+			int test = Integer.parseInt("-2147483647");
+			paypro.setTotalPrice(test);
+		}catch(RuntimeException e){
+			assertThat(e.getMessage(), "For input String: \"-2147483647\"");
+		}
 	}
 
 	private void assertThat(String message, String String){

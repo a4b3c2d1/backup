@@ -20,6 +20,7 @@ public class MyPageAction extends ActionSupport implements SessionAware{
 	private MyPageDTO myPageDTO = new MyPageDTO();
 	private MyPageAddressDTO myPageAddressDTO = new MyPageAddressDTO();
 	private String myAddressFlg = "0";
+	private String actionPage;
 
 	//クレジットカード
 	private MyPageCardDAO myPageCardDAO = new MyPageCardDAO();
@@ -27,6 +28,12 @@ public class MyPageAction extends ActionSupport implements SessionAware{
 
 	public String execute(){
 		String ret = ERROR;
+		actionPage = "MyPageAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+			return ERROR;
+		}
 
 		if( session.get("loginUserId") != null){
 			myPageDTO = myPageDAO.myPageInfo(session.get("loginUserId").toString());
@@ -43,6 +50,8 @@ public class MyPageAction extends ActionSupport implements SessionAware{
 			if(len >= 4){
 				cardUpdateDTO.setCardNumberLastFour(cardUpdateDTO.getCardNumber().substring(len - 4, len));
 			}
+
+
 
 			ret = SUCCESS;
 		}

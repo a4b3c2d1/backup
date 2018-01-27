@@ -34,9 +34,17 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 	// 戻り値変数
 	public String ret;
 
+	private String actionPage;
+
 	public String execute() {
+
+		actionPage = "ReviewAction";
+		session.put("actionPage", actionPage);
+
 		// セッション名("loginUser")の存在確認
-		if ((session.get("loginUser")) != null) {
+		if (session.get("loginFlg").toString().equals("false")) {
+			ret = ERROR;
+			}else{
 
 			// loginflg確認
 			if (((LoginDTO) session.get("loginUser")).getLoginFlg()) {
@@ -64,8 +72,8 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 					ret = "confirm";
 				}
 			}
-		} else {
-			ret = ERROR;
+
+
 
 		}
 		return ret;

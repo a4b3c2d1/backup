@@ -52,21 +52,14 @@ public class CardUpdateConfirmAction extends ActionSupport implements SessionAwa
 			String result= ERROR;
 			int ErrorCount = 0;
 			
-			if(userId.equals("") ||
-					cardNumber.equals("") || 
-					limitYear.equals("") || 
-					securityNumber.equals("") || 
-					nominee.equals("")){
+			if(cardNumber.equals("") || 
+			   limitYear.equals("") || 
+			   securityNumber.equals("") || 
+			    nominee.equals("")){
 				blank = "未入力項目があります。";
 				session.put("blankMessage", blank);
 				ErrorCount++;
 			}else{
-				//ログインID
-				if(!(checkDAO.checkCount(userId)>0)){
-					errorId = "ログインIDが間違っています。";
-					errorIdList.add(errorId);
-					ErrorCount++;
-				}
 				
 				//(カード番号)
 				if(cardNumber.length()<14||cardNumber.length()>16){
@@ -117,7 +110,7 @@ public class CardUpdateConfirmAction extends ActionSupport implements SessionAwa
 				session.put("errorNominee", getErrorNomineeList());
 				return result;
 			}else{
-				session.put("userId", userId);
+				session.put("userId", session.get("loginUserId"));
 				session.put("cardNumber", cardNumber);
 				session.put("limitYear", limitYear);
 				session.put("limitMonth", limitMonth);

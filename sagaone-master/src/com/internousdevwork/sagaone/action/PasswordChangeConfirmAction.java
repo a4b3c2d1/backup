@@ -29,9 +29,18 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 	private LoginDTO loginDTO= new LoginDTO();
 	private UserCheckDAO checkDAO = new UserCheckDAO();
 	private PasswordChangeDAO passwordChangeDAO= new PasswordChangeDAO();
+	private String actionPage;
 
 	public String execute() throws SQLException {
 		String ret= ERROR;
+
+		actionPage = "PasswordChangeAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
+
 		int errorCount= 0;
 
 		loginDTO= passwordChangeDAO.getNewLoginUserInfo(newLoginPassword, userId);
@@ -50,7 +59,7 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 
 			//ログインID
 			if(!(checkDAO.checkCount(userId)>0)){
-				errorId = "ログインIDが間違っています。";
+				errorId = "ログインIDが間違っています(○・▽・○)！";
 				errorIdList.add(errorId);
 				errorCount++;
 			}
@@ -68,7 +77,7 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 				errorCount++;
 			}
 			if (!(session.get("newLoginPassword").toString().equals(session.get("newLoginPassword2").toString()))) {
-				errorPassword2= "パスワードのどっちかが違うよー(○・▽・○)";
+				errorPassword2= "再確認パスワードが異なります(○・▽・○)！";
 				errorPasswordList2.add(errorPassword2);
 				errorCount++;
 			}
@@ -83,6 +92,13 @@ public class PasswordChangeConfirmAction extends ActionSupport implements Sessio
 		}else {
 			session.put("newLoginPassword", newLoginPassword);
 			ret= SUCCESS;
+		}
+
+		actionPage = "PasswordChangeConfirmAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
 		}
 
 		return ret;

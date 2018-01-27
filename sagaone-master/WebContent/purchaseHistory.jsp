@@ -121,10 +121,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>
@@ -184,14 +187,16 @@
 					</div>
 				</div>
 			</s:iterator>
-			<div class="delete">
-				<s:url var="PurchaseHistoryAction_url" action="PurchaseHistoryAction">
-					<button class="btn" type="submit" name="deleteFlg" value="0">履歴をすべて削除</button>
-				</s:url>
-				<s:url var="PurchaseHistoryAction_url" action="PurchaseHistoryAction">
-					<button class="btn" type="submit" name="deleteFlg" value="1">選択した項目を削除</button>
-				</s:url>
-			</div>
+			<s:if test="purchaseHistoryList != null">
+				<div class="delete">
+					<s:url var="PurchaseHistoryAction_url" action="PurchaseHistoryAction">
+						<button class="btn" type="submit" name="deleteFlg" value="0">履歴をすべて削除</button>
+					</s:url>
+					<s:url var="PurchaseHistoryAction_url" action="PurchaseHistoryAction">
+						<button class="btn" type="submit" name="deleteFlg" value="1">選択した項目を削除</button>
+					</s:url>
+				</div>
+			</s:if>
 		</s:form>
 	</div>
 	<footer>© 2017-2018, Sagaone.com</footer>

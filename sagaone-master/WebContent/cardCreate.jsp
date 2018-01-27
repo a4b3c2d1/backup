@@ -81,23 +81,6 @@
 				</p>
 					<tr>
 						<td>
-							<label>ログインID</label>
-						</td>
-						<td>
-							<input type="text" name="userId" placeholder= "ログインID"<s:if test="session != null"> value="<s:property value="userId"/>"</s:if>size="35">
-						</td>
-						<td>
-							<p class="error">
-							<s:if test="errorIdList != null ">
-							<s:iterator value="errorIdList" var="errorId">
-								<s:property value="errorId" escape="false" />
-							</s:iterator>
-							</s:if>
-							</p>
-						</td>
-					</tr>
-					<tr>
-						<td>
 							<label>カード番号</label>
 						</td>
 						<td>
@@ -193,7 +176,7 @@
 				
 				</s:form>
 					<tr>
-						<td><input type="button"  value="戻る" onclick="history.back()"></td>
+						<td><input id="page" type="button" onclick="location.href=' <s:url action= "MyPageAction" />'"value="戻る"></td>
 					<tr>
 			</table>
 	</div>

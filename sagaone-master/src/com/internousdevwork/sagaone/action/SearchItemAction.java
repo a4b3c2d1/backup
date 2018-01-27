@@ -51,29 +51,27 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 		//全商品取得
 		List<SearchItemInfoDTO> searchItemDTOList =(List<SearchItemInfoDTO>)session.get("allItem");
 
+		for(int i=0; i<searchItemDTOList.size(); i++){
+			searchItemDTOList.get(i).setSearchFlg("1");
+		}
 
 		//検索カテゴリー・ワードを全商品と比較
 		if(!(itemCategory.equals("0"))){
 			for(int i=0; i<searchItemDTOList.size(); i++){
 				for(int j=0; j<normalSearchWordList.size(); j++){
-					if(searchItemDTOList.get(i).getDescriptionAll().contains(normalSearchWordList.get(j)) &&
-						searchItemDTOList.get(i).getCategoryId().equals(itemCategory)){
-						searchItemDTOList.get(i).setSearchFlg("1");
-					}else{
+					if(!(searchItemDTOList.get(i).getDescriptionAll().contains(normalSearchWordList.get(j))) ||
+						!(searchItemDTOList.get(i).getCategoryId().equals(itemCategory))){
 						searchItemDTOList.get(i).setSearchFlg("0");
-					}
-
+				}
 				}
 			}
 		}else{
 			for(int i=0; i<searchItemDTOList.size(); i++){
 				for(int j=0; j<normalSearchWordList.size(); j++){
-					if(searchItemDTOList.get(i).getDescriptionAll().contains(normalSearchWordList.get(j))){
-						searchItemDTOList.get(i).setSearchFlg("1");
-					}else{
+					if(!(searchItemDTOList.get(i).getDescriptionAll().contains(normalSearchWordList.get(j)))){
 						searchItemDTOList.get(i).setSearchFlg("0");
-					}
 
+					}
 				}
 			}
 		}

@@ -22,10 +22,16 @@ public class DestinationSelectAction extends ActionSupport implements SessionAwa
 	private DestinationDTO defaultDestinationDTO;
 	private ArrayList<DestinationDTO> destinationDTOList = new ArrayList<DestinationDTO>();
 
+	private String actionPage;
+
 	public String execute() {
-		/**
-		 * radioで選択したDTOをDBでmyAddressFlg="1"を受け取ったstatusを"1"に元々status="1"のものをstatus="0"に書き換える。
-		 */
+
+		actionPage = "DestinationSelectAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 
 		try {
 			DestinationDefaultDAO destinationDefaultDAO = new DestinationDefaultDAO();

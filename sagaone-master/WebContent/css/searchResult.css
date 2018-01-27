@@ -1,4 +1,5 @@
-	@CHARSET "UTF-8";
+@CHARSET "UTF-8";
+
 a {
 	text-decoration: none;
 }
@@ -7,6 +8,7 @@ a:visited {
 	color: #0066c0;
 	text-decoration: none
 }
+
 #main {
 	margin-top: 0px;
 	margin-bottom: 60px;
@@ -122,7 +124,7 @@ a:visited {
 	width: 250px;
 	height: 280px;
 	margin: 20px;
-		text-align: center;
+	text-align: center;
 }
 
 .main3, .main4 {
@@ -213,11 +215,11 @@ a:visited {
 	color: #fff;
 }
 
-.d-btn :hover{
-    background: #4691A4;
-    box-shadow:none;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
+.d-btn :hover {
+	background: #4691A4;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
 }
 
 .page {
@@ -238,4 +240,18 @@ a:visited {
 .count {
 	font-size: 15px;
 	color: #000;
+}
+
+.form-style {
+	background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+}
+
+.form-style :hover {
+	background: #4691A4;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
 }

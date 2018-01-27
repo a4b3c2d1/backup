@@ -27,9 +27,16 @@ public class DestinationCreateAction extends ActionSupport implements SessionAwa
 	private String destinationFlg;
 
 	public Map<String, Object> session;
+	private String actionPage;
 
 	public String execute() {
 
+		actionPage = "DestinationCreateAction";
+		session.put("actionPage", actionPage);
+
+		if(session.get("loginFlg").toString().equals("false")){
+		    return ERROR;
+		}
 		return SUCCESS;
 	}
 

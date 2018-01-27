@@ -98,10 +98,13 @@
 								</li>
 							</s:if>
 
-							<li><s:form action="UserCreateAction">
-									<s:submit value="ユーザー登録" cssClass="b-btn" />
-								</s:form>
-							</li>
+							<s:if test="session.loginUser == null">
+								<li>
+									<s:form action="UserCreateAction">
+										<s:submit value="ユーザー登録" cssClass="b-btn" />
+									</s:form>
+								</li>
+							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>
@@ -166,6 +169,7 @@
 			<a id= "page" href= '<s:url action= "GoHomeAction" />'>ホームへ</a>
 			<a id = "page" href = ' <s:url action= "PurchaseHistoryAction" /> '>購入履歴</a>
 			<a id = "page" href = ' <s:url action= "ReviewHistoryAction" /> '>レビュー履歴</a>
+			<a id= "page" href= '<s:url action= "PasswordChangeAction" />'>パスワード変更</a>
 
 	</s:iterator>
 

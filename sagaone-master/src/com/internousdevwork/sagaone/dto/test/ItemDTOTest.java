@@ -1691,7 +1691,7 @@ public class ItemDTOTest {
 		ItemDTO item = new ItemDTO();
 		float test = (float)0.0;
 		item.setAvgValue(test);
-		assertEquals(test, item.getStatus(), 0.0);
+		assertEquals(test, item.getAvgValue(), 0.0);
 	}
 
 	@Test

@@ -33,7 +33,6 @@ public class CardCreateConfirmAction extends ActionSupport implements SessionAwa
 	private String blank = "";
 	
 	//エラーの変数
-	private String userId;
 	private String errorNumber;
 	private String errorSecurity;
 	private String errorNominee;
@@ -43,21 +42,15 @@ public class CardCreateConfirmAction extends ActionSupport implements SessionAwa
 		String result= ERROR;
 		int ErrorCount = 0;
 		
-		if(userId.equals("") ||
-				cardNumber.equals("") || 
+		if(		cardNumber.equals("") || 
 				limitYear.equals("") || 
 				securityNumber.equals("") || 
 				nominee.equals("")){
-			blank = "未入力項目があります。";
+			    blank = "未入力項目があります。";
 			session.put("blankMessage", blank);
 			ErrorCount++;
 		}else{
-			//ログインID
-			if(!(checkDAO.checkCount(userId)>0)){
-				errorId = "ログインIDが間違っています。";
-				errorIdList.add(errorId);
-				ErrorCount++;
-			}
+		
 			
 			//(カード番号)
 			if(cardNumber.length()<14||cardNumber.length()>16){
@@ -108,7 +101,7 @@ public class CardCreateConfirmAction extends ActionSupport implements SessionAwa
 			session.put("errorNominee", getErrorNomineeList());
 			return result;
 		}else{
-			session.put("userId", userId);
+			session.put("userId", session.get("loginUserId"));
 			session.put("cardNumber", cardNumber);
 			session.put("limitYear", limitYear);
 			session.put("limitMonth", limitMonth);
@@ -278,17 +271,6 @@ public class CardCreateConfirmAction extends ActionSupport implements SessionAwa
 
 	public void setErrorIdList(List<String> errorIdList) {
 		this.errorIdList = errorIdList;
-	}
-
-
-
-
-	//ユーザーIDゲット
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 
