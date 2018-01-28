@@ -7,7 +7,6 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdevwork.sagaone.dao.ReviewDAO;
-import com.internousdevwork.sagaone.dto.LoginDTO;
 import com.internousdevwork.sagaone.dto.ReviewDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -21,8 +20,6 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 
 	// カテゴリー情報格納
 	private String category_id;
-
-	private String reviewFlg;
 
 	public Map<String, Object> session;
 
@@ -43,37 +40,59 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 
 		// セッション名("loginUser")の存在確認
 		if (session.get("loginFlg").toString().equals("false")) {
+
+			if (product_id != null) {
+				session.put("review_product_id", product_id);
+			}
+
+			if (category_id != null) {
+				session.put("review_category_id", category_id);
+			}
+
 			ret = ERROR;
-			}else{
+		} else {
+			System.out.println(product_id);
+			// loginUserId情報格納
+			reviewloginuser_id = (session.get("loginUserId")).toString();
 
-			// loginflg確認
-			if (((LoginDTO) session.get("loginUser")).getLoginFlg()) {
+			// そのユーザが商品のレビューを書いたことがあるかの確認メソッド
 
-				// loginUserId情報格納
-				reviewloginuser_id = (session.get("loginUserId")).toString();
+			if (product_id != null) {
 
-				// そのユーザが商品のレビューを書いたことがあるかの確認メソッド
 				reviewDTOList = reviewDAO.getreviewinfo1(reviewloginuser_id, product_id);
 				session.put("reviewDTOList", reviewDTOList);
 
 				session.put("review_user_id", reviewloginuser_id);
-				session.put("review_product_id", product_id);
-				session.put("review_category_id", category_id);
-				session.put("reviewFlg", reviewFlg);
+			} else {
+				// ログアウトはさんだ場合
+				reviewDTOList = reviewDAO.getreviewinfo1(reviewloginuser_id,
+						session.get("review_product_id").toString());
+				session.put("reviewDTOList", reviewDTOList);
 
-				// 書いたことがない場合
-				if (reviewDTOList.size() == 0) {
-
-					ret = SUCCESS;
-
-					// 書いたことがある場合
-				} else {
-
-					ret = "confirm";
-				}
+				session.put("review_user_id", reviewloginuser_id);
 			}
 
+			// レビュー履歴からの遷移用,ログアウト用
 
+			if (product_id != null) {
+				session.put("review_product_id", product_id);
+			}
+
+			if (category_id != null) {
+				session.put("review_category_id", category_id);
+			}
+			session.put("reviewFlg", 1);
+
+			// 書いたことがない場合
+			if (reviewDTOList.size() == 0) {
+
+				ret = SUCCESS;
+
+				// 書いたことがある場合
+			} else {
+
+				ret = "confirm";
+			}
 
 		}
 		return ret;
@@ -113,14 +132,6 @@ public class ReviewAction extends ActionSupport implements SessionAware {
 
 	public void setCategory_id(String category_id) {
 		this.category_id = category_id;
-	}
-
-	public String getReviewFlg() {
-		return reviewFlg;
-	}
-
-	public void setReviewFlg(String reviewFlg) {
-		this.reviewFlg = reviewFlg;
 	}
 
 }

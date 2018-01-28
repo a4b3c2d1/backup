@@ -14,10 +14,14 @@
 
 
 <!-- *******************ここから前頁共通******************* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/redmond/jquery-ui.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/i18n/jquery-ui-i18n.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/themes/redmond/jquery-ui.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.19/i18n/jquery-ui-i18n.min.js"></script>
 <script type="text/javascript" src="./js/autocomplete.js"></script>
 <!-- ===================ここまで前頁共通=================== -->
 
@@ -27,7 +31,8 @@
 	<!-- *******************ここから前頁共通******************* -->
 	<header class="clearfix">
 		<div id="main-logo">
-			<a href=' <s:url action= "GoHomeAction" /> '><img src="./css/sagaone_logo.png" height="100px"></a>
+			<a href=' <s:url action= "GoHomeAction" /> '><img
+				src="./css/sagaone_logo.png" height="100px"></a>
 		</div>
 		<div class="clearfix">
 			<div id="search-form">
@@ -39,97 +44,81 @@
 							<option value="1">本</option>
 							<option value="2">家電・パソコン</option>
 							<option value="3">おもちゃ・ゲーム</option>
-						</select>
-						<input type="text" name="searchWord" id="jquery-ui-autocomplete-input" />
+						</select> <input type="text" name="searchWord"
+							id="jquery-ui-autocomplete-input" />
 					</div>
 					<div class="search-btn">
-					<input type="image" src="./css/searchIcon.png" width="20" height="20" class="icon"/>
+						<input type="image" src="./css/searchIcon.png" width="20"
+							height="20" class="icon" />
 					</div>
 				</s:form>
 			</div>
 			<div id="header-container" class="">
 				<ul id="normal" class="dropmenu clearfix">
-					<li id="itemmenu"><span class="drop-topic">商品カテゴリー&thinsp;<span class="sankaku">▼</span></span>
+					<li id="itemmenu"><span class="drop-topic">商品カテゴリー&thinsp;<span
+							class="sankaku">▼</span></span>
 						<ul class="item-drop">
-							<li>
-								<s:form action="SearchItemAction">
+							<li><s:form action="SearchItemAction">
 									<input type="hidden" name="itemCategory" value="0" />
 									<input type="hidden" name="searchWord" value="" />
 									<s:submit value="全てのカテゴリー" cssClass="c-btn" />
-								</s:form>
-							</li>
-							<li>
-								<s:form action="SearchItemAction">
+								</s:form></li>
+							<li><s:form action="SearchItemAction">
 									<input type="hidden" name="itemCategory" value="1" />
 									<input type="hidden" name="searchWord" value="" />
 									<s:submit value="本" cssClass="c-btn" />
-								</s:form>
-							</li>
-							<li>
-								<s:form action="SearchItemAction">
+								</s:form></li>
+							<li><s:form action="SearchItemAction">
 									<input type="hidden" name="itemCategory" value="2" />
 									<input type="hidden" name="searchWord" value="" />
 									<s:submit value="家電・パソコン" cssClass="c-btn" />
-								</s:form>
-							</li>
-							<li>
-								<s:form action="SearchItemAction">
+								</s:form></li>
+							<li><s:form action="SearchItemAction">
 									<input type="hidden" name="itemCategory" value="3" />
 									<input type="hidden" name="searchWord" value="" />
 									<s:submit value="おもちゃ・ゲーム" cssClass="c-btn" />
-								</s:form>
-							</li>
-						</ul>
-					</li>
-					<li id="acountmenu"><span class="drop-topic">アカウントメニュー&thinsp;<span class="sankaku">▼</span></span>
+								</s:form></li>
+						</ul></li>
+					<li id="acountmenu"><span class="drop-topic">アカウントメニュー&thinsp;<span
+							class="sankaku">▼</span></span>
 						<ul class="acount-drop">
 							<s:if test="session.loginUser != null">
 								<li><s:form action="MyPageAction">
 										<s:submit value="マイページ" cssClass="b-btn" />
-									</s:form>
-								</li>
+									</s:form></li>
 							</s:if>
 							<s:if test="session.loginUser == null">
 								<li><s:form action="LoginPageAction">
 										<s:submit value="ログイン画面へ" cssClass="b-btn" />
-									</s:form>
-								</li>
+									</s:form></li>
 							</s:if>
 
 							<s:if test="session.loginUser != null">
 								<li><s:form action="LogoutAction">
 										<s:submit value="ログアウト" cssClass="b-btn" />
-									</s:form>
-								</li>
+									</s:form></li>
 							</s:if>
 
 							<s:if test="session.loginUser == null">
-								<li>
-									<s:form action="UserCreateAction">
+								<li><s:form action="UserCreateAction">
 										<s:submit value="ユーザー登録" cssClass="b-btn" />
-									</s:form>
-								</li>
+									</s:form></li>
 							</s:if>
 
 							<li><s:form action="CartAction">
 									<s:hidden name="cartFlg" value="1"></s:hidden>
 									<s:submit value="カート確認" cssClass="b-btn" />
-								</s:form>
-							</li>
+								</s:form></li>
 
 							<s:if test="session.loginUser != null">
 								<li><s:form action="PaymentAction">
 										<s:submit value="決済" cssClass="b-btn" />
-									</s:form>
-								</li>
+									</s:form></li>
 							</s:if>
-						</ul>
-					</li>
-					<li id="welcome">
-						<s:if test="session.loginUser != null" >
+						</ul></li>
+					<li id="welcome"><s:if test="session.loginUser != null">
 							<s:property value="#session.loginUserId" />&nbsp;さんでログイン中
-						</s:if>
-					</li>
+						</s:if></li>
 				</ul>
 			</div>
 		</div>
@@ -200,7 +189,7 @@
 			</s:iterator>
 
 		</div>
-		<hr width="95%">
+		<hr />
 		<div class="main2">
 
 			<h2>カスタマーレビュー</h2>
@@ -253,7 +242,6 @@
 								value="<s:property value='productId' />"></input>
 							<input type="hidden" name="category_id"
 								value="<s:property value='categoryId' />"></input>
-							<input type="hidden" name="reviewFlg" value="1"></input>
 
 							<input type="submit" class="form-style" value="レビューを書く"
 								<s:if test="#session.loginUserId == null">
@@ -276,14 +264,20 @@
 								<div class="rating-back">★★★★★</div>
 							</div>
 						</li>
-						<li><s:property value="review" escape="false" /></li>
+						<li>
+							<div class="text">
+								<textarea class="text" name="review" readonly="readonly"><s:property
+										value="review" escape="false" /></textarea>
+							</div>
+
+						</li>
 					</ul>
 
 
 				</s:iterator>
 			</div>
 		</div>
-		<hr width="95%">
+		<hr />
 		<div class="main3">
 
 			<h2>関連商品</h2>
@@ -331,7 +325,7 @@
 				</div>
 			</div>
 		</div>
-		<hr width="95%">
+		<hr />
 		<div class="main4">
 			<s:form action="SearchItemAction">
 				<input type="hidden" name="itemCategory" value="0" />
@@ -340,12 +334,13 @@
 			</s:form>
 		</div>
 	</div>
-<!-- *******************ここから前頁共通******************* -->
+	<!-- *******************ここから前頁共通******************* -->
 	<footer>© 2017-2018, Sagaone.com</footer>
 
 	<form name="form_test">
-		<input type="hidden" name="input_test" value="<s:iterator value="#session.allWordsList" ><s:property /></s:iterator>">
+		<input type="hidden" name="input_test"
+			value="<s:iterator value="#session.allWordsList" ><s:property /></s:iterator>">
 	</form>
-<!-- ===================ここまで前頁共通=================== -->
+	<!-- ===================ここまで前頁共通=================== -->
 </body>
 </html>

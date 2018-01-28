@@ -22,6 +22,8 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 	private List<ReviewDTO> reviewDTO2List = new ArrayList<ReviewDTO>();
 	private List<ReviewDetailDTO> reviewdetailDTO1List = new ArrayList<ReviewDetailDTO>();
 	private List<SearchItemInfoDTO> pageItemList = new ArrayList<SearchItemInfoDTO>();
+	private String product_id;
+	private String category_id;
 
 	@SuppressWarnings("unchecked")
 	public String execute() {
@@ -29,12 +31,35 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 		boolean loginMemory = session.get("loginMemory").equals(true);
 		// String actionPage = session.get("actionPage").toString();
 		loginDTO.setLoginId(session.get("loginUserId").toString());
-		itemdetailDTOList = ((List<ItemDTO>) session.get("itemdetailDTOList"));
-		itemrelativeDTOList = ((List<ItemDTO>) session.get("itemrelativeDTOList"));
-		reviewDTO2List = ((List<ReviewDTO>) session.get("reviewDTO2List"));
-		reviewdetailDTO1List = ((List<ReviewDetailDTO>) session.get("reviewdetailDTO1List"));
-		pageItemList = ((List<SearchItemInfoDTO>) session.get("searchItemList"));
 
+		// 修正追加
+		if (session.get("itemdetailDTOList") != null) {
+			itemdetailDTOList = ((List<ItemDTO>) session.get("itemdetailDTOList"));
+		}
+
+		if (session.get("itemrelativeDTOList") != null) {
+			itemrelativeDTOList = ((List<ItemDTO>) session.get("itemrelativeDTOList"));
+		}
+		if (session.get("reviewDTO2List") != null) {
+			reviewDTO2List = ((List<ReviewDTO>) session.get("reviewDTO2List"));
+		}
+
+		if (session.get("reviewdetailDTO1List") != null) {
+			reviewdetailDTO1List = ((List<ReviewDetailDTO>) session.get("reviewdetailDTO1List"));
+		}
+		if (session.get("pageItemList") != null) {
+			pageItemList = ((List<SearchItemInfoDTO>) session.get("searchItemList"));
+		}
+
+		if (session.get("review_product_id") != null) {
+			product_id = session.get("review_product_id").toString();
+		}
+
+		if (session.get("review_category_id") != null) {
+			category_id = session.get("review_category_id").toString();
+		}
+
+		// ここまで
 		session.clear();
 
 		if (loginMemory) {
@@ -42,16 +67,33 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 		}
 		// session.put("actionPage", actionPage);
 
-		session.put("itemdetailDTOList", itemdetailDTOList);
 
-		session.put("itemrelativeDTOList", itemrelativeDTOList);
+		//修正追加
+		if (itemdetailDTOList != null) {
+			session.put("itemdetailDTOList", itemdetailDTOList);
+		}
+		if (itemrelativeDTOList != null) {
+			session.put("itemrelativeDTOList", itemrelativeDTOList);
+		}
+		if (reviewDTO2List != null) {
+			session.put("reviewDTO2List", reviewDTO2List);
+		}
+		if (reviewdetailDTO1List != null) {
+			session.put("reviewdetailDTO1List", reviewdetailDTO1List);
+		}
+		if (pageItemList != null) {
+			session.put("searchItemList", pageItemList);
+		}
 
-		session.put("reviewDTO2List", reviewDTO2List);
 
-		session.put("reviewdetailDTO1List", reviewdetailDTO1List);
+		if (product_id != null) {
+			session.put("review_product_id", product_id);
+		}
 
-		session.put("searchItemList", pageItemList);
-
+		if (category_id != null) {
+			session.put("review_category_id", category_id);
+		}
+		// ここまで
 		String ret = SUCCESS;
 
 		return ret;

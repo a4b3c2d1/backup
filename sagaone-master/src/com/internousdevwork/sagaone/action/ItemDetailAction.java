@@ -2,6 +2,7 @@ package com.internousdevwork.sagaone.action;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -149,9 +150,10 @@ public class ItemDetailAction extends ActionSupport implements SessionAware {
 		itemdetailDTOList = itemrelativeDAO.getdetailinfo(product_id);
 		session.put("itemdetailDTOList", itemdetailDTOList);
 
-
 		// 関連商品表示用リスト作成
 		itemrelativeDTOList = itemrelativeDAO.getrelativeinfo(product_id, category_id);
+		Collections.shuffle(itemrelativeDTOList);
+
 		session.put("itemrelativeDTOList", itemrelativeDTOList);
 
 		// レビュー表示用リスト作成

@@ -36,14 +36,13 @@ public class ReviewConpleteAction extends ActionSupport implements SessionAware 
 	public String execute() {
 		// レビューを登録
 
-		if(session.get("loginFlg").toString()!=("false")){
-
-			if (session.get("reviewFlg").toString().equals("1")) {
+		if (session.get("loginFlg").toString() != ("false")) {
+			if (session.get("reviewFlg") != null) {
 				reviewConpleteDAO.insertreview(session.get("review_user_id").toString(),
 						session.get("review_product_id").toString(), session.get("review_value").toString(),
 						session.get("review_review").toString());
 
-				session.put("reviewFlg", 0);
+				session.remove("reviewFlg");
 
 				// レビュー表示用再読み込み
 				reviewDTO2List = reviewDAO.getreviewinfo2(session.get("review_product_id").toString());
@@ -62,22 +61,13 @@ public class ReviewConpleteAction extends ActionSupport implements SessionAware 
 				searchItemDTOList = gswa.getSearghWord(searchItemDTOList);
 				session.put("allItem", searchItemDTOList);
 
-			}
+				// レビュー詳細リスト
+				reviewdetailDTO1List = reviewDAO.getreviewinfo3(session.get("review_product_id").toString());
+				session.put("reviewdetailDTO1List", reviewdetailDTO1List);
 
-			// レビュー詳細リスト
-			reviewdetailDTO1List = reviewDAO.getreviewinfo3(session.get("review_product_id").toString());
-			session.put("reviewdetailDTO1List", reviewdetailDTO1List);
-
-			// 全商品DTOに詰めます
-			searchItemDTOList = searchItemFromAllDAO.getItemInfoFromAll();
-			ReformCharaAction reformedItemList = new ReformCharaAction();
-			searchItemDTOList = reformedItemList.reformDescription(searchItemDTOList);
-			GetSearchWordsAction gswa = new GetSearchWordsAction();
-			searchItemDTOList = gswa.getSearghWord(searchItemDTOList);
-			session.put("allItem", searchItemDTOList);
-
-			result = SUCCESS;
-
+				result = SUCCESS;
+			} else
+				result = "error2";
 		} else {
 
 			result = "error2";

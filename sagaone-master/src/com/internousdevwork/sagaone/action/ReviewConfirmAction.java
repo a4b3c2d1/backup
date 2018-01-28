@@ -25,41 +25,42 @@ public class ReviewConfirmAction extends ActionSupport implements SessionAware {
 
 	public String execute() {
 
-		if(session.get("loginFlg").toString()!=("false")){
+		if (session.get("loginFlg").toString() != ("false")) {
+			if (session.get("reviewFlg") != null) {
 
-			// 改行だけの場合を回避
-			review2 = review;
-			review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp", " ").replaceAll("　", "");
+				// 改行だけの場合を回避
+				review2 = review;
+				review2 = review.replaceAll("\r\n", "").replaceAll("&nbsp", " ").replaceAll("　", "");
 
-			// 入力されているかの確認
-			if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
+				// 入力されているかの確認
+				if (!(value.equals("")) && !(review.equals("")) && !(review2.trim().length() == 0)) {
 
-				review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;").replaceAll("　", "&emsp;");
+					review = review.replaceAll("\r\n", "<br/>").replaceAll(" ", "&nbsp;").replaceAll("　", "&emsp;");
 
-				if (review.length() > 255) {
-					setReviewErrormessage("文字数オーバーです");
-					review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
+					if (review.length() > 255) {
+						setReviewErrormessage("文字数オーバーです");
+						review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
 
-					return ERROR;
+						return ERROR;
 
+					} else {
+						// 格納
+						session.put("review_value", value);
+						session.put("review_review", review);
+						// 表示用
+						review = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
+						session.put("review_review2", review);
+						// 確認画面へ
+						result = SUCCESS;
+					}
 				} else {
 
-					session.put("review_review", review);
-					session.put("review_value", value);
-
-					review2 = review;
-					review2 = review.replaceAll("<br/>", "\r\n").replaceAll("&nbsp;", " ").replaceAll("&emsp;", "　");
-					session.put("review_review2", review2);
-
-					// 確認画面へ
-					result = SUCCESS;
+					setReviewErrormessage("未入力です");
+					// 元の画面に戻す
+					result = ERROR;
 				}
-			} else {
-
-				setReviewErrormessage("未入力です");
-				// 元の画面に戻す
-				result = ERROR;
-			}
+			} else
+				result = "error2";
 		} else {
 
 			result = "error2";

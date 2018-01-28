@@ -32,7 +32,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private String loginUserId;
 	private String loginPassword;
 	private String paymentFlg;
-	private String loginMemory= "";
+	private String loginMemory = "";
 	public Map<String, Object> session;
 	private String errorMessage;
 	private String errorId;
@@ -42,8 +42,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private String errorPassword1;
 	private String errorPassword2;
 
-	private LoginDAO loginDAO= new LoginDAO();
-	private LoginDTO loginDTO= new LoginDTO();
+	private LoginDAO loginDAO = new LoginDAO();
+	private LoginDTO loginDTO = new LoginDTO();
 	private ArrayList<CartDTO> cartList = new ArrayList<CartDTO>();
 	private ArrayList<CartDTO> tempCartList = new ArrayList<CartDTO>();
 	private AddCartDAO addCartDAO = new AddCartDAO();
@@ -51,7 +51,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private TempCartDAO tempCartDAO = new TempCartDAO();
 
 	private String paymentMessage;
-
 
 	private PaymentUserInfoDTO paymentUserInfoDTO = new PaymentUserInfoDTO();
 	private PaymentUserAddressDTO userAddressDTO = new PaymentUserAddressDTO();
@@ -64,18 +63,18 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	private PaymentCartInfoDAO paymentCartInfoDAO = new PaymentCartInfoDAO();
 	private int sumPrice = 0;
 
-
 	public String execute() throws SQLException {
-		String ret=ERROR;
-		int ErrorCount= 0;
 
-		if(!(loginUserId.equals("")) && !(loginPassword.equals(""))){
+		String ret = ERROR;
+		int ErrorCount = 0;
+
+		if (!(loginUserId.equals("")) && !(loginPassword.equals(""))) {
 			setErrorMessage("IDかパスワードが異なります(○・▽・○)！<br>");
 			ErrorCount++;
 		}
 
 		// 未入力時
-		if(loginUserId.equals("")) {
+		if (loginUserId.equals("")) {
 			setErrorId("ログインIDが未入力です(○・▽・○)！<br>");
 			ErrorCount++;
 		}
@@ -85,9 +84,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			ErrorCount++;
 		}
 
-
 		// その他エラー
-		if(loginUserId.length()<1||loginUserId.length()>8 && !loginUserId.equals("")){
+		if (loginUserId.length() < 1 || loginUserId.length() > 8 && !loginUserId.equals("")) {
 			setErrorId1("1文字以上8文字以内で入力してください(○・▽・○)！<br>");
 			ErrorCount++;
 		}
@@ -97,8 +95,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			ErrorCount++;
 		}
 
-
-		if(loginPassword.length()<3||loginPassword.length()>16 && !loginPassword.equals("")){
+		if (loginPassword.length() < 3 || loginPassword.length() > 16 && !loginPassword.equals("")) {
 			setErrorPassword1("3文字以上16文字以内で入力してください(○・▽・○)！<br>");
 			ErrorCount++;
 		}
@@ -108,29 +105,26 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			ErrorCount++;
 		}
 
-		if(ErrorCount>0) {
+		if (ErrorCount > 0) {
 			ret = ERROR;
 		}
 
-
 		// ログイン実行
-		loginDTO= loginDAO.getLoginUserInfo(loginUserId, loginPassword);
+		loginDTO = loginDAO.getLoginUserInfo(loginUserId, loginPassword);
 
 		if (loginUserId.equals(loginDTO.getLoginId())) {
-			if (loginPassword.equals(loginDTO.getLoginPassword())){
-
+			if (loginPassword.equals(loginDTO.getLoginPassword())) {
 
 				session.put("loginUser", loginDTO);
 				session.put("loginUserId", loginUserId);
 				session.put("loginPassword", loginPassword);
 				session.put("loginFlg", loginDTO.getLoginFlg());
 
-				ret= SUCCESS;
+				ret = SUCCESS;
 			}
-		}else{
+		} else {
 			ret = ERROR;
 		}
-
 
 		if (loginMemory.equals("true")) {
 			session.put("loginMemory", true);
@@ -138,35 +132,27 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			session.put("loginMemory", false);
 		}
 
-		if(Boolean.parseBoolean(session.get("loginFlg").toString())){
+		if (Boolean.parseBoolean(session.get("loginFlg").toString())) {
 			String user_id = session.get("loginUserId").toString();
 			String temp_user_id = session.get("temp_user_id").toString();
-			ArrayList <Integer> idList=new ArrayList<Integer>();
+			ArrayList<Integer> idList = new ArrayList<Integer>();
 			cartList = cartDAO.getCartInfo(user_id);
 			tempCartList = tempCartDAO.getTempCartAdd(temp_user_id);
 			int i;
-			for(i=0;i<cartList.size();i++){
-			idList.add(cartList.get(i).getProductId());
+			for (i = 0; i < cartList.size(); i++) {
+				idList.add(cartList.get(i).getProductId());
 			}
-			if(!(tempCartList.isEmpty())){
-					for( i = 0; i < tempCartList.size(); i++){
-						if(idList.contains(tempCartList.get(i).getProductId())){
-							addCartDAO.joinUpdateCart(
-									tempCartList.get(i).getCount(),
-									user_id,
-									tempCartList.get(i).getProductId()
-									);
-						}else{
-							addCartDAO.addCartInfo(
-									tempCartList.get(i).getId(),
-									session.get("loginUserId").toString(),
-									tempCartList.get(i).getProductId(),
-									tempCartList.get(i).getCount(),
-									tempCartList.get(i).getPrice()
-									);
-						}
+			if (!(tempCartList.isEmpty())) {
+				for (i = 0; i < tempCartList.size(); i++) {
+					if (idList.contains(tempCartList.get(i).getProductId())) {
+						addCartDAO.joinUpdateCart(tempCartList.get(i).getCount(), user_id,
+								tempCartList.get(i).getProductId());
+					} else {
+						addCartDAO.addCartInfo(tempCartList.get(i).getId(), session.get("loginUserId").toString(),
+								tempCartList.get(i).getProductId(), tempCartList.get(i).getCount(),
+								tempCartList.get(i).getPrice());
 					}
-
+				}
 
 				DBConnector db = new DBConnector();
 				Connection con = db.getConnection();
@@ -179,97 +165,97 @@ public class LoginAction extends ActionSupport implements SessionAware {
 					ps.setString(1, temp_user_id);
 
 					ps.executeUpdate();
-				}catch (Exception e){
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
 
+		if (Boolean.parseBoolean(session.get("loginFlg").toString())) {
+			if (session.get("paymentFlg") != null) {
+				paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
 
-		if(Boolean.parseBoolean(session.get("loginFlg").toString())){
-		if (session.get("paymentFlg") != null) {
-			paymentUserInfoDTO = userInfoDAO.getUserInfo(session.get("loginUserId").toString());
+				addressDTOList = userAddressDAO.getUserAddress(session.get("loginUserId").toString());
 
-			addressDTOList = userAddressDAO.getUserAddress(session.get("loginUserId").toString());
+				cartInfoList = paymentCartInfoDAO.getCartInfo(session.get("loginUserId").toString());
 
-			cartInfoList = paymentCartInfoDAO.getCartInfo(session.get("loginUserId").toString());
+				// if文でcartInfoListが空の場合のエラー処理をする。
+				for (int i = 0; i < cartInfoList.size(); i++) {
 
-			// if文でcartInfoListが空の場合のエラー処理をする。
-			for(int i = 0; i<cartInfoList.size(); i++){
+					PaymentProductInfoDAO paymentProductDAO = new PaymentProductInfoDAO();
+					PaymentProductInfoDTO paymentProductInfoDTO = new PaymentProductInfoDTO();
+					paymentProductInfoDTO = paymentProductDAO.getProductInfo(cartInfoList.get(i).getProductId());
+					paymentProductInfoDTO.setProductCount(cartInfoList.get(i).getProductCount());
+					paymentProductInfoDTO
+							.setTotalPrice(paymentProductInfoDTO.getPrice() * paymentProductInfoDTO.getProductCount());
+					productDTOList.add(paymentProductInfoDTO);
 
-				PaymentProductInfoDAO paymentProductDAO = new PaymentProductInfoDAO();
-				PaymentProductInfoDTO paymentProductInfoDTO = new PaymentProductInfoDTO();
-				paymentProductInfoDTO = paymentProductDAO.getProductInfo(cartInfoList.get(i).getProductId());
-				paymentProductInfoDTO.setProductCount(cartInfoList.get(i).getProductCount());
-				paymentProductInfoDTO.setTotalPrice(paymentProductInfoDTO.getPrice() * paymentProductInfoDTO.getProductCount());
-				productDTOList.add(paymentProductInfoDTO);
+					sumPrice += productDTOList.get(i).getTotalPrice();
+				}
 
-				sumPrice += productDTOList.get(i).getTotalPrice();
+				if (cartInfoList.isEmpty()) {
+					paymentMessage = "カートに商品が入っていません";
+					session.put("paymentMessage", paymentMessage);
+				} else {
+					// paymentPage.jsp
+					session.put("paymentUserInfoDTO", paymentUserInfoDTO);
+					session.put("addressDTOList", addressDTOList);
+					session.put("cartInfoList", cartInfoList);
+					session.put("productDTOList", productDTOList);
+					session.put("sumPrice", sumPrice);
+				}
+				ret = "payment";
 			}
+		}
 
-
-			if (cartInfoList.isEmpty()) {
-				paymentMessage = "カートに商品が入っていません";
-				session.put("paymentMessage", paymentMessage);
-			} else {
-				//paymentPage.jsp
-				session.put("paymentUserInfoDTO", paymentUserInfoDTO);
-				session.put("addressDTOList", addressDTOList);
-				session.put("cartInfoList", cartInfoList);
-				session.put("productDTOList", productDTOList);
-				session.put("sumPrice", sumPrice);
-			}
-			ret= "payment";
-		}}
-
-		if(session.get("actionPage") != null){
+		if (session.get("actionPage") != null) {
 			ret = session.get("actionPage").toString();
 		}
 
-
 		return ret;
 	}
-
-
-
 
 	// 後衛
 	public String getLoginUserId() {
 		return loginUserId;
 	}
-	public void setLoginUserId (String loginUserId) {
-		this.loginUserId= loginUserId;
+
+	public void setLoginUserId(String loginUserId) {
+		this.loginUserId = loginUserId;
 	}
 
 	public String getLoginPassword() {
 		return loginPassword;
 	}
-	public void setLoginPassword (String loginPassword) {
-		this.loginPassword= loginPassword;
+
+	public void setLoginPassword(String loginPassword) {
+		this.loginPassword = loginPassword;
 	}
 
 	public String getPaymentFlg() {
 		return paymentFlg;
 	}
-	public void setPaymentFlg(String paymentFlg){
-		this.paymentFlg= paymentFlg;
+
+	public void setPaymentFlg(String paymentFlg) {
+		this.paymentFlg = paymentFlg;
 	}
 
 	public String getLoginMemory() {
 		return loginMemory;
 	}
+
 	public void setLoginMemory(String loginMemory) {
-		this.loginMemory= loginMemory;
+		this.loginMemory = loginMemory;
 	}
 
-	public void setSession (Map<String, Object> session) {
-		this.session= session;
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
-
 
 	public String getErrorMessage() {
 		return errorMessage;
 	}
+
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
@@ -277,141 +263,113 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public String getErrorId() {
 		return errorId;
 	}
-	public void setErrorId(String errorId){
-		this.errorId= errorId;
+
+	public void setErrorId(String errorId) {
+		this.errorId = errorId;
 	}
 
 	public String getErrorId1() {
 		return errorId1;
 	}
-	public void setErrorId1(String errorId1){
-		this.errorId1= errorId1;
+
+	public void setErrorId1(String errorId1) {
+		this.errorId1 = errorId1;
 	}
 
 	public String getErrorId2() {
 		return errorId2;
 	}
-	public void setErrorId2(String errorId2){
-		this.errorId2= errorId2;
+
+	public void setErrorId2(String errorId2) {
+		this.errorId2 = errorId2;
 	}
 
 	public String getErrorPassword() {
 		return errorPassword;
 	}
-	public void setErrorPassword(String errorPassword){
-		this.errorPassword= errorPassword;
+
+	public void setErrorPassword(String errorPassword) {
+		this.errorPassword = errorPassword;
 	}
+
 	public String getErrorPassword1() {
 		return errorPassword1;
 	}
-	public void setErrorPassword1(String errorPassword1){
-		this.errorPassword1= errorPassword1;
-	}
 
+	public void setErrorPassword1(String errorPassword1) {
+		this.errorPassword1 = errorPassword1;
+	}
 
 	public String getErrorPassword2() {
 		return errorPassword2;
 	}
-	public void setErrorPassword2(String errorPassword2){
-		this.errorPassword2= errorPassword2;
+
+	public void setErrorPassword2(String errorPassword2) {
+		this.errorPassword2 = errorPassword2;
 	}
-
-
 
 	public PaymentUserInfoDTO getPaymentUserInfoDTO() {
 		return paymentUserInfoDTO;
 	}
 
-
-
 	public void setPaymentUserInfoDTO(PaymentUserInfoDTO paymentUserInfoDTO) {
 		this.paymentUserInfoDTO = paymentUserInfoDTO;
 	}
-
-
 
 	public PaymentUserAddressDTO getUserAddressDTO() {
 		return userAddressDTO;
 	}
 
-
-
 	public void setUserAddressDTO(PaymentUserAddressDTO userAddressDTO) {
 		this.userAddressDTO = userAddressDTO;
 	}
-
-
 
 	public PaymentCartInfoDTO getPaymentCartInfoDTO() {
 		return paymentCartInfoDTO;
 	}
 
-
-
 	public void setPaymentCartInfoDTO(PaymentCartInfoDTO paymentCartInfoDTO) {
 		this.paymentCartInfoDTO = paymentCartInfoDTO;
 	}
-
-
 
 	public PaymentUserInfoDAO getUserInfoDAO() {
 		return userInfoDAO;
 	}
 
-
-
 	public void setUserInfoDAO(PaymentUserInfoDAO userInfoDAO) {
 		this.userInfoDAO = userInfoDAO;
 	}
-
-
 
 	public PaymentUserAddressDAO getUserAddressDAO() {
 		return userAddressDAO;
 	}
 
-
-
 	public void setUserAddressDAO(PaymentUserAddressDAO userAddressDAO) {
 		this.userAddressDAO = userAddressDAO;
 	}
-
 
 	public PaymentCartInfoDAO getPaymentCartInfoDAO() {
 		return paymentCartInfoDAO;
 	}
 
-
-
 	public void setPaymentCartInfoDAO(PaymentCartInfoDAO paymentCartInfoDAO) {
 		this.paymentCartInfoDAO = paymentCartInfoDAO;
 	}
-
-
 
 	public String getPaymentMessage() {
 		return paymentMessage;
 	}
 
-
-
 	public void setPaymentMessage(String paymentMessage) {
 		this.paymentMessage = paymentMessage;
 	}
-
-
-
 
 	public ArrayList<CartDTO> getCartList() {
 		return cartList;
 	}
 
-
-
-
 	public void setCartList(ArrayList<CartDTO> cartList) {
 		this.cartList = cartList;
 	}
-
 
 }

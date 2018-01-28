@@ -58,13 +58,9 @@
 }
 
 .text {
-	border: solid;
-	border-width: 1px;
-	width: 600px;
-	font-size: 25px;
-	min-height: 200px;
-	font-family: monospace;
-	border-color: rgb(169, 169, 169);
+    width: 600px;
+    height: 200px;
+    font-size: 25px;
 }
 
 .form-style {

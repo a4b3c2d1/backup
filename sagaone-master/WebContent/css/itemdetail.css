@@ -5,15 +5,26 @@ a:visited {
 	text-decoration: none
 }
 
-#main {
-
-    margin-bottom: 60px;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    position: relative;
-    width: 100%;
+hr {
+	width: 1000px;
 }
+
+#main {
+	margin-bottom: 60px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+.text {
+	width: 600px;
+	height: 200px;
+	font-size: 18px;
+	border: 0;
+}
+
 .main1 {
 	padding: 55px;
 	height: 400px;
@@ -165,14 +176,13 @@ a:visited {
 	border: none;
 	color: #fff;
 }
-.form-style :hover{
-    background: #4691A4;
-    box-shadow:none;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
+
+.form-style :hover {
+	background: #4691A4;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
 }
-
-
 
 .balloon2 {
 	border-color: #999;

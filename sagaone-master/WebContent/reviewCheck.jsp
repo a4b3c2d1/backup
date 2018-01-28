@@ -171,7 +171,8 @@
 
 				<div class="review2">
 					<div class="text">
-						<s:property value="review" escape="false" />
+						<textarea class="text" name="review" readonly="readonly" ><s:property
+							value="review" escape="false"/></textarea>
 					</div>
 
 					<s:form action="ReviewEditAction">

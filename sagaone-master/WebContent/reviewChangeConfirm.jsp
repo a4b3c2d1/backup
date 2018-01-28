@@ -163,7 +163,8 @@
 				</div>
 				<div class="review2">
 					<div class="text">
-						<s:property value="review" escape="false" />
+						<textarea class="text" name="review" readonly="readonly" ><s:property
+							value="review" escape="false"/></textarea>
 					</div>
 				</div>
 			</s:iterator>
@@ -183,7 +184,8 @@
 
 			<div class="review2">
 				<div class="text">
-					<s:property value="session.review_change_review" escape="false" />
+					<textarea class="text" name="review" readonly="readonly"><s:property
+							value="session.review_change_review2" /></textarea>
 				</div>
 
 				<s:form action="ReviewChangeConpleteAction"
